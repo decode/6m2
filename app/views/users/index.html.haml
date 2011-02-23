@@ -1,0 +1,43 @@
+%table
+  %caption
+    = t('site.user_manage')
+    - form_tag :controller => 'board', :action => 'search_user' do
+      = label_tag t 'site.login_name'
+      = search_field_tag 'username', session[:search_username]
+      = submit_tag 'Search'
+
+  %thead
+    %tr
+      %th
+      %th= t 'site.login_name'
+      %th= t 'account.role'
+      %th= t 'account.charge_amount' 
+      %th= t 'account.point'
+      %th= t 'account.score'
+      %th= t 'global.status' 
+      %th{:colspan=>4}= t 'global.operation'
+
+  - @users.each do |user|
+    - c = cycle("even", "odd")
+    %tr{:class=>c}
+      %td
+        =# check_box_tag "users[]", user
+      %td= user.username
+      %td
+        = user.role_objects.collect{|r| r.name}
+      %td= user.account_money
+      %td= user.account_credit
+      %td= user.score
+      %td= user.status
+      %td
+        = link_to t('global.show'), user
+        - if manager?
+        = link_to t('account.point'), :controller => 'account', :action => 'point', :id => user
+        = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
+        - if super?
+          = link_to t('global.edit'), edit_user_path(user)
+          = link_to t('global.delete'), user, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = t('account.not_approved') if user.has_role? 'guest'
+
+= will_paginate @users

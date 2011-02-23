@@ -1,0 +1,29 @@
+%table
+  %tr
+    %th
+    %th Name
+    %th Mail
+    %th Role
+    %th Manage
+    %th
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td
+        =# check_box_tag "users[]", user
+      %td=# user.name
+      %td= user.email
+      %td
+        - if admin?
+          = Role.collect{|r| r.name }
+        - if manager?
+          = Role.where('name != ?', 'admin').collect {|r| r.name }
+      %td
+        = link_to 'Show', user
+        = link_to 'Edit', edit_user_path(user)
+        = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = 'Not Approved' if user.has_role? 'guest'
+

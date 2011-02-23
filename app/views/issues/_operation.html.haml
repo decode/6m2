@@ -1,0 +1,21 @@
+- form_tag :controller => 'board', :action => 'task_issue' do
+  =# select_tag 'issue[issue_reason]', options_for_select([['user'],['worker']])
+  = label_tag t('issue.issue_source')
+  %br
+  = radio_button_tag 'issue_source', 'worker'
+  = label_tag t('issue.source_worker')
+  = check_box_tag 'retrun_point'
+  = label_tag t('issue.return_point')
+  %br
+  = radio_button_tag 'issue_source', 'user', true
+  = label_tag t('issue.source_user')
+  %br
+  = check_box_tag 'penalty'
+  = label_tag t('issue.extra_penalty')
+  = number_field_tag 'penalty_value', 1, :in => 1..10
+  %br
+  = label_tag t('issue.memo')
+  %br
+  = text_area_tag 'memo', nil, :rows => 5, :cols => 50
+  %br
+  = submit_tag t('global.post')

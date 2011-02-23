@@ -1,0 +1,9 @@
+#charge
+  - form_tag :onsubmit=>"alert('test'); return false;", :action=>'process_charge' do
+    = label_tag t('account.charge_amount')
+    = select_tag 'amount', options_for_select([100,200,500,1000,2000,5000]), :class=>'validate[require]'
+    =# number_field_tag 'amount', :class=>'validate[require]'
+    = submit_tag t('account.charge')
+  
+
+

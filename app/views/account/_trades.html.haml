@@ -1,0 +1,26 @@
+%table
+  %caption= t 'account.charge'
+  %thead
+    %tr
+      %th=t 'site.login_name'
+      %th=t 'global.price'
+      %th=t 'trade.charged_at'
+      %th=t 'global.status'
+      %th=t 'global.type'
+      %th{:colspan=>3}
+
+  - @trades.each do |t|
+    - c = cycle("even", "odd")
+    %tr{:class=>c}
+      %td= t.user.username
+      %td= t.price
+      %td= t.created_at
+      %td= t.status
+      %td= t.trade_type
+      %td= link_to t('global.delete'), :action => 'delete_charge', :id => t if t.trade_type == 'charge' and t.request?
+      - if (admin? or manager?) and t.status != 'approved'
+        %td
+          = link_to t('trade.approve'), :controller=>'account', :action=>'approve_pass', :id=>t.id
+        %td
+          = link_to t('trade.reject'), :controller=>'account', :action=>'approve_reject', :id=>t.id
+= will_paginate @trades

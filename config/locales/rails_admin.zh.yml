@@ -1,0 +1,60 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+zh:
+  home:
+    name: "首页"
+  admin:
+    dashboard:
+      pagename: "站点管理"
+      name: "面板"
+      model_name: "名称"
+      last_used: "最后使用"
+      records: "记录"
+      modify: "修改"
+      add_new: "新増"
+      show: "查看"
+      ago: "以前"
+    history:
+      name: "历史"
+      page_name: "%{name}历史"
+      no_activity: "无活动记录"
+    credentials:
+      log_out: "注销"
+    list:
+      edit_action: "编辑"
+      delete_action: "删除"
+      select_action: "选择"
+      delete_selected: "删除己选择的记录"
+      add_new: "新増"
+      search_btn: "搜索"
+      select: "选择%{name}编辑"
+      show_all: "查看全部"
+    new:
+      basic_info: "基本信息"
+      required: "必須"
+      optional: "可选"
+      one_char: "character."
+      many_chars: "characters or fewer."
+      chosen: "选择%{name}"
+      select_choice: "选择并点击"
+      chose_all: "全选"
+      clear_all: "清除全部"
+      save: "保存"
+      save_and_add_another: "保存并新増"
+      save_and_edit: "保存并编辑"
+      cancel: "取消"
+    delete:
+      flash_confirmation: "%{name}己成功删除"
+      confirmation: "我确定此操作"
+    flash:
+      successful: "%{name}己成功%{action}"
+      error: "%{name}%{action}失败"
+      noaction: "没有操作"
+    actions:
+      create: "创建"
+      created: "己创建"
+      update: "更新"
+      updated: "己更新"
+      delete: "删除"
+      deleted: "己删除"

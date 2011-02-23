@@ -1,0 +1,452 @@
+activemodel:
+  attributes:
+    user:
+      login: "用戶名或邮箱"
+zh:
+  activerecord:
+    models:
+      user: "用户"
+    attributes:
+      user:
+        loginname: "用户名"
+        email: "邮件"
+    errors:
+      messages: 
+        record_invalid: "无效的记录"
+zh:
+  global:
+    title: "标题"
+    content: "内容"
+    show: "查看"
+    edit: "编辑"
+    back: "返回"
+    post: "提交"
+    reply: "回复"
+    create: "创建"
+    delete: "删除"
+    description: "描述"
+    before: "前"
+    after: "后"
+    links: "链接"
+    follow: "回复"
+    operation: "操作"
+    status: "状态"
+    type: "类型"
+    close: "关闭"
+    done: "完成"
+    price: "价格"
+    update_success: "更新成功"
+    update_failed: "更新失败"
+    save: "保存"
+
+  system:
+    password_error: "密码错误"
+    login_success: "登录成功"
+    login_failed: "登录失败"
+    logout_success: "注销成功"
+    message: "系统消息"
+    unread_message: "末读消息"
+
+  site:
+    label: "首页"
+    welcome: "欢迎, %{name}"
+    login: "登录"
+    register: "注册"
+    logout: "注销"
+    profile: "设置"
+    login_name: "用户名"
+    password: "密码"
+    change_password: "修改密码"
+    password_confirmation: "确认密码"
+    remember_me: "记住我"
+    news: "新闻"
+    no_news: "暂无新闻"
+    no_topics: "没有新的话题"
+    no_articles: "没有新的文章"
+    update: "更新"
+    talk_mode: "聊天模式"
+    task: "任务平台"
+    task_type: "%{task_type}任务"
+    new_task: "发布任务"
+    user_center: "用户中心"
+    rule: "规则说明"
+    my_task: "我发布的任务"
+    my_todo: "我接手的任务"
+    my_account: "我的帐户"
+    issue: "问题中心"
+    setting: "平台设置"
+    manage_center: "管理中心"
+    notice: "公告"
+    notice_center: "公告中心"
+    user_manage: "用户管理"
+
+  manage:
+    message_box: "收件箱"
+    message_list: "消息列表"
+    sent_message_list: "己发消息"
+    read_message_list: "己读消息"
+    friend_list: "好友列表"
+    block_list: "黑名单"
+    friend_list_description: "所有好友"
+    block_list_description: "黑名单列表"
+    mark_read: "标记为己读"
+    move_to_inbox: "移动到收件箱"
+    delete_forever: "永久删除"
+    trash: "垃圾箱"
+    accept: "接受"
+    refuse: "拒绝"
+    block: "黑名单"
+    request: "请求"
+    unblock: "取消黑名单"
+    message_status_changed: "消息状态改变"
+    message_has_been_delete: "消息己删除"
+    request_has_been_sent: "请求己发送"
+    has_been_blocked: "己进入黑名单"
+    already_friend: "该用户己在好友名单中"
+    sender: "发送者"
+    send_time: "发送时间"
+    receiver: "接收人"
+
+  admin:
+    label: "网站管理"
+
+  page:
+    submit: "提交"
+    reply: "回复"
+    post: "提交"
+    back: "返回"
+    name: "名字"
+    email: "电子邮件"
+    website: "网址"
+    message: "发消息"
+    add_friend: "添加好友"
+    send: "发送"
+    avatar: "头像"
+
+  topic:
+    label: "讨论"
+    list_topic: "主题列表"
+    new: "新主题"
+    new_update: "最新发表"
+    say: "说"
+    poster: "作者"
+    last_poster: "最后发表"
+    reply: "回复"
+    viewer: "查看"
+    quote: "引用"
+    post: "发表"
+
+  blog:
+    label: "日志"
+    new_post: "新文章"
+    new_user: "新加入用户"
+    comments: "评论"
+    title: "标题"
+    content: "内容"
+    comment: "评论"
+    comment_count: "评论数"
+    comment_at: "评论时间"
+    posted_at: "发表于"
+    more: "更多..."
+    last_articles: "最近更新"
+    latest_comments: "最新评论"
+    welcome_title: "欢迎访问我的日志"
+    welcome_body: "希望您在这里有愉快的体验"
+
+
+  gallary:
+    label: "相册"
+    name: "相册名"
+    owner: "所有人"
+    need_password: "密码访问"
+    only_friend: "好友可见"
+    no_public_gallaries: "暂无公共相册"
+    new: "创建"
+    add_image: "添加图片"
+    attachments: "图片集"
+    attachment_count: "图片数"
+    public: "公共相册"
+    friend_view: "好友可见"
+    category: "类别"
+    posted_at: "创建于"
+    total_gallaries: "相册数"
+
+  account:
+    account_manage: "帐户管理"
+    manage_description: "管理个人帐户信息"
+    edit_account: "编辑帐户"
+    update_success: "帐号更新成功"
+    register_success: "注册成功"
+    register_failed: "注册失败"
+    login: "登录"
+    login_count: "登录次数"
+    last_request_at: "最近请求:"
+    last_login_at: "最近登录:"
+    current_login_at: "当前登录:"
+    last_login_ip: "最后登录IP"
+    current_login_ip: "当前登录IP"
+    gender: "性别"
+    birthday: "生日"
+    male: "男"
+    female: "女"
+    charge: "充值"
+    change: "兑换"
+    charge_amount: "充值金额"
+    point: "发布点"
+    role: "角色"
+    score: "积分"
+    not_approved: "未认证"
+
+  task:
+    problem: "投诉"
+    confirm: "确认"
+    do: "接手任务"
+    finish: "完成任务"
+    condition: "任务条件"
+    owner: "所有者"
+    worker: "执行者"
+    level: "任务等级"
+    work_day: "任务期限"
+    extra: "额外评价"
+    unpublish: "未发布"
+    publish: "发布"
+    confirm_success: "确认任务完成"
+    self_task: "不能接手自己的任务"
+    not_type: "不是包含的任务类型"
+    not_enough_point: "发布点不足"
+    no_price: "价格不能为空"
+    do_task: "任务己添加到您的任务列表中"
+    error: "无法发布任务"
+
+  trade:
+    charged_at: "充值时间"
+    success: "交易己提交"
+    error: "交易无法进行,交易数量必须大于0"
+    approve_charge: "批准充值"
+    approve: "批准"
+    reject: "拒绝"
+    trade_not_found: "交易不存在"
+    payment_amount: "货款金额"
+    point_amount: "发布点数量"
+    charge_point: "发布点兑换"
+    charge_payment: "充值"
+    manage_point: "发布点兑换管理"
+    manage_payment: "充值管理"
+    no_enough_money: "金额不足"
+
+  setting:
+    point_ratio: "发布兑换比"
+    score_ratio: "积分兑换比"
+    class1: "class1"
+    class2: "class2"
+    class3: "class3"
+    class4: "class4"
+    class5: "class5"
+    task_punish: "任务处罚"
+    charge_punish: "充值处罚"
+    report_award: "举报奖励"
+    report_punish: "举报处罚"
+    custom_judge: "自定义评价消耗点数"
+    real_level: "接任务方帐号级别"
+
+  issue:
+    create: "问题己成功提交"
+    can_not_create: "无法提交问题"
+    issue_type: "问题类型"
+    issue_source: "过错方"
+    source_user: "任务发布者"
+    source_worker: "任务执行者"
+    penalty: "处罚"
+    extra_penalty: "额外处罚"
+    close_issue: "关闭问题"
+    fixed_issue: "解决问题"
+    has_fixed: "问题己解决"
+    has_close: "问题己关闭"
+    return_point: "恢复发布点给任务发布者"
+    can_not_modify: "问题己无法修改"
+    memo: "解决结果"
+    penalty_money: "罚金"
+    target: "关联对象"
+    
+  notice:
+    new_notice: "发表公告"
+    list_notice: "公告列表"
+
+  formtastic:
+    titles:
+      task_details: "任务详情"
+    labels:
+      task:
+        title: "任务标题"
+        task_type: "任务类型"
+        description: "任务描述"
+        price: "价格"
+        status: "状态"
+        link: "链接"
+        worker_level: "接手人级别"
+        task_day: "完成时间"
+        extra_word: "附加词语"
+        avoid_day: "重复天数"
+        task_level: "任务级别"
+        custom_judge: "自定义评价"
+        custom_judge_content: "自定义评价内容"
+        transport_id: "物流单号"
+      user:
+        im: "聊天工具"
+        im_q: "QQ"
+        bank_name: "开户银行"
+        bank_account: "银行帐号"
+        mobile: "手机号"
+        person_id: "身份证号"
+        shop_taobao: "淘宝店名"
+        shop_paipai: "拍拍店名"
+        shop_youa: "有啊店名"
+        shop_taobao_url: "淘宝店铺地址"
+        shop_paipai_url: "拍拍店铺地址"
+        shop_youa_url: "有啊店铺地址"
+        account_credit: "发布点"
+    hints:
+      task:
+        title: "为任务写一个标题"
+        task_type: "taobao, paipai, 等等."
+        description: "为任务写一些描述性的文字"
+        avoid_day: "设置多少天内同一买家不能接受任务"
+        custom_judge: "必须选中附加词语才有效"
+        transport_id: "如果不填系统自动生成一个单号"
+      user:
+        im: "任何聊天工具的帐号都可填在这里"
+    actions:
+      create: "创建"
+      update: "保存"
+      dummie: "运行!"
+
+
+
+# From rails-i18n
+# See http://github.com/svenfuchs/rails-i18n/blob/3e1994d137e1785689e39f6e957087d3baed0011/rails/locale/zh-CN.yml
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b%d日"
+      long: "%Y年%b%d日"
+    day_names: [星期日, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    order: [ :year, :month, :day ]
+  
+  time:
+    formats:
+      default: "%Y年%b%d日 %A %H:%M:%S %Z"
+      short: "%b%d日 %H:%M"
+      long: "%Y年%b%d日 %H:%M"
+    am: "上午"
+    pm: "下午"
+  
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one: "不到一秒"
+        other: "不到 {{count}} 秒"
+      x_seconds:
+        one: "一秒"
+        other: "{{count}} 秒"
+      less_than_x_minutes:
+        one: "不到一分钟"
+        other: "不到 {{count}} 分钟"
+      x_minutes:
+        one: "一分钟"
+        other: "{{count}} 分钟"
+      about_x_hours:
+        one: "大约一小时"
+        other: "大约 {{count}} 小时"
+      x_days:
+        one: "一天"
+        other: "{{count}} 天"
+      about_x_months:
+        one: "大约一个月"
+        other: "大约 {{count}} 个月"
+      x_months:
+        one: "一个月"
+        other: "{{count}} 个月"
+      about_x_years:
+        one: "大约一年"
+        other: "大约 {{count}} 年"
+      over_x_years:
+        one: "一年多"
+        other: "{{count}} 年多"
+    prompts:
+      year: "年"
+      month: "月"
+      day: "日"
+      hour: "时"
+      minute: "分"
+      second: "秒"
+  
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+    currency:
+      format:
+        format: "%u %n"
+        unit: "CN¥"
+        separator: "."
+        delimiter: ","
+        precision: 2
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+    human:
+      format:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+  
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " 和 "
+      last_word_connector: ", 和 "
+  
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "有 1 个错误发生导致「{{model}}」无法被保存。"
+          other: "有 {{count}} 个错误发生导致「{{model}}」无法被保存。"
+        body: "如下字段出现错误："
+      messages:
+        inclusion: "不包含于列表中"
+        exclusion: "是保留关键字"
+        invalid: "是无效的"
+        confirmation: "与确认值不匹配"
+        accepted: "必须是可被接受的"
+        empty: "不能留空"
+        blank: "不能为空字符"
+        too_long: "过长（最长为 {{count}} 个字符）"
+        too_short: "過短（最短为 {{count}} 个字符）"
+        wrong_length: "长度非法（必须为 {{count}} 个字符）"
+        taken: "已经被使用"
+        not_a_number: "不是数字"
+        greater_than: "必须大于 {{count}}"
+        greater_than_or_equal_to: "必须大于或等于 {{count}}"
+        equal_to: "必须等于 {{count}}"
+        less_than: "必须小于 {{count}}"
+        less_than_or_equal_to: "必须小于或等于 {{count}}"
+        odd: "必须为单数"
+        even: "必须为双数"

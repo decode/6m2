@@ -1,0 +1,9 @@
+= t 'issue.issue_type'
+- unless @task.nil?
+  = "Task"
+  %ul
+    %li= link_to @task.title, @task
+    %li= @task.link
+    %li= @task.price
+    %li= @task.user.username
+%hr

@@ -1,0 +1,23 @@
+- semantic_form_for @user do |f| 
+  - f.inputs do
+    - if session[:user_edit_mode] == 'point'
+      = f.input :account_credit
+    - if session[:user_edit_mode] == 'password'
+      = f.input :password
+
+    - if session[:user_edit_mode].nil?
+      = f.input :im
+      = f.input :im_q
+      = f.input :bank_name
+      = f.input :bank_account
+      = f.input :mobile
+      = f.input :person_id
+
+      = f.input :shop_taobao
+      = f.input :shop_taobao_url
+      = f.input :shop_paipai
+      = f.input :shop_paipai_url
+      = f.input :shop_youa
+      = f.input :shop_youa_url
+
+    = f.commit_button

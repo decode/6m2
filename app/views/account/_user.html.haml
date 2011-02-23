@@ -1,0 +1,26 @@
+%p
+  %b= t 'site.login_name'
+  = @user.username
+%p
+  %b= t 'page.email'
+  = @user.email
+%p
+  %b= t 'account.role'
+  = @user.role_objects.map { |role| role.name }
+
+
+%ul
+  %li
+    = t 'account.charge_amount'
+    = @user.account_money
+  %li
+    = t 'account.point'
+    = @user.account_credit
+  %li
+    = t 'trade.payment_amount'
+    = @user.payment_money
+  %li
+    = t 'account.score'
+    = @user.score
+
+= link_to t('global.edit'), edit_user_path(@user) if @user == current_user

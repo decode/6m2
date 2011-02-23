@@ -1,0 +1,19 @@
+- if @task
+  #tearshape
+    = label_tag t('site.task')
+    = @task.title
+    |
+    = label_tag t('task.owner')
+    = @task.user.username
+    |
+    = label_tag t('task.worker')
+    = @task.worker.username
+    |
+    = label_tag t('site.price')
+    = @task.price
+
+- semantic_form_for @issue do |f| 
+  - f.inputs do
+    = f.input :title
+    = f.input :content, :as => :text
+    = f.submit

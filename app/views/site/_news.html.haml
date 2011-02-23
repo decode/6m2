@@ -1,0 +1,9 @@
+.head_title
+  = t 'site.news'
+  %hr
+- if @notices.length == 0
+  = t 'site.no_news'
+- for n in @notices
+  = link_to n.title, n
+  = n.created_at
+

@@ -1,0 +1,44 @@
+%ul
+- form_tag :action => 'update_setting' do
+  = hidden_field_tag 'id', @setting.id
+  %li
+    = label_tag t('setting.point_ratio')
+    = number_field_tag 'setting[point_ratio]', @setting.point_ratio
+  %li
+    = label_tag t('setting.score_ratio')
+    = number_field_tag 'setting[score_ratio]', @setting.score_ratio
+  %li
+    = label_tag t('setting.class1')
+    = number_field_tag 'setting[class1]', @setting.class1
+  %li
+    = label_tag t('setting.class2')
+    = number_field_tag 'setting[class2]', @setting.class2
+  %li
+    = label_tag t('setting.class3')
+    = number_field_tag 'setting[class3]', @setting.class3
+  %li
+    = label_tag t('setting.class4')
+    = number_field_tag 'setting[class4]', @setting.class4
+  %li
+    = label_tag t('setting.class5')
+    = number_field_tag 'setting[class5]', @setting.class5
+  %li
+    = label_tag t('setting.task_punish')
+    = number_field_tag 'setting[task_punish]', @setting.task_punish
+  %li
+    = label_tag t('setting.charge_punish')
+    = number_field_tag 'setting[charge_punish]', @setting.charge_punish
+  %li
+    = label_tag t('setting.report_award')
+    = number_field_tag 'setting[report_award]', @setting.report_award
+  %li
+    = label_tag t('setting.report_punish')
+    = number_field_tag 'setting[report_punish]', @setting.report_punish
+  %li
+    = label_tag t('setting.custom_judge')
+    = number_field_tag 'setting[custom_judge]', @setting.custom_judge
+  %li
+    = label_tag t('setting.real_level')
+    = number_field_tag 'setting[real_level]', @setting.real_level
+  = submit_tag
+    

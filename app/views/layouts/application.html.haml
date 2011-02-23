@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+%html
+  %head 
+    %title Trade
+    = stylesheet_link_tag 'hover_drop_2'
+    = #javascript_include_tag :defaults
+    = javascript_include_tag "iefix"
+    = csrf_meta_tag
+    = javascript_include_tag 'jquery.min.js'
+    = javascript_include_tag 'rails'
+    = formtastic_stylesheet_link_tag
+
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+
+  %body
+    .container
+      #toolbar
+        - if user_signed_in?
+          =t('site.welcome', :name => current_user.username)
+          |
+          = link_to t('site.profile'), edit_user_registration_path
+          |
+          = link_to t('site.logout'), destroy_user_session_path
+        - else
+          = link_to t('site.login'), new_user_session_path
+          |
+          = link_to t('site.register'), new_user_registration_path
+      #navibar
+        %ul{:id=>'menu'}
+          %li= link_to t('site.label'), '/'
+          %li= link_to t('site.notice_center'), notices_path if user_signed_in?
+
+          %li{:class=>'sub'} 
+            = link_to t('site.task'), tasks_url
+            %ul
+              %li= link_to t('site.new_task'), new_task_url if user_signed_in?
+              %li= link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
+              %li= link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
+              %li= link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+
+          - if user_signed_in?
+            %li{:class=>'sub'}
+              =link_to t('site.user_center'), current_user
+              %ul
+                - if guest? or user?
+                  %li= link_to t('site.my_account'), '/m/index'
+                  %li= link_to t('trade.charge_payment'), '/m/charge'
+                  %li= link_to t('trade.charge_point'), '/m/payment'
+                  %li= link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
+                  %li= link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
+          - if admin?
+            %li{:class=>'sub'} 
+              = link_to t('site.manage_center')
+              %ul
+                - if admin? or manager?
+                  %li= link_to t('trade.manage_payment'), '/m/approve/charge'
+                  %li= link_to t('trade.manage_point'), '/m/approve/payment'
+                  %li= link_to t('site.issue'), issues_path
+                  %li=link_to t('notice.new_notice'), new_notice_url
+                - if super?
+                  %li= link_to t('site.setting'), :controller=>'site', :action=>'setting'
+
+          %li= link_to t('site.rule')
+
+
+          - if user_signed_in?
+            - if current_user.has_role? 'admin'
+              %li= link_to 'Admin', '/admin'
+
+      #notice
+        - if flash[:notice]
+          = flash[:notice]
+      #error
+        - if flash[:error]
+          = flash[:error]
+
+      #content
+        = yield

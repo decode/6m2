@@ -1,0 +1,9 @@
+- for p in @penalties
+  = label_tag t('account.point')
+  = p.point
+  |
+  = label_tag t('issue.penalty_money')
+  = p.money
+  |
+  = label_tag t('site.login_name')
+  = p.user.username

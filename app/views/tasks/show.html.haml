@@ -1,0 +1,61 @@
+#tearshape
+  %p
+    %b=t 'global.title'
+    = @task.title
+
+  %p
+    %b=t 'global.type'
+    = @task.task_type
+
+  %p
+    %b=t 'global.description' 
+    = @task.description
+
+  %p
+    %b=t 'global.status'
+    = @task.status
+
+  %p
+    %b=t 'global.links' 
+    = @task.link
+
+  %p
+    %b=t 'global.price' 
+    = @task.price
+
+  %p
+    %b= t 'formtastic.labels.task.transport_id'
+    = @task.transport_id
+
+  %hr
+  %p
+    %b=t 'task.condition'
+
+  = t 'formtastic.labels.task.worker_level'
+  = @task.worker_level
+  %br
+  = t 'formtastic.labels.task.task_day'
+  = @task.task_day
+  %br
+  = t 'formtastic.labels.task.extra_word'
+  = @task.extra_word
+  %br
+  = t 'formtastic.labels.task.avoid_day'
+  = @task.avoid_day
+  %br
+  = t 'formtastic.labels.task.task_level'
+  = @task.task_level
+  %hr
+  = t 'formtastic.labels.task.extra_word'
+  = @task.extra_word
+  %hr
+  = t 'formtastic.labels.task.custom_judge'
+  = @task.custom_judge
+  %hr
+  = t 'formtastic.labels.task.custom_judge_content'
+  = @task.custom_judge_content
+  %hr
+
+  - if @task.can_modify? and @task.user == current_user
+    = link_to t('global.edit'), edit_task_path(@task) |
+  = link_to t('global.back'), tasks_path

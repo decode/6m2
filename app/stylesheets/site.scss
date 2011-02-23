@@ -1,0 +1,429 @@
+#sidebar {
+width: 180px; /*width of menu*/
+}
+
+#headerbar{
+font: bold 14px Arial;
+color: white;
+background: black url(titlebar.png) repeat-x center left;
+margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+text-transform: uppercase;
+padding: 4px 0 4px 10px; /*header text is indented 10px*/
+}
+
+#tabs3 {
+  float:left;
+  width:100%;
+  background:#E4E6EB;
+  font-size:93%;
+  line-height:normal;
+}
+#tabs3 ul {
+  margin:0;
+  padding:10px 10px 0 50px;
+  list-style:none;
+}
+#tabs3 li {
+  display:inline;
+  margin:0;
+  padding:0;
+}
+#tabs3 a {
+  float:left;
+  background:url("tableft3.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 4px;
+  text-decoration:none;
+}
+#tabs3 a span {
+  float:left;
+  display:block;
+  background:url("tabright3.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  color:#FFF;
+}
+
+
+.invertedshiftdown2{
+  padding: 0;
+  width: 100%;
+  border-top: 5px solid #D10000; /*Highlight red color theme*/
+  background: transparent;
+  voice-family: "\"}\"";
+  voice-family: inherit;
+}
+
+.invertedshiftdown2 ul{
+  margin:0;
+  margin-left: 140px; /*margin between first menu item and left browser edge*/
+  padding: 0;
+  list-style: none;
+}
+
+.invertedshiftdown2 li{
+  display: inline;
+  margin: 0 2px 0 0;
+  padding: 0;
+  text-transform:uppercase;
+}
+
+.invertedshiftdown2 a{
+  float: left;
+  display: block;
+  font: bold 12px Arial;
+  color: black;
+  text-decoration: none;
+  margin: 0 1px 0 0; /*Margin between each menu item*/
+  padding: 5px 10px 5px 10px; /*Padding within each menu item*/
+  background-color: lightblue; /*Default menu color*/
+  border-bottom: 8px solid white;
+}
+
+.invertedshiftdown2 a:hover{
+  background-color: #D10000; /*Highlight red color theme*/
+  padding-top: 10px; /*Set padding-top value to default's padding-top + padding-bottom */
+  padding-bottom: 0; /*Set padding-bottom value to 0 */
+  border-bottom-color: #D10000; /*Highlight red color theme*/
+  color: white;
+}
+
+.invertedshiftdown2 .current a{ /** currently selected menu item **/
+  background-color: #D10000; /*Highlight red color theme*/
+  padding-top: 10px; /*Set padding-top value to default's padding-top + padding-bottom */
+  padding-bottom: 0; /*Set padding-bottom value to 0 */
+  border-bottom-color: #D10000; /*Highlight red color theme*/
+  color: white;
+}
+
+#myform{ /*CSS for sample search box. Remove if desired */
+  float: right;
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+}
+
+#myform .textinput{
+  width: 190px;
+  border: 1px solid gray;
+}
+
+#myform .submit{
+  font: normal 12px Verdana;
+  height: 22px;
+  border: 1px solid #D10000;
+  background-color: black;
+  color: white;
+}
+
+// --------------------------------------------
+/*
+table {
+	color: #7F7F7F;
+	font: 0.8em/1.6em "Trebuchet MS",Verdana,sans-serif;
+	border-collapse: collapse
+}
+
+table,caption {
+	margin: 0 auto;
+	border-right: 1px solid #CCC;
+	border-left: 1px solid #CCC
+}
+
+caption,th,td {
+	border-left: 0;
+	padding: 10px
+}
+
+caption,thead th,tfoot th,tfoot td {
+	background-color: #E63C1E;
+	color: #FFF;
+	font-weight: bold;
+	text-transform: uppercase
+}
+
+thead th {
+	background-color: #C30;
+	color: #FFB3A6;
+	text-align: center
+}
+
+tbody th {
+	padding: 20px 10px
+}
+
+tbody tr.odd {
+	background-color: #F7F7F7;
+	color: #666
+}
+
+tbody a {
+	padding: 1px 2px;
+	color: #333;
+	text-decoration: none;
+	border-bottom: 1px dotted #E63C1E
+}
+
+tbody a:active,tbody a:hover,tbody a:focus,tbody a:visited {
+	color: #666
+}
+
+tbody tr:hover {
+	background-color: #EEE;
+	color: #333
+}
+
+tbody tr:hover a {
+	background-color: #FFF
+}
+
+tbody td+td+td+td a {
+	color: #C30;
+	font-weight: bold;
+	border-bottom: 0
+}
+
+tbody td+td+td+td a:active,tbody td+td+td+td a:hover,tbody td+td+td+td a:focus,tbody td+td+td+td a:visited {
+	color: #E63C1E
+}
+
+tbody td a[href="http://www.rodcast.com.br/"] {
+	margin: 0 auto;
+	display: block;
+	width: 15px;
+	height: 15px;
+	background: transparent url('data:image/gif;base64,R0lGODlhDwAPAIAAACEpMf///yH5BAAAAAAALAAAAAAPAA8AAAIjjA8Qer0JmYvULUOlxXEjaEndliUeA56c97TqSD5pfJnhNxYAOw%3D%3D') no-repeat;
+	text-indent: -999em;
+	border-bottom: 0
+}
+
+tbody a:visited:after {
+	font-family: Verdana,sans-serif;
+	content: "\00A0\221A"
+}
+*/
+// ------------------------------------------
+//
+
+/*
+table {
+	background-color: #FFFFFF;
+	border: none;
+	color: #495E49;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+
+table a:link, table a:visited, table a:active {
+	background-color: transparent;
+	color: #0096BD;
+	text-decoration: none;
+}
+
+table a:hover {
+	background: transparent;
+	color: #000000;
+	text-decoration: underline;
+}
+
+table caption {
+	background-color: transparent;
+	color: #67BD2A;
+	font-family: Georgia, serif;
+	font-size: 24px;
+	padding-bottom: 12px;
+	padding-left: 8px;
+	text-align: left;
+}
+
+table, td, th {
+	margin: 0;
+	padding: 0;
+}
+
+tbody td, tbody th {
+	background-color: #D6F2C3;
+	border-bottom: 2px solid #B3DE94;
+	border-top: 3px solid #FFFFFF;
+	padding: 9px;
+}
+
+tbody tr.odd th, tbody tr.odd td {
+	background-color: #C8EDAE;
+	border-bottom: 2px solid #67BD2A;
+}
+
+tbody tr:hover td, tbody tr:hover th {
+	background-color: #BAE899;
+}
+
+td, th {
+	vertical-align: middle;
+}
+
+tfoot td, tfoot th {
+	font-weight: bold;
+	padding: 4px 8px 6px 9px;
+}
+
+thead th {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 19px;
+	padding: 0 8px 2px 8px;
+	white-space: nowrap;
+}
+*/
+
+
+/*
+Coffee with milk
+Table design by Roger Johansson, 456 Berea Street
+www.456bereastreet.com
+================================================*/
+
+table {
+	font:normal 76%/150% "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	border-collapse:separate;
+	border-spacing:0;
+	margin:0 0 1em;
+	color:#000;
+	}
+table a {
+	color:#523A0B;
+	text-decoration:none;
+	border-bottom:1px dotted;
+	}
+table a:visited {
+	color:#444;
+	font-weight:normal;
+	}
+table a:visited:after {
+	content:"\00A0\221A";
+	}
+table a:hover {
+	border-bottom-style:solid;
+	}
+thead th,
+thead td,
+tfoot th,
+tfoot td {
+	border:1px solid #523A0B;
+	border-width:1px 0;
+	background:#EBE5D9;
+	}
+th {
+	font-weight:bold;
+	line-height:normal;
+	padding:0.25em 0.5em;
+	text-align:left;
+	}
+tbody th,
+td {
+	padding:0.25em 0.5em;
+	text-align:left;
+	vertical-align:top;
+	}
+tbody th {
+	font-weight:normal;
+	white-space:nowrap;
+	}
+tbody th a:link,
+tbody th a:visited {
+	font-weight:bold;
+	}
+tbody td,
+tbody th {
+	border:1px solid #fff;
+	border-width:1px 0;
+	}
+tbody tr.odd th,
+tbody tr.odd td {
+	border-color:#EBE5D9;
+	background:#F7F4EE;
+	}
+tbody tr:hover td,
+tbody tr:hover th {
+	background:#ffffee;
+	border-color:#523A0B;
+	}
+caption {
+	font-family:Georgia,Times,serif;
+	font-weight:normal;
+	font-size:1.4em;
+	text-align:right;
+	margin:0;
+	padding:0.5em 0.25em;
+	}
+
+
+// ====================
+.shadow1{
+  box-shadow: 5px 5px #818181;
+  -webkit-box-shadow: 5px 5px #818181;
+  -moz-box-shadow: 5px 5px #818181;
+  filter: progid:DXImageTransform.Microsoft.dropShadow(color=#818181, offX=5, offY=5, positive=true);
+  width:500px; 
+  height:100px; 
+  padding:5px; 
+  background: lightgray; 
+  border: 1px solid black;
+}
+
+.shadow{
+  box-shadow: 7px 7px 8px #818181;
+  -webkit-box-shadow: 7px 7px 8px #818181;
+  -moz-box-shadow: 7px 7px 8px #818181;
+  filter: progid:DXImageTransform.Microsoft.dropShadow(color=#818181, offX=7, offY=7, positive=true);
+  width:500px; 
+  height:100px; 
+  padding:5px; 
+  background: #f1f2f3; 
+  border: 1px solid black;
+}
+#tearshape{
+  background: #f1f2f3;
+  padding: 3px 5px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  -moz-border-radius: 9px 3px 9px 3px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 9px;
+  -webkit-border-bottom-right-radius: 9px;
+}
+#roundshape{
+  background: #eaf2f5;
+  padding: 3px 5px;
+  margin: 10px 10px 0 0;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  -moz-border-radius: 9px 9px 9px 9px;
+  -webkit-border-radius: 3px;
+  //-webkit-border-top-left-radius: 9px;
+  //-webkit-border-bottom-right-radius: 9px;
+}
+.round {
+  background: #eaf2f5;
+  padding: 3px 5px;
+  color: black;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px;
+}
+
+.curlycontainer{
+border: 1px solid #b8b8b8;
+margin-bottom: 1em;
+width: 300px;
+}
+
+.curlycontainer .innerdiv{
+background: transparent url(brcorner.gif) bottom right no-repeat;
+position: relative;
+left: 2px;
+top: 2px;
+padding: 1px 4px 15px 5px;
+}
+

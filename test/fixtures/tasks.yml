@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  type: MyString
+  description: MyString
+  published: false
+  link: MyString
+  price: 1.5
+
+two:
+  title: MyString
+  type: MyString
+  description: MyString
+  published: false
+  link: MyString
+  price: 1.5

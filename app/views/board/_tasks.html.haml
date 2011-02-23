@@ -1,0 +1,30 @@
+%h1 My task list
+%table
+  %tr
+    %th Title
+    %th Price
+    %th Link
+    %th Owner
+    %th Worker
+    %th Status
+    
+  - @tasks.each do |task|
+    %tr
+      %td= task.title
+      %td= task.price
+      %td= task.link
+      %td
+        = link_to task.user.username, user_tasks_path(task.user)
+      %td= task.worker.username unless task.worker.nil?
+      %td= task.status
+      %td= link_to 'Show', task
+      - if task.can_modify? and task.user == current_user
+        %td= link_to 'Edit', edit_task_url(task)
+        %td= link_to 'Delete', task, :confirm => 'Are you sure?', :method => :delete
+      - if task.user == current_user
+        %td= link_to 'Problem', :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+        %td= link_to 'Confirm', :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+      - else
+        %td= link_to 'Do', :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+        %td= link_to 'Finish', :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish?
+

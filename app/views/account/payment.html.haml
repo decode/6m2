@@ -1,0 +1,7 @@
+- form_tag :action=>'process_charge' do
+  = label_tag t('trade.point_amount')
+  = number_field_tag 'amount', 10, :step => 10, :in => 10...5000
+  = submit_tag t('account.change')
+  
+
+

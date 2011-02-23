@@ -1,0 +1,33 @@
+= render 'user'
+#tearshape
+  %p#notice= notice
+  %p
+    %b= t 'global.title'
+    = @issue.title
+  %p
+    %b= t 'global.content'
+    = @issue.content
+  %p
+    %b= t 'global.status'
+    = @issue.status
+  %p
+    %b= t 'global.type'
+    = @issue.itype
+  - if @task
+    %p
+      %b= t 'issue.target' 
+      = link_to @task.title, @task #eval("#{@issue.itype}.find_by_id(#{@issue.target_id}).title")
+
+#tearshape
+  = render 'penalties' if @issue.penalties.length > 0
+
+- if !@task.nil? and @issue.open? and (admin? or manager?)
+  %hr
+  = render 'operation' 
+  %hr
+  - if admin? or manager?
+    = link_to t('issue.close_issue'), :controller=>'board', :action=>'close_issue', :id=>@issue
+    |
+    = link_to t('global.edit'), edit_issue_path(@issue)
+    |
+\#{link_to t('global.back'), issues_path}

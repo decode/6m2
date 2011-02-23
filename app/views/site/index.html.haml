@@ -1,0 +1,23 @@
+#mainframe
+  = image_tag 'taobao.png', :width => 200, :height => 100
+  = image_tag 'paipai.png', :width => 200, :height => 100
+  = image_tag 'youa.gif', :width => 200, :height => 100
+  /
+    = image_tag 'h1.jpg', :width => 150, :height => 150
+    = image_tag 'h2.jpg', :width => 150, :height => 150
+    = image_tag 'h3.jpg', :width => 150, :height => 150
+    = image_tag 'h4.jpg', :width => 150, :height => 150
+    = image_tag 'work-business.jpg', :width => 650, :height => 150
+  %hr
+  = image_tag 'social.jpg'
+#right
+  #roundshape
+    = @running_count
+    = @user_count
+  #roundshape
+    = render 'site/news'
+  - if current_user
+    #roundshape
+      = "用户信息"
+      %hr
+      = render 'account/user'
