@@ -14,7 +14,13 @@ class ApplicationController < ActionController::Base
   
   def spend(task)
     user = task.user
-    point = caculate_point(task)
+
+    # 提现不需要发布点
+    if task.free_task?
+      point = 0
+    else
+      point = caculate_point(task)
+    end
     logger.info("spend======================== #{point}")
     price = task.price.nil? ? 0 : task.price
     user.account_credit = user.account_credit - point
@@ -25,6 +31,11 @@ class ApplicationController < ActionController::Base
 
   def restore_spend(task)
     user = task.user
+    if task.free_task?
+      point = 0
+    else
+      point = caculate_point(task)
+    end
     point = caculate_point(task)
     logger.info("restore spend========================#{point}")
     user.account_credit = user.account_credit + point
@@ -34,6 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def gain(task)
+    return if task.free_task?
     logger.info("#{task.worker.username} score +1 ===========================================")
     task.worker.score = task.worker.score + 1
     task.worker.save

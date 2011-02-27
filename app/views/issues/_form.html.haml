@@ -16,4 +16,5 @@
   - f.inputs do
     = f.input :title
     = f.input :content, :as => :text
+    = f.input :itype, :as => :select, :collection => {'一般问题' => 'normal', '大额提现' => 'cash' } if session[:issue_type].nil?
     = f.submit

@@ -6,7 +6,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.xml
   def index
-    @issues = Issue.all.paginate(:page => params[:page], :per_page => 10)
+    @issues = Issue.where('itype != ?', 'cash').paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +44,8 @@ class IssuesController < ApplicationController
       if target.class.name == Task.name
         @task = target
       end
+    else
+      @issue.itype = 'normal'
     end
     respond_to do |format|
       format.html # new.html.erb
@@ -66,11 +68,10 @@ class IssuesController < ApplicationController
       target = eval("#{session[:issue_type]}.find_by_id(#{session[:issue_task]})")
       @issue.add_source( target )
       target.argue if target.class.name == Task.name
-    else
-      @issue.itype = 'normal'
     end
     
     @issue.user = current_user
+    session[:issue_type] = nil
     respond_to do |format|
       ActiveRecord::Base.transaction do
         if @issue.save
@@ -89,6 +90,7 @@ class IssuesController < ApplicationController
   # PUT /issues/1.xml
   def update
     @issue = Issue.find(params[:id])
+    session[:issue_type] = nil
 
     respond_to do |format|
       if @issue.update_attributes(params[:issue])

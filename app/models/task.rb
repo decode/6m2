@@ -21,14 +21,14 @@ class Task < ActiveRecord::Base
       self.user.account_credit < point and self.user.account_money < price
   end
 
-  def caculate_point(task)
-    point = task.task_level + task.avoid_day + task.task_day + task.worker_level
-    point = point + 1 if task.extra_word
-    return point
-  end
+  #def caculate_point(task)
+  #  point = task.task_level + task.avoid_day + task.task_day + task.worker_level
+  #  point = point + 1 if task.extra_word
+  #  return point
+  #end
 
-  #after_save :log_save
-  #before_destroy :log_destroy
+  after_save :log_save
+  before_destroy :log_destroy
   def log_save
     log = Tasklog.new
     log.task_id = self.id
@@ -85,6 +85,11 @@ class Task < ActiveRecord::Base
     #return ['unpublished', 'published'].include? self.status
     return (self.published? or self.unpublished?)
   end
+
+  def free_task?
+    return self.task_type == 'cash'
+  end
+  
 
   #def initialize
   #  super()

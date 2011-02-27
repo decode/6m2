@@ -72,6 +72,7 @@ zh:
     rule: "规则说明"
     my_task: "我发布的任务"
     my_todo: "我接手的任务"
+    my_cash: "我的提现任务"
     my_account: "我的帐户"
     issue: "问题中心"
     setting: "平台设置"
@@ -79,6 +80,9 @@ zh:
     notice: "公告"
     notice_center: "公告中心"
     user_manage: "用户管理"
+    cash_task: "提现处理"
+    big_cash: "大额提现"
+    service: "平台服务"
 
   manage:
     message_box: "收件箱"
@@ -305,6 +309,10 @@ zh:
         shop_paipai_url: "拍拍店铺地址"
         shop_youa_url: "有啊店铺地址"
         account_credit: "发布点"
+      issue:
+        title: "标题"
+        content: "内容"
+        itype: "类型"
     hints:
       task:
         title: "为任务写一个标题"

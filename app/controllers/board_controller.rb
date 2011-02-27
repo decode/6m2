@@ -8,6 +8,10 @@ class BoardController < ApplicationController
     @users = User.find :all
   end
 
+  def big_cash
+    @issues = Issue.where("itype = ?", 'cash').paginate(:page => params[:page], :per_page => 10)
+  end
+
   def task_list
     @tasks = Task.where("task_type = ? and status = ? and task_level <= ?", params[:task_type], 'published', current_user.level).paginate(:page => params[:page], :per_page => 10)
   end
@@ -15,10 +19,13 @@ class BoardController < ApplicationController
   def task_show
     unless current_user.nil?
       if params[:task_type] == "task"
-        @tasks = Task.where("user_id = ?", current_user).paginate(:page => params[:page], :per_page => 10)
+        @tasks = Task.where("user_id = ? and task_type != ?", current_user, 'cash').paginate(:page => params[:page], :per_page => 10)
       end
       if params[:task_type] == "todo"
         @tasks = Task.where("worker_id = ?", current_user).paginate(:page => params[:page], :per_page => 10)
+      end
+      if params[:task_type] == "cash"
+        @tasks = Task.where("user_id = ? and task_type = ?", current_user, 'cash').paginate(:page => params[:page], :per_page => 10)
       end
     end
   end

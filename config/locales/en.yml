@@ -67,6 +67,7 @@ en:
     rule: "Rule"
     my_task: "My tasks"
     my_todo: "My todos"
+    my_cash: "My Cash Task"
     my_account: "My account"
     issue: "Issue"
     setting: "Setting"
@@ -74,6 +75,9 @@ en:
     notice: "Notice"
     notice_center: "Notice Center"
     user_manage: "User Manage"
+    cash_task: "Cash Manage"
+    big_cash: "Big Cash"
+    service: "Platform Service"
 
   manage:
     message_box: "Inbox"
@@ -299,6 +303,10 @@ en:
         shop_paipai_url: "Paipai Shop Address"
         shop_youa_url: "Youa Shop Address"
         account_credit: "Point"
+      issue:
+        title: "Title"
+        content: "Content"
+        itype: "Issue Type"
     hints:
       task:
         title: "Write a title for you task."

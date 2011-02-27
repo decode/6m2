@@ -1,7 +1,7 @@
 - semantic_form_for @task do |f| 
   - f.inputs do
     = f.input :title
-    = f.input :task_type, :as => 'select', :collection => ["taobao", "paipai", "youa"]
+    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}
     = f.input :description
     - if ['unpublished', 'published'].include? @task.status
       = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
