@@ -15,6 +15,8 @@ class AccountController < ApplicationController
   def index
     @trades = Trade.where('user_id = ?', current_user).paginate(:page => params[:page], :per_page => 20)
     @user = current_user
+    @small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+    @big_cashes = Issue.where('user_id = ? and itype = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
   end
   
   def show

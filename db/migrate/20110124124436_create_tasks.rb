@@ -8,6 +8,7 @@ class CreateTasks < ActiveRecord::Migration
       t.float :price
       t.string :status
 
+      t.string :transport
       t.string :transport_id #物流单号
       
       #时间标记 发布->接手->完成->确认

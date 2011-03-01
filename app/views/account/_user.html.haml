@@ -8,6 +8,8 @@
   %b= t 'account.role'
   = @user.role_objects.map { |role| role.name }
 
+= link_to t('global.edit'), edit_user_path(@user) if @user == current_user
+%hr
 
 %ul
   %li
@@ -23,4 +25,24 @@
     = t 'account.score'
     = @user.score
 
-= link_to t('global.edit'), edit_user_path(@user) if @user == current_user
+%hr
+
+%p
+  = t 'task.total_task'
+  = @user.tasks.count
+%p
+  = t 'task.total_todo'
+  = @user.todos.count
+%p
+  = t 'task.published'
+  = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
+%p
+  = t 'task.running'
+  = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
+%p
+  = t 'task.finished'
+  = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
+%p
+  = t 'task.problem'
+  = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
+

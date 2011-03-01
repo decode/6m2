@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110224091406) do
     t.string   "link"
     t.float    "price"
     t.string   "status"
+    t.string   "transport"
     t.string   "transport_id"
     t.datetime "published_time"
     t.datetime "takeover_time"

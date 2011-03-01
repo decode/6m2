@@ -94,6 +94,5 @@ class Task < ActiveRecord::Base
   #def initialize
   #  super()
   #end
-  
-  
+
 end

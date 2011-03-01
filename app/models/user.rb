@@ -49,6 +49,11 @@ class User < ActiveRecord::Base
       self.score].sort.index(self.score)
     return @level
   end
+
+  def status_tasks(status)
+    return self.tasks.where('status = ?', status) 
+  end
+  
   
   protected
 

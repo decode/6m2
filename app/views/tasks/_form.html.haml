@@ -7,6 +7,7 @@
       = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
     = f.input :link
     = f.input :price
+    = f.input :transport, :as => 'select', :collection => {'顺丰' => 1, 'EMS' => 2, '申通' => 3, '圆通' => 4}
     = f.input :transport_id
     %hr
     %li

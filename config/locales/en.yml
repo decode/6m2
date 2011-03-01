@@ -215,6 +215,14 @@ en:
     no_price: "price must not null"
     do_task: "Task has been add to your todo list"
     error: "Can not publish a task"
+    published: "Published"
+    unpublished: "Un-Published"
+    finished: "Finished"
+    problem: "Problem"
+    running: "Running"
+    total_task: "Total tasks"
+    total_todo: "Total todo works"
+
 
   trade:
     charged_at: "Charged time"
@@ -288,6 +296,7 @@ en:
         task_level: "Task Level"
         custom_judge: "Custom Judge"
         custom_judge_content: "Custom Judge Content"
+        transport: "Transport Company"
         transport_id: "Transportation ID"
       user:
         im: "IM"

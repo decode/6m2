@@ -221,6 +221,13 @@ zh:
     no_price: "价格不能为空"
     do_task: "任务己添加到您的任务列表中"
     error: "无法发布任务"
+    published: "己发布"
+    unpublished: "未发布"
+    finished: "己完成"
+    problem: "问题处理中"
+    running: "执行中"
+    total_task: "发布任务总数"
+    total_todo: "接手任务总数"
 
   trade:
     charged_at: "充值时间"
@@ -294,6 +301,7 @@ zh:
         task_level: "任务级别"
         custom_judge: "自定义评价"
         custom_judge_content: "自定义评价内容"
+        transport: "物流"
         transport_id: "物流单号"
       user:
         im: "聊天工具"

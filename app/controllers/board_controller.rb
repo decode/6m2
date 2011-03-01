@@ -30,6 +30,11 @@ class BoardController < ApplicationController
     end
   end
 
+  def status_task
+    @tasks = Task.where("status = ?", params[:task_status]).paginate(:page => params[:page], :per_page => 10)
+  end
+  
+
   def do_task
     @task = Task.find(params[:id])
     if @task.user == current_user
