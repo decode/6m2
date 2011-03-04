@@ -67,15 +67,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def generate_transport_id
+  def generate_transport_id(tran_type=0)
     chars = ('0'..'9').to_a
     tid = ''
     10.downto(1) { |i| tid << chars[rand(chars.length-1)] }
     return tid
   end
   
-  
-
   private
 
     def access_denied

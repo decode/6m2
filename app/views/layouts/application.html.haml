@@ -59,7 +59,7 @@
               %ul
                 - if admin? or manager?
                   %li= link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
-                  %li= link_to t('site.big_cash'), :controller=>'board', :action=>'big_cash'
+                  %li= link_to t('site.big_cash'), 't/big_cash' #:controller=>'board', :action=>'big_cash'
                   %li= link_to t('trade.manage_payment'), '/m/approve/charge'
                   %li= link_to t('trade.manage_point'), '/m/approve/payment'
                   %li= link_to t('site.issue'), issues_path
