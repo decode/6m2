@@ -61,8 +61,8 @@ zh:
     current_password: "当前密码"
     remember_me: "记住我"
     forgot_password: "忘记密码?"
-    no_password_confirm: "没有收到密码恢复信息?"
-    no_unlock_instructions: "没有收到解锁信息?"
+    no_password_confirm: "没有收到激活邮件?"
+    no_unlock_instructions: "没有收到解锁邮件?"
     send_password_reset: "发送密码重置信息"
     leave_blank: "(如果不修改则不填)"
     need_current_password: "(需要当前密码确认修改)"
@@ -291,6 +291,22 @@ zh:
   notice:
     new_notice: "发表公告"
     list_notice: "公告列表"
+
+  devise:
+    no_reply: "请勿回复此邮件"
+    welcome: "欢迎"
+    confirm: "点击下面的链接以激活您的帐户"
+    not_link: "如果无法点击,请复制下面的链接,并在浏览器中打开"
+    hello: "您好, %{name}"
+    change_password: "修改密码"
+    not_change: "如果不需要修改,忽略此邮件"
+    not_change_desc: "除非访问上面的链接并修改密码,否则密码不会改变"
+    do_change: "请求修改你的账户密码,访问下面的链接进行修改"
+    lock: "您的账户因为某种原因己被锁定"
+    lock_desc: "请点击下面的链接解除锁定"
+    unlock: "解锁我的帐户"
+    resend_confirm: "重新发送激活邮件"
+    resend: "发送"
 
   formtastic:
     titles:

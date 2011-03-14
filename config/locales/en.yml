@@ -44,7 +44,7 @@ en:
 
   site:
     label: "Site"
-    welcome: "Welcome, {{name}}"
+    welcome: "Welcome, ${name}"
     login: "Login"
     register: "Register"
     logout: "Logout"
@@ -286,6 +286,23 @@ en:
   notice:
     new_notice: "New Notice"
     list_notice: "List Notice"
+
+  devise:
+    no_reply: "Don't reply this mail"
+    welcome: "欢迎"
+    confirm: "You can confirm your account through the link below:"
+    not_link: "If can not open it, please copy the link below, and open it in your web browser"
+    hello: "Hello, %{name}"
+    change_password: "Change my password"
+    not_change: "If you didn't request this, please ignore this email."
+    not_change_desc: "Your password won't change until you access the link above and create a new one."
+    do_change: "Someone has requested a link to change your password, and you can do this through the link below."
+    lock: "Your account has been locked due to an excessive amount of unsuccessful sign in attempts."
+    lock_desc: "Click the link below to unlock your account:"
+    unlock: "Unlock my account"
+    resend_confirm: "Resend confirmation instructions"
+    resend: "Resend"
+
 
   formtastic:
     titles:

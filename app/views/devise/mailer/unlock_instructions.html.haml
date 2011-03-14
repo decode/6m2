@@ -1,0 +1,4 @@
+%p= t 'devise.hello', :name => "#{@resource.email}!"
+%p= t 'devise.lock'
+%p= t 'devise.lock_desc'
+%p= link_to t('devise.unlock'), unlock_url(@resource, :unlock_token => @resource.unlock_token)

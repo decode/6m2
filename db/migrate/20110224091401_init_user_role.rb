@@ -6,7 +6,7 @@ class InitUserRole < ActiveRecord::Migration
     user.has_role! 'manager'
     user.has_no_role! 'guest'
 
-    test
+    #test
   end
 
   def self.down

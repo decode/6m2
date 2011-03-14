@@ -1,0 +1,7 @@
+%h1= t 'devise.no_reply'
+
+%p= t 'site.welcome', :name => "#{@resource.email}!"
+%p= t 'devise.confirm'
+%p= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+%p= t 'devise.not_link'
+%p= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
