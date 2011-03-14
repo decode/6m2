@@ -27,10 +27,10 @@ Temp::Application.configure do
 
   config.action_mailer.delivery_method = :sendmail
   # Defaults to:
-  # config.action_mailer.sendmail_settings = {
-  #   :location => '/usr/sbin/sendmail',
-  #   :arguments => '-i -t'
-  # }
+  config.action_mailer.sendmail_settings = {
+    :location => '/usr/sbin/sendmail',
+    :arguments => '-i -t'
+  }
   config.action_mailer.perform_deliveries = true
 end
 

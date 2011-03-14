@@ -1,10 +1,26 @@
 class InitUserRole < ActiveRecord::Migration
   def self.up
-    user = User.create! :username => 'superadmin', :password => '000000', :password_confirmation => '000000', :email => 'myname@gmail.com' 
+    user = User.create! :username => 'superadmin', :password => '000000', :password_confirmation => '000000', :email => 'aero723@gmail.com' 
     user.has_role! 'super'
     user.has_role! 'admin'
     user.has_role! 'manager'
     user.has_no_role! 'guest'
+
+    test
+  end
+
+  def self.down
+    users = User.all
+    for u in users
+      u.delete
+    end
+    roles = Role.all
+    for r in roles
+      r.delete
+    end
+  end
+
+  def test
     user = User.create! :username => 'administrator', :password => '000000', :password_confirmation => '000000', :email => 'yourname@gmail.com' 
     user.has_role! 'admin'
     user.has_role! 'manager'
@@ -21,17 +37,6 @@ class InitUserRole < ActiveRecord::Migration
     user = User.create! :username => 'guest01', :password => '000000', :password_confirmation => '000000', :email => 'guest01@mail.com' 
     user.has_role! 'user'
     user.has_no_role! 'guest'
-
   end
-
-  def self.down
-    users = User.all
-    for u in users
-      u.delete
-    end
-    roles = Role.all
-    for r in roles
-      r.delete
-    end
-  end
+  
 end
