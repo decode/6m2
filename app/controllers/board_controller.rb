@@ -146,7 +146,7 @@ class BoardController < ApplicationController
   end
 
   def search_user
-    @users = User.where("username like ?", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
+    @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
     session[:search_username] = params[:username]
     render 'users/index'
   end

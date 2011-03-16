@@ -48,6 +48,7 @@ zh:
     unread_message: "末读消息"
 
   site:
+    name: "风雨同舟"
     label: "首页"
     welcome: "欢迎, %{name}"
     login: "登录"

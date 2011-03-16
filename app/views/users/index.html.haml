@@ -32,8 +32,9 @@
       %td
         = link_to t('global.show'), user
         - if manager?
-        = link_to t('account.point'), :controller => 'account', :action => 'point', :id => user
-        = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
+          = link_to t('account.point'), :controller => 'account', :action => 'point', :id => user
+          = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
+          = link_to t('account.role'), :controller => 'account', :action => 'role', :id => user
         - if super?
           = link_to t('global.edit'), edit_user_path(user)
           = link_to t('global.delete'), user, :confirm => 'Are you sure?', :method => :delete

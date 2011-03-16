@@ -140,5 +140,12 @@ class AccountController < ApplicationController
     session[:user_edit_mode] = 'password'
     redirect_to edit_user_url(@user)
   end
+
+  def role
+    @user = User.find(params[:id])
+    session[:user_edit_mode] = 'role'
+    redirect_to edit_user_url(@user)
+  end
+  
     
 end

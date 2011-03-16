@@ -43,6 +43,7 @@ en:
     unread_message: "Unread Message"
 
   site:
+    name: "Boat166"
     label: "Site"
     welcome: "Welcome, ${name}"
     login: "Login"

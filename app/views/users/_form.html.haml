@@ -4,6 +4,8 @@
       = f.input :account_credit
     - if session[:user_edit_mode] == 'password'
       = f.input :password
+    - if session[:user_edit_mode] == 'role'
+      = f.input :roles
 
     - if session[:user_edit_mode].nil?
       = f.input :im
