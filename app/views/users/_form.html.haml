@@ -5,7 +5,7 @@
     - if session[:user_edit_mode] == 'password'
       = f.input :password
     - if session[:user_edit_mode] == 'role'
-      = f.input :roles
+      = f.input :role_objects
 
     - if session[:user_edit_mode].nil?
       = f.input :im

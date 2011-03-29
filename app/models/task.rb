@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   validates_numericality_of :task_level
   validates_inclusion_of :task_type, :in => %w(taobao paipai youa cash), :message => "%{value} is not a valid type"
   #validates_format_of :link, :with => /http[s]:\/\/*.*/, :message => "http://xxxx.xxx or https://xxxx.xxx"
-  validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
+  validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   validate :low_point_cannot_make_task
  
