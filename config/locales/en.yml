@@ -326,6 +326,7 @@ en:
         transport: "Transport Company"
         transport_id: "Transportation ID"
       user:
+        role_objects: "User Roles"
         im: "IM"
         im_q: "QQ"
         bank_name: "Bank"
@@ -352,6 +353,7 @@ en:
         custom_judge: "Must check _Extra Words_ first"
         transport_id: "If not given, System will provide an ID for you"
       user:
+        role_objects: "Set user roles"
         im: "Any IM account"
     actions:
       create: "Create"

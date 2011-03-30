@@ -59,6 +59,7 @@
             %li{:class=>'sub'} 
               = link_to t('site.manage_center')
               %ul
+                %li= link_to t('site.user_manage'), users_path
                 %li= link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
                 %li= link_to t('site.big_cash'), 't/big_cash' #:controller=>'board', :action=>'big_cash'
                 %li= link_to t('trade.manage_payment'), '/m/approve/charge'

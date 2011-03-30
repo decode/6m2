@@ -330,6 +330,7 @@ zh:
         transport: "物流"
         transport_id: "物流单号"
       user:
+        role_objects: "用户角色"
         password: "密码"
         im: "聊天工具"
         im_q: "QQ"
@@ -357,6 +358,7 @@ zh:
         custom_judge: "必须选中附加词语才有效"
         transport_id: "如果不填系统自动生成一个单号"
       user:
+        role_objects: "分配用户的权限"
         im: "任何聊天工具的帐号都可填在这里"
     actions:
       create: "创建"
