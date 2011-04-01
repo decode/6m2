@@ -76,6 +76,7 @@ zh:
     update: "更新"
     talk_mode: "聊天模式"
     task: "任务平台"
+    task_name: "任务"
     task_type: "%{task_type}任务"
     new_task: "发布任务"
     user_center: "用户中心"
@@ -120,6 +121,7 @@ zh:
     sender: "发送者"
     send_time: "发送时间"
     receiver: "接收人"
+    service: "客服"
 
   admin:
     label: "网站管理"
@@ -210,6 +212,8 @@ zh:
     role: "角色"
     score: "积分"
     not_approved: "未认证"
+    trade_log: "交易记录"
+    task_log: "任务记录"
 
   task:
     problem: "投诉"
@@ -247,6 +251,7 @@ zh:
     approve: "批准"
     reject: "拒绝"
     trade_not_found: "交易不存在"
+    amount: "金额"
     payment_amount: "货款金额"
     point_amount: "发布点数量"
     charge_point: "发布点兑换"

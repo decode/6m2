@@ -71,6 +71,7 @@ en:
     update: "News"
     talk_mode: "Talk"
     task: "Task"
+    task_name: "Task"
     task_type: "%{task_type} Task"
     new_task: "Put a Task"
     user_center: "User Center"
@@ -115,6 +116,7 @@ en:
     sender: "Sender"
     send_time: "Time"
     receiver: "Receiver"
+    service: "Customer Service"
 
   admin:
     label: "Admin"
@@ -204,6 +206,8 @@ en:
     role: "Role"
     score: "Score"
     not_approved: "Not Approved"
+    trade_log: "Trade Log"
+    task_log: "Task Log"
 
   task:
     problem: "Problem"
@@ -242,6 +246,7 @@ en:
     approve: "Approve"
     reject: "Reject"
     trade_not_found: "Trade not found"
+    amount: "Amount"
     payment_amount: "Payment Amount"
     point_amount: "Point Amount"
     charge_point: "Charge Point"

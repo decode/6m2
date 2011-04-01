@@ -146,6 +146,15 @@ class AccountController < ApplicationController
     session[:user_edit_mode] = 'role'
     redirect_to edit_user_url(@user)
   end
+
+  def trade_log
+    @user = User.find(params[:id])
+    @trades = Accountlog.where('user_id = ?', params[:id])
+  end
   
+  def task_log
+    @user = User.find(params[:id])
+    @tasks = Tasklog.where('user_id = ?', params[:id])
+  end
     
 end

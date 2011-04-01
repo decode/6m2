@@ -15,6 +15,7 @@
       %th= t 'account.point'
       %th= t 'account.score'
       %th= t 'global.status' 
+      %th= t 'account.account_manage'
       %th{:colspan=>4}= t 'global.operation'
 
   - @users.each do |user|
@@ -30,11 +31,12 @@
       %td= user.score
       %td= user.status
       %td
-        = link_to t('global.show'), user
         - if manager?
           = link_to t('account.point'), :controller => 'account', :action => 'point', :id => user
           = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
           = link_to t('account.role'), :controller => 'account', :action => 'role', :id => user
+      %td
+        = link_to t('global.show'), user
         - if super?
           = link_to t('global.edit'), edit_user_path(user)
           = link_to t('global.delete'), user, :confirm => 'Are you sure?', :method => :delete

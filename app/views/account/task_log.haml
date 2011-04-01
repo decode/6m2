@@ -1,0 +1,39 @@
+#roundshape
+  = link_to t('global.edit'), edit_user_path(@user)
+  \|
+  = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
+  \|
+  = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user
+  \|
+  = link_to t('global.back'), :back
+
+%br
+
+%table
+  %caption
+    = @user.username
+    /
+      = t('site.user_manage')
+      - form_tag :controller => 'board', :action => 'search_user' do
+        = label_tag t 'site.login_name'
+        = search_field_tag 'username', session[:search_username]
+        = submit_tag 'Search'
+
+  %thead
+    %tr
+      %th= t 'site.task_name'
+      %th= t 'task.worker'
+      %th= t 'global.price'
+      %th= t 'formtastic.labels.task.status'
+      %th= t 'formtastic.labels.task.description'
+
+  - @tasks.each do |t|
+    - c = cycle("even", "odd")
+    %tr{:class=>c}
+      - task = Task.find(t.task_id)
+      %td= link_to task.title, task
+      %td= User.find(t.worker_id).username
+      %td= t.price
+      %td= t.status
+      %td= t.description
+
