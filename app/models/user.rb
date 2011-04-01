@@ -9,11 +9,13 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
   attr_accessible :login, :account_credit
+  attr_accessible :role_object_ids
 
   # Acl9 configuration
   acts_as_authorization_subject
   
   validates_uniqueness_of :username
+  validates_length_of :username, :minimum => 6, :maximun => 12
 
   has_many :tasks
   has_many :todos, :class_name => 'Task', :foreign_key => 'worker_id'

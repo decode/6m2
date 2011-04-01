@@ -19,7 +19,6 @@ RailsAdmin.config do |config|
       field :sign_in_count
       field :current_sign_in_at
       field :current_sign_in_ip
-      field :confirmed_at
       field :locked_at
     end
   end

@@ -1,14 +1,25 @@
 class InitUserRole < ActiveRecord::Migration
   def self.up
+    Role.create! :name => 'super'
+    Role.create! :name => 'admin'
+    Role.create! :name => 'manager'
+    Role.create! :name => 'user'
+    Role.create! :name => 'guest'
+
     user = User.create! :username => 'superadmin', :password => '000000', :password_confirmation => '000000', :email => 'aero723@gmail.com' 
     user.has_role! 'super'
     user.has_role! 'admin'
     user.has_role! 'manager'
     user.has_role! 'user'
-    user.has_no_role! 'guest'
     user.confirm!
     user.save!
 
+    user = User.create! :username => 'admin00', :password => '000000', :password_confirmation => '000000', :email => 'code723@gmail.com' 
+    user.has_role! 'admin'
+    user.has_role! 'manager'
+    user.has_role! 'user'
+    user.confirm!
+    user.save!
     #test
   end
 
