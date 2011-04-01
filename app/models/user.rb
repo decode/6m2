@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   # Acl9 configuration
   acts_as_authorization_subject
+  
+  validates_uniqueness_of :username
 
   has_many :tasks
   has_many :todos, :class_name => 'Task', :foreign_key => 'worker_id'
