@@ -36,6 +36,7 @@
           = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
           = link_to t('account.role'), :controller => 'account', :action => 'role', :id => user
       %td
+        = link_to t('account.confirm'), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
         = link_to t('global.show'), user
         - if super?
           = link_to t('global.edit'), edit_user_path(user)

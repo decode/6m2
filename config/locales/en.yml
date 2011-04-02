@@ -205,6 +205,8 @@ en:
     point: "Point"
     role: "Role"
     score: "Score"
+    confirm: "confirm"
+    not_confirmed: "UnConfirmed"
     not_approved: "Not Approved"
     trade_log: "Trade Log"
     task_log: "Task Log"

@@ -211,6 +211,8 @@ zh:
     point: "发布点"
     role: "角色"
     score: "积分"
+    confirm: "激活"
+    not_confirmed: "未激活"
     not_approved: "未认证"
     trade_log: "交易记录"
     task_log: "任务记录"

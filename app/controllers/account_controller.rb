@@ -157,4 +157,10 @@ class AccountController < ApplicationController
     @tasks = Tasklog.where('user_id = ?', params[:id])
   end
     
+  def confirm
+    user = User.find(params[:id])
+    user.confirm!
+    redirect_to :back
+  end
+  
 end

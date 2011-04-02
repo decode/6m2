@@ -61,7 +61,7 @@
               %ul
                 %li= link_to t('site.user_manage'), users_path
                 %li= link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
-                %li= link_to t('site.big_cash'), 't/big_cash' #:controller=>'board', :action=>'big_cash'
+                %li= link_to t('site.big_cash'), :controller=>'board', :action=>'big_cash'
                 %li= link_to t('trade.manage_payment'), '/m/approve/charge'
                 %li= link_to t('trade.manage_point'), '/m/approve/payment'
                 %li= link_to t('site.issue'), issues_path
@@ -74,11 +74,11 @@
           - if super?
             %li= link_to 'Admin', '/admin'
 
-      #notice
-        - if flash[:notice]
+      - if flash[:notice]
+        #notice
           = flash[:notice]
-      #error
-        - if flash[:error]
+      - if flash[:error]
+        #error
           = flash[:error]
 
       #content
