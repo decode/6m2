@@ -60,8 +60,10 @@ class UsersController < ApplicationController
     session[:user_edit_mode] = nil
     if secret_access?
       @user = User.find(params[:id])
+      @trades = Trade.where('user_id = ?', @user).paginate(:page => params[:page], :per_page => 20)
     else
       @user = @current_user
+      @trades = Trade.where('user_id = ?', @user).paginate(:page => params[:page], :per_page => 20)
     end
   end
 

@@ -93,6 +93,7 @@ zh:
     user_manage: "用户管理"
     cash_task: "提现处理"
     big_cash: "大额提现"
+    small_cash: "小额提现"
     service: "平台服务"
 
   manage:
@@ -125,6 +126,8 @@ zh:
 
   admin:
     label: "网站管理"
+    list:
+      search: "搜索"
 
   page:
     submit: "提交"
@@ -278,6 +281,7 @@ zh:
     real_level: "接任务方帐号级别"
 
   issue:
+    send: "发送"
     create: "问题己成功提交"
     can_not_create: "无法提交问题"
     issue_type: "问题类型"

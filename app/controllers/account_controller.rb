@@ -15,6 +15,7 @@ class AccountController < ApplicationController
   def index
     @trades = Trade.where('user_id = ?', current_user).paginate(:page => params[:page], :per_page => 20)
     @user = current_user
+    # used? 
     @small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
     @big_cashes = Issue.where('user_id = ? and itype = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
   end
@@ -156,6 +157,17 @@ class AccountController < ApplicationController
     @user = User.find(params[:id])
     @tasks = Tasklog.where('user_id = ?', params[:id])
   end
+
+  def small_cash
+    @user = User.find(params[:id])
+    @tasks = Task.where('user_id = ? and task_type = ?', @user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+  end
+
+  def big_cash
+    @user = User.find(params[:id])
+    @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+  end
+  
     
   def confirm
     user = User.find(params[:id])

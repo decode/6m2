@@ -1,13 +1,4 @@
-#roundshape
-  = link_to t('global.edit'), edit_user_path(@user)
-  \|
-  = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
-  \|
-  = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user
-  \|
-  = link_to t('global.back'), :back
-
-%br
+= render 'users/head'
 
 %table
   %caption

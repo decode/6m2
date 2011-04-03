@@ -1,26 +1,6 @@
-#roundshape
-  = link_to t('global.edit'), edit_user_path(@user)
-  \|
-  = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
-  \|
-  = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user
-  \|
-  = link_to t('global.back'), :back
-
-%br
-
-.shadow
-  %p
-    %b= t 'site.login_name'
-    = @user.username
-  %p
-    %b= t 'page.email'
-    = @user.email
-  %p
-    %b= t 'account.role'
-    = @user.role_objects.map { |role| role.name }
-
-  %p
-    %b Account:
-    = @user.account_money
-
+= render 'users/head'
+#mainframe
+  = render 'account/trades'
+#right
+  #roundshape
+    = render 'account/user'

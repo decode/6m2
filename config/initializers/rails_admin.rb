@@ -4,6 +4,7 @@ RailsAdmin.config do |config|
   #config.excluded_models << ClassName
   config.model User do
     edit do
+      i = "
       field :username
       field :email
       field :password
@@ -20,6 +21,7 @@ RailsAdmin.config do |config|
       field :current_sign_in_at
       field :current_sign_in_ip
       field :locked_at
+      "
     end
   end
 end

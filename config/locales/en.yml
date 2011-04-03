@@ -88,6 +88,7 @@ en:
     user_manage: "User Manage"
     cash_task: "Cash Manage"
     big_cash: "Big Cash"
+    small_cash: "Small Cash"
     service: "Platform Service"
 
   manage:
@@ -120,6 +121,8 @@ en:
 
   admin:
     label: "Admin"
+    list:
+      search: "Search"
 
   page:
     submit: "Submit"
@@ -273,6 +276,7 @@ en:
     real_level: "Worker Real Account Level"
 
   issue:
+    send: "Send Issue"
     create: "Issue has been created"
     can_not_create: "Can not create issue"
     issue_type: "Issue Type"

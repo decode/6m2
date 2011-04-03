@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110224091406) do
+ActiveRecord::Schema.define(:version => 20110403071733) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -22,19 +22,6 @@ ActiveRecord::Schema.define(:version => 20110224091406) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "histories", :force => true do |t|
-    t.string   "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "issues", :force => true do |t|
     t.string   "title"
@@ -66,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20110224091406) do
     t.integer  "issue_id"
     t.integer  "user_id"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
@@ -154,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20110224091406) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",  :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",  :null => false
-    t.string   "password_salt",                       :default => "",  :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -169,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20110224091406) do
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
