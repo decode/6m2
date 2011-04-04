@@ -1,3 +1,8 @@
+#roundshape
+  - if @task.can_modify? and @task.user == current_user
+    = link_to t('global.edit'), edit_task_path(@task) |
+  = link_to t('global.back'), tasks_path
+
 #tearshape
   %p
     %b=t 'global.title'
@@ -56,6 +61,3 @@
   = @task.custom_judge_content
   %hr
 
-  - if @task.can_modify? and @task.user == current_user
-    = link_to t('global.edit'), edit_task_path(@task) |
-  = link_to t('global.back'), tasks_path

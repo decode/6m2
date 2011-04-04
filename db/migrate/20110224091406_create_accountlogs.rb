@@ -4,7 +4,7 @@ class CreateAccountlogs < ActiveRecord::Migration
       t.integer :user_id
       t.integer :operator_id
       t.integer :trade_id
-      t.integer :description
+      t.string :description
       t.float :amount
       t.string :log_type
 

@@ -21,10 +21,11 @@
   - @tasks.each do |t|
     - c = cycle("even", "odd")
     %tr{:class=>c}
-      - task = Task.find(t.task_id)
-      %td= link_to task.title, task
-      %td= User.find(t.worker_id).username
-      %td= t.price
-      %td= t.status
-      %td= t.description
+      - task = Task.where(t.task_id).first
+      - unless task.nil?
+        %td= link_to task.title, task
+        %td= User.find(t.worker_id).username
+        %td= t.price
+        %td= t.status
+        %td= t.description
 

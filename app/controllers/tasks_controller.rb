@@ -78,8 +78,10 @@ class TasksController < ApplicationController
       @task.custom_judge = true
       @task.custom_judge_content = params[:task][:custom_judge_content]
     end
+    if params[:task][:transport_id].nil?
+      @task.transport_id = generate_transport_id(params[:task][:transport]) if params[:task][:transport].nil?
+    end
     @task.published_time = Time.now
-    @task.transport_id = generate_transport_id
 
     respond_to do |format|
       Task.transaction do 

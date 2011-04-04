@@ -67,13 +67,48 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def generate_transport_id(tran_type=0)
-    chars = ('0'..'9').to_a
+  def gen_chars(length, chars)
     tid = ''
-    10.downto(1) { |i| tid << chars[rand(chars.length-1)] }
+    length.downto(1) { |i| tid << chars[rand(chars.length-1)] }
     return tid
   end
-  
+
+  def gen_string(str)
+    return str[rand(str.length)] 
+  end
+
+  def generate_transport_id(tran_type)
+    num_chars = ('0'..'9').to_a
+    ab_chars = ('A'..'Z').to_a
+    if tran_type.nil?
+      t = %w{ yt st zt yd sf ems }
+      tran_type = gen_string(t)
+    end
+    tid = case tran_type
+          when 'yt'
+            gen_chars(1, ab_chars) + gen_chars(9, num_chars)
+          when 'st'
+            head = ["36", "26", "58"]
+            gen_string(head) + gen_chars(10, num_chars)
+          when 'zt'
+            head = ['6800', '2008']
+            gen_string(head) + gen_chars(8, num_chars)
+          when 'yd'
+            heed = ["10", "12"]
+            gen_string(head) + gen_chars(11, num_chars)
+          when 'sf'
+            head = %w{10 20 21 22 23 24 25 27 28 29 31 33
+            35 37 39 41 42 43 45 47 48 51 52 53 54 55 56
+            57 58 59 63 66 69 71 72 73 74 75 76 77 79 81
+            82 83 85 87 88 89 90 91 93 95 97 98 99 }
+            chars = ('1'..'5').to_a
+            gen_string(head) + gen_chars(1, chars) + gen_chars(9, num_chars)
+          when 'ems'
+            'E' + gen_chars(1, ab_chars) + gen_chars(9, num_chars) + 'CN'
+          end
+    return tid
+  end
+
   private
 
     def access_denied

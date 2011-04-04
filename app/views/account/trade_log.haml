@@ -19,7 +19,7 @@
   - @trades.each do |t|
     - c = cycle("even", "odd")
     %tr{:class=>c}
-      %td= User.find_by_id(t.operator_id).username
+      %td= t.operator_id.nil? ? '-' : User.find_by_id(t.operator_id).username 
       %td= t.amount
       %td= t.description
 

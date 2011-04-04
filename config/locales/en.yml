@@ -33,6 +33,7 @@ en:
     update_success: "Update Success"
     update_failed: "Update Failed"
     save: "Save"
+    created_at: "Created At"
 
   system:
     password_error: "Wrong Password!"
@@ -90,6 +91,8 @@ en:
     big_cash: "Big Cash"
     small_cash: "Small Cash"
     service: "Platform Service"
+    running_task: "Running Task"
+    user_number: "Registered User"
 
   manage:
     message_box: "Inbox"
@@ -245,6 +248,7 @@ en:
 
   trade:
     charged_at: "Charged time"
+    transaction_id: "Transaction ID"
     success: "Request has been post"
     error: "Some problem happens"
     approve_charge: "Approve Charge"
@@ -259,6 +263,8 @@ en:
     manage_point: "Manage Point Charge"
     manage_payment: "Manage Payment Charge"
     no_enough_money: "No enough money"
+    must_input: "If charge by bank transfer, you must fill in transaction id"
+    bad_deal: "Writing transaction id casually will be serious punished"
 
   setting:
     point_ratio: "Point Ratio"

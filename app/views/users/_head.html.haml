@@ -4,6 +4,12 @@
     \|
     = link_to t('global.edit'), edit_user_path(@user)
     \|
+    = link_to t('account.charge'), @user
+    \|
+    = link_to t('site.small_cash'), :controller=>'account', :action=>'small_cash', :id=>@user
+    \|
+    = link_to t('site.big_cash'), :controller=>'account', :action=>'big_cash', :id=>@user
+    \|
     = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
     \|
     = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user

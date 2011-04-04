@@ -1,5 +1,6 @@
 %table
-  %caption= t 'site.issue'
+  %caption
+    /= t 'site.issue'
   %thead
     %tr
       %th= t 'global.title'
@@ -7,6 +8,8 @@
       %th= t 'global.status'
       %th= t 'site.login_name'
       %th= t 'global.type'
+      %th= t 'manage.service'
+      %th= t 'global.created_at'
       %th{:colspan=>5}
   - @issues.each do |issue|
     - c = cycle("even", "odd")
@@ -16,6 +19,9 @@
       %td= issue.status
       %th= issue.user.username
       %th= issue.itype
+      - dealer = User.where(issue.dealer_id).first
+      %th= dealer.nil? ? '-' : dealer.username
+      %th= issue.created_at
       %td= link_to t('global.show'), issue
       - if issue.open?
         - if admin? or manager?

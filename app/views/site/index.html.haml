@@ -12,7 +12,10 @@
   = image_tag 'social.jpg'
 #right
   #roundshape
+    = t 'site.running_task'
     = @running_count
+    \|
+    = t 'site.user_number'
     = @user_count
   #roundshape
     = render 'site/news'

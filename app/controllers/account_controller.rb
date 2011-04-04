@@ -16,8 +16,8 @@ class AccountController < ApplicationController
     @trades = Trade.where('user_id = ?', current_user).paginate(:page => params[:page], :per_page => 20)
     @user = current_user
     # used? 
-    @small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
-    @big_cashes = Issue.where('user_id = ? and itype = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+    #@small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+    #@big_cashes = Issue.where('user_id = ? and itype = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
   end
   
   def show
@@ -41,6 +41,7 @@ class AccountController < ApplicationController
       user = User.where('id = ?', current_user).first
       trade = Trade.new
       trade.price = params[:amount]
+      trade.transaction_id = params[:transaction_id] if params[:transaction_id]
       trade.trade_type = session[:charge_type]
       trade.user = user
       if trade.trade_type == 'point'
@@ -83,7 +84,7 @@ class AccountController < ApplicationController
               rest = user.account_money - (Setting.first.point_ratio * Setting.first.init_required_point)
               if rest >= 0
                 user.account_money = rest
-                user.account_credit = Setting.first.init_required_point
+                user.account_credit = user.account_credit + Setting.first.init_required_point #fix if user has been assign credit before confirm
                 user.has_role! :user
                 user.has_no_role! :guest
               end
@@ -106,7 +107,7 @@ class AccountController < ApplicationController
         end
       end
     end
-    redirect_to :controller=>'account', :action=>'approve'
+    redirect_to :back
   end
 
   def approve_reject
@@ -118,11 +119,11 @@ class AccountController < ApplicationController
     Trade.transaction do
       trade.reject
       if trade.save
-        Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => 'reject charge'
+        Accountlog.create! :user_id => trade.user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => 'reject charge'
         flash[:notice] = 'reject charge!'
       end
     end
-    redirect_to '/'
+    redirect_to :back
   end
   
   def payment

@@ -14,11 +14,12 @@ class Task < ActiveRecord::Base
   validate :low_point_cannot_make_task
  
   def low_point_cannot_make_task
-    point = caculate_point(self)
+    app = ApplicationController.new
+    point = app.caculate_point(self)
     errors.add(:price) if self.price.nil?
     price = self.price.nil? ? 0 : self.price
     errors.add(:price, "not enough") if
-      self.user.account_credit < point and self.user.account_money < price
+      self.user.account_credit < point or self.user.account_money < price
   end
 
   #def caculate_point(task)
