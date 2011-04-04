@@ -63,6 +63,7 @@ en:
     send_password_reset: "Send me reset password instructions"
     leave_blank: "(leave blank if you don't want to change it)"
     need_current_password: "(we need your current password to confirm your changes)"
+    send_unlock: "Resend unlock instructions"
     cancel_account: "Cancel my account"
     are_you_sure: "Are you sure?"
     news: "News"

@@ -1,3 +1,4 @@
+= render :partial => "devise/shared/links"
 %h2= t 'site.forgot_password'
 #roundshape
   = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
@@ -7,4 +8,3 @@
       %br/
       = f.text_field :email
     %p= f.submit t('site.send_password_reset')
-  = render :partial => "devise/shared/links"

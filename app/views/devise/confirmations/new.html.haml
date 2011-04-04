@@ -1,3 +1,4 @@
+= render :partial => "devise/shared/links"
 %h2= t 'devise.resend_confirm'
 = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
   = devise_error_messages!
@@ -6,4 +7,3 @@
     %br/
     = f.text_field :email
   %p= f.submit t('devise.resend')
-= render :partial => "devise/shared/links"

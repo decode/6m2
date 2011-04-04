@@ -1,0 +1,9 @@
+= render :partial => "devise/shared/links"
+%h2= t 'site.send_unlock'
+= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
+  = devise_error_messages!
+  %p
+    = f.label :email
+    %br/
+    = f.text_field :email
+  %p= f.submit t('site.send_unlock')
