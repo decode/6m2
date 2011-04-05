@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.integer  "user_id"
     t.integer  "worker_id"
     t.float    "price"
+    t.float    "point"
     t.string   "status"
     t.string   "description"
     t.datetime "created_at"
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.string   "description"
     t.string   "link"
     t.float    "price"
+    t.float    "point"
     t.string   "status"
     t.string   "transport"
     t.string   "transport_id"
@@ -126,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.datetime "finished_time"
     t.datetime "confirmed_time"
     t.integer  "worker_level",         :default => 0
-    t.integer  "task_day",             :default => 3
+    t.integer  "task_day",             :default => 1
     t.boolean  "extra_word",           :default => false
     t.integer  "avoid_day",            :default => 7
     t.integer  "task_level",           :default => 0

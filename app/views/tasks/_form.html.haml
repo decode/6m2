@@ -14,7 +14,7 @@
       = label_tag t('task.condition')
     = f.input :worker_level, :as => :select, :collection => (1..5).to_a
     = f.input :real_level, :as => :select, :collection => (0..Setting.first.real_level).to_a
-    = f.input :task_day, :as => :select, :collection => (3..10).to_a
+    = f.input :task_day, :as => :select, :collection => (1..4).to_a
     = f.input :avoid_day, :as => :select, :collection => (0..10).to_a
     = f.input :task_level, :as => :select, :collection => (0..current_user.level).to_a
     = f.input :extra_word

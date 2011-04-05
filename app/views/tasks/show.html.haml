@@ -29,6 +29,17 @@
     = @task.price
 
   %p
+    %b=t 'task.point' 
+    = @task.point
+
+  %p
+    %b= t 'formtastic.labels.task.transport'
+    - unless @task.transport.nil? or @task.transport == ''
+      - tran = %w{圆通 申通 中通 韵达 顺丰 EMS} 
+      - abb = %w{ yt st zt yd sf ems }
+      = tran[abb.index(@task.transport)]
+
+  %p
     %b= t 'formtastic.labels.task.transport_id'
     = @task.transport_id
 

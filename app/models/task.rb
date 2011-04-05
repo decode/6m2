@@ -36,6 +36,7 @@ class Task < ActiveRecord::Base
     log.user_id = self.user.id
     log.worker_id = self.worker.id if self.worker
     log.price = self.price
+    log.point = self.point
     log.status = self.status
     log.save!
   end
@@ -45,6 +46,7 @@ class Task < ActiveRecord::Base
     log.user_id = self.user.id
     log.worker_id = self.worker.id if self.worker
     log.price = self.price
+    log.point = self.point
     log.status = self.status
     log.description = 'destroy'
     log.save!

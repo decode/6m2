@@ -2,6 +2,7 @@ class IssuesController < ApplicationController
   access_control do
     allow :admin, :manager
     allow :user, :except => [:edit, :update, :destroy]
+    allow :guest, :except => [:index, :edit, :update, :destroy]
   end
   # GET /issues
   # GET /issues.xml

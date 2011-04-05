@@ -1,8 +1,8 @@
-%h1 Access Denied!
+%h1= t 'site.access_denied'
 
-%p 
-  You Can:
-
-  = link_to "Back", :back
-  = link_to 'Home', '/'
-  = link_to 'View my profile', @current_user
+#roundshape 
+  = link_to t('page.back'), :back
+  \|
+  = link_to t('site.label'), '/'
+  \|
+  = link_to t('site.my_account'), @current_user

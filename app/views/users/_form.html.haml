@@ -9,6 +9,8 @@
         = f.input :role_objects
       - else
         = f.input :role_objects, :collection => Role.where("name != 'super'")
+    - if session[:user_edit_mode] == 'score'
+      = f.input :score
 
     - if session[:user_edit_mode].nil?
       = f.input :im

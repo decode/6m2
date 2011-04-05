@@ -38,7 +38,7 @@ class TasksController < ApplicationController
     @task.task_type = "taobao"
     @task.status = 'unpublished'
     @task.worker_level = 1
-    @task.task_day = 3
+    @task.task_day = 1
     @task.extra_word = false
     @task.avoid_day = 7
     @task.task_level = 0
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if current_user.account_credit <= 0
-        format.html { redirect_to('/', :notice => 'not enough point.') }
+        format.html { redirect_to('/', :notice => t('task.not_enough_point')) }
         format.xml
       else
         format.html # new.html.erb
@@ -71,15 +71,17 @@ class TasksController < ApplicationController
     if params[:task][:published] == 'true'
       @task.publish
     end
-    if !["taobao", "paipai", "youa", "cash"].include?(@task.task_type)
+    if !["taobao", "paipai", "youa", "virtual", "cash"].include?(@task.task_type)
       @task.task_type = "taobao"
     end
     if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
       @task.custom_judge = true
       @task.custom_judge_content = params[:task][:custom_judge_content]
     end
-    if params[:task][:transport_id].nil?
-      @task.transport_id = generate_transport_id(params[:task][:transport]) if params[:task][:transport].nil?
+    if params[:task][:transport_id].nil? or params[:task][:transport_id] == ''
+      tid = generate_transport_id(params[:task][:transport])
+      @task.transport, @task.transport_id = tid
+      logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
     end
     @task.published_time = Time.now
 
@@ -87,7 +89,7 @@ class TasksController < ApplicationController
       Task.transaction do 
         if @task.save
           spend(@task)
-          format.html { redirect_to(@task, :notice => 'Task was successfully created.') }
+          format.html { redirect_to(@task, :notice => t('task.create_success')) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
           format.html { render :action => "new" }
@@ -102,7 +104,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
-    if !["taobao", "paipai", "ebay", "cash"].include?(params[:task][:task_type])
+    if !["taobao", "paipai", "ebay", "virtual", "cash"].include?(params[:task][:task_type])
       params[:task][:task_type] = "taobao"
     end
 

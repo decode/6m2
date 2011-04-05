@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log do
       allow :user, :guest
     end
     actions :delete_charge do
@@ -126,29 +126,12 @@ class AccountController < ApplicationController
     redirect_to :back
   end
   
+  # 金额兑换发布点
   def payment
     session[:charge_type] = 'point'
     redirect_to '/' unless user_signed_in?
   end
   
-  def point
-    @user = User.find(params[:id])
-    session[:user_edit_mode] = 'point'
-    redirect_to edit_user_url(@user)
-  end
-
-  def password
-    @user = User.find(params[:id])
-    session[:user_edit_mode] = 'password'
-    redirect_to edit_user_url(@user)
-  end
-
-  def role
-    @user = User.find(params[:id])
-    session[:user_edit_mode] = 'role'
-    redirect_to edit_user_url(@user)
-  end
-
   def trade_log
     @user = User.find(params[:id])
     @trades = Accountlog.where('user_id = ?', params[:id])
@@ -169,11 +152,40 @@ class AccountController < ApplicationController
     @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').paginate(:page=>params[:page], :per_page=>10)
   end
   
-    
+  # 修改用户的发布点
+  def point
+    @user = User.find(params[:id])
+    session[:user_edit_mode] = 'point'
+    redirect_to edit_user_url(@user)
+  end
+
+  # 修改用户的密码
+  def password
+    @user = User.find(params[:id])
+    session[:user_edit_mode] = 'password'
+    redirect_to edit_user_url(@user)
+  end
+
+  # 修改用户的角色
+  def role
+    @user = User.find(params[:id])
+    session[:user_edit_mode] = 'role'
+    redirect_to edit_user_url(@user)
+  end
+
+  # 修改用户的积分
+  def score
+    @user = User.find(params[:id])
+    session[:user_edit_mode] = 'score'
+    redirect_to edit_user_url(@user)
+  end
+
+  # 激活用户
   def confirm
     user = User.find(params[:id])
     user.confirm!
     redirect_to :back
   end
+
   
 end

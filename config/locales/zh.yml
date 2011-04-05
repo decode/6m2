@@ -50,6 +50,7 @@ zh:
 
   site:
     name: "风雨同舟"
+    access_denied: "您暂时没有权限访问该资源"
     label: "首页"
     welcome: "欢迎, %{name}"
     login: "登录"
@@ -237,6 +238,7 @@ zh:
     extra: "额外评价"
     unpublish: "未发布"
     publish: "发布"
+    create_success: "任务创建成功"
     confirm_success: "确认任务完成"
     self_task: "不能接手自己的任务"
     not_type: "不是包含的任务类型"
@@ -251,6 +253,9 @@ zh:
     running: "执行中"
     total_task: "发布任务总数"
     total_todo: "接手任务总数"
+    not_enough_point: "没有足够发布点"
+    point: "发布点"
+    tran_list: "圆通 申通 中通 韵达 顺丰 EMS"
 
   trade:
     charged_at: "充值时间"
@@ -326,6 +331,9 @@ zh:
     unlock: "解锁我的帐户"
     resend_confirm: "重新发送激活邮件"
     resend: "发送"
+    registrations:
+      user:
+        inactive_signed_up: "己成功注册,需要激活您的帐号才能继续使用"
 
   formtastic:
     titles:

@@ -313,108 +313,152 @@ Coffee with milk
 Table design by Roger Johansson, 456 Berea Street
 www.456bereastreet.com
 ================================================*/
-/* line 286, ../../../app/stylesheets/site.scss */
+/*
 table {
-  font: normal 76%/150% "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 0 0 1em;
-  color: #000;
-}
-
-/* line 293, ../../../app/stylesheets/site.scss */
+	font:normal 76%/150% "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	border-collapse:separate;
+	border-spacing:0;
+	margin:0 0 1em;
+	color:#000;
+	}
 table a {
-  color: #523A0B;
-  text-decoration: none;
-  border-bottom: 1px dotted;
-}
-
-/* line 298, ../../../app/stylesheets/site.scss */
+	color:#523A0B;
+	text-decoration:none;
+	border-bottom:1px dotted;
+	}
 table a:visited {
-  color: #444;
-  font-weight: normal;
-}
-
-/* line 302, ../../../app/stylesheets/site.scss */
+	color:#444;
+	font-weight:normal;
+	}
 table a:visited:after {
-  content: "\00A0\221A";
-}
-
-/* line 305, ../../../app/stylesheets/site.scss */
+	content:"\00A0\221A";
+	}
 table a:hover {
-  border-bottom-style: solid;
-}
-
-/* line 311, ../../../app/stylesheets/site.scss */
+	border-bottom-style:solid;
+	}
 thead th,
 thead td,
 tfoot th,
 tfoot td {
-  border: 1px solid #523A0B;
-  border-width: 1px 0;
-  background: #EBE5D9;
-}
-
-/* line 316, ../../../app/stylesheets/site.scss */
+	border:1px solid #523A0B;
+	border-width:1px 0;
+	background:#EBE5D9;
+	}
 th {
-  font-weight: bold;
-  line-height: normal;
-  padding: 0.25em 0.5em;
-  text-align: left;
-}
-
-/* line 323, ../../../app/stylesheets/site.scss */
+	font-weight:bold;
+	line-height:normal;
+	padding:0.25em 0.5em;
+	text-align:left;
+	}
 tbody th,
 td {
-  padding: 0.25em 0.5em;
-  text-align: left;
-  vertical-align: top;
-}
-
-/* line 328, ../../../app/stylesheets/site.scss */
+	padding:0.25em 0.5em;
+	text-align:left;
+	vertical-align:top;
+	}
 tbody th {
-  font-weight: normal;
-  white-space: nowrap;
-}
-
-/* line 333, ../../../app/stylesheets/site.scss */
+	font-weight:normal;
+	white-space:nowrap;
+	}
 tbody th a:link,
 tbody th a:visited {
+	font-weight:bold;
+	}
+tbody td,
+tbody th {
+	border:1px solid #fff;
+	border-width:1px 0;
+	}
+tbody tr.odd th,
+tbody tr.odd td {
+	border-color:#EBE5D9;
+	background:#F7F4EE;
+	}
+tbody tr:hover td,
+tbody tr:hover th {
+	background:#ffffee;
+	border-color:#523A0B;
+	}
+caption {
+	font-family:Georgia,Times,serif;
+	font-weight:normal;
+	font-size:1.4em;
+	text-align:right;
+	margin:0;
+	padding:0.5em 0.25em;
+	}
+*/
+/* 
+	Cusco Sky table styles
+	written by Braulio Soncco http://www.buayacorp.com
+*/
+/* line 365, ../../../app/stylesheets/site.scss */
+table, th, td {
+  border: 1px solid #D4E0EE;
+  border-collapse: collapse;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #555;
+}
+
+/* line 372, ../../../app/stylesheets/site.scss */
+caption {
+  font-size: 150%;
+  font-weight: bold;
+  margin: 5px;
+}
+
+/* line 378, ../../../app/stylesheets/site.scss */
+td, th {
+  padding: 4px;
+}
+
+/* line 382, ../../../app/stylesheets/site.scss */
+thead th {
+  text-align: center;
+  background: #E6EDF5;
+  color: #4F76A3;
+  font-size: 100% !important;
+}
+
+/* line 389, ../../../app/stylesheets/site.scss */
+tbody th {
   font-weight: bold;
 }
 
-/* line 337, ../../../app/stylesheets/site.scss */
-tbody td,
-tbody th {
-  border: 1px solid #fff;
-  border-width: 1px 0;
+/* line 393, ../../../app/stylesheets/site.scss */
+tbody tr {
+  background: #FCFDFE;
 }
 
-/* line 342, ../../../app/stylesheets/site.scss */
-tbody tr.odd th,
-tbody tr.odd td {
-  border-color: #EBE5D9;
-  background: #F7F4EE;
+/* line 395, ../../../app/stylesheets/site.scss */
+tbody tr.odd {
+  background: #F7F9FC;
 }
 
-/* line 347, ../../../app/stylesheets/site.scss */
-tbody tr:hover td,
-tbody tr:hover th {
-  background: #ffffee;
-  border-color: #523A0B;
+/* line 397, ../../../app/stylesheets/site.scss */
+table a:link {
+  color: #718ABE;
+  text-decoration: none;
 }
 
-/* line 351, ../../../app/stylesheets/site.scss */
-caption {
-  font-family: Georgia,Times,serif;
-  font-weight: normal;
-  font-size: 1.4em;
-  text-align: right;
-  margin: 0;
-  padding: 0.5em 0.25em;
+/* line 402, ../../../app/stylesheets/site.scss */
+table a:visited {
+  color: #718ABE;
+  text-decoration: none;
 }
 
-/* line 362, ../../../app/stylesheets/site.scss */
+/* line 407, ../../../app/stylesheets/site.scss */
+table a:hover {
+  color: #718ABE;
+  text-decoration: underline !important;
+}
+
+/* line 412, ../../../app/stylesheets/site.scss */
+tfoot th, tfoot td {
+  font-size: 85%;
+}
+
+/* line 417, ../../../app/stylesheets/site.scss */
 .shadow1 {
   box-shadow: 5px 5px #818181;
   -webkit-box-shadow: 5px 5px #818181;
@@ -427,7 +471,7 @@ caption {
   border: 1px solid black;
 }
 
-/* line 374, ../../../app/stylesheets/site.scss */
+/* line 429, ../../../app/stylesheets/site.scss */
 .shadow {
   box-shadow: 7px 7px 8px #818181;
   -webkit-box-shadow: 7px 7px 8px #818181;
@@ -440,7 +484,7 @@ caption {
   border: 1px solid black;
 }
 
-/* line 385, ../../../app/stylesheets/site.scss */
+/* line 440, ../../../app/stylesheets/site.scss */
 #tearshape {
   background: #f1f2f3;
   padding: 3px 5px;
@@ -453,7 +497,7 @@ caption {
   -webkit-border-bottom-right-radius: 9px;
 }
 
-/* line 396, ../../../app/stylesheets/site.scss */
+/* line 451, ../../../app/stylesheets/site.scss */
 #roundshape {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -465,7 +509,7 @@ caption {
   -webkit-border-radius: 3px;
 }
 
-/* line 408, ../../../app/stylesheets/site.scss */
+/* line 463, ../../../app/stylesheets/site.scss */
 .round {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -474,14 +518,14 @@ caption {
   -webkit-border-radius: 5px;
 }
 
-/* line 416, ../../../app/stylesheets/site.scss */
+/* line 471, ../../../app/stylesheets/site.scss */
 .curlycontainer {
   border: 1px solid #b8b8b8;
   margin-bottom: 1em;
   width: 300px;
 }
 
-/* line 422, ../../../app/stylesheets/site.scss */
+/* line 477, ../../../app/stylesheets/site.scss */
 .curlycontainer .innerdiv {
   background: transparent url(brcorner.gif) bottom right no-repeat;
   position: relative;

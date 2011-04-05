@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :description
       t.string :link
       t.float :price
+      t.float :point
       t.string :status
 
       t.string :transport
@@ -19,7 +20,7 @@ class CreateTasks < ActiveRecord::Migration
 
       #任务条件
       t.integer :worker_level, :default => 0
-      t.integer :task_day, :default => 3 #3天内完成
+      t.integer :task_day, :default => 1 #1天内完成
       t.boolean :extra_word, :default => false #不填写评价
       t.integer :avoid_day, :default => 7 #7天內同一用户不能再拍
       t.integer :task_level, :default => 0

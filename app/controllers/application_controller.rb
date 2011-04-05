@@ -6,7 +6,15 @@ class ApplicationController < ActionController::Base
   #before_filter :authenticate_user!
 
   def caculate_point(task)
-    point = 1 #task.task_level + task.avoid_day + task.task_day + task.worker_level
+    step = [40, 80, 120, 200, 500, 1000, 1500]
+    if task.task_type == "virtual"
+      p = [1, 2, 3, 4, 5, 6, 7] 
+    else
+      p = [1, 1.5, 2, 3, 4, 5, 6]
+    end
+    index = step.select{ |s| s < task.price }.length
+    point = p[ index==step.length ? index-1 : index ]
+    point = point + task.task_day - 1
     point = point + 1 if task.extra_word
     point = point + Setting.first.custom_judge if task.custom_judge
     return point
@@ -21,6 +29,8 @@ class ApplicationController < ActionController::Base
     else
       point = caculate_point(task)
     end
+    task.point = point
+    task.save
     logger.info("spend======================== #{point}")
     price = task.price.nil? ? 0 : task.price
     user.account_credit = user.account_credit - point
@@ -36,7 +46,6 @@ class ApplicationController < ActionController::Base
     else
       point = caculate_point(task)
     end
-    point = caculate_point(task)
     logger.info("restore spend========================#{point}")
     user.account_credit = user.account_credit + point
     user.payment_money = user.payment_money + task.price
@@ -80,31 +89,31 @@ class ApplicationController < ActionController::Base
   def generate_transport_id(tran_type)
     num_chars = ('0'..'9').to_a
     ab_chars = ('A'..'Z').to_a
-    if tran_type.nil?
-      t = %w{ yt st zt yd sf ems }
+    t = %w{ yt st zt yd sf ems }
+    unless t.include? tran_type
       tran_type = gen_string(t)
     end
     tid = case tran_type
           when 'yt'
-            gen_chars(1, ab_chars) + gen_chars(9, num_chars)
+            [tran_type, gen_chars(1, ab_chars) + gen_chars(9, num_chars)]
           when 'st'
             head = ["36", "26", "58"]
-            gen_string(head) + gen_chars(10, num_chars)
+            [tran_type, gen_string(head) + gen_chars(10, num_chars)]
           when 'zt'
             head = ['6800', '2008']
-            gen_string(head) + gen_chars(8, num_chars)
+            [tran_type, gen_string(head) + gen_chars(8, num_chars)]
           when 'yd'
             heed = ["10", "12"]
-            gen_string(head) + gen_chars(11, num_chars)
+            [tran_type, gen_string(head) + gen_chars(11, num_chars)]
           when 'sf'
             head = %w{10 20 21 22 23 24 25 27 28 29 31 33
-            35 37 39 41 42 43 45 47 48 51 52 53 54 55 56
-            57 58 59 63 66 69 71 72 73 74 75 76 77 79 81
-            82 83 85 87 88 89 90 91 93 95 97 98 99 }
-            chars = ('1'..'5').to_a
-            gen_string(head) + gen_chars(1, chars) + gen_chars(9, num_chars)
+          35 37 39 41 42 43 45 47 48 51 52 53 54 55 56
+          57 58 59 63 66 69 71 72 73 74 75 76 77 79 81
+          82 83 85 87 88 89 90 91 93 95 97 98 99 }
+            chars = ('1' .. '5').to_a
+            [tran_type, gen_string(head) + gen_chars(1, chars) + gen_chars(9, num_chars)]
           when 'ems'
-            'E' + gen_chars(1, ab_chars) + gen_chars(9, num_chars) + 'CN'
+            [tran_type, 'E' + gen_chars(1, ab_chars) + gen_chars(9, num_chars) + 'CN']
           end
     return tid
   end

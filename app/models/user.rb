@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
   attr_accessible :login, :account_credit
-  attr_accessible :role_object_ids
+  attr_accessible :role_object_ids, :score
 
   # Acl9 configuration
   acts_as_authorization_subject

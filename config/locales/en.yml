@@ -45,6 +45,7 @@ en:
 
   site:
     name: "Boat166"
+    access_denied: "Access Denied"
     label: "Site"
     welcome: "Welcome, ${name}"
     login: "Login"
@@ -231,6 +232,7 @@ en:
     extra: "Extra"
     unpublish: "unpublish"
     publish: "publish"
+    create_success: "Task was successfully created"
     confirm_success: "Confirm Task Finished"
     self_task: "Can not take the self-task"
     not_type: "not the task type"
@@ -245,6 +247,8 @@ en:
     running: "Running"
     total_task: "Total tasks"
     total_todo: "Total todo works"
+    not_enough_point: "Not enough point"
+    point: "Point"
 
 
   trade:
@@ -321,6 +325,9 @@ en:
     unlock: "Unlock my account"
     resend_confirm: "Resend confirmation instructions"
     resend: "Resend"
+    registrations:
+      user:
+        inactive_signed_up: "己成功注册,需要激活您的帐号才能继续使用"
 
 
   formtastic:

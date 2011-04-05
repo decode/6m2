@@ -87,9 +87,8 @@ class UsersController < ApplicationController
           if session[:user_edit_mode] == 'point'
             Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => @user.account_credit, :log_type=>'credit', :description => 'modify credit'
           end
-          logger.info('update user credit')
           session[:user_edit_mode] = nil
-          format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+          format.html { redirect_to(@user, :notice => t('account.update_success')) }
           format.xml  { head :ok }
         else
           format.html { render :action => "edit" }
