@@ -3,7 +3,7 @@
     = link_to t('global.edit'), edit_task_path(@task) |
   = link_to t('global.back'), tasks_path
 
-#tearshape
+#roundshape
   %p
     %b=t 'global.title'
     = @task.title
@@ -58,9 +58,10 @@
   %br
   = t 'formtastic.labels.task.avoid_day'
   = @task.avoid_day
-  %br
-  = t 'formtastic.labels.task.task_level'
-  = @task.task_level
+  /
+    %br
+    = t 'formtastic.labels.task.task_level'
+    =# @task.task_level
   %hr
   = t 'formtastic.labels.task.extra_word'
   = @task.extra_word
@@ -72,3 +73,15 @@
   = @task.custom_judge_content
   %hr
 
+#roundshape
+  = t 'formtastic.labels.task.published_time'
+  = @task.published_time
+  %br
+  = t 'formtastic.labels.task.takeover_time'
+  = @task.takeover_time
+  %br
+  = t 'formtastic.labels.task.finished_time'
+  = @task.finished_time
+  %br
+  = t 'formtastic.labels.task.confirmed_time'
+  = @task.confirmed_time

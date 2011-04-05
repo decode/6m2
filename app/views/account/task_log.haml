@@ -12,6 +12,7 @@
 
   %thead
     %tr
+      %th ID
       %th= t 'site.task_name'
       %th= t 'task.worker'
       %th= t 'global.price'
@@ -23,8 +24,9 @@
     %tr{:class=>c}
       - task = Task.where(t.task_id).first
       - unless task.nil?
+        %td= task.id
         %td= link_to task.title, task
-        %td= User.find(t.worker_id).username
+        %td= t.worker_id.nil? ? '-' : User.find(t.worker_id).username 
         %td= t.price
         %td= t.status
         %td= t.description

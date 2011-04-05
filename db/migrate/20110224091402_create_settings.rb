@@ -23,8 +23,10 @@ class CreateSettings < ActiveRecord::Migration
 
       # 自定义评价消耗点数
       t.float :custom_judge, :default => 1
+
+      t.float :extra_word, :default => 1
       
-      t.integer :real_level, :default => 10
+      t.integer :real_level, :default => 20
 
       t.timestamps
     end

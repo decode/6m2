@@ -35,6 +35,9 @@
     = label_tag t('setting.report_punish')
     = number_field_tag 'setting[report_punish]', @setting.report_punish
   %li
+    = label_tag t('setting.extra_word')
+    = number_field_tag 'setting[extra_word]', @setting.extra_word
+  %li
     = label_tag t('setting.custom_judge')
     = number_field_tag 'setting[custom_judge]', @setting.custom_judge
   %li

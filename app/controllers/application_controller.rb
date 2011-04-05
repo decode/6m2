@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   #before_filter :authenticate_user!
 
   def caculate_point(task)
+    # 按金额计算
     step = [40, 80, 120, 200, 500, 1000, 1500]
     if task.task_type == "virtual"
       p = [1, 2, 3, 4, 5, 6, 7] 
@@ -14,9 +15,20 @@ class ApplicationController < ActionController::Base
     end
     index = step.select{ |s| s < task.price }.length
     point = p[ index==step.length ? index-1 : index ]
+
+    # 按完成时间计算
     point = point + task.task_day - 1
-    point = point + 1 if task.extra_word
+
+    # 附加词语
+    point = point + Setting.first.extra_word if task.extra_word
+
+    # 自定义评价
     point = point + Setting.first.custom_judge if task.custom_judge
+
+    # 接任务人等级
+    level = [0, 1, 2, 3, 4, 5]
+    point = point + level[task.worker_level]
+
     return point
   end
   
@@ -89,7 +101,7 @@ class ApplicationController < ActionController::Base
   def generate_transport_id(tran_type)
     num_chars = ('0'..'9').to_a
     ab_chars = ('A'..'Z').to_a
-    t = %w{ yt st zt yd sf ems }
+    t = %w{yt st zt yd sf ems}
     unless t.include? tran_type
       tran_type = gen_string(t)
     end
@@ -103,7 +115,7 @@ class ApplicationController < ActionController::Base
             head = ['6800', '2008']
             [tran_type, gen_string(head) + gen_chars(8, num_chars)]
           when 'yd'
-            heed = ["10", "12"]
+            head = ["10", "12"]
             [tran_type, gen_string(head) + gen_chars(11, num_chars)]
           when 'sf'
             head = %w{10 20 21 22 23 24 25 27 28 29 31 33

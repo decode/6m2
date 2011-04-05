@@ -10,7 +10,11 @@ class TasksController < ApplicationController
     if params[:user_id]
       @tasks = Task.where("user_id = ?", params[:user_id]).paginate(:page => params[:page], :per_page => 10)
     else
-      @tasks = Task.where("task_type in (?)",['taobao', 'youa', 'paipai']).paginate(:page => params[:page], :per_page => 10)
+      if current_user.has_role? 'admin'
+        @tasks = Task.where("task_type in (?) and status != 'unpublished'",['taobao', 'youa', 'paipai', 'virtual']).paginate(:page => params[:page], :per_page => 10)
+      else
+        @tasks = Task.where("task_type in (?) and status == 'published' and worker_level <= ?",['taobao', 'youa', 'paipai', 'virtual'], current_user.level).paginate(:page => params[:page], :per_page => 10)
+      end
     end
 
     respond_to do |format|
@@ -37,16 +41,16 @@ class TasksController < ApplicationController
     @task.user = current_user
     @task.task_type = "taobao"
     @task.status = 'unpublished'
-    @task.worker_level = 1
+    @task.worker_level = 0
     @task.task_day = 1
     @task.extra_word = false
     @task.avoid_day = 7
-    @task.task_level = 0
+    #@task.task_level = 0
     @task.real_level = 0 
 
     respond_to do |format|
-      if current_user.account_credit <= 0
-        format.html { redirect_to('/', :notice => t('task.not_enough_point')) }
+      if current_user.account_credit <= 0 and current_user.account_money <= 0
+        format.html { redirect_to(:back, :notice => t('task.not_enough_point')) }
         format.xml
       else
         format.html # new.html.erb
@@ -63,38 +67,42 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.xml
   def create
-    @task = Task.new(params[:task])
-    if @task.user.nil?
-      @task.user = current_user
+    isPass = false
+    price = params[:task][:price].to_f
+    unless price <= 0 or price > current_user.account_money
+      @task = Task.new(params[:task])
+      if @task.user.nil?
+        @task.user = current_user
+      end
+      
+      if params[:task][:published] == 'true'
+        @task.publish
+      end
+      if !["taobao", "paipai", "youa", "virtual", "cash"].include?(@task.task_type)
+        @task.task_type = "taobao"
+      end
+      if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
+        @task.custom_judge = true
+        @task.custom_judge_content = params[:task][:custom_judge_content]
+      end
+      if params[:task][:transport_id].nil? or params[:task][:transport_id] == ''
+        tid = generate_transport_id(params[:task][:transport])
+        @task.transport, @task.transport_id = tid
+        logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
+      end
+      @task.published_time = Time.now
+      isPass = true
     end
-    
-    if params[:task][:published] == 'true'
-      @task.publish
-    end
-    if !["taobao", "paipai", "youa", "virtual", "cash"].include?(@task.task_type)
-      @task.task_type = "taobao"
-    end
-    if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
-      @task.custom_judge = true
-      @task.custom_judge_content = params[:task][:custom_judge_content]
-    end
-    if params[:task][:transport_id].nil? or params[:task][:transport_id] == ''
-      tid = generate_transport_id(params[:task][:transport])
-      @task.transport, @task.transport_id = tid
-      logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
-    end
-    @task.published_time = Time.now
 
     respond_to do |format|
       Task.transaction do 
-        if @task.save
+        if isPass and @task.save
           spend(@task)
           format.html { redirect_to(@task, :notice => t('task.create_success')) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
-          format.html { render :action => "new" }
+          format.html { redirect_to(:back, :notice => t('task.not_enough_point')) }
           format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
-          #flash[:error] = t('task.error')
         end
      end
     end
@@ -134,7 +142,7 @@ class TasksController < ApplicationController
         restore_spend(@task)
         @task.destroy
       else
-        flash[:error] = "can not delete this task"
+        flash[:error] = t('task.can_not_delete')
       end
     end
 

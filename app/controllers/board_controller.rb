@@ -13,7 +13,15 @@ class BoardController < ApplicationController
   end
 
   def task_list
-    @tasks = Task.where("task_type = ? and status = ? and task_level <= ?", params[:task_type], 'published', current_user.level).paginate(:page => params[:page], :per_page => 10)
+    if params[:task_type] == 'cash'
+      if current_user.has_role? 'admin'
+        @tasks = Task.where("task_type = ? and status = ?", params[:task_type], 'published').paginate(:page => params[:page], :per_page => 10)
+      else
+        redirect_to '/s/access_denied'
+      end
+    else
+      @tasks = Task.where("task_type = ? and status = ? and worker_level <= ?", params[:task_type], 'published', current_user.level).paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   def task_show
@@ -56,7 +64,7 @@ class BoardController < ApplicationController
     task = Task.find(params[:id])
     Task.transaction do
       task.finish
-      @task.finished_time = Time.now
+      task.finished_time = Time.now
       if task.save
         flash[:notice] = t('global.update_success')
       end
@@ -77,7 +85,7 @@ class BoardController < ApplicationController
       task.over
       # 完成任务获得积分
       gain(task)
-      @task.confirmed_time = Time.now
+      task.confirmed_time = Time.now
       if task.save
         flash[:notice] = t('task.confirm_success')
       end

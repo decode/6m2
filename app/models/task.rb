@@ -4,10 +4,11 @@ class Task < ActiveRecord::Base
   belongs_to :supervisor, :class_name => 'User', :foreign_key => 'supervisor_id'
 
 
-  validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day, :task_level
-  validates_numericality_of :price, :worker_level, :task_day, :avoid_day, :greater_than => 0
-  validates_numericality_of :task_level
-  validates_inclusion_of :task_type, :in => %w(taobao paipai youa cash), :message => "%{value} is not a valid type"
+  validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day#, :task_level
+  validates_numericality_of :price, :task_day, :avoid_day, :greater_than => 0
+  validates_numericality_of :worker_level, :greater_than_or_equal_to => 0
+  #validates_numericality_of :task_level
+  validates_inclusion_of :task_type, :in => %w(taobao paipai youa virtual cash), :message => "%{value} is not a valid type"
   #validates_format_of :link, :with => /http[s]:\/\/*.*/, :message => "http://xxxx.xxx or https://xxxx.xxx"
   validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 

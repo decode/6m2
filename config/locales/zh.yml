@@ -249,13 +249,14 @@ zh:
     published: "己发布"
     unpublished: "未发布"
     finished: "己完成"
+    send_problem: "投诉"
     problem: "问题处理中"
     running: "执行中"
     total_task: "发布任务总数"
     total_todo: "接手任务总数"
-    not_enough_point: "没有足够发布点"
+    not_enough_point: "没有足够发布点或余额"
     point: "发布点"
-    tran_list: "圆通 申通 中通 韵达 顺丰 EMS"
+    can_not_delete: "无法删除该任务"
 
   trade:
     charged_at: "充值时间"
@@ -289,6 +290,7 @@ zh:
     charge_punish: "充值处罚"
     report_award: "举报奖励"
     report_punish: "举报处罚"
+    extra_word: "附加词语消耗点数"
     custom_judge: "自定义评价消耗点数"
     real_level: "接任务方帐号级别"
 
@@ -347,6 +349,7 @@ zh:
         status: "状态"
         link: "链接"
         worker_level: "接手人级别"
+        real_level: "真实信用级别"
         task_day: "完成时间"
         extra_word: "附加词语"
         avoid_day: "重复天数"
@@ -355,6 +358,10 @@ zh:
         custom_judge_content: "自定义评价内容"
         transport: "物流"
         transport_id: "物流单号"
+        published_time: "发布时间"
+        takeover_time: "接手时间"
+        finished_time: "完成时间"
+        confirmed_time: "确认时间"
       user:
         role_objects: "用户角色"
         password: "密码"

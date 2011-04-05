@@ -12,7 +12,7 @@
       %th=t 'task.level'
       %th=t 'task.work_day'
       %th=t 'task.extra'
-      %th{:colspan=>4}
+      %th=t 'global.operation'
     
   - @tasks.each do |task|
     - c = cycle("even", "odd")
@@ -26,17 +26,18 @@
       %td= task.worker_level
       %td= task.task_day
       %td= task.extra_word
-      %td= link_to t('global.show'), task
-      - if task.can_modify? and task.user == current_user
-        %td= link_to t('global.edit'), edit_task_url(task)
-        %td= link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
-      - if task.user == current_user
-        %td= link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
-      - else
-        %td= link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
-        %td= link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
+      %td
+        = link_to t('global.show'), task
+        - if task.can_modify? and task.user == current_user
+          = link_to t('global.edit'), edit_task_url(task)
+          = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
+        - if task.user == current_user
+          = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+        - else
+          = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+          = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
-      - if task.user == current_user or task.worker == current_user
-        %td= link_to t('task.problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+        - if task.user == current_user or task.worker == current_user
+          = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
 
 = will_paginate @tasks

@@ -96,7 +96,8 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.integer  "report_award",        :default => 1
     t.integer  "report_punish",       :default => 1
     t.float    "custom_judge",        :default => 1.0
-    t.integer  "real_level",          :default => 10
+    t.float    "extra_word",          :default => 1.0
+    t.integer  "real_level",          :default => 20
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,7 +132,6 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.integer  "task_day",             :default => 1
     t.boolean  "extra_word",           :default => false
     t.integer  "avoid_day",            :default => 7
-    t.integer  "task_level",           :default => 0
     t.boolean  "custom_judge",         :default => false
     t.string   "custom_judge_content"
     t.integer  "real_level",           :default => 0

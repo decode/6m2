@@ -243,12 +243,14 @@ en:
     published: "Published"
     unpublished: "Un-Published"
     finished: "Finished"
+    send_problem: "Argue"
     problem: "Problem"
     running: "Running"
     total_task: "Total tasks"
     total_todo: "Total todo works"
-    not_enough_point: "Not enough point"
+    not_enough_point: "Not enough point or money"
     point: "Point"
+    can_not_delete: "can not delete this task"
 
 
   trade:
@@ -283,6 +285,7 @@ en:
     charge_punish: "Charge Punish"
     report_award: "Report Award"
     report_punish: "Report Punish"
+    extra_word: "Extra Word"
     custom_judge: "Custom Judge Point"
     real_level: "Worker Real Account Level"
 
@@ -342,6 +345,7 @@ en:
         status: "Status"
         link: "Link"
         worker_level: "Worker Level"
+        read_level: "Real Level"
         task_day: "Task Day"
         extra_word: "Extra Words"
         avoid_day: "Avoid Days"
@@ -350,6 +354,10 @@ en:
         custom_judge_content: "Custom Judge Content"
         transport: "Transport Company"
         transport_id: "Transportation ID"
+        published_time: "Published Time"
+        takeover_time: "Takeover Time"
+        finished_time: "Finished Time"
+        confirmed_time: "Confirmed Time"
       user:
         role_objects: "User Roles"
         im: "IM"

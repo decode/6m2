@@ -23,7 +23,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :task_day, :default => 1 #1天内完成
       t.boolean :extra_word, :default => false #不填写评价
       t.integer :avoid_day, :default => 7 #7天內同一用户不能再拍
-      t.integer :task_level, :default => 0
+      #t.integer :task_level, :default => 0
       t.boolean :custom_judge, :default => false
       t.string :custom_judge_content
       t.integer :real_level, :default => 0 #实际接任务的帐户级别
