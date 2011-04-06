@@ -22,7 +22,7 @@
   - @tasks.each do |t|
     - c = cycle("even", "odd")
     %tr{:class=>c}
-      - task = Task.where(t.task_id).first
+      - task = Task.where('id = ?', t.task_id).first
       - unless task.nil?
         %td= task.id
         %td= link_to task.title, task

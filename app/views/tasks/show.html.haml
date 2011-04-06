@@ -1,7 +1,7 @@
 #roundshape
   - if @task.can_modify? and @task.user == current_user
     = link_to t('global.edit'), edit_task_path(@task) |
-  = link_to t('global.back'), tasks_path
+  = link_to t('global.back'), :back
 
 #roundshape
   %p
@@ -74,6 +74,9 @@
   %hr
 
 #roundshape
+  = t 'task.worker'
+  = link_to @task.worker.username, @task.worker if @task.worker
+  %br
   = t 'formtastic.labels.task.published_time'
   = @task.published_time
   %br

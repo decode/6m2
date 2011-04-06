@@ -53,7 +53,7 @@
                   %li= link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
                   %li= link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
                   %li= link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
-                  %li= link_to t('site.service'), new_issue_url
+                  %li= link_to t('site.service'), issues_path 
 
           - if admin? or manager?
             %li{:class=>'sub'} 

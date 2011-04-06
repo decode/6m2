@@ -12,14 +12,18 @@
 
   %thead
     %tr
+      %th ID
       %th= t 'manage.service'
       %th= t 'trade.amount'
+      %th= t 'global.type'
       %th= t 'global.description'
 
   - @trades.each do |t|
     - c = cycle("even", "odd")
     %tr{:class=>c}
+      %td= t.trade_id
       %td= t.operator_id.nil? ? '-' : User.find_by_id(t.operator_id).username 
       %td= t.amount
+      %td= t.log_type
       %td= t.description
 

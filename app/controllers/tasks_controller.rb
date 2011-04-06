@@ -90,6 +90,8 @@ class TasksController < ApplicationController
         @task.transport, @task.transport_id = tid
         logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
       end
+      @task.point = @task.free_task? ? 0 : caculate_point(@task)
+
       @task.published_time = Time.now
       isPass = true
     end

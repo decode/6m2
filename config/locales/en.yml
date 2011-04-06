@@ -32,6 +32,8 @@ en:
     price: "Price"
     update_success: "Update Success"
     update_failed: "Update Failed"
+    operate_success: "操作成功"
+    operate_failed: "操作失败"
     save: "Save"
     created_at: "Created At"
 
@@ -254,6 +256,8 @@ en:
 
 
   trade:
+    request_charge: "Request Charge"
+    request_point: "Request Point Change"
     charged_at: "Charged time"
     transaction_id: "Transaction ID"
     success: "Request has been post"
@@ -290,6 +294,7 @@ en:
     real_level: "Worker Real Account Level"
 
   issue:
+    request: "Request Service"
     send: "Send Issue"
     create: "Issue has been created"
     can_not_create: "Can not create issue"

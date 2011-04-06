@@ -21,8 +21,9 @@
 #tearshape
   = render 'penalties' if @issue.penalties.length > 0
 
-- if !@task.nil? and @issue.open? and (admin? or manager?)
+-# if !@task.nil? and @issue.open? and (admin? or manager?)
   %hr
+- if @issue.open? and (admin? or manager?)
   = render 'operation' 
   %hr
   - if admin? or manager?

@@ -36,13 +36,15 @@ class ApplicationController < ActionController::Base
     user = task.user
 
     # 提现不需要发布点
-    if task.free_task?
-      point = 0
-    else
-      point = caculate_point(task)
-    end
-    task.point = point
-    task.save
+    #if task.free_task?
+      #point = 0
+    #else
+      #point = caculate_point(task)
+    #end
+    #task.point = point
+    #task.save
+    point = task.point
+    
     logger.info("spend======================== #{point}")
     price = task.price.nil? ? 0 : task.price
     user.account_credit = user.account_credit - point

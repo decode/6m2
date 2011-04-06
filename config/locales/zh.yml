@@ -37,6 +37,8 @@ zh:
     price: "价格"
     update_success: "更新成功"
     update_failed: "更新失败"
+    operate_success: "操作成功"
+    operate_failed: "操作失败"
     save: "保存"
     created_at: "创建时间"
 
@@ -232,7 +234,7 @@ zh:
     finish: "完成任务"
     condition: "任务条件"
     owner: "所有者"
-    worker: "执行者"
+    worker: "接手人"
     level: "任务等级"
     work_day: "任务期限"
     extra: "额外评价"
@@ -259,6 +261,8 @@ zh:
     can_not_delete: "无法删除该任务"
 
   trade:
+    request_charge: "充值申请"
+    request_point: "发布点兑换申请"
     charged_at: "充值时间"
     transaction_id: "充值交易单号"
     success: "交易己提交"
@@ -295,6 +299,7 @@ zh:
     real_level: "接任务方帐号级别"
 
   issue:
+    request: "申请"
     send: "发送"
     create: "问题己成功提交"
     can_not_create: "无法提交问题"

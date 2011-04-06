@@ -58,7 +58,6 @@ class User < ActiveRecord::Base
     return self.tasks.where('status = ?', status) 
   end
   
-  
   protected
 
   def self.find_for_database_authentication(conditions)

@@ -3,6 +3,7 @@
     /=t('site.task')
   %thead
     %tr
+      %th ID
       %th{:width=>'20%'}=t 'global.title'
       %th=t 'global.type'
       %th=t 'global.price' 
@@ -17,11 +18,12 @@
   - @tasks.each do |task|
     - c = cycle("even", "odd")
     %tr{:class=>c}
+      %td= task.id
       %td= task.title
       %td= task.task_type
       %td= task.price
-      %td= task.user.username
-      %td= task.worker.username unless task.worker.nil?
+      %td= link_to task.user.username, task.user
+      %td= link_to task.worker.username, task.worker unless task.worker.nil?
       %td= task.status
       %td= task.worker_level
       %td= task.task_day

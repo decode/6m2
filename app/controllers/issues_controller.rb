@@ -4,10 +4,19 @@ class IssuesController < ApplicationController
     allow :user, :except => [:edit, :update, :destroy]
     allow :guest, :except => [:index, :edit, :update, :destroy]
   end
+
+  access_control :secret_access?, :filter => false do
+    allow :admin, :manager, :super
+  end
+
   # GET /issues
   # GET /issues.xml
   def index
-    @issues = Issue.where('itype != ?', 'cash').paginate(:page => params[:page], :per_page => 10)
+    if secret_access?
+      @issues = Issue.where('itype != ?', 'cash').paginate(:page => params[:page], :per_page => 10)
+    else
+      @issues = Issue.where('itype != ? and user_id = ?', 'cash', current_user).paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +55,7 @@ class IssuesController < ApplicationController
         @task = target
       end
     else
-      @issue.itype = 'normal'
+      @issue.itype = 'cash'
     end
     respond_to do |format|
       format.html # new.html.erb
@@ -65,6 +74,7 @@ class IssuesController < ApplicationController
   # POST /issues.xml
   def create
     @issue = Issue.new(params[:issue])
+    @issue.itype = 'normal' unless %w{normal cash}.include? @issue.itype
     unless session[:issue_type].nil? or session[:issue_task].nil?
       target = eval("#{session[:issue_type]}.find_by_id(#{session[:issue_task]})")
       @issue.add_source( target )
@@ -108,7 +118,7 @@ class IssuesController < ApplicationController
   # DELETE /issues/1.xml
   def destroy
     @issue = Issue.find(params[:id])
-    @issue.destroy if @issue.user == current_user
+    @issue.destroy if @issue.user == current_user or current_user.has_role?('admin')
 
     respond_to do |format|
       format.html { redirect_to(issues_url) }

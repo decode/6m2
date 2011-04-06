@@ -4,17 +4,16 @@
     %tr
       %th= t 'global.title'
       %th= t 'global.content' 
-      %th
-      %th
-      %th
+      %th= t 'global.created_at'
       %th
   - @notices.each do |notice|
     %tr
       %td= notice.title
       %td= notice.content
       %td= notice.created_at
-      %td= link_to t('global.show'), notice
-      - if admin? or manager?
-        %td= link_to t('global.edit'), edit_notice_path(notice)
-        %td= link_to t('global.delete'), notice, :confirm => 'Are you sure?', :method => :delete
+      %td
+        = link_to t('global.show'), notice
+        - if admin? or manager?
+          = link_to t('global.edit'), edit_notice_path(notice)
+          = link_to t('global.delete'), notice, :confirm => 'Are you sure?', :method => :delete
 %br/

@@ -48,16 +48,20 @@ class AccountController < ApplicationController
         rest = user.account_money - (trade.price.to_f * Setting.first.point_ratio)
         if rest >= 0
           Trade.transaction do 
-            Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => 'request'
-            flash[:notice] = t('trade.success') if trade.save!
+            if trade.save!
+              Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.request_point')
+              flash[:notice] = t('trade.success')
+            end
           end
         else
           flash[:error] = t('trade.no_enough_money')
         end
       else
-        Trade.transaction do 
-          Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => 'request'
-          flash[:notice] = t('trade.success') if trade.save!
+        Trade.transaction do
+          if trade.save!
+            Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.request_charge')
+            flash[:notice] = t('trade.success') 
+          end
         end
       end
     end
@@ -89,7 +93,7 @@ class AccountController < ApplicationController
                 user.has_no_role! :guest
               end
             end
-            Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => 'approve charge'
+            Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve')
             user.save!
             flash[:notice] = t('trade.approve_charge')
           # 发布点批准
@@ -119,8 +123,8 @@ class AccountController < ApplicationController
     Trade.transaction do
       trade.reject
       if trade.save
-        Accountlog.create! :user_id => trade.user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => 'reject charge'
-        flash[:notice] = 'reject charge!'
+        Accountlog.create! :user_id => trade.user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.reject')
+        flash[:notice] = t('global.operate_success')
       end
     end
     redirect_to :back
