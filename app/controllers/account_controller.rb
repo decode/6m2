@@ -13,7 +13,7 @@ class AccountController < ApplicationController
   end
   
   def index
-    @trades = Trade.where('user_id = ?', current_user).paginate(:page => params[:page], :per_page => 20)
+    @trades = Trade.where('user_id = ?', current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     @user = current_user
     # used? 
     #@small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
@@ -138,22 +138,22 @@ class AccountController < ApplicationController
   
   def trade_log
     @user = User.find(params[:id])
-    @trades = Accountlog.where('user_id = ?', params[:id])
+    @trades = Accountlog.where('user_id = ?', params[:id]).order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
   end
   
   def task_log
     @user = User.find(params[:id])
-    @tasks = Tasklog.where('user_id = ?', params[:id])
+    @tasks = Tasklog.where('user_id = ?', params[:id]).order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
   end
 
   def small_cash
     @user = User.find(params[:id])
-    @tasks = Task.where('user_id = ? and task_type = ?', @user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+    @tasks = Task.where('user_id = ? and task_type = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end
 
   def big_cash
     @user = User.find(params[:id])
-    @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').paginate(:page=>params[:page], :per_page=>10)
+    @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end
   
   # 修改用户的发布点

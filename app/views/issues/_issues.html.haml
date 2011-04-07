@@ -21,7 +21,7 @@
       %th= issue.itype
       - dealer = User.where(issue.dealer_id).first
       %th= dealer.nil? ? '-' : dealer.username
-      %th= issue.created_at
+      %th= l issue.created_at, :format => :long
       %td= link_to t('global.show'), issue
       - if issue.open?
         - if admin? or manager?

@@ -13,6 +13,7 @@
       %th=t 'task.level'
       %th=t 'task.work_day'
       %th=t 'task.extra'
+      %th=t 'formtastic.labels.task.published_time'
       %th=t 'global.operation'
     
   - @tasks.each do |task|
@@ -28,6 +29,7 @@
       %td= task.worker_level
       %td= task.task_day
       %td= task.extra_word
+      %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
       %td
         = link_to t('global.show'), task
         - if task.can_modify? and task.user == current_user

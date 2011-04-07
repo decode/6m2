@@ -16,7 +16,7 @@
       %td= t.user.username
       %td= t.price
       %td= t.transaction_id
-      %td= t.created_at
+      %td= l t.created_at, :format => :long
       %td= t.status
       %td= t.trade_type
       %td= link_to t('global.delete'), :controller => 'account', :action => 'delete_charge', :id => t if t.trade_type == 'charge' and t.request?

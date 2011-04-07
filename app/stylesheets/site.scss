@@ -115,248 +115,64 @@ padding: 4px 0 4px 10px; /*header text is indented 10px*/
   color: white;
 }
 
-// --------------------------------------------
-/*
-table {
-	color: #7F7F7F;
-	font: 0.8em/1.6em "Trebuchet MS",Verdana,sans-serif;
-	border-collapse: collapse
+
+//==================================================
+.formContainer
+{
+  //background-color: #F5EFC9;
+  background-color: #a9cff3;
+  border:none;
+  padding:30px;
+  width: 600px;
+}
+.formContainer h3
+{
+  margin:0px;
+  padding:0px 0px 10px 0px;
+  font-size:135%;
+}
+.rowContainer
+{
+  width:100%;
+  overflow:hidden;
+  padding-bottom:5px;
+  height:34px;
+}
+.rowContainer label
+{
+  width:140px;
+  float:left;
+  color: #758656;
+  font-weight:bold;
+}
+.rowContainer input[type="text"]
+{
+  width:200px;
+}
+.tooltipContainer
+{
+  height:16px;
+  font-size:11px;
+  color: #666666;
+  display:none;
+  float:none;
+  background-repeat:no-repeat;
+  background-position:left center;
+  padding:0px 20px;
+}
+.info
+{
+  background-image:url('info.gif');
+}
+.error
+{
+  background-image:url('error.gif');
+  color: #990000;
 }
 
-table,caption {
-	margin: 0 auto;
-	border-right: 1px solid #CCC;
-	border-left: 1px solid #CCC
-}
 
-caption,th,td {
-	border-left: 0;
-	padding: 10px
-}
+//==================================================
 
-caption,thead th,tfoot th,tfoot td {
-	background-color: #E63C1E;
-	color: #FFF;
-	font-weight: bold;
-	text-transform: uppercase
-}
-
-thead th {
-	background-color: #C30;
-	color: #FFB3A6;
-	text-align: center
-}
-
-tbody th {
-	padding: 20px 10px
-}
-
-tbody tr.odd {
-	background-color: #F7F7F7;
-	color: #666
-}
-
-tbody a {
-	padding: 1px 2px;
-	color: #333;
-	text-decoration: none;
-	border-bottom: 1px dotted #E63C1E
-}
-
-tbody a:active,tbody a:hover,tbody a:focus,tbody a:visited {
-	color: #666
-}
-
-tbody tr:hover {
-	background-color: #EEE;
-	color: #333
-}
-
-tbody tr:hover a {
-	background-color: #FFF
-}
-
-tbody td+td+td+td a {
-	color: #C30;
-	font-weight: bold;
-	border-bottom: 0
-}
-
-tbody td+td+td+td a:active,tbody td+td+td+td a:hover,tbody td+td+td+td a:focus,tbody td+td+td+td a:visited {
-	color: #E63C1E
-}
-
-tbody td a[href="http://www.rodcast.com.br/"] {
-	margin: 0 auto;
-	display: block;
-	width: 15px;
-	height: 15px;
-	background: transparent url('data:image/gif;base64,R0lGODlhDwAPAIAAACEpMf///yH5BAAAAAAALAAAAAAPAA8AAAIjjA8Qer0JmYvULUOlxXEjaEndliUeA56c97TqSD5pfJnhNxYAOw%3D%3D') no-repeat;
-	text-indent: -999em;
-	border-bottom: 0
-}
-
-tbody a:visited:after {
-	font-family: Verdana,sans-serif;
-	content: "\00A0\221A"
-}
-*/
-// ------------------------------------------
-//
-
-/*
-table {
-	background-color: #FFFFFF;
-	border: none;
-	color: #495E49;
-	font-family: arial, helvetica, sans-serif;
-	font-size: 12px;
-	text-align: left;
-}
-
-table a:link, table a:visited, table a:active {
-	background-color: transparent;
-	color: #0096BD;
-	text-decoration: none;
-}
-
-table a:hover {
-	background: transparent;
-	color: #000000;
-	text-decoration: underline;
-}
-
-table caption {
-	background-color: transparent;
-	color: #67BD2A;
-	font-family: Georgia, serif;
-	font-size: 24px;
-	padding-bottom: 12px;
-	padding-left: 8px;
-	text-align: left;
-}
-
-table, td, th {
-	margin: 0;
-	padding: 0;
-}
-
-tbody td, tbody th {
-	background-color: #D6F2C3;
-	border-bottom: 2px solid #B3DE94;
-	border-top: 3px solid #FFFFFF;
-	padding: 9px;
-}
-
-tbody tr.odd th, tbody tr.odd td {
-	background-color: #C8EDAE;
-	border-bottom: 2px solid #67BD2A;
-}
-
-tbody tr:hover td, tbody tr:hover th {
-	background-color: #BAE899;
-}
-
-td, th {
-	vertical-align: middle;
-}
-
-tfoot td, tfoot th {
-	font-weight: bold;
-	padding: 4px 8px 6px 9px;
-}
-
-thead th {
-	font-family: arial, helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 19px;
-	padding: 0 8px 2px 8px;
-	white-space: nowrap;
-}
-*/
-
-
-/*
-Coffee with milk
-Table design by Roger Johansson, 456 Berea Street
-www.456bereastreet.com
-================================================*/
-/*
-table {
-	font:normal 76%/150% "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
-	border-collapse:separate;
-	border-spacing:0;
-	margin:0 0 1em;
-	color:#000;
-	}
-table a {
-	color:#523A0B;
-	text-decoration:none;
-	border-bottom:1px dotted;
-	}
-table a:visited {
-	color:#444;
-	font-weight:normal;
-	}
-table a:visited:after {
-	content:"\00A0\221A";
-	}
-table a:hover {
-	border-bottom-style:solid;
-	}
-thead th,
-thead td,
-tfoot th,
-tfoot td {
-	border:1px solid #523A0B;
-	border-width:1px 0;
-	background:#EBE5D9;
-	}
-th {
-	font-weight:bold;
-	line-height:normal;
-	padding:0.25em 0.5em;
-	text-align:left;
-	}
-tbody th,
-td {
-	padding:0.25em 0.5em;
-	text-align:left;
-	vertical-align:top;
-	}
-tbody th {
-	font-weight:normal;
-	white-space:nowrap;
-	}
-tbody th a:link,
-tbody th a:visited {
-	font-weight:bold;
-	}
-tbody td,
-tbody th {
-	border:1px solid #fff;
-	border-width:1px 0;
-	}
-tbody tr.odd th,
-tbody tr.odd td {
-	border-color:#EBE5D9;
-	background:#F7F4EE;
-	}
-tbody tr:hover td,
-tbody tr:hover th {
-	background:#ffffee;
-	border-color:#523A0B;
-	}
-caption {
-	font-family:Georgia,Times,serif;
-	font-weight:normal;
-	font-size:1.4em;
-	text-align:right;
-	margin:0;
-	padding:0.5em 0.25em;
-	}
-*/
 /* 
 	Cusco Sky table styles
 	written by Braulio Soncco http://www.buayacorp.com

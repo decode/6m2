@@ -7,8 +7,13 @@
 %p
   %b= t 'account.role'
   = @user.role_objects.map { |role| role.name }
+%p
+  %b= t 'account.registered_time'
+  = l @user.created_at, :format => :long
+%p
+  %b= t 'formtastic.labels.user.current_sign_in_at'
+  = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
 
-= link_to t('global.edit'), edit_user_path(@user) if @user == current_user
 %hr
 
 %ul

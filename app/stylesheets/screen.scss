@@ -58,10 +58,12 @@ body {
     //max-width:100%;
     @include container; }
   #toolbar {
-    background: transparent url(waves5.jpg) no-repeat;
-    height: 100px;
+    background: #a9cff3 url(logo.png) no-repeat left;
+    height: 70px;
     @include column($blueprint-grid-columns);
     text-align: right;
+
+    border-bottom: 1px solid #444; /*--Create bevel effect--*/  
     }
   #navibar {
     //@include column($blueprint-grid-columns); }

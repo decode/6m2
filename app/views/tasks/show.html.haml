@@ -78,13 +78,13 @@
   = link_to @task.worker.username, @task.worker if @task.worker
   %br
   = t 'formtastic.labels.task.published_time'
-  = @task.published_time
+  = l @task.published_time if @task.published_time
   %br
   = t 'formtastic.labels.task.takeover_time'
-  = @task.takeover_time
+  = l @task.takeover_time if @task.takeover_time
   %br
   = t 'formtastic.labels.task.finished_time'
-  = @task.finished_time
+  = l @task.finished_time if @task.finished_time
   %br
   = t 'formtastic.labels.task.confirmed_time'
-  = @task.confirmed_time
+  = l @task.confirmed_time if @task.confirmed_time

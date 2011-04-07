@@ -36,6 +36,7 @@ en:
     operate_failed: "操作失败"
     save: "Save"
     created_at: "Created At"
+    time: "Time"
 
   system:
     password_error: "Wrong Password!"
@@ -97,6 +98,7 @@ en:
     service: "Platform Service"
     running_task: "Running Task"
     user_number: "Registered User"
+    user_info: "User Information"
 
   manage:
     message_box: "Inbox"
@@ -205,6 +207,7 @@ en:
     current_login_at: "Current Login At:"
     last_login_ip: "Last Login Ip"
     current_login_ip: "Current Login Ip"
+    registered_time: "Registered At"
     gender: "Gender"
     birthday: "Birthday"
     male: "Male"
@@ -378,6 +381,7 @@ en:
         shop_paipai_url: "Paipai Shop Address"
         shop_youa_url: "Youa Shop Address"
         account_credit: "Point"
+        current_sign_in_at: "Last Sign In At"
       issue:
         title: "Title"
         content: "Content"

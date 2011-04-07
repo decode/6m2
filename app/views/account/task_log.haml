@@ -18,6 +18,7 @@
       %th= t 'global.price'
       %th= t 'formtastic.labels.task.status'
       %th= t 'formtastic.labels.task.description'
+      %th= t 'global.time'
 
   - @tasks.each do |t|
     - c = cycle("even", "odd")
@@ -30,4 +31,6 @@
         %td= t.price
         %td= t.status
         %td= t.description
+        %td= l t.created_at, :format => :long
 
+= will_paginate @tasks
