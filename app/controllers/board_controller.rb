@@ -14,7 +14,7 @@ class BoardController < ApplicationController
 
   def task_list
     if params[:task_type] == 'cash'
-      if current_user.has_role? 'admin'
+      if current_user.has_role? 'manager'
         @tasks = Task.where("task_type = ? and status = ?", params[:task_type], 'published').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
       else
         redirect_to '/s/access_denied'

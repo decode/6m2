@@ -41,7 +41,7 @@
             %li{:class=>'sub'} 
               = link_to t('site.task'), tasks_url
               %ul.subnav
-                %li= link_to t('site.new_task'), new_task_url if user_signed_in?
+                %li= link_to t('site.new_task'), new_task_url if user?
                 %li= link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
                 %li= link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
                 %li= link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
@@ -49,8 +49,8 @@
           - if user_signed_in?
             %li{:class=>'sub'}
               =link_to t('site.user_center'), current_user
-              %ul.subnav
-                - if guest? or user?
+              - if guest? or user?
+                %ul.subnav
                   %li= link_to t('site.my_account'), '/m/index'
                   %li= link_to t('trade.charge_payment'), '/m/charge'
                   %li= link_to t('trade.charge_point'), '/m/payment'
@@ -59,18 +59,18 @@
                   %li= link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
                   %li= link_to t('site.service'), issues_path 
 
-          - if admin?
+          - if manager? or admin?
             %li{:class=>'sub'} 
               = link_to t('site.manage_center')
               %ul.subnav
-                %li= link_to t('site.user_manage'), users_path
+                %li= link_to t('site.user_manage'), users_path if admin?
                 %li= link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
                 %li= link_to t('site.big_cash'), '/t/big_cash'
                 %li= link_to t('trade.manage_payment'), '/m/approve/charge'
                 %li= link_to t('trade.manage_point'), '/m/approve/point'
                 %li= link_to t('site.issue'), issues_path
-                %li=link_to t('notice.new_notice'), new_notice_url
-                - if super?
+                %li=link_to t('notice.new_notice'), new_notice_url if admin?
+                - if admin?
                   %li= link_to t('site.setting'), '/s/setting'
 
           %li= link_to t('site.rule')
