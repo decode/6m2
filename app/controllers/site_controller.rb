@@ -20,5 +20,4 @@ class SiteController < ApplicationController
     redirect_to '/'
   end
   
-
 end

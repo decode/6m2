@@ -7,6 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
+    session[:view_task] = 'normal'
     if params[:user_id]
       @tasks = Task.where("user_id = ?", params[:user_id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     else

@@ -8,6 +8,16 @@ class BoardController < ApplicationController
     @users = User.find :all
   end
 
+  def service
+    role = Role.where(:name => 'manager').first
+    ids = role.user_ids.drop(1)
+    @users = User.where(:id => ids).paginate(:page => params[:page], :per_page => 20)
+    role = Role.where(:name => 'admin').first
+    ids = role.user_ids.drop(1)
+    @admins = User.where(:id => ids).paginate(:page => params[:page], :per_page => 20)
+  end
+  
+
   def big_cash
     @issues = Issue.where("itype = ?", 'cash').paginate(:page => params[:page], :per_page => 10)
   end
@@ -25,6 +35,7 @@ class BoardController < ApplicationController
   end
 
   def task_show
+    session[:view_task] = 'manage'
     unless current_user.nil?
       if params[:task_type] == "task"
         @tasks = Task.where("user_id = ? and task_type != ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)

@@ -17,9 +17,7 @@
       %td= user.email
       %td
         - if admin?
-          = Role.collect{|r| r.name }
-        - if manager?
-          = Role.where('name != ?', 'admin').collect {|r| r.name }
+          = Role.where('name != ?', 'superadmin').collect {|r| r.name }
       %td
         = link_to 'Show', user
         = link_to 'Edit', edit_user_path(user)

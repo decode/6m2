@@ -10,8 +10,10 @@
     = javascript_include_tag 'rails'
     = formtastic_stylesheet_link_tag
 
-    = javascript_include_tag 'ddmenu'
-    = stylesheet_link_tag 'ddmenu'
+    = javascript_include_tag 'fmenu'
+    = stylesheet_link_tag 'fmenu'
+    = javascript_include_tag 'infogrid'
+    = stylesheet_link_tag 'infogrid'
 
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
@@ -32,51 +34,72 @@
           |
           = link_to t('site.register'), new_user_registration_path
       #navibar
-        %ul.topnav 
-          /{:id=>'menu'}
-          %li= link_to t('site.label'), '/'
-          %li= link_to t('site.notice_center'), notices_path if user_signed_in?
+        #nicemenu
+          %ul
+            %li
+              %span.head_menu
+                = link_to t('site.label'), '/'
+            %li
+              %span.head_menu
+                = link_to t('site.notice_center'), notices_path if user_signed_in?
 
-          - if user_signed_in?
-            %li{:class=>'sub'} 
-              = link_to t('site.task'), tasks_url
-              %ul.subnav
-                %li= link_to t('site.new_task'), new_task_url if user?
-                %li= link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
-                %li= link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
-                %li= link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+            - if user_signed_in?
+              %li
+                %span.head_menu
+                  = link_to t('site.task'), tasks_url
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.new_task'), new_task_url if user?
+                  = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
+                  = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
+                  = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
 
-          - if user_signed_in?
-            %li{:class=>'sub'}
-              =link_to t('site.user_center'), current_user
-              - if guest? or user?
-                %ul.subnav
-                  %li= link_to t('site.my_account'), '/m/index'
-                  %li= link_to t('trade.charge_payment'), '/m/charge'
-                  %li= link_to t('trade.charge_point'), '/m/payment'
-                  %li= link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
-                  %li= link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
-                  %li= link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
-                  %li= link_to t('site.service'), issues_path 
+            - if user_signed_in?
+              %li
+                %span.head_menu
+                  =link_to t('site.user_center'), current_user
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                - if guest? or user?
+                  .sub_menu
+                    = link_to t('site.my_account'), '/m/index'
+                    = link_to t('trade.charge_payment'), '/m/charge'
+                    = link_to t('trade.charge_point'), '/m/payment'
+                    = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
+                    = link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
+                    = link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
 
-          - if manager? or admin?
-            %li{:class=>'sub'} 
-              = link_to t('site.manage_center')
-              %ul.subnav
-                %li= link_to t('site.user_manage'), users_path if admin?
-                %li= link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
-                %li= link_to t('site.big_cash'), '/t/big_cash'
-                %li= link_to t('trade.manage_payment'), '/m/approve/charge'
-                %li= link_to t('trade.manage_point'), '/m/approve/point'
-                %li= link_to t('site.issue'), issues_path
-                %li=link_to t('notice.new_notice'), new_notice_url if admin?
-                - if admin?
-                  %li= link_to t('site.setting'), '/s/setting'
+            - if manager? or admin?
+              %li
+                %span.head_menu
+                  = link_to t('site.manage_center')
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.user_manage'), users_path if admin?
+                  = link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
+                  = link_to t('site.big_cash'), '/t/big_cash'
+                  = link_to t('trade.manage_payment'), '/m/approve/charge'
+                  = link_to t('trade.manage_point'), '/m/approve/point'
+                  = link_to t('site.issue'), issues_path
+                  =link_to t('notice.new_notice'), new_notice_url if admin?
+                  - if admin?
+                    = link_to t('site.setting'), '/s/setting'
 
-          %li= link_to t('site.rule')
+            - if user? or guest?
+              %li
+                %span.head_menu
+                  = link_to t('site.service_center')
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.service_list'), '/t/service'
+                  = link_to t('site.service'), issues_path 
+            %li
+              %span.head_menu
+                = link_to t('site.rule')
 
-          - if super?
-            %li= link_to 'Admin', '/admin'
+            - if super?
+              %li
+                %span.head_menu
+                  = link_to 'Admin', '/admin'
 
       - if flash[:notice]
         #notice

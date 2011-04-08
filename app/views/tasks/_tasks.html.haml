@@ -1,47 +1,90 @@
-%table
-  %caption
-    /=t('site.task')
-  %thead
-    %tr
-      %th ID
-      %th{:width=>'20%'}=t 'global.title'
-      %th=t 'global.type'
-      %th=t 'global.price' 
-      %th=t 'task.owner'
-      %th=t 'task.worker'
-      %th=t 'global.status'
-      %th=t 'task.level'
-      %th=t 'task.work_day'
-      %th=t 'task.extra'
-      %th=t 'formtastic.labels.task.published_time'
-      %th=t 'global.operation'
-    
-  - @tasks.each do |task|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      %td= task.id
-      %td= task.title
-      %td= task.task_type
-      %td= task.price
-      %td= link_to task.user.username, task.user
-      %td= link_to task.worker.username, task.worker unless task.worker.nil?
-      %td= task.status
-      %td= task.worker_level
-      %td= task.task_day
-      %td= task.extra_word
-      %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
-      %td
-        = link_to t('global.show'), task
-        - if task.can_modify? and task.user == current_user
-          = link_to t('global.edit'), edit_task_url(task)
-          = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
-        - if task.user == current_user
-          = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
-        - else
-          = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
-          = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
+- if admin? or manager? or session[:view_task] == 'manage'
+  %table
+    %caption
+      /=t('site.task')
+    %thead
+      %tr
+        %th ID
+        %th{:width=>'20%'}=t 'global.title'
+        %th=t 'global.type'
+        %th=t 'global.price' 
+        %th=t 'task.owner'
+        %th=t 'task.worker'
+        %th=t 'global.status'
+        %th=t 'task.level'
+        %th=t 'task.work_day'
+        %th=t 'task.extra'
+        %th=t 'formtastic.labels.task.published_time'
+        %th=t 'global.operation'
 
-        - if task.user == current_user or task.worker == current_user
-          = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+    - @tasks.each do |task|
+      - c = cycle("even", "odd")
+      %tr{:class=>c}
+        %td= task.id
+        %td= task.title
+        %td= task.task_type
+        %td= task.price
+        %td= link_to task.user.username, task.user
+        %td= link_to task.worker.username, task.worker unless task.worker.nil?
+        %td= task.status
+        %td= task.worker_level
+        %td= task.task_day
+        %td= task.extra_word
+        %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+        %td
+          = link_to t('global.show'), task
+          - if task.can_modify? and task.user == current_user
+            = link_to t('global.edit'), edit_task_url(task)
+            = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
+          - if task.user == current_user
+            = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+          - else
+            = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
-= will_paginate @tasks
+          - if task.user == current_user or task.worker == current_user
+            = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+
+    = will_paginate @tasks
+- else 
+  %table
+    %caption
+      /=t('site.task')
+    %thead
+      %tr
+        %th{:width=>'20%'}=t 'global.title'
+        %th=t 'global.type'
+        %th=t 'global.price' 
+        %th=t 'global.status'
+        %th=t 'task.level'
+        %th=t 'task.work_day'
+        %th=t 'task.extra'
+        %th=t 'formtastic.labels.task.published_time'
+        %th=t 'global.operation'
+
+    - @tasks.each do |task|
+      - c = cycle("even", "odd")
+      %tr{:class=>c}
+        %td= task.title
+        %td= task.task_type
+        %td= task.price
+        %td= task.status
+        %td= task.worker_level
+        %td= task.task_day
+        %td= task.extra_word
+        %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+        %td
+          = link_to t('global.show'), task
+          - if task.can_modify? and task.user == current_user
+            = link_to t('global.edit'), edit_task_url(task)
+            = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
+          - if task.user == current_user
+            = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+          - else
+            = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
+
+          - if task.user == current_user or task.worker == current_user
+            = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+
+  = will_paginate @tasks
