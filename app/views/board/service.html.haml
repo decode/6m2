@@ -1,0 +1,21 @@
+#page-wrap
+  .info-col
+    %h2 Customer Service
+    %a.image
+    %dl
+      - @users.each do |u|
+        %dt= u.username
+        %dd
+          = link_to t('site.online_service'), 'http://wpa.qq.com/msgrd?uin=' + u.im_q, :target => '_blank' if u.im_q
+          = u.im
+  .info-col
+    %h2 Administrators
+    %a.image
+    %dl
+      - @admins.each do |u|
+        %dt= u.username
+        %dd
+          = link_to t('site.online_service'), 'http://wpa.qq.com/msgrd?uin=' + u.im_q, :target => '_blank' if u.im_q
+          = u.im
+
+= will_paginate @users
