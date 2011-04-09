@@ -1,21 +1,27 @@
 #page-wrap
   .info-col
-    %h2 Customer Service
-    %a.image
+    %h2= t 'service.manager'
+    %a.image.customer
     %dl
       - @users.each do |u|
-        %dt= u.username
+        %dt= t('service.service') + ': ' + u.username
         %dd
-          = link_to t('site.online_service'), 'http://wpa.qq.com/msgrd?uin=' + u.im_q, :target => '_blank' if u.im_q
-          = u.im
+          - if u.im_q
+            = 'QQ :' + u.im_q
+            = link_to image_tag("http://wpa.qq.com/pa?p=1:#{u.im_q}:4", :alt=>'点击这里给我发消息'), "tencent://message/?uin=#{u.im_q}&Site=&Menu=yes", :target=>'_black'
+            %br
+            = "Email: #{u.im_q}@qq.com"
+
   .info-col
-    %h2 Administrators
-    %a.image
+    %h2= t 'service.admin'
+    %a.image.manager
     %dl
       - @admins.each do |u|
-        %dt= u.username
+        %dt= t('service.administrator') + ': ' + u.username
         %dd
-          = link_to t('site.online_service'), 'http://wpa.qq.com/msgrd?uin=' + u.im_q, :target => '_blank' if u.im_q
-          = u.im
+          - if u.im_q
+            = 'QQ :' + u.im_q
+            = link_to image_tag("http://wpa.qq.com/pa?p=1:#{u.im_q}:4", :alt=>'点击这里给我发消息'), "tencent://message/?uin=#{u.im_q}&Site=&Menu=yes", :target=>'_black'
+            %br
+            = "Email: #{u.im_q}@qq.com"
 
-= will_paginate @users

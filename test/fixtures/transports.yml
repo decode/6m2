@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tran_type: MyString
+  tran_id: MyString
+  status: MyString
+  from: MyString
+  to: MyString
+  tran_time: 2011-04-09 20:24:43
+
+two:
+  tran_type: MyString
+  tran_id: MyString
+  status: MyString
+  from: MyString
+  to: MyString
+  tran_time: 2011-04-09 20:24:43

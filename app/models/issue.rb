@@ -3,6 +3,9 @@ class Issue < ActiveRecord::Base
   belongs_to :dealer, :class_name=>'User', :foreign_key=>'dealer_id'
   has_many :penalties
 
+  validates_length_of :title, :within => 4..30
+  validates_length_of :content, :memo, :description, :maximun => 160
+
   state_machine :status, :initial => :open do
     event :fix do
       transition :open => :done

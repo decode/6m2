@@ -242,7 +242,7 @@ en:
     publish: "publish"
     create_success: "Task was successfully created"
     confirm_success: "Confirm Task Finished"
-    self_task: "Can not take the self-task"
+    can_not_do: "Can not take the self-task or Satisfy the task condictions"
     not_type: "not the task type"
     not_enough_point: "not enough point"
     no_price: "price must not null"
@@ -323,6 +323,12 @@ en:
   notice:
     new_notice: "New Notice"
     list_notice: "List Notice"
+
+  service:
+    manager: "Customer Service"
+    admin: "Administrator"
+    service: "Customer Service"
+    administrator: "Manager"
 
   devise:
     no_reply: "Don't reply this mail"

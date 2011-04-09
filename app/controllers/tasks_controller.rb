@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     if params[:user_id]
       @tasks = Task.where("user_id = ?", params[:user_id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     else
-      if current_user.has_role? 'admin'
+      if current_user.has_role? 'admin' or current_user.has_role? 'manager'
         @tasks = Task.where("task_type in (?) and status != 'unpublished'",['taobao', 'youa', 'paipai', 'virtual']).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       else
         @tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?",['taobao', 'youa', 'paipai', 'virtual'], current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)

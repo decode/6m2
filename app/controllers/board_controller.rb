@@ -11,10 +11,10 @@ class BoardController < ApplicationController
   def service
     role = Role.where(:name => 'manager').first
     ids = role.user_ids.drop(1)
-    @users = User.where(:id => ids).paginate(:page => params[:page], :per_page => 20)
+    @users = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
     role = Role.where(:name => 'admin').first
     ids = role.user_ids.drop(1)
-    @admins = User.where(:id => ids).paginate(:page => params[:page], :per_page => 20)
+    @admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
   end
   
 
@@ -56,8 +56,8 @@ class BoardController < ApplicationController
 
   def do_task
     @task = Task.find(params[:id])
-    if @task.user == current_user
-      flash[:error] = t('task.self_task')
+    if @task.user == current_user or task.can_do?(current_user)
+      flash[:error] = t('task.can_not_do')
     else
       Task.transaction do
         @task.worker = current_user

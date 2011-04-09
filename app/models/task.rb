@@ -3,7 +3,6 @@ class Task < ActiveRecord::Base
   belongs_to :worker, :class_name => 'User', :foreign_key => 'worker_id'
   belongs_to :supervisor, :class_name => 'User', :foreign_key => 'supervisor_id'
 
-
   validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day#, :task_level
   validates_numericality_of :price, :task_day, :avoid_day, :greater_than => 0
   validates_numericality_of :worker_level, :greater_than_or_equal_to => 0
@@ -12,8 +11,10 @@ class Task < ActiveRecord::Base
   #validates_format_of :link, :with => /http[s]:\/\/*.*/, :message => "http://xxxx.xxx or https://xxxx.xxx"
   validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
+  validates_length_of :title, :within => 5..40
+  validates_length_of :description, :maximun => 120
+
   validate :low_point_cannot_make_task
- 
   def low_point_cannot_make_task
     app = ApplicationController.new
     point = app.caculate_point(self)
@@ -22,12 +23,6 @@ class Task < ActiveRecord::Base
     errors.add(:price, "not enough") if
       self.user.account_credit < point or self.user.account_money < price
   end
-
-  #def caculate_point(task)
-  #  point = task.task_level + task.avoid_day + task.task_day + task.worker_level
-  #  point = point + 1 if task.extra_word
-  #  return point
-  #end
 
   after_save :log_save
   before_destroy :log_destroy
@@ -86,17 +81,15 @@ class Task < ActiveRecord::Base
   end
 
   def can_modify?
-    #return ['unpublished', 'published'].include? self.status
-    return (self.published? or self.unpublished?)
+    return (self.published? || self.unpublished?)
   end
 
   def free_task?
     return self.task_type == 'cash'
   end
   
-
-  #def initialize
-  #  super()
-  #end
+  def can_do?(user)
+    return user.has_role?('manager') || (user.level < self.worker_level) || (user.todos.where(:finished_time => (self.created_at-t.avoid_day.day) .. self.created_at, :user_id => task.user.id).length == 0) 
+  end
 
 end

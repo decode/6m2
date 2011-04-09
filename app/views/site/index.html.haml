@@ -1,15 +1,39 @@
 #mainframe
-  = image_tag 'taobao.png', :width => 200, :height => 100
-  = image_tag 'paipai.png', :width => 200, :height => 100
-  = image_tag 'youa.gif', :width => 200, :height => 100
-  /
-    = image_tag 'h1.jpg', :width => 150, :height => 150
-    = image_tag 'h2.jpg', :width => 150, :height => 150
-    = image_tag 'h3.jpg', :width => 150, :height => 150
-    = image_tag 'h4.jpg', :width => 150, :height => 150
-    = image_tag 'work-business.jpg', :width => 650, :height => 150
-  %hr
-  = image_tag 'social.jpg'
+  #desSlideshow1.desSlideshow
+    .switchBigPic
+      %div
+        = link_to image_tag('pic1.png'), '#'
+        %p
+          %strong= t 'home.title1'
+          %br
+          = t 'home.content1'
+      %div
+        = link_to image_tag('pic2.png'), '#'
+        %p
+          %strong= t 'home.title2'
+          %br
+          = t 'home.content2'
+      %div
+        = link_to image_tag('pic3.png'), '#'
+        %p
+          %strong= t 'home.title3'
+          %br
+          = t 'home.content3'
+      %div
+        = link_to image_tag('pic4.png'), '#'
+        %p
+          %strong= t 'home.title4'
+          %br
+          = t 'home.content4'
+    %ul.nav
+      %li
+        = link_to t('home.slide1'), '#'
+      %li
+        = link_to t('home.slide2'), '#'
+      %li
+        = link_to t('home.slide3'), '#'
+      %li
+        = link_to t('home.slide4'), '#'
 #right
   #roundshape
     = t 'site.running_task'
@@ -19,8 +43,9 @@
     = @user_count
   #roundshape
     = render 'site/news'
-  - if current_user
-    #roundshape
-      = t 'site.user_info' 
-      %hr
-      = render 'account/user'
+  /
+    - if current_user
+      #roundshape
+        = t 'site.user_info' 
+        %hr
+        = render 'account/user'

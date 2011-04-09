@@ -9,13 +9,13 @@ p { line-height:18px; }
 #info { margin:auto; width:600px; color:#333333; padding:10px; background:#f4f4f4; border:1px solid #DDD; }
 */
 /*#nicemenu { margin:0 auto; width:100%; margin-top:0px; border-bottom:dotted 1px #E5E5E5; font-size: 18px;}*/
-#nicemenu { margin:0 auto; width:100%; margin-top:0px; border-bottom:dotted 1px #E5E5E5; font-size: 18px; background: #3b69b1;}
+#nicemenu { margin:0 auto; width:100%; margin-top:0px; border-bottom:dotted 1px #E5E5E5; font-size: 18px; background: #3b69b1; }/*#3b69b1;}*/
 /*#nicemenu a { color:#0066CC; text-decoration:none; }*/
 #nicemenu a { color:#fff; text-decoration:none; }
 #nicemenu a:hover { text-decoration:underline; }	
-#nicemenu li { display:inline; position:relative; }
+#nicemenu li { display:inline; position:relative; z-index:20;}
 #nicemenu li span { position:relative; z-index:10; padding:4px 4px 4px 6px;  border-bottom:none; line-height:18px; }	
-#nicemenu li span a { font-weight:bold; padding:0 6px 0px 2px;  }	
+#nicemenu li span a { font-weight:bold; padding:0 6px 0px 2px; }	
 #nicemenu li span.over { padding:4px 3px 4px 5px;  border-top:solid 1px #E5E5E5; border-left:solid 1px #E5E5E5;  border-right:solid 1px #999999; border-bottom:solid 1px #fff;  }
 *+html #nicemenu li span.over {  border-top:solid 2px #E5E5E5; padding-bottom:3px; } /* IE6 */
 #nicemenu li span.over a { }

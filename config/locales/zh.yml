@@ -250,7 +250,7 @@ zh:
     publish: "发布"
     create_success: "任务创建成功"
     confirm_success: "确认任务完成"
-    self_task: "不能接手自己的任务"
+    can_not_do: "不能接手自己的任务或者未满足任务条件"
     not_type: "不是包含的任务类型"
     not_enough_point: "发布点不足"
     no_price: "价格不能为空"
@@ -330,6 +330,26 @@ zh:
   notice:
     new_notice: "发表公告"
     list_notice: "公告列表"
+
+  service:
+    manager: "客服"
+    admin: "网站管理"
+    service: "客服"
+    administrator: "客服经理"
+
+  home: 
+    title1: "服务"
+    title2: "交易"
+    title3: "托管"
+    title4: "便利"
+    content1: "经过长久经营，为您提供最专业而与众不同的服务"
+    content2: "交易有保证，可靠"
+    content3: "托管服务让您舒心的应付一切"
+    content4: "便捷的操作让您运筹帷幄"
+    slide1: "贴心的服务"
+    slide2: "放心的交易"
+    slide3: "专心的托管"
+    slide4: "省心的操作"
 
   devise:
     no_reply: "请勿回复此邮件"

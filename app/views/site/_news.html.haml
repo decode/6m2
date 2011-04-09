@@ -1,9 +1,23 @@
-.head_title
-  = t 'site.notice'
-  %hr
-- if @notices.length == 0
-  = t 'site.no_news'
-- for n in @notices
-  = link_to n.title, n
-  = n.created_at
+#newsticker-demo
+  .title= t 'site.notice'
+  .newsticker-jcarousellite
+    %ul
+      - if @notices.length == 0
+        %li
+          .thumbnail
+            /= image_tag 'news.jpg'
+          .info
+            = t 'site.no_news'
+            %span.cat
+              news
+          .clear
+      - for n in @notices
+        %li
+          .thumbnail
+            = #image_tag('news.jpg')
+          .info
+            = link_to n.title, n
+            %span.cat
+              = l n.created_at, :format => :long
+          .clear
 

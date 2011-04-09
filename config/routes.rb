@@ -1,4 +1,6 @@
 Temp::Application.routes.draw do
+  resources :transports
+
   resources :notices
 
   resources :issues
