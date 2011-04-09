@@ -82,13 +82,30 @@ class TasksController < ApplicationController
       if !["taobao", "paipai", "youa", "virtual", "cash"].include?(@task.task_type)
         @task.task_type = "taobao"
       end
+
+      # 附加评价
       if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
+        # bug?? extra_word not set
         @task.custom_judge = true
         @task.custom_judge_content = params[:task][:custom_judge_content]
       end
+
+      # 真实单号
+      if params[:task][:real_tran] == 'true'
+        tran = Transport.where(:real_tran => true, :status => 'unused')
+        @task.transport = tran
+      end
+
+      # 自动生成单号
       if params[:task][:transport_id].nil? or params[:task][:transport_id] == ''
         tid = generate_transport_id(params[:task][:transport])
         @task.transport, @task.transport_id = tid
+        tran = Transport.where(:tran_type => tid[0], :transport_id => tid[1]).first
+        if tran
+          tid = generate_transport_id(params[:task][:transport])
+        end
+        @task.transport.create! :tran_type => tid[0], :transport_id => tid[1]
+
         logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
       end
       @task.point = @task.free_task? ? 0 : caculate_point(@task)

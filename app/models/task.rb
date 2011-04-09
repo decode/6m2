@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   belongs_to :user
   belongs_to :worker, :class_name => 'User', :foreign_key => 'worker_id'
   belongs_to :supervisor, :class_name => 'User', :foreign_key => 'supervisor_id'
+  belongs_to :transport
 
   validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day#, :task_level
   validates_numericality_of :price, :task_day, :avoid_day, :greater_than => 0
@@ -12,7 +13,7 @@ class Task < ActiveRecord::Base
   validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   validates_length_of :title, :within => 5..40
-  validates_length_of :description, :maximun => 120
+  validates_length_of :description, :within => 0..120
 
   validate :low_point_cannot_make_task
   def low_point_cannot_make_task
