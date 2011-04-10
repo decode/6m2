@@ -24,7 +24,7 @@
         %td= task.title
         %td= task.task_type
         %td= task.price
-        %td= link_to task.user.username, task.user
+        %td= link_to task.user.username, task.user unless task.user.nil?
         %td= link_to task.worker.username, task.worker unless task.worker.nil?
         %td= task.status
         %td= task.worker_level
@@ -55,10 +55,8 @@
         %th{:width=>'20%'}=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 
-        %th=t 'global.status'
-        %th=t 'task.level'
-        %th=t 'task.work_day'
-        %th=t 'task.extra'
+        %th=t 'task.owner'
+        %th=t 'task.requirement'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
 
@@ -68,10 +66,13 @@
         %td= task.title
         %td= task.task_type
         %td= task.price
-        %td= task.status
-        %td= task.worker_level
-        %td= task.task_day
-        %td= task.extra_word
+        %td
+          = task.user.username
+          = image_tag "icon_vip#{(task.user.level)}.gif"
+        %td
+          = t('task.work_day') + task.task_day.to_s + t('global.day')
+          = t('task.level') + task.worker_level.to_s
+          = t('task.extra') if task.extra_word
         %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
         %td
           = link_to t('global.show'), task

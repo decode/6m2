@@ -44,6 +44,8 @@ zh:
     save: "保存"
     created_at: "创建时间"
     time: "时间"
+    day: "天"
+    hour: "小时"
 
   system:
     password_error: "密码错误"
@@ -93,6 +95,7 @@ zh:
     my_todo: "我接手的任务"
     my_cash: "我的提现任务"
     my_account: "我的帐户"
+    my_transport: "我的运单号"
     issue: "问题中心"
     setting: "平台设置"
     manage_center: "管理中心"
@@ -109,6 +112,7 @@ zh:
     running_task: "当前任务数"
     user_number: "注册用户数"
     user_info: "用户信息"
+    transport_center: "运单市场"
 
   manage:
     message_box: "收件箱"
@@ -234,6 +238,7 @@ zh:
     not_approved: "未认证"
     trade_log: "交易记录"
     task_log: "任务记录"
+    level: "级别"
 
   task:
     problem: "投诉"
@@ -241,8 +246,9 @@ zh:
     do: "接手任务"
     finish: "完成任务"
     condition: "任务条件"
-    owner: "所有者"
+    owner: "发布者"
     worker: "接手人"
+    requirement: "任务要求"
     level: "任务等级"
     work_day: "任务期限"
     extra: "额外评价"
@@ -267,6 +273,14 @@ zh:
     not_enough_point: "没有足够发布点或余额"
     point: "发布点"
     can_not_delete: "无法删除该任务"
+
+  transport:
+    unused: "未使用"
+    used: "己使用"
+    closed: "停用"
+    choose: "购买"
+    choosed: "己有该单号"
+    check_pass: "验证通过"
 
   trade:
     request_charge: "充值申请"
@@ -416,6 +430,15 @@ zh:
         title: "标题"
         content: "内容"
         itype: "类型"
+      transport:
+        tran_type: "快递"
+        tran_id: "单号"
+        status: "状态"
+        from: "发出地点"
+        to: "收货地点"
+        source: "来源"
+        real_tran: "真实单号"
+        tran_time: "时间"
     hints:
       task:
         title: "为任务写一个标题"

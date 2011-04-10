@@ -76,11 +76,12 @@
                     = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
                     = link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
                     = link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
+                    = link_to t('site.my_transport'),:controller=>'account', :action=> 'transport_list', :id => current_user
 
             - if manager? or admin?
               %li
                 %span.head_menu
-                  = link_to t('site.manage_center')
+                  = link_to t('site.manage_center'), users_path if admin?
                   = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
                 .sub_menu
                   = link_to t('site.user_manage'), users_path if admin?
@@ -89,7 +90,8 @@
                   = link_to t('trade.manage_payment'), '/m/approve/charge'
                   = link_to t('trade.manage_point'), '/m/approve/point'
                   = link_to t('site.issue'), issues_path
-                  =link_to t('notice.new_notice'), new_notice_url if admin?
+                  = link_to t('notice.new_notice'), new_notice_url if admin?
+                  = link_to t('site.transport_center'), transports_path
                   - if admin?
                     = link_to t('site.setting'), '/s/setting'
 
@@ -101,6 +103,12 @@
                 .sub_menu
                   = link_to t('site.service_list'), '/t/service'
                   = link_to t('site.service'), issues_path 
+
+            - if user?
+              %li
+                %span.head_menu
+                  = link_to t('site.transport_center'), transports_path
+
             %li
               %span.head_menu
                 = link_to t('site.rule')

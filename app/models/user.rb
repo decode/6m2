@@ -17,11 +17,11 @@ class User < ActiveRecord::Base
   
   validates_uniqueness_of :username
   validates_length_of :username, :within => 6..12
-  validates_length_of :im_q, :within => 5..20
-  validates_length_of :im, :within => 5..40
-  validates_length_of :bank_name, :bank_account, :mobile, :person_id, :shop_taobao, :shop_taobao_url, :shop_paipai, :shop_paipai_url, :shop_youa, :shop_youa_url, :within => 5..160
+  #validates_length_of :im_q, :within => 0..20
+  #validates_length_of :im, :within => 0..40
+  #validates_length_of :bank_name, :bank_account, :mobile, :person_id, :shop_taobao, :shop_taobao_url, :shop_paipai, :shop_paipai_url, :shop_youa, :shop_youa_url, :within => 0..160
 
-  has_many :tasks
+  has_many :tasks, :dependent => :destroy
   has_many :todos, :class_name => 'Task', :foreign_key => 'worker_id'
   has_many :managed_tasks, :class_name => 'Task', :foreign_key => 'supervisor_id'
   has_many :trades
@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   has_many :issues
   has_many :deal_issues, :class_name => 'Issue', :foreign_key => 'dealer_id'
   has_many :penalties
+
+  has_many :user_transports
+  has_many :transports, :through => :user_transports
 
   state_machine :status, :initial => :normal do
     event :suspend do

@@ -4,7 +4,7 @@ class Issue < ActiveRecord::Base
   has_many :penalties
 
   validates_length_of :title, :within => 4..30
-  validates_length_of :content, :memo, :description, :maximun => 160
+  validates_length_of :content, :within => 0..160
 
   state_machine :status, :initial => :open do
     event :fix do

@@ -34,14 +34,14 @@
 
   %p
     %b= t 'formtastic.labels.task.transport'
-    - unless @task.transport.nil? or @task.transport == ''
+    - unless @task.tran_type.nil? or @task.tran_type == ''
       - tran = %w{圆通 申通 中通 韵达 顺丰 EMS} 
       - abb = %w{ yt st zt yd sf ems }
-      = tran[abb.index(@task.transport)]
+      = tran[abb.index(@task.tran_type)]
 
   %p
     %b= t 'formtastic.labels.task.transport_id'
-    = @task.transport_id
+    = @task.tran_id
 
   %hr
   %p
@@ -75,7 +75,10 @@
 
 #roundshape
   = t 'task.worker'
-  = link_to @task.worker.username, @task.worker if @task.worker
+  - if manager? or admin?
+    = link_to @task.worker.username, @task.worker if @task.worker
+  - else
+    = @task.worker.username if @task.worker
   %br
   = t 'formtastic.labels.task.published_time'
   = l @task.published_time if @task.published_time

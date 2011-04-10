@@ -32,11 +32,13 @@ en:
     price: "Price"
     update_success: "Update Success"
     update_failed: "Update Failed"
-    operate_success: "操作成功"
-    operate_failed: "操作失败"
+    operate_success: "Success"
+    operate_failed: "Failed"
     save: "Save"
     created_at: "Created At"
     time: "Time"
+    day: "Day"
+    hour: "Hour"
 
   system:
     password_error: "Wrong Password!"
@@ -86,6 +88,7 @@ en:
     my_todo: "My todos"
     my_cash: "My Cash Task"
     my_account: "My account"
+    my_transport: "My transport id"
     issue: "Issue"
     setting: "Setting"
     manage_center: "Manage Center"
@@ -102,6 +105,7 @@ en:
     running_task: "Running Task"
     user_number: "Registered User"
     user_info: "User Information"
+    transport_center: "Transport ID Manage"
 
   manage:
     message_box: "Inbox"
@@ -226,6 +230,7 @@ en:
     not_approved: "Not Approved"
     trade_log: "Trade Log"
     task_log: "Task Log"
+    level: "Level"
 
   task:
     problem: "Problem"
@@ -235,6 +240,7 @@ en:
     condition: "Condition"
     owner: "Owner"
     worker: "Worker"
+    requirement: "Requirement"
     lever: "Level"
     work_day: "Days"
     extra: "Extra"
@@ -260,6 +266,13 @@ en:
     point: "Point"
     can_not_delete: "can not delete this task"
 
+  transport:
+    unused: "Unused"
+    used: "Used"
+    closed: "Stop"
+    choose: "Choose"
+    choosed: "Already Have"
+    check_pass: "Check Pass"
 
   trade:
     request_charge: "Request Charge"
@@ -395,6 +408,15 @@ en:
         title: "Title"
         content: "Content"
         itype: "Issue Type"
+      transport:
+        tran_type: "Transport"
+        tran_id: "Transport ID"
+        status: "Status"
+        from: "From"
+        to: "To"
+        source: "Source"
+        real_tran: "Real Transport ID"
+        tran_time: "Transport Time"
     hints:
       task:
         title: "Write a title for you task."

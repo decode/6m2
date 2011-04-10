@@ -1,0 +1,27 @@
+#roundshape
+  = link_to t('global.edit'), edit_transport_path(@transport)
+  |
+  \#{link_to t('global.back'), transports_path}
+
+/%p#notice= notice
+%p
+  %b= t 'formtastic.labels.transport.tran_type'
+  = @transport.tran_type
+%p
+  %b= t 'formtastic.labels.transport.tran_id'
+  = @transport.tran_id
+%p
+  %b= t 'formtastic.labels.transport.status'
+  = @transport.status
+%p
+  %b= t 'formtastic.labels.transport.from'
+  = @transport.from
+%p
+  %b= t 'formtastic.labels.transport.to'
+  = @transport.to
+%p
+  %b= t 'formtastic.labels.transport.real_tran'
+  = @transport.real_tran
+%p
+  %b= t 'formtastic.labels.transport.tran_time'
+  = @transport.tran_time

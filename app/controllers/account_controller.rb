@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list do
       allow :user, :guest
     end
     actions :delete_charge do
@@ -154,6 +154,11 @@ class AccountController < ApplicationController
   def big_cash
     @user = User.find(params[:id])
     @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
+  end
+
+  def transport_list
+    @user = User.find(params[:id])
+    @transports = @user.transports.paginate(:page=>params[:page], :per_page=>15)
   end
   
   # 修改用户的发布点

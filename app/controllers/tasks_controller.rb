@@ -90,24 +90,30 @@ class TasksController < ApplicationController
         @task.custom_judge_content = params[:task][:custom_judge_content]
       end
 
-      # 真实单号
-      if params[:task][:real_tran] == 'true'
-        tran = Transport.where(:real_tran => true, :status => 'unused')
+      # 自动生成单号
+      if params[:task][:tran_id].nil? or params[:task][:tran_id] == ''
+        tid = generate_transport_id(params[:task][:tran_type])
+        #@task.tran_type, @task.transport_id = tid
+        tran = Transport.where(:tran_type => tid[0], :tran_id=> tid[1]).first
+        if tran
+          tid = generate_transport_id(params[:task][:tran_type])
+        end
+        #@task.transport.create! :tran_type => tid[0], :transport_id => tid[1]
+        @task.tran_type, @task.tran_id = tid
+
+        logger.info("============ Transport ID ==========" + @task.tran_type + "|" + @task.tran_id)
+      else
+        # 手工填写单号
+        tran_type = params[:task][:tran_type]
+        tran_id = params[:task][:tran_id]
+        tran = Transport.where(:tran_type => tran_type, :tran_id => tran_id).first
+        tran = Transport.create! :tran_type => tran_type, :tran_id => tran_id, :source => 'user', :status => 'used'
+        @task.tran_type = tran.tran_type
+        @task.tran_id = tran.tran_id
         @task.transport = tran
       end
 
-      # 自动生成单号
-      if params[:task][:transport_id].nil? or params[:task][:transport_id] == ''
-        tid = generate_transport_id(params[:task][:transport])
-        @task.transport, @task.transport_id = tid
-        tran = Transport.where(:tran_type => tid[0], :transport_id => tid[1]).first
-        if tran
-          tid = generate_transport_id(params[:task][:transport])
-        end
-        @task.transport.create! :tran_type => tid[0], :transport_id => tid[1]
-
-        logger.info("============ Transport ID ==========" + @task.transport + "|" + @task.transport_id)
-      end
+      # 计算任务点
       @task.point = @task.free_task? ? 0 : caculate_point(@task)
 
       @task.published_time = Time.now

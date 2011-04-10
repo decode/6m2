@@ -1,9 +1,12 @@
 class Transport < ActiveRecord::Base
   has_many :tasks
 
-  state_machine :status, :initial => :unused do
-    event :use do
-      transition :unused => :used
+  has_many :user_transports, :dependent => :destroy
+  has_many :users, :through => :user_transports
+
+  state_machine :status, :initial => :unchecked do
+    event :check do
+      transition :unchecked => :used
     end
     event :close do
       transition :used => :closed
@@ -11,7 +14,7 @@ class Transport < ActiveRecord::Base
     event :reuse do
       transition :closed => :used
     end
-    state :unused, :value => 'unused'
+    state :unchecked, :value => 'unchecked'
     state :used, :value => 'used'
     state :closed, :value => 'closed'
   end

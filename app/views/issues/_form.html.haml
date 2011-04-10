@@ -12,8 +12,8 @@
     = label_tag t('global.price')
     = @task.price
 
-- semantic_form_for @issue do |f| 
-  - f.inputs do
+= semantic_form_for @issue do |f| 
+  = f.inputs do
     = f.input :title
     = f.input :content, :as => :text
     = f.input :itype, :as => :select, :collection => {'大额提现' => 'cash', '一般问题' => 'normal'} if session[:issue_type].nil?

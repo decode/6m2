@@ -40,7 +40,7 @@ class Task < ActiveRecord::Base
   def log_destroy
     log = Tasklog.new
     log.task_id = self.id
-    log.user_id = self.user.id
+    log.user_id = self.user.id if self.user
     log.worker_id = self.worker.id if self.worker
     log.price = self.price
     log.point = self.point

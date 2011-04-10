@@ -1,8 +1,22 @@
 class TransportsController < ApplicationController
+  access_control do
+    allow :admin, :manager
+    allow :user, :except => [:new, :edit, :update, :destroy]
+    deny anonymous
+  end
+
+  access_control :secret_access?, :filter => false do
+    allow :admin, :manager, :super
+  end
+
   # GET /transports
   # GET /transports.xml
   def index
-    @transports = Transport.all
+    if secret_access?
+    @transports = Transport.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
+    else
+      @transports = Transport.where('real_tran = true and status != ?', 'unchecked').order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +55,11 @@ class TransportsController < ApplicationController
   # POST /transports.xml
   def create
     @transport = Transport.new(params[:transport])
+    if secret_access?
+      @transport.status = 'used' 
+      @transport.source = 'system'
+    end
+    @transport.real_tran = true
 
     respond_to do |format|
       if @transport.save

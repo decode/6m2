@@ -6,6 +6,7 @@ class CreateTransports < ActiveRecord::Migration
       t.string :status
       t.string :from
       t.string :to
+      t.string :source
       t.boolean :real_tran, :default => false
       t.datetime :tran_time
 

@@ -7,8 +7,8 @@
       = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
     = f.input :link
     = f.input :price
-    = f.input :transport, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}
-    = f.input :transport_id
+    = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}
+    = f.input :tran_id
     %hr
     %li
       = label_tag t('task.condition')

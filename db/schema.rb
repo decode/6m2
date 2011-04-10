@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110403071733) do
+ActiveRecord::Schema.define(:version => 20110410031410) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.float    "price"
     t.float    "point"
     t.string   "status"
-    t.string   "transport"
-    t.string   "transport_id"
+    t.string   "tran_type"
+    t.string   "tran_id"
     t.datetime "published_time"
     t.datetime "takeover_time"
     t.datetime "finished_time"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.integer  "user_id"
     t.integer  "worker_id"
     t.integer  "supervisor_id"
+    t.integer  "transport_id"
   end
 
   create_table "trades", :force => true do |t|
@@ -150,6 +151,26 @@ ActiveRecord::Schema.define(:version => 20110403071733) do
     t.string   "transaction_id"
     t.integer  "user_id"
     t.integer  "to_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transports", :force => true do |t|
+    t.string   "tran_type"
+    t.string   "tran_id"
+    t.string   "status"
+    t.string   "from"
+    t.string   "to"
+    t.string   "source"
+    t.boolean  "real_tran",  :default => false
+    t.datetime "tran_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_transports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "transport_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,4 +1,8 @@
 #mainframe
+  - if @notices.length > 0
+    #roundshape
+      = @notices.last.title if @notices.length > 0
+  %br
   #desSlideshow1.desSlideshow
     .switchBigPic
       %div
@@ -43,9 +47,3 @@
     = @user_count
   #roundshape
     = render 'site/news'
-  /
-    - if current_user
-      #roundshape
-        = t 'site.user_info' 
-        %hr
-        = render 'account/user'

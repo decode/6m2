@@ -4,9 +4,13 @@
 %p
   %b= t 'page.email'
   = @user.email
+/
+  %p
+    %b= t 'account.role'
+    = @user.role_objects.map { |role| role.name }
 %p
-  %b= t 'account.role'
-  = @user.role_objects.map { |role| role.name }
+  %b= t 'account.level'
+  = image_tag "icon_vip#{(@user.level)}.gif"
 %p
   %b= t 'account.registered_time'
   = l @user.created_at, :format => :long

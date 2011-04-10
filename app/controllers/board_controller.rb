@@ -1,6 +1,7 @@
 class BoardController < ApplicationController
   access_control do
     allow :super, :admin, :manager, :user
+    allow :user, :except => [:check_pass]
     deny anonymous
   end
 
@@ -56,7 +57,7 @@ class BoardController < ApplicationController
 
   def do_task
     @task = Task.find(params[:id])
-    if @task.user == current_user or task.can_do?(current_user)
+    if @task.user == current_user or !@task.can_do?(current_user)
       flash[:error] = t('task.can_not_do')
     else
       Task.transaction do
@@ -158,6 +159,26 @@ class BoardController < ApplicationController
       flash[:notice] = t('issue.has_close')
     end
     redirect_to issues_url
+  end
+
+  # 单号购买
+  def choose_transport
+    tran = Transport.find(params[:id])
+    if tran
+      current_user.transports << tran
+      current_user.save
+      flash[:notice] = t('global.operate_success')
+    else
+      flash[:error] = t('global.operate_failed')
+    end
+    redirect_to :back
+  end
+
+  # 单号审核(暂不用)
+  def check_pass
+    tran = Transport.find(params[:id])
+    tran.check
+    redirect_to :back
   end
 
   def search_user

@@ -90,7 +90,7 @@ class IssuesController < ApplicationController
           format.html { redirect_to(@issue, :notice => t('issue.create')) }
           format.xml  { render :xml => @issue, :status => :created, :location => @issue }
         else
-          format.html { render :action => "new" }
+          format.html { render :action => "new", :notice => t('global.operated_failed') }
           format.xml  { render :xml => @issue.errors, :status => :unprocessable_entity }
         end
       end
