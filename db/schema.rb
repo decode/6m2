@@ -49,7 +49,10 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
     t.string   "part_id"
     t.string   "url"
     t.string   "status"
+    t.integer  "score"
+    t.float    "life"
     t.boolean  "active"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,20 +97,22 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
 
   create_table "settings", :force => true do |t|
     t.float    "point_ratio",         :default => 1.0
-    t.integer  "score_ratio",         :default => 1
+    t.float    "score_ratio",         :default => 1.0
     t.float    "init_required_point", :default => 10.0
     t.integer  "class1",              :default => 100
     t.integer  "class2",              :default => 200
     t.integer  "class3",              :default => 500
     t.integer  "class4",              :default => 800
     t.integer  "class5",              :default => 1000
-    t.integer  "task_punish",         :default => 1
-    t.integer  "charge_punish",       :default => 1
-    t.integer  "report_award",        :default => 1
-    t.integer  "report_punish",       :default => 1
+    t.float    "task_punish",         :default => 1.0
+    t.float    "charge_punish",       :default => 1.0
+    t.float    "report_award",        :default => 1.0
+    t.float    "report_punish",       :default => 1.0
     t.float    "custom_judge",        :default => 1.0
     t.float    "extra_word",          :default => 1.0
     t.integer  "real_level",          :default => 20
+    t.float    "transport_price",     :default => 1.0
+    t.integer  "times_limit",         :default => 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -150,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
     t.integer  "user_id"
     t.integer  "worker_id"
     t.integer  "supervisor_id"
+    t.integer  "participant_id"
     t.integer  "transport_id"
   end
 

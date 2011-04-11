@@ -46,6 +46,8 @@ class ParticipantsController < ApplicationController
   # POST /participants.xml
   def create
     @participant = Participant.new(params[:participant])
+    @participant.user = current_user
+    @participant.active = true if current_user.active_participant.nil?
 
     respond_to do |format|
       if @participant.save

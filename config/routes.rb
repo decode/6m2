@@ -18,6 +18,10 @@ Temp::Application.routes.draw do
   end
 
   resources :tasks
+  
+  resources :users do
+    resources :participants
+  end
 
   match 'task_list/:task_type' => 'board#task_list'
   match 'task_show/:task_type' => 'board#task_show'
