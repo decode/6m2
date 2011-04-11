@@ -15,7 +15,7 @@ class TransportsController < ApplicationController
     if secret_access?
     @transports = Transport.order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
     else
-      @transports = Transport.where('real_tran = true and status != ?', 'unchecked').order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
+      @transports = Transport.where(:real_tran => true, :status => 'used').order('created_at DESC').paginate(:page => params[:page], :per_page => 30)
     end
 
     respond_to do |format|

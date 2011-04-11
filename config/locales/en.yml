@@ -39,6 +39,7 @@ en:
     time: "Time"
     day: "Day"
     hour: "Hour"
+    yuan: "RMB"
 
   system:
     password_error: "Wrong Password!"
@@ -270,7 +271,9 @@ en:
     unused: "Unused"
     used: "Used"
     closed: "Stop"
+    reuse: "Reuse"
     choose: "Choose"
+    used_times: "Used times"
     choosed: "Already Have"
     check_pass: "Check Pass"
 
@@ -295,6 +298,8 @@ en:
     no_enough_money: "No enough money"
     must_input: "If charge by bank transfer, you must fill in transaction id"
     bad_deal: "Writing transaction id casually will be serious punished"
+    buy_transport: "Buy Transport ID"
+    spend: "Spend"
 
   setting:
     point_ratio: "Point Ratio"
@@ -382,8 +387,8 @@ en:
         task_level: "Task Level"
         custom_judge: "Custom Judge"
         custom_judge_content: "Custom Judge Content"
-        transport: "Transport Company"
-        transport_id: "Transportation ID"
+        tran_type: "Transport Company"
+        tran_id: "Transportation ID"
         published_time: "Published Time"
         takeover_time: "Takeover Time"
         finished_time: "Finished Time"
@@ -417,6 +422,12 @@ en:
         source: "Source"
         real_tran: "Real Transport ID"
         tran_time: "Transport Time"
+      participant:
+        name: "Name"
+        url: "URL"
+        status: "Status"
+        active: "Active"
+        part_id: "Account"
     hints:
       task:
         title: "Write a title for you task."

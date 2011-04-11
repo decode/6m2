@@ -54,7 +54,6 @@ class BoardController < ApplicationController
     @tasks = Task.where("status = ?", params[:task_status]).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
   end
   
-
   def do_task
     @task = Task.find(params[:id])
     if @task.user == current_user or !@task.can_do?(current_user)
@@ -62,6 +61,7 @@ class BoardController < ApplicationController
     else
       Task.transaction do
         @task.worker = current_user
+        @task.participant = current_user.active_participant
   
         logger.info('publish====')# if @task.takeover
         logger.info(@task.status + @task.worker.username)
@@ -164,9 +164,34 @@ class BoardController < ApplicationController
   # 单号购买
   def choose_transport
     tran = Transport.find(params[:id])
-    if tran
-      current_user.transports << tran
-      current_user.save
+    if tran and buy_transport_id(current_user)
+      ActiveRecord::Base.transaction do
+        current_user.transports << tran
+        Accountlog.create! :user_id => current_user.id, :amount => 1, :log_type => 'transport', :description => t('trade.buy_transport')
+        current_user.save!
+        # 超过设定购买次数关闭该运单号
+        tran.close if tran.users.length >= Setting.first.times_limit
+      end
+      flash[:notice] = t('global.operate_success') + ', ' + t('trade.spend') + 1.to_s + t('global.yuan')
+    else
+      flash[:error] = t('global.operate_failed')
+    end
+    redirect_to :back
+  end
+
+  def close_transport
+    tran = Transport.find(params[:id])
+    if tran.close
+      flash[:notice] = t('global.operate_success')
+    else
+      flash[:error] = t('global.operate_failed')
+    end
+    redirect_to :back
+  end
+
+  def reuse_transport
+    tran = Transport.find(params[:id])
+    if tran.reuse
       flash[:notice] = t('global.operate_success')
     else
       flash[:error] = t('global.operate_failed')

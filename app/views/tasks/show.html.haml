@@ -34,10 +34,7 @@
 
   %p
     %b= t 'formtastic.labels.task.transport'
-    - unless @task.tran_type.nil? or @task.tran_type == ''
-      - tran = %w{圆通 申通 中通 韵达 顺丰 EMS} 
-      - abb = %w{ yt st zt yd sf ems }
-      = tran[abb.index(@task.tran_type)]
+    = convert_tran_type(@task.tran_type)
 
   %p
     %b= t 'formtastic.labels.task.transport_id'

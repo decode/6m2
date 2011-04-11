@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   has_many :user_transports
   has_many :transports, :through => :user_transports
 
+  has_many :participants
+
   state_machine :status, :initial => :normal do
     event :suspend do
       transition :normal => :forbid
@@ -62,6 +64,11 @@ class User < ActiveRecord::Base
   def status_tasks(status)
     return self.tasks.where('status = ?', status) 
   end
+
+  def active_participant
+    return self.participants.where('active = true').first
+  end
+  
   
   protected
 

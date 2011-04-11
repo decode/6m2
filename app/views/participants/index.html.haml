@@ -1,0 +1,22 @@
+#roundshape
+  = link_to t('global.create'), new_participant_path
+%table
+  %tr
+    %th= t 'formtastic.labels.participant.name'
+    %th= t 'formtastic.labels.participant.part_id'
+    %th= t 'formtastic.labels.participant.url'
+    %th= t 'formtastic.labels.participant.status'
+    %th= t 'formtastic.labels.participant.active'
+    %th
+    %th
+    %th
+  - @participants.each do |participant|
+    %tr
+      %td= participant.name
+      %td= participant.part_id
+      %td= participant.url
+      %td= participant.status
+      %td= participant.active
+      %td= link_to t('global.show'), participant
+      %td= link_to t('global.edit'), edit_participant_path(participant)
+      %td= link_to t('global.delete'), participant, :confirm => t('globe.are_you_sure'), :method => :delete

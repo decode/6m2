@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  part_id: MyString
+  url: MyString
+  status: MyString
+  active: false
+
+two:
+  name: MyString
+  part_id: MyString
+  url: MyString
+  status: MyString
+  active: false

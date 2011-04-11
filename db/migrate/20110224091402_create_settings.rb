@@ -3,7 +3,7 @@ class CreateSettings < ActiveRecord::Migration
     create_table :settings do |t|
       # 兑换比率
       t.float :point_ratio, :default => 1 # 1发布点价值1
-      t.integer :score_ratio, :default => 1
+      t.float :score_ratio, :default => 1
 
       t.float :init_required_point, :default => 10
 
@@ -14,19 +14,24 @@ class CreateSettings < ActiveRecord::Migration
       t.integer :class4, :default => 800
       t.integer :class5, :default => 1000
 
-      t.integer :task_punish, :default => 1
-      t.integer :charge_punish, :default => 1
+      t.float :task_punish, :default => 1
+      t.float :charge_punish, :default => 1
 
       # 举报
-      t.integer :report_award, :default => 1
-      t.integer :report_punish, :default => 1
+      t.float:report_award, :default => 1
+      t.float:report_punish, :default => 1
 
       # 自定义评价消耗点数
       t.float :custom_judge, :default => 1
-
       t.float :extra_word, :default => 1
-      
+
+      # 真实交易号级别
       t.integer :real_level, :default => 20
+
+      # 运单价格
+      t.float :transport_price, :default => 1
+      # 运单出售次数
+      t.integer :times_limit, :default => 3
 
       t.timestamps
     end

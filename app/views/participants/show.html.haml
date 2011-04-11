@@ -1,0 +1,21 @@
+#roundshape
+  = link_to t('global.edit'), edit_participant_path(@participant)
+  |
+  \#{link_to t('global.back'), participants_path}
+
+%p#notice= notice
+%p
+  %b= t 'formtastic.labels.participant.name'
+  = @participant.name
+%p
+  %b= t 'formtastic.labels.participant.part_id'
+  = @participant.part_id
+%p
+  %b= t 'formtastic.labels.participant.url'
+  = @participant.url
+%p
+  %b= t 'formtastic.labels.participant.status'
+  = @participant.status
+%p
+  %b= t 'formtastic.labels.participant.active'
+  = @participant.active

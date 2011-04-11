@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :worker, :class_name => 'User', :foreign_key => 'worker_id'
   belongs_to :supervisor, :class_name => 'User', :foreign_key => 'supervisor_id'
   belongs_to :transport
+  belongs_to :participant
 
   validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day#, :task_level
   validates_numericality_of :price, :task_day, :avoid_day, :greater_than => 0
@@ -90,7 +91,18 @@ class Task < ActiveRecord::Base
   end
   
   def can_do?(user)
-    return user.has_role?('manager') || (user.level < self.worker_level) || (user.todos.where(:finished_time => (self.created_at-t.avoid_day.day) .. self.created_at, :user_id => task.user.id).length == 0) 
+    return ( user.has_role?('manager') || user.level >= self.worker_level )
+    && (
+      user.todos.where(:finished_time => (self.created_at-t.avoid_day.day) .. self.created_at, :user_id => task.user.id).length == 0 
+      # 小号必须定义
+      && user.active_participant.nil? 
+      # 每个买号每日最多接手6个任务
+      && user.active_participant.tasks.where(:takeover_time => (Time.now-1.days)..Time.now, :participant_id => user.id).length <= 6
+      # 每周最多接手35个任务
+      && user.active_participant.tasks.where(:takeover_time => (Time.now-7.days)..Time.now, :participant_id => user.id).length <= 35
+      # 同一买号不能在一个自然月内接同一发布人同一网店任务超过六个
+      && user.active_participant.tasks.where(:takeover_time => (Time.now-30.days)..Time.now, :participant_id => user.id, :user_id => self.user.id).length <= 6 
+    )
   end
 
 end

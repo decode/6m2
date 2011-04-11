@@ -34,6 +34,7 @@ class CreateTasks < ActiveRecord::Migration
       t.references :user
       t.integer :worker_id
       t.integer :supervisor_id
+      t.references :participant
 
       t.references :transport
     end

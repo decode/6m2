@@ -90,6 +90,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def buy_transport_id(user)
+    price = 1 #Setting.first.transport_price
+    if user.account_money > price
+      user.account_money = user.account_money - price
+      return true
+    end
+    return false
+  end
+  
   def gen_chars(length, chars)
     tid = ''
     length.downto(1) { |i| tid << chars[rand(chars.length-1)] }

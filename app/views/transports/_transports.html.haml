@@ -3,6 +3,7 @@
     %th= t 'formtastic.labels.transport.tran_type'
     %th= t 'formtastic.labels.transport.tran_id'
     %th= t 'formtastic.labels.transport.status'
+    %th= t 'transport.used_times'
     %th= t 'formtastic.labels.transport.from'
     %th= t 'formtastic.labels.transport.to'
     %th= t 'formtastic.labels.transport.real_tran'
@@ -11,9 +12,11 @@
     %th
   - @transports.each do |transport|
     %tr
-      %td= transport.tran_type
+      %td
+        = convert_tran_type(transport.tran_type)
       %td= (user? and !current_user.transports.include? transport) ? transport.tran_id[0..6]+'*' : transport.tran_id
       %td= transport.status 
+      %td= transport.users.length
       %td= transport.from
       %td= transport.to
       %td= transport.real_tran
@@ -24,7 +27,9 @@
         %td= link_to t('transport.choose'), :controller => 'board', :action => 'choose_transport', :id => transport 
       - if manager? or admin?
         %td
-          = link_to t('transport.check_pass'), :controller => 'board', :action => 'check_pass', :id => transport if transport.status == 'unchecked'
+          = link_to t('transport.check_pass'), :controller => 'board', :action => 'check_pass', :id => transport if transport.unchecked?
+          = link_to t('transport.closed'), :controller => 'board', :action => 'close_transport', :id => transport if transport.used?
+          = link_to t('transport.reuse'), :controller => 'board', :action => 'reuse_transport', :id => transport if transport.closed?
           = link_to t('global.show'), transport
           = link_to t('global.edit'), edit_transport_path(transport)
           = link_to t('global.delete'), transport, :confirm => t('site.are_you_sure'), :method => :delete
