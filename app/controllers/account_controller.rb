@@ -156,6 +156,11 @@ class AccountController < ApplicationController
     @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end
 
+  def participant
+    @user = User.find(params[:id])
+    @participants = @user.participants.paginate(:page=>params[:page], :per_page=>10)
+  end
+    
   def transport_list
     @user = User.find(params[:id])
     @transports = @user.transports.paginate(:page=>params[:page], :per_page=>15)

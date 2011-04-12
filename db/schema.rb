@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411104404) do
+ActiveRecord::Schema.define(:version => 20110412083416) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,23 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
     t.integer  "dealer_id"
   end
 
+  create_table "message_boxes", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "priority"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notices", :force => true do |t|
     t.string   "title"
     t.string   "content"
@@ -47,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
   create_table "participants", :force => true do |t|
     t.string   "name"
     t.string   "part_id"
+    t.string   "part_type"
     t.string   "url"
     t.string   "status"
     t.integer  "score"
@@ -73,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20110411104404) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end

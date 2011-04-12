@@ -4,6 +4,8 @@
     \|
     = link_to t('global.edit'), edit_user_path(@user)
     \|
+    = link_to t('site.my_participants'), :controller=>'account', :action=>'participant', :id=>@user
+    \|
     = link_to t('account.charge'), @user
     \|
     = link_to t('site.small_cash'), :controller=>'account', :action=>'small_cash', :id=>@user

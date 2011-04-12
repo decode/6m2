@@ -40,6 +40,7 @@ en:
     day: "Day"
     hour: "Hour"
     yuan: "RMB"
+    task: "Task"
 
   system:
     password_error: "Wrong Password!"
@@ -90,6 +91,7 @@ en:
     my_cash: "My Cash Task"
     my_account: "My account"
     my_transport: "My transport id"
+    my_participants: "My Participants"
     issue: "Issue"
     setting: "Setting"
     manage_center: "Manage Center"
@@ -233,6 +235,12 @@ en:
     task_log: "Task Log"
     level: "Level"
 
+  participant:
+    user: "User"
+    taobao: "Taobao"
+    paipai: "PaiPai"
+    youa: "Youa"
+
   task:
     problem: "Problem"
     confirm: "Confirm"
@@ -348,6 +356,10 @@ en:
     service: "Customer Service"
     administrator: "Manager"
 
+  message:
+    make_read: "Read"
+    make_unread: "Unread"
+
   devise:
     no_reply: "Don't reply this mail"
     welcome: "欢迎"
@@ -428,6 +440,12 @@ en:
         status: "Status"
         active: "Active"
         part_id: "Account"
+        part_type: "Type"
+      message:
+        title: "Title"
+        content: "Content"
+        status: "Status"
+        prioirty: "Priority"
     hints:
       task:
         title: "Write a title for you task."

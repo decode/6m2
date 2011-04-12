@@ -1,8 +1,8 @@
 - semantic_form_for @participant do |f| 
   - f.inputs do
+    = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}
     = f.input :name
     = f.input :part_id
     = f.input :url
-    = f.input :status
-    = f.input :active
+    = f.input :active, :as => :boolean
     = f.commit_button

@@ -3,7 +3,6 @@ class Participant < ActiveRecord::Base
   has_many :tasks
 
   def make_active
-    return true if self.active == true
     other = self.user.participants.where(:active => true).first
     if other
       other.active = false
@@ -25,7 +24,7 @@ class Participant < ActiveRecord::Base
       transition :active => :pause
     end
     event :unfreeze do
-      transaction :pause => :active
+      transition :pause => :active
     end
     state :active, :value => 'active'
     state :danger, :value => 'danger'

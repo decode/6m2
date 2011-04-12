@@ -3,7 +3,10 @@
   |
   \#{link_to t('global.back'), participants_path}
 
-%p#notice= notice
+/%p#notice= notice
+%p
+  %b= t 'formtastic.labels.participant.part_type'
+  = @participant.part_type
 %p
   %b= t 'formtastic.labels.participant.name'
   = @participant.name
@@ -19,3 +22,7 @@
 %p
   %b= t 'formtastic.labels.participant.active'
   = @participant.active
+%p
+  %b= t 'global.task'
+  = @participant.tasks.length
+

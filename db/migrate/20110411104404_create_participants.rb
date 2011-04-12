@@ -3,6 +3,7 @@ class CreateParticipants < ActiveRecord::Migration
     create_table :participants do |t|
       t.string :name
       t.string :part_id
+      t.string :part_type
       t.string :url
       t.string :status
       t.integer :score

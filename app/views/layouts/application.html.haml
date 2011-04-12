@@ -79,10 +79,11 @@
                     = link_to t('trade.charge_point'), '/m/payment'
                     %hr
                     = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
-                    = link_to t('site.my_todo'),:controller=>'board', :action=> 'task_show', :task_type => 'todo'
-                    = link_to t('site.my_cash'),:controller=>'board', :action=> 'task_show', :task_type => 'cash'
+                    = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
+                    = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
                     %hr
-                    = link_to t('site.my_transport'),:controller=>'account', :action=> 'transport_list', :id => current_user
+                    = link_to t('site.my_transport'), :controller=>'account', :action=> 'transport_list', :id => current_user
+                    = link_to t('site.my_participants'), user_participants_url(current_user)
 
             - if manager? or admin?
               %li

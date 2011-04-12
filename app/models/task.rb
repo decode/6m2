@@ -91,20 +91,20 @@ class Task < ActiveRecord::Base
   end
   
   def can_do?(user)
+    # 小号必须定义
+    return false if user.active_participant.nil?
     # manager权限或不低于指定级别
     c1 = user.has_role?('manager') or user.level >= self.worker_level
     # 发任务方限制天数内不能接任务
-    c2 = user.todos.where(:finished_time => (self.created_at-t.avoid_day.day) .. self.created_at, :user_id => task.user.id).length == 0
-    # 小号必须定义
-    c3 = user.active_participant.nil?
+    c2 = user.todos.where(:finished_time => (self.created_at-self.avoid_day.day) .. self.created_at, :user_id => self.user.id).length == 0
     # 每个买号每日最多接手6个任务
-    c4 = user.active_participant.tasks.where(:takeover_time => (Time.now-1.days)..Time.now, :participant_id => user.id).length <= 6
+    c3 = user.active_participant.tasks.where(:takeover_time => (Time.now-1.days)..Time.now, :participant_id => user.active_participant.id).length <= 6
     # 每周最多接手35个任务
-    c5 = user.active_participant.tasks.where(:takeover_time => (Time.now-7.days)..Time.now, :participant_id => user.id).length <= 35 
+    c4 = user.active_participant.tasks.where(:takeover_time => (Time.now-7.days)..Time.now, :participant_id => user.active_participant.id).length <= 35 
     # 同一买号不能在一个自然月内接同一发布人同一网店任务超过六个
-    c6 = user.active_participant.tasks.where(:takeover_time => (Time.now-30.days)..Time.now, :participant_id => user.id, :user_id => self.user.id).length <= 6
+    c5 = user.active_participant.tasks.where(:takeover_time => (Time.now-30.days)..Time.now, :participant_id => user.active_participant.id, :user_id => self.user.id).length <= 6
 
-    return (c1 and c2 and c3 and c4 and c5 and c6) ? true : false
+    return (c1 and c2 and c3 and c4 and c5) ? true : false
   end
 
 end

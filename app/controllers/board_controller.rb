@@ -206,6 +206,20 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  # 标记消息己读
+  def make_read
+    msg = Message.find(params[:id])
+    msg.make_read
+    redirect_to :back
+  end
+  
+  # 标记消息未读
+  def make_unread
+    msg = Message.find(params[:id])
+    msg.make_unread
+    redirect_to :back
+  end
+
   def search_user
     @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
     session[:search_username] = params[:username]

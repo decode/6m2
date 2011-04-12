@@ -7,7 +7,7 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.xml
   def index
-    @participants = Participant.all
+    @participants = current_user.participants.order("active DESC").paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,11 +47,15 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     @participant.user = current_user
-    @participant.active = true if current_user.active_participant.nil?
+    if current_user.active_participant.nil? 
+      @participant.active = true 
+    else
+      @participant.make_active if params[:participant][:active] == '1'
+    end
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to(@participant, :notice => 'Participant was successfully created.') }
+        format.html { redirect_to(:back, :notice => t('global.operate_success')) }
         format.xml  { render :xml => @participant, :status => :created, :location => @participant }
       else
         format.html { render :action => "new" }
@@ -64,6 +68,9 @@ class ParticipantsController < ApplicationController
   # PUT /participants/1.xml
   def update
     @participant = Participant.find(params[:id])
+    if params[:participant][:active] == '1'
+      @participant.make_active
+    end
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
@@ -83,7 +90,7 @@ class ParticipantsController < ApplicationController
     @participant.destroy
 
     respond_to do |format|
-      format.html { redirect_to(participants_url) }
+      format.html { redirect_to :back }
       format.xml  { head :ok }
     end
   end

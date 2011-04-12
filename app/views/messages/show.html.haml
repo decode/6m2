@@ -1,0 +1,17 @@
+#roundshape
+  = link_to t('global.edit'), edit_message_path(@message)
+  |
+  \#{link_to t('global.back'), messages_path}
+
+%p
+  %b= t 'formtastic.labels.message.title'
+  = @message.title
+%p
+  %b= t 'formtastic.labels.message.content'
+  = @message.content
+%p
+  %b= t 'formtastic.labels.message.priority'
+  = @message.priority
+%p
+  %b= t 'formtastic.labels.message.status'
+  = @message.status

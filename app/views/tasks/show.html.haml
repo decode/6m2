@@ -33,58 +33,63 @@
     = @task.point
 
   %p
-    %b= t 'formtastic.labels.task.transport'
+    %b= t 'formtastic.labels.task.tran_type'
     = convert_tran_type(@task.tran_type)
 
   %p
-    %b= t 'formtastic.labels.task.transport_id'
+    %b= t 'formtastic.labels.task.tran_id'
     = @task.tran_id
 
-  %hr
-  %p
-    %b=t 'task.condition'
-
-  = t 'formtastic.labels.task.worker_level'
-  = @task.worker_level
-  %br
-  = t 'formtastic.labels.task.task_day'
-  = @task.task_day
-  %br
-  = t 'formtastic.labels.task.extra_word'
-  = @task.extra_word
-  %br
-  = t 'formtastic.labels.task.avoid_day'
-  = @task.avoid_day
-  /
+#mainframe
+  #roundshape
+    %p
+      %b=t 'task.condition'
+    %hr
+    = t 'formtastic.labels.task.worker_level'
+    = @task.worker_level
     %br
-    = t 'formtastic.labels.task.task_level'
-    =# @task.task_level
-  %hr
-  = t 'formtastic.labels.task.extra_word'
-  = @task.extra_word
-  %hr
-  = t 'formtastic.labels.task.custom_judge'
-  = @task.custom_judge
-  %hr
-  = t 'formtastic.labels.task.custom_judge_content'
-  = @task.custom_judge_content
-  %hr
+    = t 'formtastic.labels.task.task_day'
+    = @task.task_day
+    %br
+    = t 'formtastic.labels.task.extra_word'
+    = @task.extra_word
+    %br
+    = t 'formtastic.labels.task.avoid_day'
+    = @task.avoid_day
+    /
+      %br
+      = t 'formtastic.labels.task.task_level'
+      =# @task.task_level
+    %br
+    = t 'formtastic.labels.task.extra_word'
+    = @task.extra_word
+    %br
+    = t 'formtastic.labels.task.custom_judge'
+    = @task.custom_judge
+    %br
+    = t 'formtastic.labels.task.custom_judge_content'
+    = @task.custom_judge_content
 
-#roundshape
-  = t 'task.worker'
-  - if manager? or admin?
-    = link_to @task.worker.username, @task.worker if @task.worker
-  - else
-    = @task.worker.username if @task.worker
-  %br
-  = t 'formtastic.labels.task.published_time'
-  = l @task.published_time if @task.published_time
-  %br
-  = t 'formtastic.labels.task.takeover_time'
-  = l @task.takeover_time if @task.takeover_time
-  %br
-  = t 'formtastic.labels.task.finished_time'
-  = l @task.finished_time if @task.finished_time
-  %br
-  = t 'formtastic.labels.task.confirmed_time'
-  = l @task.confirmed_time if @task.confirmed_time
+#right
+  #roundshape
+    = t 'task.worker'
+    - if manager? or admin?
+      = link_to @task.worker.username, @task.worker if @task.worker
+      %br
+      = t 'site.my_participants'
+      = @task.participant.name if @task.participant
+    - else
+      = @task.worker.username if @task.worker
+      
+    %hr
+    = t 'formtastic.labels.task.published_time'
+    = l @task.published_time if @task.published_time
+    %br
+    = t 'formtastic.labels.task.takeover_time'
+    = l @task.takeover_time if @task.takeover_time
+    %br
+    = t 'formtastic.labels.task.finished_time'
+    = l @task.finished_time if @task.finished_time
+    %br
+    = t 'formtastic.labels.task.confirmed_time'
+    = l @task.confirmed_time if @task.confirmed_time

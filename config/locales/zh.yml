@@ -47,6 +47,7 @@ zh:
     day: "天"
     hour: "小时"
     yuan: "元"
+    task: "任务数"
 
   system:
     password_error: "密码错误"
@@ -97,6 +98,7 @@ zh:
     my_cash: "我的提现任务"
     my_account: "我的帐户"
     my_transport: "我的运单号"
+    my_participants: "用户帐号"
     issue: "问题中心"
     setting: "平台设置"
     manage_center: "管理中心"
@@ -241,6 +243,12 @@ zh:
     task_log: "任务记录"
     level: "级别"
 
+  participant:
+    user: "用户"
+    taobao: "淘宝"
+    paipai: "拍拍"
+    youa: "有啊"
+
   task:
     problem: "投诉"
     confirm: "确认"
@@ -356,6 +364,10 @@ zh:
     service: "客服"
     administrator: "客服经理"
 
+  message:
+    make_read: "己读"
+    make_unread: "未读"
+
   home: 
     title1: "服务"
     title2: "交易"
@@ -448,8 +460,14 @@ zh:
         name: "名称"
         url: "网址"
         status: "状态"
-        active: "使用中"
+        active: "默认"
         part_id: "帐号"
+        part_type: "帐号类型"
+      message:
+        title: "标题"
+        content: "内容"
+        status: "状态"
+        priority: "优先级"
     hints:
       task:
         title: "为任务写一个标题"
