@@ -73,6 +73,7 @@ class UsersController < ApplicationController
     else
       @user = @current_user
     end
+    @user.operate_password = nil if session[:user_edit_mode] == 'code'
   end
   
   def update
@@ -81,17 +82,25 @@ class UsersController < ApplicationController
     else
       @user = @current_user # makes our views "cleaner" and more consistent
     end
+    log_str = t('global.modify') + t('site.user_info')
+    isPass = true
+    if session[:user_edit_mode] == 'code'
+      isPass = false if !@user.operate_password.nil? and params[:old_password] != @user.operate_password
+      log_str = t('global.modify') + t('site.operate_password')
+    end
     respond_to do |format|
       User.transaction do
-        if @user.update_attributes(params[:user])
+        if isPass and @user.update_attributes(params[:user])
           if session[:user_edit_mode] == 'point'
             Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => @user.account_credit, :log_type=>'credit', :description => 'modify credit'
+          else
+            Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => 0, :log_type=>'account', :description => log_str
           end
           session[:user_edit_mode] = nil
           format.html { redirect_to(@user, :notice => t('account.update_success')) }
           format.xml  { head :ok }
         else
-          format.html { render :action => "edit" }
+          format.html { redirect_to(:back, :error => t('account.update_failed')) }
           format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
         end
       end

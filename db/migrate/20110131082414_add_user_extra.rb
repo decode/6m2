@@ -17,6 +17,7 @@ class AddUserExtra < ActiveRecord::Migration
     add_column :users, :payment_money, :float, :default => 0
     add_column :users, :score, :float, :default => 0
     add_column :users, :status, :string
+    add_column :users, :operate_password, :string
   end
 
   def self.down
@@ -37,5 +38,6 @@ class AddUserExtra < ActiveRecord::Migration
     remove_column :users, :payment_money #货款
     remove_column :users, :score #积分
     remove_column :users, :status
+    remove_column :users, :operate_password
   end
 end

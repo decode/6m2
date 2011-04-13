@@ -4,6 +4,9 @@
   \#{link_to t('global.back'), messages_path}
 
 %p
+  %b= 'From'
+  = @message.user
+%p
   %b= t 'formtastic.labels.message.title'
   = @message.title
 %p

@@ -940,7 +940,7 @@ body #content {
   margin-right: 0;
 }
 /* line 82, ../../../app/stylesheets/screen.scss */
-body #wide {
+body #wide, body #message {
   display: inline;
   float: left;
   overflow: hidden;

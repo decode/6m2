@@ -70,7 +70,7 @@ class TasksController < ApplicationController
   def create
     isPass = false
     price = params[:task][:price].to_f
-    unless price <= 0 or price > current_user.account_money
+    if price >= 0 and price <= current_user.account_money and (current_user.operate_password.nil? or params[:operate_password] == current_user.operate_password)
       @task = Task.new(params[:task])
       if @task.user.nil?
         @task.user = current_user
@@ -98,7 +98,6 @@ class TasksController < ApplicationController
         if tran
           tid = generate_transport_id(params[:task][:tran_type])
         end
-        #@task.transport.create! :tran_type => tid[0], :transport_id => tid[1]
         @task.tran_type, @task.tran_id = tid
 
         logger.info("============ Transport ID ==========" + @task.tran_type + "|" + @task.tran_id)
@@ -107,10 +106,10 @@ class TasksController < ApplicationController
         tran_type = params[:task][:tran_type]
         tran_id = params[:task][:tran_id]
         tran = Transport.where(:tran_type => tran_type, :tran_id => tran_id).first
-        tran = Transport.create! :tran_type => tran_type, :tran_id => tran_id, :source => 'user', :status => 'used'
-        @task.tran_type = tran.tran_type
-        @task.tran_id = tran.tran_id
-        @task.transport = tran
+        #tran = Transport.create! :tran_type => tran_type, :tran_id => tran_id, :source => 'user', :status => 'used'
+        @task.tran_type = tran_type
+        @task.tran_id = tran_id
+        @task.transport = tran if tran
       end
 
       # 计算任务点

@@ -84,6 +84,7 @@
                     %hr
                     = link_to t('site.my_transport'), :controller=>'account', :action=> 'transport_list', :id => current_user
                     = link_to t('site.my_participants'), user_participants_url(current_user)
+                    = link_to t('site.operate_password'), :controller => 'account', :action => 'operate_password'
 
             - if manager? or admin?
               %li
@@ -133,6 +134,16 @@
       - if flash[:error]
         #error
           = flash[:error]
+
+      - if user_signed_in?
+        #message
+          - messages = current_user.received_messages.where(:status => 'unread')
+          - if messages.length > 0
+            #roundshape
+              - if messages.length == 1
+                = link_to messages.first.title, messages.first
+              - else
+                = link_to t('message.total_message', :total => messages.length), user_messages_path(current_user)
 
       #content
         = yield

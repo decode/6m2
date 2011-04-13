@@ -3,6 +3,7 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages do |t|
       t.string :title
       t.string :content
+      t.string :msg_type
       t.integer :priority
       t.string :status
 

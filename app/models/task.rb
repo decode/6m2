@@ -57,17 +57,37 @@ class Task < ActiveRecord::Base
     event :unpublish do
       transition :published => :unpublish
     end
+    # 买方接手
     event :takeover do
       transition :published => :running
     end
+    
+    # =================================
+    # 卖方发货
+    event :send_good do
+      transition :running => :transport
+    end
+    # 买方收货
+    event :receive_good do
+      transition :transport => :received
+    end
+    # 卖方收到货款
+    event :receive_money do
+      transition :received => :money
+    end
+    # =================================
+    
+    # 买方好评
     event :finish do
+      transition :money => :finished
       transition :running => :finished
+    end
+    # 卖方结束该流程
+    event :over do
+      transition [:finished, :problem] => :end
     end
     event :argue do
       transition [:finished, :running] => :problem
-    end
-    event :over do
-      transition [:finished, :problem] => :end
     end
     event :giveup do
       transition :running => :abandon
@@ -75,6 +95,9 @@ class Task < ActiveRecord::Base
     state :unpublished, :value => 'unpublished'
     state :published, :value => 'published'
     state :running, :value => 'running'
+    state :transport, :value => 'transport'
+    state :received, :value => 'received'
+    state :money, :value => 'money'
     state :pending, :value => 'pending'
     state :abandon, :value => 'abandon'
     state :finished, :value => 'finished'

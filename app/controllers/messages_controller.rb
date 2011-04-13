@@ -2,7 +2,11 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.xml
   def index
-    @messages = Message.all
+    if current_user.has_role? 'admin'
+      @messages = Message.all.paginate(:page => params[:page], :per_page => 10)
+    else
+      @messages = current_user.received_messages.order(:status => 'unread').paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +18,7 @@ class MessagesController < ApplicationController
   # GET /messages/1.xml
   def show
     @message = Message.find(params[:id])
+    @message.make_read
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +46,18 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
+    @message.user = current_user
+    if session[:message_scale] == 'global'
+      @message.msg_type = 'system' 
+      @message.receivers = User.all
+    end
+    unless session[:message_to].nil? or session[:message_to] == ''
+      user = User.find(session[:message_to])
+      @message.msg_type = 'private'
+      @message.receivers = user if user
+    end
+
+    session[:message_scale] = nil
 
     respond_to do |format|
       if @message.save

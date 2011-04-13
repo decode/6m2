@@ -18,7 +18,6 @@ class BoardController < ApplicationController
     @admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
   end
   
-
   def big_cash
     @issues = Issue.where("itype = ?", 'cash').paginate(:page => params[:page], :per_page => 10)
   end
@@ -62,10 +61,12 @@ class BoardController < ApplicationController
       Task.transaction do
         @task.worker = current_user
         @task.participant = current_user.active_participant
-  
-        logger.info('publish====')# if @task.takeover
-        logger.info(@task.status + @task.worker.username)
         @task.takeover_time = Time.now
+
+        msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :link => @task.id)
+        msg.receivers = @task.user
+        msg.save
+
         flash[:notice] = t('task.do_task') if @task.takeover
       end
     end
@@ -73,10 +74,13 @@ class BoardController < ApplicationController
   end
 
   def finish_task
-    task = Task.find(params[:id])
+    @task = Task.find(params[:id])
     Task.transaction do
-      task.finished_time = Time.now
-      if task.finish
+      @task.finished_time = Time.now
+      if @task.finish
+        msg = Message.create! :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :link => @task.id)
+        msg.receivers = @task.user
+        msg.save
         flash[:notice] = t('global.update_success')
       end
     end
@@ -97,6 +101,9 @@ class BoardController < ApplicationController
       gain(task)
       task.confirmed_time = Time.now
       if task.over
+        msg = Message.create! :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :link => task.id)
+        msg.receivers = task.user
+        msg.save
         flash[:notice] = t('task.confirm_success')
       end
     end
@@ -220,6 +227,12 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  # 发送消息
+  def message_to
+    session[:message_to] = params[:id]
+    redirect_to new_message_url
+  end
+    
   def search_user
     @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
     session[:search_username] = params[:username]

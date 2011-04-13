@@ -20,4 +20,10 @@ class SiteController < ApplicationController
     redirect_to '/'
   end
   
+  # 发送系统消息
+  def message
+    session[:message_scale] = 'global'
+    redirect_to new_message_url#(current_user)
+  end
+  
 end

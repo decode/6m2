@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password do
       allow :user, :guest
     end
     actions :delete_charge do
@@ -201,5 +201,15 @@ class AccountController < ApplicationController
     redirect_to :back
   end
 
+  # 设置操作码
+  def operate_password
+    if current_user.has_role? 'admin'
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    session[:user_edit_mode] = 'code'
+    redirect_to edit_user_url(@user)
+  end
   
 end

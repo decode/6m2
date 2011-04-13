@@ -25,6 +25,10 @@ Temp::Application.routes.draw do
     resources :participants
   end
 
+  resources :users do
+    resources :messages
+  end
+
   match 'task_list/:task_type' => 'board#task_list'
   match 'task_show/:task_type' => 'board#task_show'
   match 'task_list/:task_type' => 'devise/board#task_list'

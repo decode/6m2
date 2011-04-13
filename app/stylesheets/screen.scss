@@ -79,7 +79,7 @@ body {
     //@include column($content-columns, true); }
     @include column(24,true);
   }
-  #wide {
+  #wide, #message {
     @include column(24,true);
   }
   #status {

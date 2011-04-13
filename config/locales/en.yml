@@ -41,6 +41,7 @@ en:
     hour: "Hour"
     yuan: "RMB"
     task: "Task"
+    modify: "Modify"
 
   system:
     password_error: "Wrong Password!"
@@ -109,6 +110,8 @@ en:
     user_number: "Registered User"
     user_info: "User Information"
     transport_center: "Transport ID Manage"
+    operate_password: "Operate Password Manage"
+    old_password: "Old Password"
 
   manage:
     message_box: "Inbox"
@@ -208,6 +211,7 @@ en:
     manage_description: "Manage your account"
     edit_account: "Account Edit"
     update_success: "Account Updated"
+    update_failed: "Account Update Failed"
     register_success: "Account Registered"
     register_failed: "Register Failed"
     login: "Login"
@@ -234,6 +238,8 @@ en:
     trade_log: "Trade Log"
     task_log: "Task Log"
     level: "Level"
+    operate_password: "Operate Password"
+    operate_password_desc: "Not required if not set."
 
   participant:
     user: "User"
@@ -359,10 +365,17 @@ en:
   message:
     make_read: "Read"
     make_unread: "Unread"
+    total_message: "There are %{total} unread messages"
+    task_takeover: "Task %{task} has been take over"
+    task_takeover_content: "Task %{task} has been take over,<br>link: http://www.boat166.com/message/%{link}"
+    task_finish: "Task %{task} has been finish"
+    task_finish_content: "Task %{task} has been finish,<br>link: http://www.boat166.com/message/%{link}"
+    task_confirm: "Task t%{task} has confirmed"
+    task_confirm_content: "Task %{task} has been confirmed,<br>link: http://www.boat166.com/message/%{link}"
 
   devise:
     no_reply: "Don't reply this mail"
-    welcome: "欢迎"
+    welcome: "Welcome"
     confirm: "You can confirm your account through the link below:"
     not_link: "If can not open it, please copy the link below, and open it in your web browser"
     hello: "Hello, %{name}"
@@ -385,7 +398,7 @@ en:
       task_details: "task details"
     labels:
       task:
-        title: "Write a title..."
+        title: "Write a title... Must larger than 5 words"
         task_type: "Task type"
         description: "Description"
         price: "Price"
@@ -421,6 +434,7 @@ en:
         shop_youa_url: "Youa Shop Address"
         account_credit: "Point"
         current_sign_in_at: "Last Sign In At"
+        operate_password: "Operate Password"
       issue:
         title: "Title"
         content: "Content"
@@ -457,6 +471,7 @@ en:
       user:
         role_objects: "Set user roles"
         im: "Any IM account"
+        operate_password: "Less than 20 number"
     actions:
       create: "Create"
       update: "Save changes"
