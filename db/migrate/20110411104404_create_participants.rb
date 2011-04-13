@@ -4,6 +4,7 @@ class CreateParticipants < ActiveRecord::Migration
       t.string :name
       t.string :part_id
       t.string :part_type
+      t.string :role_type
       t.string :url
       t.string :status
       t.integer :score

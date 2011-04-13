@@ -104,6 +104,7 @@
                   = link_to t('notice.new_notice'), new_notice_url if admin?
                   - if admin?
                     = link_to t('site.setting'), '/s/setting'
+                    = link_to t('system.message'), '/s/message'
 
             - if user? or guest?
               %li

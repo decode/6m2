@@ -4,12 +4,13 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.string :task_type
       t.string :description
+      t.string :shop
       t.string :link
       t.float :price
       t.float :point
       t.string :status
 
-      t.string :tran_type
+      t.string :tran_type #物流公司
       t.string :tran_id #物流单号
       
       #时间标记 发布->接手->完成->确认
@@ -36,6 +37,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :supervisor_id
       t.references :participant
 
+      #真实物流
       t.references :transport
     end
   end

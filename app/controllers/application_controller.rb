@@ -69,8 +69,9 @@ class ApplicationController < ActionController::Base
 
   def gain(task)
     return if task.free_task?
-    logger.info("#{task.worker.username} score +1 ===========================================")
-    task.worker.score = task.worker.score + 1
+    lev = [1, 0.8, 0.8, 0.8, 0.8, 0.8]
+    logger.info("#{task.worker.username} score #{lev[task.worker.level]} ===========================================")
+    task.worker.score = task.worker.score + lev[task.worker.level]
     task.worker.save
   end
 

@@ -254,6 +254,8 @@ zh:
     taobao: "淘宝"
     paipai: "拍拍"
     youa: "有啊"
+    shop: "店铺"
+    customer: "买家"
 
   task:
     problem: "投诉"

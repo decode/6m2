@@ -7,8 +7,8 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.xml
   def index
-    @participants = current_user.participants.order("active DESC").paginate(:page => params[:page], :per_page => 10)
-
+    @participants = current_user.participants.where("role_type = 'customer'".order("active DESC").paginate(:page => params[:page], :per_page => 10)
+    @shops = current_user.participants.where("role_type = 'shop'".order("active DESC").paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @participants }
