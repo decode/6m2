@@ -50,6 +50,7 @@ class MessagesController < ApplicationController
     if session[:message_scale] == 'global'
       @message.msg_type = 'system' 
       @message.receivers = User.all
+      logger.info('==================================================') 
     end
     unless session[:message_to].nil? or session[:message_to] == ''
       user = User.find(session[:message_to])
@@ -61,7 +62,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
+        format.html { redirect_to(@message, :notice => t('global.operate_success')) }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
       else
         format.html { render :action => "new" }

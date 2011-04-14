@@ -85,6 +85,9 @@
                     = link_to t('site.my_transport'), :controller=>'account', :action=> 'transport_list', :id => current_user
                     = link_to t('site.my_participants'), user_participants_url(current_user)
                     = link_to t('site.operate_password'), :controller => 'account', :action => 'operate_password'
+                    %hr
+                    = link_to t('system.message'), messages_path
+
 
             - if manager? or admin?
               %li

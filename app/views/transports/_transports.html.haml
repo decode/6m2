@@ -1,15 +1,17 @@
 %table
-  %tr
-    %th= t 'formtastic.labels.transport.tran_type'
-    %th= t 'formtastic.labels.transport.tran_id'
-    %th= t 'formtastic.labels.transport.status'
-    %th= t 'transport.used_times'
-    %th= t 'formtastic.labels.transport.from'
-    %th= t 'formtastic.labels.transport.to'
-    %th= t 'formtastic.labels.transport.real_tran'
-    %th= t 'formtastic.labels.transport.tran_time'
-    %th
-    %th
+  %caption
+  %thead
+    %tr
+      %th= t 'formtastic.labels.transport.tran_type'
+      %th= t 'formtastic.labels.transport.tran_id'
+      %th= t 'formtastic.labels.transport.status'
+      %th= t 'transport.used_times'
+      %th= t 'formtastic.labels.transport.from'
+      %th= t 'formtastic.labels.transport.to'
+      %th= t 'formtastic.labels.transport.real_tran'
+      %th= t 'formtastic.labels.transport.tran_time'
+      %th
+      %th
   - @transports.each do |transport|
     %tr
       %td

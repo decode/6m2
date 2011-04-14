@@ -4,6 +4,8 @@ class CreateMessageBoxes < ActiveRecord::Migration
       t.references :message
       t.references :user
 
+      t.string :status
+
       t.timestamps
     end
   end

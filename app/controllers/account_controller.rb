@@ -157,8 +157,17 @@ class AccountController < ApplicationController
   end
 
   def participant
-    @user = User.find(params[:id])
-    @participants = @user.participants.paginate(:page=>params[:page], :per_page=>10)
+    if current_user.has_role? 'admin'
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    @participants = @user.participants.where("role_type = 'customer'").order("active DESC").paginate(:page=>params[:page], :per_page=>10)
+    @shops = current_user.participants.where("role_type = 'shop'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
+  end
+
+  def parts
+    @participants = current_user.participants.where('role_type = ?', params[:id]).paginate(:page=>params[:page], :per_page=>10)
   end
     
   def transport_list

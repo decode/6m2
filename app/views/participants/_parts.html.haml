@@ -1,29 +1,53 @@
-%table
-  %caption
-  %thead
-    %tr
-      %th= t 'participant.user'
-      %th= t 'formtastic.labels.participant.part_type'
-      %th= t 'formtastic.labels.participant.name'
-      %th= t 'formtastic.labels.participant.part_id'
-      %th= t 'formtastic.labels.participant.status'
-      %th= t 'formtastic.labels.participant.active'
-      %th= t 'global.task'
-      %th= t 'global.created_at'
-      %th
-      %th
-      %th
-  - @participants.each do |participant|
-    %tr
-      %td= participant.user.username
-      %td= participant.part_type
-      %td= participant.name
-      %td= participant.part_id
-      %td= participant.status
-      %td= participant.active
-      %td= participant.tasks.length
-      %td= l participant.created_at
-      %td= link_to t('global.show'), participant
-      %td= link_to t('global.edit'), edit_participant_path(participant)
-      %td= link_to t('global.delete'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?
-= will_paginate @participants
+#equal-left
+  %table
+    %caption= t 'participant.customer'
+    %thead
+      %tr
+        %th= t 'formtastic.labels.participant.part_type'
+        %th= t 'formtastic.labels.participant.name'
+        %th= t 'formtastic.labels.participant.status'
+        %th= t 'formtastic.labels.participant.active'
+        %th= t 'global.task'
+        %th= t 'global.created_at'
+        %th
+        %th
+        %th
+    - @participants.each do |participant|
+      %tr
+        %td= participant.part_type
+        %td= participant.name
+        %td= participant.status
+        %td= participant.active
+        %td= participant.tasks.length
+        %td= l participant.created_at
+        %td= link_to t('global.show'), participant
+        %td= link_to t('global.edit'), edit_participant_path(participant)
+        %td= link_to t('global.delete'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?
+  = will_paginate @participants
+
+#equal-right
+  %table
+    %caption= t 'participant.shop'
+    %thead
+      %tr
+        %th= t 'formtastic.labels.participant.part_type'
+        %th= t 'formtastic.labels.participant.name'
+        %th= t 'formtastic.labels.participant.status'
+        %th= t 'formtastic.labels.participant.active'
+        %th= t 'global.task'
+        %th= t 'global.created_at'
+        %th
+        %th
+        %th
+    - @shops.each do |participant|
+      %tr
+        %td= participant.part_type
+        %td= participant.name
+        %td= participant.status
+        %td= participant.active
+        %td= Task.where(:shop => participant.name).length
+        %td= l participant.created_at, :format => :short
+        %td= link_to t('global.show'), participant
+        %td= link_to t('global.edit'), edit_participant_path(participant)
+        %td= link_to t('global.delete'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?
+  = will_paginate @shops

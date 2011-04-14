@@ -5,6 +5,9 @@
     = f.input :description
     - if ['unpublished', 'published'].include? @task.status
       = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
+    %li
+      = label_tag t('formtastic.labels.task.shop')
+      = current_user.active_shop.name
     = f.input :link
     = f.input :price
     = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}

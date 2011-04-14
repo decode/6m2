@@ -7,8 +7,9 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.xml
   def index
-    @participants = current_user.participants.where("role_type = 'customer'".order("active DESC").paginate(:page => params[:page], :per_page => 10)
-    @shops = current_user.participants.where("role_type = 'shop'".order("active DESC").paginate(:page => params[:page], :per_page => 10)
+    @participants = current_user.participants.where("role_type = 'customer'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
+    @shops = current_user.participants.where("role_type = 'shop'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @participants }
@@ -47,7 +48,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     @participant.user = current_user
-    if current_user.active_participant.nil? 
+    if (@participant.role_type == 'shop' and current_user.active_shop.nil?) or (@participant.role_type == 'customer' and current_user.active_participant.nil?)
       @participant.active = true 
     else
       @participant.make_active if params[:participant][:active] == '1'
@@ -74,7 +75,7 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
-        format.html { redirect_to(@participant, :notice => 'Participant was successfully updated.') }
+        format.html { redirect_to(@participant, :notice => t('global.operate_success')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

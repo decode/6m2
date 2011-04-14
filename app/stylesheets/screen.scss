@@ -108,6 +108,12 @@ body {
   .error {
     background-color: red;
   }
+  #equal-left {
+    @include column(12);
+  }
+  #equal-right {
+    @include column(12, ture);
+  }
 }
 form {
   @include blueprint-form; }

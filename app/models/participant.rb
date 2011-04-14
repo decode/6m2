@@ -3,7 +3,7 @@ class Participant < ActiveRecord::Base
   has_many :tasks
 
   def make_active
-    other = self.user.participants.where(:active => true).first
+    other = self.user.participants.where(:role_type => self.role_type, :active => true).first
     if other
       other.active = false
       other.save

@@ -20,6 +20,11 @@
     %b=t 'global.status'
     = @task.status
 
+  - if current_user or manager? or admin?
+    %p
+      %b=t 'participant.shop' 
+      = @task.shop
+
   %p
     %b=t 'global.links' 
     = @task.link

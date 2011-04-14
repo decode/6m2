@@ -246,6 +246,8 @@ en:
     taobao: "Taobao"
     paipai: "PaiPai"
     youa: "Youa"
+    shop: "Shop"
+    customer: "Customer"
 
   task:
     problem: "Problem"
@@ -278,6 +280,7 @@ en:
     total_task: "Total tasks"
     total_todo: "Total todo works"
     not_enough_point: "Not enough point or money"
+    not_bind_shop: "Not bind shop or adtive shop"
     point: "Point"
     can_not_delete: "can not delete this task"
 
@@ -418,6 +421,7 @@ en:
         takeover_time: "Takeover Time"
         finished_time: "Finished Time"
         confirmed_time: "Confirmed Time"
+        shop: "Shop Name"
       user:
         role_objects: "User Roles"
         im: "IM"
@@ -455,11 +459,13 @@ en:
         active: "Active"
         part_id: "Account"
         part_type: "Type"
+        role_type: "Role Type"
       message:
         title: "Title"
         content: "Content"
         status: "Status"
         prioirty: "Priority"
+        msg_type: "Message Type"
     hints:
       task:
         title: "Write a title for you task."

@@ -48,10 +48,16 @@ class TasksController < ApplicationController
     @task.avoid_day = 7
     #@task.task_level = 0
     @task.real_level = 0 
+    @task.shop = current_user.active_shop.name if current_user.active_shop
 
     respond_to do |format|
-      if current_user.account_credit <= 0 and current_user.account_money <= 0
-        format.html { redirect_to(:back, :notice => t('task.not_enough_point')) }
+      if current_user.active_shop.nil? or (current_user.account_credit <= 0 and current_user.account_money <= 0)
+        if current_user.active_shop.nil?
+          notice = t('task.not_bind_shop') 
+        else
+          notice = t('task.not_enough_point')
+        end
+        format.html { redirect_to(:back, :notice => notice) }
         format.xml
       else
         format.html # new.html.erb
@@ -114,6 +120,8 @@ class TasksController < ApplicationController
 
       # 计算任务点
       @task.point = @task.free_task? ? 0 : caculate_point(@task)
+      # 绑定店铺
+      @task.shop = current_user.active_shop.name
 
       @task.published_time = Time.now
       isPass = true

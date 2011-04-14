@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
   create_table "messages", :force => true do |t|
     t.string   "title"
     t.string   "content"
+    t.string   "msg_type"
     t.integer  "priority"
     t.string   "status"
     t.integer  "user_id"
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.string   "name"
     t.string   "part_id"
     t.string   "part_type"
+    t.string   "role_type"
     t.string   "url"
     t.string   "status"
     t.integer  "score"
@@ -151,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.string   "title"
     t.string   "task_type"
     t.string   "description"
+    t.string   "shop"
     t.string   "link"
     t.float    "price"
     t.float    "point"
@@ -247,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.float    "payment_money",                       :default => 0.0
     t.float    "score",                               :default => 0.0
     t.string   "status"
+    t.string   "operate_password"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

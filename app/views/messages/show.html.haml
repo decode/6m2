@@ -5,7 +5,10 @@
 
 %p
   %b= 'From'
-  = @message.user
+  = @message.user.username
+%p
+  %b= t 'formtastic.labels.message.msg_type'
+  = @message.msg_type
 %p
   %b= t 'formtastic.labels.message.title'
   = @message.title
