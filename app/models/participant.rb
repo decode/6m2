@@ -3,6 +3,8 @@ class Participant < ActiveRecord::Base
   has_many :tasks
 
   validates_presence_of :name, :part_id, :part_type, :role_type, :url
+  validates_uniqueness_of :name, :url
+  validates_length_of :name, :within => 6..40
   validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   def make_active
