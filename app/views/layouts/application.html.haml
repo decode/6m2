@@ -104,10 +104,11 @@
                   %hr
                   = link_to t('site.issue'), issues_path
                   %hr
-                  = link_to t('notice.new_notice'), new_notice_url if admin?
                   - if admin?
-                    = link_to t('site.setting'), '/s/setting'
+                    = link_to t('notice.new_notice'), new_notice_url if admin?
                     = link_to t('system.message'), '/s/message'
+                    %hr
+                    = link_to t('site.setting'), '/s/setting'
 
             - if user? or guest?
               %li

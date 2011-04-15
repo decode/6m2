@@ -216,7 +216,7 @@ class AccountController < ApplicationController
 
   # 设置操作码
   def operate_password
-    if current_user.has_role? 'admin'
+    if params[:id] and current_user.has_role? 'admin'
       @user = User.find(params[:id])
     else
       @user = current_user

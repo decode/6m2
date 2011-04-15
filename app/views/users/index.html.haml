@@ -36,6 +36,7 @@
           = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
           = link_to t('account.role'), :controller => 'account', :action => 'role', :id => user
           = link_to t('account.score'), :controller => 'account', :action => 'score', :id => user
+          = link_to t('formtastic.labels.user.operate_password'), :controller => 'account', :action => 'operate_password', :id => user
       %td
         = link_to t('account.confirm'), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
         = link_to t('global.show'), user

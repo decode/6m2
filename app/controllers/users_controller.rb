@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     log_str = t('global.modify') + t('site.user_info')
     isPass = true
     if session[:user_edit_mode] == 'code'
-      isPass = false if !@user.operate_password.nil? and params[:old_password] != @user.operate_password
+      isPass = false if !@user.operate_password.nil? and (params[:old_password] != @user.operate_password or current_user.has_role? 'admin')
       log_str = t('global.modify') + t('site.operate_password')
     end
     respond_to do |format|
