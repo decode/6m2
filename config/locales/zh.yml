@@ -26,6 +26,7 @@ zh:
     reply: "回复"
     create: "创建"
     delete: "删除"
+    delete_all: "全部删除"
     description: "描述"
     before: "前"
     after: "后"
@@ -49,6 +50,7 @@ zh:
     yuan: "元"
     task: "任务数"
     modify: "修改"
+    system: "系统"
 
   system:
     password_error: "密码错误"
@@ -99,6 +101,7 @@ zh:
     my_cash: "我的提现任务"
     my_account: "我的帐户"
     my_transport: "我的运单号"
+    my_messages: "我的消息"
     my_participants: "用户帐号"
     issue: "问题中心"
     setting: "平台设置"
@@ -273,7 +276,7 @@ zh:
     publish: "发布"
     create_success: "任务创建成功"
     confirm_success: "确认任务完成"
-    can_not_do: "不能接手自己的任务或者未满足任务条件"
+    can_not_do: "未绑定买号或者不满足任务条件"
     not_type: "不是包含的任务类型"
     not_enough_point: "发布点不足"
     no_price: "价格不能为空"
@@ -291,6 +294,14 @@ zh:
     not_bind_shop: "没有绑定店铺,无法创建任务"
     point: "发布点"
     can_not_delete: "无法删除该任务"
+    error_self: "不能接手自己的任务"
+    error_buyer: "未绑定买号"
+    error_level: "没有权限或用户级别太低"
+    error_avoidday: "发任务方限制天数内不能接任务"
+    error_day: "每个买号每日最多接手6个任务"
+    error_month: "每个买号每周最多接手35个任务"
+    error_sameshop: "同一买号不能在一个自然月内接同一发布人同一网店任务超过六个"
+
 
   transport:
     unused: "未使用"
@@ -378,11 +389,12 @@ zh:
     make_unread: "未读"
     total_message: "有%{total}条新的消息,请注意查看"
     task_takeover: "任务 %{task} 己被接手,请关注"
-    task_takeover_content: "任务 %{task} 己被接手,<br>任务链接 http://www.boat166.com/message/%{link}"
+    task_takeover_content: "任务 %{task} 己被接手,<a href='/tasks/%{link}'>任务链接</a>"
     task_finish: "任务 %{task} 己完成"
-    task_finish_content: "任务 %{task} 己完成,<br>任务链接 http://www.boat166.com/message/%{link}"
+    task_finish_content: "任务 %{task} 己完成,<a href='/tasks/%{link}'>任务链接</a>"
     task_confirm: "任务 %{task} 己确认"
-    task_confirm_content: "任务 %{task} 己确认,<br>任务链接 http://www.boat166.com/message/%{link}"
+    task_confirm_content: "任务 %{task} 己确认,<a href='/tasks/%{link}'>任务链接</a>"
+    from: "消息来源"
 
   home: 
     title1: "服务"

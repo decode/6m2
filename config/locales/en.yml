@@ -19,6 +19,7 @@ en:
     reply: "Reply"
     create: "Create"
     delete: "Delete"
+    delete_all: "Delete All"
     description: "Description"
     before: " before"
     after: " after"
@@ -42,6 +43,7 @@ en:
     yuan: "RMB"
     task: "Task"
     modify: "Modify"
+    system: "System"
 
   system:
     password_error: "Wrong Password!"
@@ -93,6 +95,7 @@ en:
     my_account: "My account"
     my_transport: "My transport id"
     my_participants: "My Participants"
+    my_messages: "My Messages"
     issue: "Issue"
     setting: "Setting"
     manage_center: "Manage Center"
@@ -283,6 +286,13 @@ en:
     not_bind_shop: "Not bind shop or adtive shop"
     point: "Point"
     can_not_delete: "can not delete this task"
+    error_self: "Can not take yourself's task"
+    error_buyer: "Unbind a buyer account"
+    error_level: "Your account level is below the requirement"
+    error_avoidday: "Can't take task in setting days"
+    error_day: "Every day can take only 6 tasks"
+    error_month: "Every month can take only 35 tasks"
+    error_sameshop: "Buyer can not take more than 6 tasks at the same shop in one month"
 
   transport:
     unused: "Unused"
@@ -375,6 +385,7 @@ en:
     task_finish_content: "Task %{task} has been finish,<br>link: http://www.boat166.com/message/%{link}"
     task_confirm: "Task t%{task} has confirmed"
     task_confirm_content: "Task %{task} has been confirmed,<br>link: http://www.boat166.com/message/%{link}"
+    from: "From"
 
   devise:
     no_reply: "Don't reply this mail"

@@ -86,7 +86,7 @@
                     = link_to t('site.my_participants'), user_participants_url(current_user)
                     = link_to t('site.operate_password'), :controller => 'account', :action => 'operate_password'
                     %hr
-                    = link_to t('system.message'), messages_path
+                    = link_to t('site.my_messages'), :controller => 'account', :action => 'message'
 
 
             - if manager? or admin?
@@ -141,13 +141,13 @@
 
       - if user_signed_in?
         #message
-          - messages = current_user.received_messages.where(:status => 'unread')
+          - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
           - if messages.length > 0
             #roundshape
               - if messages.length == 1
-                = link_to messages.first.title, messages.first
+                = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
               - else
-                = link_to t('message.total_message', :total => messages.length), user_messages_path(current_user)
+                = link_to t('message.total_message', :total => messages.length), '/m/message'
 
       #content
         = yield

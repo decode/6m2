@@ -4,20 +4,20 @@
     %tr
       %th= t 'formtastic.labels.message.title'
       %th= t 'formtastic.labels.message.content'
+      %th= t 'formtastic.labels.message.msg_type'
       %th= t 'formtastic.labels.message.priority'
       %th= t 'formtastic.labels.message.status'
-      %th
       %th
   - @messages.each do |message|
     %tr
       %td= message.title
       %td= message.content
       %td= message.priority
+      %td= message.msg_type
       %td= message.status
       %td
         = link_to t('message.make_read'), :controller => 'board', :action => 'make_read', :id => message if message.unread?
-        = link_to t('message.make_unread'), :controller => 'board', :action => 'make_unread', :id => message if message.read?
-      %td
+        =# link_to t('message.make_unread'), :controller => 'board', :action => 'make_unread', :id => message if message.read?
         = link_to t('global.show'), message
         = link_to t('global.delete'), message, :confirm => t('site.are_you_sure'), :method => :delete
 

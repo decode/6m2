@@ -45,7 +45,7 @@ class TasksController < ApplicationController
     @task.worker_level = 0
     @task.task_day = 1
     @task.extra_word = false
-    @task.avoid_day = 7
+    @task.avoid_day = 0
     #@task.task_level = 0
     @task.real_level = 0 
     @task.shop = current_user.active_shop.name if current_user.active_shop
@@ -112,7 +112,6 @@ class TasksController < ApplicationController
         tran_type = params[:task][:tran_type]
         tran_id = params[:task][:tran_id]
         tran = Transport.where(:tran_type => tran_type, :tran_id => tran_id).first
-        #tran = Transport.create! :tran_type => tran_type, :tran_id => tran_id, :source => 'user', :status => 'used'
         @task.tran_type = tran_type
         @task.tran_id = tran_id
         @task.transport = tran if tran

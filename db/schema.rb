@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
   create_table "message_boxes", :force => true do |t|
     t.integer  "message_id"
     t.integer  "user_id"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

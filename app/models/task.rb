@@ -6,8 +6,8 @@ class Task < ActiveRecord::Base
   belongs_to :participant
 
   validates_presence_of :title, :link, :price, :worker_level, :task_day, :avoid_day#, :task_level
-  validates_numericality_of :price, :task_day, :avoid_day, :greater_than => 0
-  validates_numericality_of :worker_level, :greater_than_or_equal_to => 0
+  validates_numericality_of :price, :task_day, :greater_than => 0
+  validates_numericality_of :avoid_day, :worker_level, :greater_than_or_equal_to => 0
   #validates_numericality_of :task_level
   validates_inclusion_of :task_type, :in => %w(taobao paipai youa virtual cash), :message => "%{value} is not a valid type"
   #validates_format_of :link, :with => /http[s]:\/\/*.*/, :message => "http://xxxx.xxx or https://xxxx.xxx"
@@ -114,20 +114,54 @@ class Task < ActiveRecord::Base
   end
   
   def can_do?(user)
+    error = ''
+    # 不能接自己创建的任务
+    c = (self.user != user)
+    unless c
+      error = error + t('task.error_self') 
+      return [false,error]
+    end
     # 小号必须定义
-    return false if user.active_participant.nil?
+    c0 = !user.active_participant.nil?
+    unless c0
+      error = error + ' ' + I18n.t('task.error_buyer') 
+      return [false,error]
+    end
     # manager权限或不低于指定级别
     c1 = user.has_role?('manager') or user.level >= self.worker_level
+    unless c1
+      error = error + ' ' + I18n.t('task.error_level') 
+      return [false,error]
+    end
     # 发任务方限制天数内不能接任务
     c2 = user.todos.where(:finished_time => (self.created_at-self.avoid_day.day) .. self.created_at, :user_id => self.user.id).length == 0
+    unless c2
+      error = error + ' ' + I18n.t('task.error_avoidday') 
+      return [false,error]
+    end
     # 每个买号每日最多接手6个任务
     c3 = user.active_participant.tasks.where(:takeover_time => (Time.now-1.days)..Time.now, :participant_id => user.active_participant.id).length <= 6
+    unless c3
+      error = error + ' ' + I18n.t('task.error_day') 
+      return [false,error]
+    end
     # 每周最多接手35个任务
     c4 = user.active_participant.tasks.where(:takeover_time => (Time.now-7.days)..Time.now, :participant_id => user.active_participant.id).length <= 35 
+    unless c4
+      error = error + ' ' +  I18n.t('task.error_month') 
+      return [false,error]
+    end
     # 同一买号不能在一个自然月内接同一发布人同一网店任务超过六个
     c5 = user.active_participant.tasks.where(:takeover_time => (Time.now-30.days)..Time.now, :participant_id => user.active_participant.id, :user_id => self.user.id).length <= 6
+    unless c5
+      error = error + ' ' + I18n.t('task.error_sameshop') 
+      return [false,error]
+    end
 
-    return (c1 and c2 and c3 and c4 and c5) ? true : false
+    #logger.info("C1:" + c1.to_s + " C2:" + c2.to_s + " C3:" + c3.to_s + " C4:" + c4.to_s + " C5:" + c5.to_s)
+
+    #return (c0 and c1 and c2 and c3 and c4 and c5) ? [true, ''] : [false, error]
+    return [true, '']
   end
 
 end

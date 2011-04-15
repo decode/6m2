@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message do
       allow :user, :guest
     end
     actions :delete_charge do
@@ -163,7 +163,7 @@ class AccountController < ApplicationController
       @user = current_user
     end
     @participants = @user.participants.where("role_type = 'customer'").order("active DESC").paginate(:page=>params[:page], :per_page=>10)
-    @shops = current_user.participants.where("role_type = 'shop'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
+    @shops = @user.participants.where("role_type = 'shop'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def parts
@@ -173,6 +173,10 @@ class AccountController < ApplicationController
   def transport_list
     @user = User.find(params[:id])
     @transports = @user.transports.paginate(:page=>params[:page], :per_page=>15)
+  end
+
+  def message
+    @messageboxes = MessageBox.where(:user_id => current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
   end
   
   # 修改用户的发布点

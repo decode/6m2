@@ -1,11 +1,12 @@
 #roundshape
-  = link_to t('global.edit'), edit_message_path(@message)
-  |
-  \#{link_to t('global.back'), messages_path}
+  - if admin?
+    = link_to t('global.edit'), edit_message_path(@message)
+    |
+  \#{link_to t('global.back'), :back}
 
 %p
-  %b= 'From'
-  = @message.user.username
+  %b= t 'message.from'
+  = @message.user ? @message.user.username : t('global.system')
 %p
   %b= t 'formtastic.labels.message.msg_type'
   = @message.msg_type
@@ -14,7 +15,8 @@
   = @message.title
 %p
   %b= t 'formtastic.labels.message.content'
-  = @message.content
+  %br
+  = raw @message.content
 %p
   %b= t 'formtastic.labels.message.priority'
   = @message.priority

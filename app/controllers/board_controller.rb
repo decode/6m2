@@ -55,17 +55,18 @@ class BoardController < ApplicationController
   
   def do_task
     @task = Task.find(params[:id])
-    if @task.user == current_user or !@task.can_do?(current_user)
-      flash[:error] = t('task.can_not_do')
+    isPass, error = @task.can_do?(current_user)
+    unless isPass
+      flash[:error] = error
     else
       Task.transaction do
         @task.worker = current_user
         @task.participant = current_user.active_participant
         @task.takeover_time = Time.now
 
-        msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :link => @task.id)
-        msg.receivers = @task.user
-        msg.save
+        msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
+        @task.user.received_messages << msg
+        @task.user.save
 
         flash[:notice] = t('task.do_task') if @task.takeover
       end
@@ -78,8 +79,8 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.finished_time = Time.now
       if @task.finish
-        msg = Message.create! :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :link => @task.id)
-        msg.receivers = @task.user
+        msg = Message.create! :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :task => @task.title, :link => @task.id.to_s)
+        msg.receivers << @task.user
         msg.save
         flash[:notice] = t('global.update_success')
       end
@@ -101,8 +102,8 @@ class BoardController < ApplicationController
       gain(task)
       task.confirmed_time = Time.now
       if task.over
-        msg = Message.create! :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :link => task.id)
-        msg.receivers = task.user
+        msg = Message.create! :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
+        msg.receivers << task.worker
         msg.save
         flash[:notice] = t('task.confirm_success')
       end
@@ -213,9 +214,22 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  def view_message
+    mb = MessageBox.where(:user_id => current_user.id, :message_id => params[:id]).first
+    mb.make_read
+    msg = mb.message
+    redirect_to msg
+  end
+
   # 标记消息己读
   def make_read
     msg = Message.find(params[:id])
+    msg.make_read
+    redirect_to :back
+  end
+  
+  def mb_read
+    msg = MessageBox.find(params[:id])
     msg.make_read
     redirect_to :back
   end
@@ -226,6 +240,41 @@ class BoardController < ApplicationController
     msg.make_unread
     redirect_to :back
   end
+
+  def mb_unread
+    msg = MessageBox.find(params[:id])
+    msg.make_unread
+    redirect_to :back
+  end
+
+  def make_delete
+    mb = MessageBox.where(:user_id => current_user.id, :id => params[:id]).first
+    if mb
+      if mb.message.message_boxes.length == 1
+        mb.message.destroy 
+      else
+        mb.destroy
+      end
+      flash[:notice] = t('global.operate_success')
+      redirect_to '/m/message'
+    else
+      flash[:error] = t('global.operate_failed')
+      redirect_to '/m/message'
+    end
+  end
+
+  def mb_delete_all
+    current_user.message_boxes.find_each do |m|
+      if m.message.message_boxes.length == 1
+        m.message.destroy 
+      else
+        m.destroy
+      end
+    end
+    flash[:notice] = t("global.operate_success")
+    redirect_to '/m/message'
+  end
+  
 
   # 发送消息
   def message_to

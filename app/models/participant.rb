@@ -2,6 +2,9 @@ class Participant < ActiveRecord::Base
   belongs_to :user
   has_many :tasks
 
+  validates_presence_of :name, :part_id, :part_type, :role_type, :url
+  validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
+
   def make_active
     other = self.user.participants.where(:role_type => self.role_type, :active => true).first
     if other
