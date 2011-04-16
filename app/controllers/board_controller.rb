@@ -187,6 +187,7 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  # 关闭单号
   def close_transport
     tran = Transport.find(params[:id])
     if tran.close
@@ -197,6 +198,7 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  # 重用单号
   def reuse_transport
     tran = Transport.find(params[:id])
     if tran.reuse
@@ -214,6 +216,7 @@ class BoardController < ApplicationController
     redirect_to :back
   end
 
+  # 查看用户的消息
   def view_message
     mb = MessageBox.where(:user_id => current_user.id, :message_id => params[:id]).first
     mb.make_read
@@ -263,6 +266,7 @@ class BoardController < ApplicationController
     end
   end
 
+  # 删除所有消息
   def mb_delete_all
     current_user.message_boxes.find_each do |m|
       if m.message.message_boxes.length == 1
@@ -275,7 +279,6 @@ class BoardController < ApplicationController
     redirect_to '/m/message'
   end
   
-
   # 发送消息
   def message_to
     session[:message_to] = params[:id]

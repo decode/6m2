@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
   access_control do
-    allow :admin, :manager, :user
+    allow :admin, :manager, :user, :guest
     deny anonymous
   end
 
@@ -53,14 +53,25 @@ class ParticipantsController < ApplicationController
     else
       @participant.make_active if params[:participant][:active] == '1'
     end
+    isFirst = false
+    if current_user.has_role? 'guest' and current_user.active_participant.length == 0
+      isFirst = true
+    end
 
     respond_to do |format|
-      if @participant.save
-        format.html { redirect_to(:back, :notice => t('global.operate_success')) }
-        format.xml  { render :xml => @participant, :status => :created, :location => @participant }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @participant.errors, :status => :unprocessable_entity }
+      Participant.transaction do
+        if @participant.save
+          # 绑定买号以后自动转为user权限
+          if isFirst
+            current_user.has_no_role! 'guest'
+            current_user.has_role! 'user'
+          end
+          format.html { redirect_to(:back, :notice => t('global.operate_success')) }
+          format.xml  { render :xml => @participant, :status => :created, :location => @participant }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @participant.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

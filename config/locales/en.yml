@@ -44,6 +44,7 @@ en:
     task: "Task"
     modify: "Modify"
     system: "System"
+    existed: "This record is existed in database"
 
   system:
     password_error: "Wrong Password!"

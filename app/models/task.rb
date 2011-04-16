@@ -128,9 +128,10 @@ class Task < ActiveRecord::Base
       return [false,error]
     end
     # manager权限或不低于指定级别
-    c1 = user.has_role?('manager') or user.level >= self.worker_level
+    c1 = (user.has_role?('manager') or user.level >= self.worker_level)
     unless c1
       error = error + ' ' + I18n.t('task.error_level') 
+      logger.info("======================#{user.level} #{self.worker_level}============================")
       return [false,error]
     end
     # 发任务方限制天数内不能接任务

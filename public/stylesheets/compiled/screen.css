@@ -334,14 +334,8 @@ body.bp form.inline p {
   padding: 0px 20px;
 }
 
-/* line 164, ../../../app/stylesheets/site.scss */
-.info {
-  background-image: url("info.gif");
-}
-
 /* line 168, ../../../app/stylesheets/site.scss */
 .error {
-  background-image: url("error.gif");
   color: #990000;
 }
 
