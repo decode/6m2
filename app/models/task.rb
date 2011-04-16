@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
   validates_length_of :title, :within => 5..40
   validates_length_of :description, :within => 0..120
 
-  validate :low_point_cannot_make_task
+  #validate :low_point_cannot_make_task
   def low_point_cannot_make_task
     app = ApplicationController.new
     point = app.caculate_point(self)

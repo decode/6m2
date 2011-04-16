@@ -65,7 +65,7 @@ class BoardController < ApplicationController
         @task.takeover_time = Time.now
 
         if @task.takeover
-          msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
+          msg = Message.create :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
           msg.receivers << @task.user
           msg.save
           flash[:notice] = t('task.do_task') 
@@ -82,7 +82,7 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.finished_time = Time.now
       if @task.finish
-        msg = Message.create! :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :task => @task.title, :link => @task.id.to_s)
+        msg = Message.create :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :task => @task.title, :link => @task.id.to_s)
         msg.receivers << @task.user
         msg.save
         flash[:notice] = t('global.update_success')
@@ -105,7 +105,7 @@ class BoardController < ApplicationController
       gain(task)
       task.confirmed_time = Time.now
       if task.over
-        msg = Message.create! :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
+        msg = Message.create :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
         msg.receivers << task.worker
         msg.save
         flash[:notice] = t('task.confirm_success')
