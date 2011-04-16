@@ -68,6 +68,10 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    if @task.can_modify?
+      flash[:error] = I18n.t('task.can_not_modify')
+      redirect_to :back
+    end
     @task = Task.find(params[:id])
   end
 

@@ -1,7 +1,7 @@
 #mainframe
   - if @notices.length > 0
     #roundshape
-      = @notices.last.title if @notices.length > 0
+      = link_to t('site.notice') + ": " + @notices.last.title, @notices.last if @notices.length > 0
   %br
   #desSlideshow1.desSlideshow
     .switchBigPic

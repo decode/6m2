@@ -294,6 +294,7 @@ en:
     error_day: "Every day can take only 6 tasks"
     error_month: "Every month can take only 35 tasks"
     error_sameshop: "Buyer can not take more than 6 tasks at the same shop in one month"
+    can_not_modify: "Task has been taken over, you can not modify"
 
   transport:
     unused: "Unused"

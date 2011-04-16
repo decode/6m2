@@ -303,7 +303,7 @@ zh:
     error_day: "每个买号每日最多接手6个任务"
     error_month: "每个买号每周最多接手35个任务"
     error_sameshop: "同一买号不能在一个自然月内接同一发布人同一网店任务超过六个"
-
+    can_not_modify: "任务己被接手,不能被编辑"
 
   transport:
     unused: "未使用"

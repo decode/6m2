@@ -9,7 +9,7 @@
   - @notices.each do |notice|
     %tr
       %td= notice.title
-      %td= notice.content
+      %td= notice.content[0..20] + '...'
       %td= notice.created_at
       %td
         = link_to t('global.show'), notice

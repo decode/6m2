@@ -64,11 +64,14 @@ class BoardController < ApplicationController
         @task.participant = current_user.active_participant
         @task.takeover_time = Time.now
 
-        msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
-        @task.user.received_messages << msg
-        @task.user.save
-
-        flash[:notice] = t('task.do_task') if @task.takeover
+        if @task.takeover
+          msg = Message.create! :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
+          msg.receivers << @task.user
+          msg.save
+          flash[:notice] = t('task.do_task') 
+        else
+          flash[:error] = t('global.operate_failed') 
+        end
       end
     end
     redirect_to tasks_path
