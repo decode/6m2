@@ -73,7 +73,12 @@ class ApplicationController < ActionController::Base
     logger.info("#{task.worker.username} score:#{lev[task.worker.level]} point:#{task.point}===========================================")
     task.worker.score = task.worker.score + lev[task.worker.level]
     task.worker.account_credit = task.worker.account_credit + task.point
+    user.payment_money = user.payment_money + task.price
+    task.worker.account_money = task.worker.account_money + task.price
     task.worker.save
+    #
+    # 需要添加用户交易记录
+    #
   end
 
   def penalty(issue, user, point=0, money=0)

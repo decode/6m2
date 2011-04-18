@@ -102,9 +102,9 @@ class BoardController < ApplicationController
     task = Task.find(params[:id])
     Task.transaction do
       # 完成任务获得积分
-      gain(task)
       task.confirmed_time = Time.now
       if task.over
+        gain(task)
         msg = Message.create :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
         msg.receivers << task.worker
         msg.save
