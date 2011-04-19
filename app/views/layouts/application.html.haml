@@ -20,7 +20,7 @@
     = stylesheet_link_tag 'scroller'
     = javascript_include_tag 'des'
 
-    = javascript_include_tag 'jcarousellite_1.0.1c4'
+    =# javascript_include_tag 'jcarousellite_1.0.1c4'
     = javascript_include_tag 'news'
     = stylesheet_link_tag 'news'
 
@@ -66,6 +66,11 @@
                   = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
                   = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
                   = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+                  - if guest? or user?
+                    %hr
+                    = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
+                    = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
+                    = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
 
             - if user_signed_in?
               %li
@@ -77,10 +82,6 @@
                     = link_to t('site.my_account'), '/m/index'
                     = link_to t('trade.charge_payment'), '/m/charge'
                     = link_to t('trade.charge_point'), '/m/payment'
-                    %hr
-                    = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
-                    = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
-                    = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
                     %hr
                     = link_to t('site.my_transport'), :controller=>'account', :action=> 'transport_list', :id => current_user
                     = link_to t('site.my_participants'), user_participants_url(current_user)

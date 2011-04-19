@@ -71,6 +71,7 @@ class ApplicationController < ActionController::Base
     return if task.free_task?
     lev = [1, 0.8, 0.8, 0.8, 0.8, 0.8]
     logger.info("#{task.worker.username} score:#{lev[task.worker.level]} point:#{task.point}===========================================")
+    user = task.worker
     task.worker.score = task.worker.score + lev[task.worker.level]
     task.worker.account_credit = task.worker.account_credit + task.point
     user.payment_money = user.payment_money + task.price

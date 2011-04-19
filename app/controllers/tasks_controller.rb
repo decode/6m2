@@ -137,7 +137,7 @@ class TasksController < ApplicationController
           format.html { redirect_to(@task, :notice => t('task.create_success')) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
-          format.html { redirect_to(:back, :notice => t('task.not_enough_point')) }
+          format.html { redirect_to(:back, :notice => t('global.operate_failed')) }
           format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
         end
      end

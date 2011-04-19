@@ -63,6 +63,9 @@ class Task < ActiveRecord::Base
     end
     
     # =================================
+    event :pay do
+      transition :running => :cash
+    end
     # 卖方发货
     event :send_good do
       transition :running => :transport
@@ -79,8 +82,9 @@ class Task < ActiveRecord::Base
     
     # 买方好评
     event :finish do
-      transition :money => :finished
-      transition :running => :finished
+      #transition :money => :finished
+      transition :cash => :finished
+      #transition :running => :finished
     end
     # 卖方结束该流程
     event :over do
@@ -95,14 +99,20 @@ class Task < ActiveRecord::Base
     state :unpublished, :value => 'unpublished'
     state :published, :value => 'published'
     state :running, :value => 'running'
-    state :transport, :value => 'transport'
-    state :received, :value => 'received'
-    state :money, :value => 'money'
+    state :cash, :value => 'cash'
+    #state :transport, :value => 'transport'
+    #state :received, :value => 'received'
+    #state :money, :value => 'money'
     state :pending, :value => 'pending'
     state :abandon, :value => 'abandon'
     state :finished, :value => 'finished'
     state :problem, :value => 'problem'
     state :end, :value => 'end'
+  end
+
+  def local_status
+    lang = {'unpublished' => I18n.t('task.unpublished'), 'published' => I18n.t('task.published'), 'running' => I18n.t('task.running'), 'cash' => I18n.t('task.payed'), 'finished' => I18n.t('task.finished'), 'problem' => I18n.t('task.problem'), 'end' => I18n.t('task.end')}
+    return lang[self.status]
   end
 
   def can_modify?

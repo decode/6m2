@@ -2,7 +2,7 @@ class CreateNotices < ActiveRecord::Migration
   def self.up
     create_table :notices do |t|
       t.string :title
-      t.string :content
+      t.text :content
 
       t.timestamps
     end

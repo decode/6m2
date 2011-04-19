@@ -77,6 +77,20 @@ class BoardController < ApplicationController
     redirect_to tasks_path
   end
 
+  def pay_task
+    @task = Task.find(params[:id])
+    Task.transaction do
+      @task.pay_time = Time.now
+      if @task.running? and @task.pay
+        msg = Message.create :title => t('message.task_pay', :task => @task.title), :content => t('message.task_pay_content', :task => @task.title, :link => @task.id.to_s)
+        msg.receivers << @task.user
+        msg.save
+        flash[:notice] = t('global.update_success')
+      end
+    end
+    redirect_to tasks_path
+  end
+
   def finish_task
     @task = Task.find(params[:id])
     Task.transaction do

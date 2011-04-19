@@ -16,6 +16,7 @@ class CreateTasks < ActiveRecord::Migration
       #时间标记 发布->接手->完成->确认
       t.datetime :published_time
       t.datetime :takeover_time
+      t.datetime :pay_time
       t.datetime :finished_time
       t.datetime :confirmed_time
 

@@ -26,7 +26,7 @@
         %td= task.price
         %td= link_to task.user.username, task.user unless task.user.nil?
         %td= link_to task.worker.username, task.worker unless task.worker.nil?
-        %td= task.status
+        %td= task.local_status
         %td= task.worker_level
         %td= task.task_day
         %td= task.extra_word
@@ -40,6 +40,7 @@
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
             = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
           - if task.user == current_user or task.worker == current_user
@@ -83,6 +84,7 @@
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
             = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
           - if task.user == current_user or task.worker == current_user
