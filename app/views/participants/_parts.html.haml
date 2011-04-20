@@ -19,7 +19,7 @@
         %td= participant.status
         %td= participant.active
         %td= participant.tasks.length
-        %td= l participant.created_at
+        %td= l participant.created_at, :format => :short
         %td= link_to t('global.show'), participant
         %td= link_to t('global.edit'), edit_participant_path(participant)
         %td= link_to t('global.delete'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?

@@ -9,11 +9,11 @@
   - @notices.each do |notice|
     %tr
       %td= notice.title
-      %td= notice.content[0..20] + '...'
-      %td= notice.created_at
+      %td= notice.content[0..30] + '...'
+      %td= l notice.created_at, :format => :short
       %td
         = link_to t('global.show'), notice
         - if admin? or manager?
           = link_to t('global.edit'), edit_notice_path(notice)
-          = link_to t('global.delete'), notice, :confirm => 'Are you sure?', :method => :delete
+          = link_to t('global.delete'), notice, :confirm => t('site.are_you_sure'), :method => :delete
 %br/

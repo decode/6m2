@@ -80,7 +80,7 @@ class TasksController < ApplicationController
   def create
     isPass = false
     price = params[:task][:price].to_f
-    if price >= 0 and price <= current_user.account_money and (current_user.operate_password.nil? or params[:operate_password] == current_user.operate_password)
+    if price > 0 and price <= current_user.account_money and (current_user.operate_password.nil? or params[:operate_password] == current_user.operate_password)
       @task = Task.new(params[:task])
       if @task.user.nil?
         @task.user = current_user
