@@ -1,4 +1,6 @@
 Temp::Application.routes.draw do
+  resources :articles
+
   resources :messages
 
   resources :participants

@@ -506,6 +506,10 @@ zh:
         status: "状态"
         priority: "优先级"
         msg_type: "消息类型"
+      article:
+        title: "标题"
+        content: "内容"
+        article_type: "类型"
     hints:
       task:
         title: "为任务写一个标题,必须大于5个字"

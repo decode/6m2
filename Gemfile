@@ -32,6 +32,7 @@ gem "fancy-buttons"
 
 gem 'rails3-jquery-autocomplete'
 
+gem 'tiny_mce'
 #gem "meta_where"
 #gem "meta_search"
 

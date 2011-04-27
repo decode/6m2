@@ -1,0 +1,20 @@
+#roundshape
+  = link_to t('global.create'), new_article_path
+
+%table
+  %tr
+    %th= t 'formtastic.labels.article.title'
+    %th= t 'formtastic.labels.article.content'
+    %th= t 'formtastic.labels.article.article_type'
+    %th
+    %th
+    %th
+  - @articles.each do |article|
+    %tr
+      %td= article.title
+      %td= article.content
+      %td= article.article_type
+      %td= link_to t('global.show'), article
+      %td= link_to t('global.edit'), edit_article_path(article)
+      %td= link_to t('global.delete'), article, :confirm => t('site.are_you_sure'), :method => :delete
+%br/

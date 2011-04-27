@@ -1,0 +1,14 @@
+#roundshape
+  = link_to t('global.edit'), edit_article_path(@article)
+  |
+  \#{link_to t('global.back'), articles_path}
+
+%p
+  %b= t 'formtastic.labels.article.title'
+  = @article.title
+%p
+  %b= t 'formtastic.labels.article.content'
+  = @article.content
+%p
+  %b= t 'formtastic.labels.article.article_type'
+  = @article.article_type

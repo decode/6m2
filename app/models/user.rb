@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :message_boxes
   has_many :received_messages, :through => :message_boxes, :source => :message
 
+  has_many :articles
+
   state_machine :status, :initial => :normal do
     event :suspend do
       transition :normal => :forbid

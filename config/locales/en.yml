@@ -483,6 +483,10 @@ en:
         status: "Status"
         prioirty: "Priority"
         msg_type: "Message Type"
+      article:
+        title: "Title"
+        content: "Content"
+        article_type: "Type"
     hints:
       task:
         title: "Write a title for you task."
