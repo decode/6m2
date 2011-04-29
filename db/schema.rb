@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -188,7 +188,6 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
     t.integer  "supervisor_id"
     t.integer  "participant_id"
     t.integer  "transport_id"
-    t.datetime "pay_time"
   end
 
   create_table "trades", :force => true do |t|
