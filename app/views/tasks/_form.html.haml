@@ -1,10 +1,14 @@
 - semantic_form_for @task do |f| 
   - f.inputs do
     = f.input :title
-    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '虚拟任务' => 'virtual', '提现'=>'cash'}
-    = f.input :description
-    - if ['unpublished', 'published'].include? @task.status
-      = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
+    %li
+      = label_tag t('task.virtual_task')
+      = check_box_tag "virtual"
+    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}
+    =# f.input :description
+    /
+      - if ['unpublished', 'published'].include? @task.status
+        = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
     %li
       = label_tag t('formtastic.labels.task.shop')
       = current_user.active_shop.name
@@ -20,7 +24,7 @@
     = f.input :task_day, :as => :select, :collection => (1..4).to_a
     = f.input :avoid_day, :as => :select, :collection => (0..10).to_a
     =# f.input :task_level, :as => :select, :collection => (0..current_user.level).to_a
-    = f.input :extra_word
+    =# f.input :extra_word
     = f.input :custom_judge
     = f.input :custom_judge_content, :as => :text
     %hr

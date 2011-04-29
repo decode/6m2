@@ -1,14 +1,17 @@
 #roundshape
-  = link_to t('global.edit'), edit_article_path(@article)
-  |
+  - if admin?
+    = link_to t('global.edit'), edit_article_path(@article)
+    |
   \#{link_to t('global.back'), articles_path}
 
 %p
-  %b= t 'formtastic.labels.article.title'
+  /%b= t 'formtastic.labels.article.title'
   = @article.title
+%hr
 %p
-  %b= t 'formtastic.labels.article.content'
-  = @article.content
-%p
-  %b= t 'formtastic.labels.article.article_type'
-  = @article.article_type
+  /%b= t 'formtastic.labels.article.content'
+  = raw @article.content
+/
+  %p
+    %b= t 'formtastic.labels.article.article_type'
+    = @article.article_type

@@ -233,6 +233,7 @@ en:
     charge: "Charge"
     change: "Change"
     charge_amount: "Charge Amount"
+    account_money: "Account Money"
     point: "Point"
     role: "Role"
     score: "Score"
@@ -297,6 +298,8 @@ en:
     error_month: "Every month can take only 35 tasks"
     error_sameshop: "Buyer can not take more than 6 tasks at the same shop in one month"
     can_not_modify: "Task has been taken over, you can not modify"
+    virtual_task: "Virtual Task"
+    virtual: "Virtual"
 
   transport:
     unused: "Unused"
@@ -372,6 +375,9 @@ en:
   notice:
     new_notice: "New Notice"
     list_notice: "List Notice"
+
+  article:
+    new_article: "New Article"
 
   service:
     manager: "Customer Service"

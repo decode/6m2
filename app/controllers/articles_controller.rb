@@ -1,4 +1,16 @@
 class ArticlesController < ApplicationController
+  access_control do
+    allow :admin, :manager, :user
+    allow :user, :except => [:new, :edit, :create, :update, :destroy]
+    deny anonymous
+  end
+
+  uses_tiny_mce :options => {
+                              :theme => 'advanced',
+                              :theme_advanced_resizing => true,
+                              :theme_advanced_resize_horizontal => false,
+                              :plugins => %w{ table fullscreen }
+                            }
   # GET /articles
   # GET /articles.xml
   def index

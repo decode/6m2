@@ -84,14 +84,17 @@ class AccountController < ApplicationController
           if trade.trade_type == 'charge'
             user.account_money = user.account_money + trade.price.to_f
             # 如果是guest用户,自动扣去发布点所需的金额,并增加相应的发布点
+            # update: 根据需求取消
             if user.has_role? 'guest'
-              rest = user.account_money - (Setting.first.point_ratio * Setting.first.init_required_point)
-              if rest >= 0
-                user.account_money = rest
-                user.account_credit = user.account_credit + Setting.first.init_required_point #fix if user has been assign credit before confirm
-                user.has_role! :user
-                user.has_no_role! :guest
-              end
+              #rest = user.account_money - (Setting.first.point_ratio * Setting.first.init_required_point)
+              #if rest >= 0
+              #  user.account_money = rest
+              #  user.account_credit = user.account_credit + Setting.first.init_required_point #fix if user has been assign credit before confirm
+              #  user.has_role! :user
+              #  user.has_no_role! :guest
+              #end
+              user.has_role! :user
+              user.has_no_role! :guest
             end
             Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve')
             user.save!

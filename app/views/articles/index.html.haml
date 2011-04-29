@@ -1,20 +1,31 @@
-#roundshape
-  = link_to t('global.create'), new_article_path
 
-%table
-  %tr
-    %th= t 'formtastic.labels.article.title'
-    %th= t 'formtastic.labels.article.content'
-    %th= t 'formtastic.labels.article.article_type'
-    %th
-    %th
-    %th
-  - @articles.each do |article|
+- if admin?
+  #roundshape
+    = link_to t('global.create'), new_article_path
+  %table
     %tr
-      %td= article.title
-      %td= article.content
-      %td= article.article_type
-      %td= link_to t('global.show'), article
-      %td= link_to t('global.edit'), edit_article_path(article)
-      %td= link_to t('global.delete'), article, :confirm => t('site.are_you_sure'), :method => :delete
-%br/
+      %th= t 'formtastic.labels.article.title'
+      %th= t 'formtastic.labels.article.content'
+      %th= t 'formtastic.labels.article.article_type'
+      %th
+      %th
+      %th
+      %th
+    - @articles.each do |article|
+      %tr
+        %td= article.title
+        %td= (article.content.length > 60) ? article.content[0..60] + "..." : article.content
+        %td= article.article_type
+        %td= article.user.username if article.user
+        %td= link_to t('global.show'), article
+        %td= link_to t('global.edit'), edit_article_path(article)
+        %td= link_to t('global.delete'), article, :confirm => t('site.are_you_sure'), :method => :delete
+  %br/
+
+- else
+  %table
+    - @articles.each do |article|
+      %tr
+        %td= l article.created_at, :format => :short
+        %td= link_to article.title, article
+      

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412083416) do
+ActiveRecord::Schema.define(:version => 20110427140432) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.string   "description"
     t.float    "amount"
     t.string   "log_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "article_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -179,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20110412083416) do
     t.integer  "supervisor_id"
     t.integer  "participant_id"
     t.integer  "transport_id"
+    t.datetime "pay_time"
   end
 
   create_table "trades", :force => true do |t|

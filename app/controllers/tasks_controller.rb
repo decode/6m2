@@ -9,12 +9,12 @@ class TasksController < ApplicationController
   def index
     session[:view_task] = 'normal'
     if params[:user_id]
-      @tasks = Task.where("user_id = ?", params[:user_id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+      @tasks = Task.where("user_id = ?", params[:user_id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
     else
       if current_user.has_role? 'admin' or current_user.has_role? 'manager'
-        @tasks = Task.where("task_type in (?) and status = 'published'",['taobao', 'youa', 'paipai', 'virtual']).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
+        @tasks = Task.where("task_type in (?) and status = 'published'",['taobao', 'youa', 'paipai', 'v_taobao', 'v_youa', 'v_paipai']).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       else
-        @tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?",['taobao', 'youa', 'paipai', 'virtual'], current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
+        @tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?",['taobao', 'youa', 'paipai', 'v_taobao', 'v_youa', 'v_paipai'], current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       end
     end
 
@@ -29,9 +29,15 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @task }
+    if @task.can_view?(current_user)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @task }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to(:back, :notice => t('site.access_denied')) }
+      end
     end
   end
 
@@ -68,11 +74,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    if @task.can_modify?
+    @task = Task.find(params[:id])
+    unless @task.can_modify?
       flash[:error] = I18n.t('task.can_not_modify')
       redirect_to :back
     end
-    @task = Task.find(params[:id])
   end
 
   # POST /tasks
@@ -86,15 +92,21 @@ class TasksController < ApplicationController
         @task.user = current_user
       end
       
-      if params[:task][:published] == 'true'
-        @task.publish
-      end
-      if !["taobao", "paipai", "youa", "virtual", "cash"].include?(@task.task_type)
+      logger.info("============ Task Status ==========" + @task.status)
+      #if params[:task][:published] == 'true'
+      #@task.publish
+      #end
+      
+      if !["taobao", "paipai", "youa", "cash"].include?(@task.task_type)
         @task.task_type = "taobao"
+      end
+      if params[:virtual] == '1' and @task.task_type != "cash"
+        @task.task_type = "v_" + @task.task_type
       end
 
       # 附加评价
-      if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
+      #if params[:task][:extra_word] == 'true' and params[:task][:custom_judge] == 'true'
+      if params[:task][:custom_judge] == 'true'
         # bug?? extra_word not set
         @task.custom_judge = true
         @task.custom_judge_content = params[:task][:custom_judge_content]
@@ -122,7 +134,7 @@ class TasksController < ApplicationController
       end
 
       # 计算任务点
-      @task.point = @task.free_task? ? 0 : caculate_point(@task)
+      #@task.point = caculate_point(@task)
       # 绑定店铺
       @task.shop = current_user.active_shop.name
 
@@ -132,7 +144,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       Task.transaction do 
-        if isPass and @task.save
+        if isPass and @task.publish
           spend(@task)
           format.html { redirect_to(@task, :notice => t('task.create_success')) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
@@ -148,16 +160,23 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
-    if !["taobao", "paipai", "ebay", "virtual", "cash"].include?(params[:task][:task_type])
+    if !["taobao", "paipai", "ebay", "v_taobao", "v_paipai", "v_youa", "cash"].include?(params[:task][:task_type])
       params[:task][:task_type] = "taobao"
     end
 
+    isPass = false
+
     # 恢复发布点
     restore_spend(@task)
+    t = Task.new(params[:task])
+    point = caculate_point(t)
+    if t.can_create?(current_user, params[:operate_password])
+      isPass = point < current_user.account_credit    
+    end
 
     respond_to do |format|
       Task.transaction do 
-        if @task.can_modify? and @task.update_attributes(params[:task])
+        if isPass and @task.can_modify? and @task.update_attributes(params[:task])
           spend(@task)
           format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
           format.xml  { head :ok }

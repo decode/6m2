@@ -38,13 +38,13 @@ class BoardController < ApplicationController
     session[:view_task] = 'manage'
     unless current_user.nil?
       if params[:task_type] == "task"
-        @tasks = Task.where("user_id = ? and task_type != ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+        @tasks = Task.where("user_id = ? and task_type != ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       end
       if params[:task_type] == "todo"
-        @tasks = Task.where("worker_id = ?", current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+        @tasks = Task.where("worker_id = ?", current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       end
       if params[:task_type] == "cash"
-        @tasks = Task.where("user_id = ? and task_type = ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+        @tasks = Task.where("user_id = ? and task_type = ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
       end
     end
   end

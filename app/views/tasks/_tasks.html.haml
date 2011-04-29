@@ -22,7 +22,7 @@
       %tr{:class=>c}
         %td= task.id
         %td= task.title
-        %td= task.task_type
+        %td= task.task_type.include?('v_') ? task.task_type.delete('v_')+t('task.virtual') : task.task_type
         %td= task.price
         %td= link_to task.user.username, task.user unless task.user.nil?
         %td= link_to task.worker.username, task.worker unless task.worker.nil?
@@ -65,7 +65,7 @@
       - c = cycle("even", "odd")
       %tr{:class=>c}
         %td= task.title
-        %td= task.task_type
+        %td= task.task_type.include?('v_') ? task.task_type.delete('v_')+t('task.virtual') : task.task_type
         %td= task.price
         %td
           = task.user.username
@@ -76,7 +76,7 @@
           = t('task.extra') if task.extra_word
         %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
         %td
-          = link_to t('global.show'), task
+          = link_to t('global.show'), task if task.can_view?(current_user)
           - if task.can_modify? and task.user == current_user
             = link_to t('global.edit'), edit_task_url(task)
             = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete

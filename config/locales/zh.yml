@@ -242,6 +242,7 @@ zh:
     charge: "充值"
     change: "兑换"
     charge_amount: "充值金额"
+    account_money: "帐户余额"
     point: "发布点"
     role: "角色"
     score: "积分"
@@ -306,6 +307,8 @@ zh:
     error_month: "每个买号每周最多接手35个任务"
     error_sameshop: "同一买号不能在一个自然月内接同一发布人同一网店任务超过六个"
     can_not_modify: "任务己被接手,不能被编辑"
+    virtual_task: "虚拟任务"
+    virtual: "虚拟"
 
   transport:
     unused: "未使用"
@@ -382,6 +385,9 @@ zh:
     new_notice: "发表公告"
     list_notice: "公告列表"
 
+  article:
+    new_article: "发表教程"
+
   service:
     manager: "客服"
     admin: "网站管理"
@@ -443,11 +449,11 @@ zh:
         title: "任务标题"
         task_type: "任务类型"
         description: "任务描述"
-        price: "价格"
+        price: "担保金"
         status: "状态"
         link: "链接"
-        worker_level: "接手人级别"
-        real_level: "真实信用级别"
+        worker_level: "接手人平台级别"
+        real_level: "真实信用级别(买家信用级别)"
         task_day: "完成时间"
         extra_word: "是否带字好评"
         avoid_day: "重复天数"
@@ -460,7 +466,7 @@ zh:
         takeover_time: "接手时间"
         finished_time: "完成时间"
         confirmed_time: "确认时间"
-        shop: "店铺名"
+        shop: "掌柜名"
       user:
         role_objects: "用户角色"
         password: "密码"
@@ -514,6 +520,7 @@ zh:
       task:
         title: "为任务写一个标题,必须大于5个字"
         task_type: "taobao, paipai, 等等.还可发布虚拟任务,以及提现任务"
+        price: "担保金=商品价格+邮费"
         status: "必须选择发布之后,任务才会发布到任务中心,任务发布之后,不能修改,请认真核实"
         link: "真实交易链接,链接的商品必须是店铺里的商品"
         tran_type: "发货的快递公司,如果不选系统自动随机生成"
@@ -523,8 +530,9 @@ zh:
         real_level: "指定接任务人小号的级别"
         task_day: "多少天完成给评价"
         avoid_day: "设置多少天内同一买家不能接受任务"
-        custom_judge: "必须选中带字好评,此项才会生效"
-        custom_judge_content: "要求接任务的买家在评价中填写的内容,必须选中自定义评价此项才有效"
+        extra_word: "不选则是默认不带字好评"
+        custom_judge: ""
+        custom_judge_content: "要求接任务的买家在评价中填写的内容,必须选中自定义评价此项才有效,可以不填让买家自己写评价"
         transport_id: "如果不填系统自动生成一个单号"
         shop: "店铺名称,必须和绑定的店铺对应"
       user:

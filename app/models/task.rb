@@ -9,12 +9,12 @@ class Task < ActiveRecord::Base
   validates_numericality_of :price, :task_day, :greater_than => 0
   validates_numericality_of :avoid_day, :worker_level, :greater_than_or_equal_to => 0
   #validates_numericality_of :task_level
-  validates_inclusion_of :task_type, :in => %w(taobao paipai youa virtual cash), :message => "%{value} is not a valid type"
+  validates_inclusion_of :task_type, :in => %w(taobao paipai youa cash v_taobao v_paipai v_youa), :message => "%{value} is not a valid type"
   #validates_format_of :link, :with => /http[s]:\/\/*.*/, :message => "http://xxxx.xxx or https://xxxx.xxx"
   validates_format_of :link, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   validates_length_of :title, :within => 5..40
-  validates_length_of :description, :within => 0..120
+  #validates_length_of :description, :within => 0..120
 
   #validate :low_point_cannot_make_task
   def low_point_cannot_make_task
@@ -26,8 +26,14 @@ class Task < ActiveRecord::Base
       self.user.account_credit < point or self.user.account_money < price
   end
 
+  before_save :calculate_point
   after_save :log_save
   before_destroy :log_destroy
+  def calculate_point
+    app = ApplicationController.new
+    point = app.caculate_point(self)
+    self.point = point
+  end
   def log_save
     log = Tasklog.new
     log.task_id = self.id
@@ -36,6 +42,7 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
+    log.description = I18n.t('account.point') + ":" + self.user.account_credit.to_s + "  " + I18n.t('account.account_money') + ":" + self.user.account_money.to_s
     log.save!
   end
   def log_destroy
@@ -46,11 +53,11 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = 'destroy'
+    log.description = I18n.t('global.delete') + " " + I18n.t('account.point') + ":" + self.user.account_credit + "  " + I18n.t('account.account_money') + ":" + self.user.account_money
     log.save!
   end
 
-  state_machine :status, :initial => :unpublish do
+  state_machine :status, :initial => :unpublished do
     event :publish do
       transition :unpublished => :published
     end
@@ -115,12 +122,27 @@ class Task < ActiveRecord::Base
     return lang[self.status]
   end
 
+  def can_create?(user, operate_password)
+    if self.price > 0 and self.price <= user.account_money and (user.operate_password.nil? or operate_password == user.operate_password)
+      return true
+    end
+    return false
+  end
+
   def can_modify?
-    return (self.published? || self.unpublished?)
+    return (self.published? or self.unpublished?)
   end
 
   def free_task?
     return self.task_type == 'cash'
+  end
+
+  def virtual_task?
+    return self.task_type.include? "v_"
+  end
+
+  def can_view?(user)
+    return (self.user == user or self.worker == user or user.has_role?('admin'))
   end
   
   def can_do?(user)

@@ -6,29 +6,34 @@ class ApplicationController < ActionController::Base
   #before_filter :authenticate_user!
 
   def caculate_point(task)
-    # 按金额计算
-    step = [40, 80, 120, 200, 500, 1000, 1500]
-    if task.task_type == "virtual"
-      p = [1, 2, 3, 4, 5, 6, 7] 
-    else
-      p = [1, 1.5, 2, 3, 4, 5, 6]
+    point = 0
+    unless task.free_task?
+      # 按金额计算
+      step = [40, 80, 120, 200, 500, 1000, 1500]
+      if task.virtual_task?
+        p = [1, 2, 3, 4, 5, 6, 7] 
+      else
+        p = [1, 1.5, 2, 3, 4, 5, 6]
+      end
+      index = step.select{ |s| s < task.price }.length
+      point = p[ index==step.length ? index-1 : index ]
+
+      # 按完成时间计算
+      point = point + task.task_day - 1
+
+      # 附加词语
+      #point = point + Setting.first.extra_word if task.extra_word
+
+      # 自定义评价
+      point = point + Setting.first.custom_judge if task.custom_judge
+
+      # 接任务人等级
+      level = [0, 1, 2, 3, 4, 5]
+      #point = point + level[task.worker_level]
+      if task.worker_level > 0
+        point = point + 0.2
+      end
     end
-    index = step.select{ |s| s < task.price }.length
-    point = p[ index==step.length ? index-1 : index ]
-
-    # 按完成时间计算
-    point = point + task.task_day - 1
-
-    # 附加词语
-    point = point + Setting.first.extra_word if task.extra_word
-
-    # 自定义评价
-    point = point + Setting.first.custom_judge if task.custom_judge
-
-    # 接任务人等级
-    level = [0, 1, 2, 3, 4, 5]
-    point = point + level[task.worker_level]
-
     return point
   end
   
@@ -47,10 +52,13 @@ class ApplicationController < ActionController::Base
     
     logger.info("spend======================== #{point}")
     price = task.price.nil? ? 0 : task.price
-    user.account_credit = user.account_credit - point
-    user.payment_money = user.payment_money - price
-    user.account_money = user.account_money - price
-    user.save
+    res = user.account_credit - point
+    if res > 0
+      user.account_credit = res
+      user.payment_money = user.payment_money - price
+      user.account_money = user.account_money - price
+      user.save
+    end
   end
 
   def restore_spend(task)
