@@ -39,6 +39,7 @@ class TransportsController < ApplicationController
   # GET /transports/new.xml
   def new
     @transport = Transport.new
+    @transport.tran_type = 'sf'
 
     respond_to do |format|
       format.html # new.html.erb

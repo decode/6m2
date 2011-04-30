@@ -5,14 +5,14 @@
     = devise_error_messages!
     .rowContainer
       = label_tag t('site.login_name')
-      = f.text_field :username
+      = f.text_field :username, { :class => 'validate[required],minSize[6], maxSize[20]' }
     .rowContainer
       = label_tag t('page.email')
-      = f.text_field :email
+      = f.text_field :email, { :class => 'validate[required],custom[email]' }
     .rowContainer
       = label_tag t('site.password')
-      = f.password_field :password
+      = f.password_field :password, { :class => 'validate[required],minSize[6], maxSize[20]' }
     .rowContainer
       = label_tag t('site.password_confirmation')
-      = f.password_field :password_confirmation
+      = f.password_field :password_confirmation, { :class => 'validate[required],minSize[6], maxSize[20]' }
     %p= f.submit t('site.register')

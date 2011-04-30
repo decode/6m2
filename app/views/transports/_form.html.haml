@@ -1,10 +1,10 @@
 - semantic_form_for @transport do |f| 
   - f.inputs do
-    = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}
-    = f.input :tran_id
+    = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}, :input_html => { :class => "validate[required]" }
+    = f.input :tran_id, :input_html => { :class => "validate[required]" }
     =# f.input :status, :collection => {t('transport.unused') => "unused", t('transport.used') => "used", t('transport.closed') => "closed"}
-    = f.input :from
-    = f.input :to
+    = f.input :from, :input_html => { :class => "validate[required]" }
+    = f.input :to, :input_html => { :class => "validate[required]" }
     =# f.input :real_tran
     = f.input :tran_time
     = f.commit_button

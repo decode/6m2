@@ -5,5 +5,5 @@
   %p
     = f.label :email
     %br/
-    = f.text_field :email
+    = f.text_field :email, { :class => 'validate[required],custom[email]' }
   %p= f.submit t('devise.resend')

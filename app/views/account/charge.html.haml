@@ -1,6 +1,6 @@
 #mainframe
   #charge
-    - form_tag :onsubmit=>"alert('test'); return false;", :action=>'process_charge' do
+    - form_tag :action=>'process_charge', do
       = label_tag t('trade.transaction_id')
       = text_field_tag 'transaction_id'
       %br

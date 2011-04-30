@@ -1,33 +1,45 @@
 - semantic_form_for @task do |f| 
   - f.inputs do
-    = f.input :title
+    = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
     %li
       = label_tag t('task.virtual_task')
       = check_box_tag "virtual"
-    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}
-    =# f.input :description
-    /
-      - if ['unpublished', 'published'].include? @task.status
-        = f.input :status, :as => 'radio', :collection => {t('task.unpublish') => "unpublished", t('task.publish') => "published"}
+      %p{:class => 'inline-hints'}
+        = t 'formtastic.hints.task.virtual'
+    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}, :input_html => { :class => "validate[required]" }
+
     %li
       = label_tag t('formtastic.labels.task.shop')
       = current_user.active_shop.name
-    = f.input :link
-    = f.input :price
+    = f.input :link, :input_html => { :class => "validate[required],custom[url]" }
+
+    %span{:style=>'color:red'}= "实体任务40(0), 80(-2), 120(-3), 200(-4), 500(-5), 1000(-6), 1500以上(-7)"
+    %br
+    %span{:style=>'color:red'}= "虚拟任务40(0), 80(-1.5), 120(-2), 200(-3), 500(-4), 1000(-5), 1500以上(-6)"
+    = f.input :price, :input_html => { :class => "validate[required],custom[number],min[0.01]" }
+
     = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}
     = f.input :tran_id
     %hr
     %li
       = label_tag t('task.condition')
-    = f.input :worker_level, :as => :select, :collection => (0..5).to_a
-    = f.input :real_level, :as => :select, :collection => (0..Setting.first.real_level).to_a
-    = f.input :task_day, :as => :select, :collection => (1..4).to_a
-    = f.input :avoid_day, :as => :select, :collection => (0..10).to_a
-    =# f.input :task_level, :as => :select, :collection => (0..current_user.level).to_a
-    =# f.input :extra_word
+
+    %span{:style=>'color:red'}= t 'task.spend', :point => 0.2
+    = f.input :worker_level, :as => :select, :collection => (0..5).to_a, :input_html => { :class => "validate[required]" }
+
+    %span{:style=>'color:red'}= t 'task.spend', :point => 0.2
+    = f.input :real_level, :as => :select, :collection => (0..Setting.first.real_level).to_a, :input_html => { :class => "validate[required]" }
+
+    %span{:style=>'color:red'}= "1天(0)   2天(-1)   3天(-2), 按天数递增"
+    = f.input :task_day, :as => :select, :collection => (1..4).to_a, :input_html => { :class => "validate[required]" }
+
+    = f.input :avoid_day, :as => :select, :collection => (0..10).to_a, :input_html => { :class => "validate[required]" }
+
+    %span{:style=>'color:red'}= t 'task.spend', :point => 0.2
     = f.input :custom_judge
     = f.input :custom_judge_content, :as => :text
     %hr
+
     = label_tag t('account.operate_password')
     = password_field_tag :operate_password
     = t('account.operate_password_desc')

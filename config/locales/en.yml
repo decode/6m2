@@ -300,6 +300,7 @@ en:
     can_not_modify: "Task has been taken over, you can not modify"
     virtual_task: "Virtual Task"
     virtual: "Virtual"
+    spend: "Spend %{point} point"
 
   transport:
     unused: "Unused"
@@ -350,6 +351,13 @@ en:
     extra_word: "Extra Word"
     custom_judge: "Custom Judge Point"
     real_level: "Worker Real Account Level"
+    init_required_point: "Require Point"
+    init_gift_point: "Gift Point"
+    running_task: "Running Task"
+    total_task: "Total Task"
+    total_user: "Total User"
+    transport_price: "Transport ID Price"
+    times_limit: "Transport ID Sales limit"
 
   issue:
     request: "Request Service"
@@ -493,14 +501,28 @@ en:
         title: "Title"
         content: "Content"
         article_type: "Type"
+      notice:
+        title: "Title"
+        content: "Content"
     hints:
       task:
         title: "Write a title for you task."
         task_type: "taobao, paipai, etc."
+        price: ""
+        status: ""
+        link: ""
+        tran_type: ""
+        tran_id: ""
         description: "Write something can descibe the task."
+        worker_level: ""
+        real_level: ""
+        task_day: ""
         avoid_day: "Set the day which same buyer can not buy the task"
-        custom_judge: "Must check _Extra Words_ first"
+        custom_judge: ""
+        custom_judge_content: ""
         transport_id: "If not given, System will provide an ID for you"
+        shop: ""
+        virtual: "If Choosen, Publish Virtual Task"
       user:
         role_objects: "Set user roles"
         im: "Any IM account"

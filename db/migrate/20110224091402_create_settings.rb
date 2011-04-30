@@ -6,6 +6,7 @@ class CreateSettings < ActiveRecord::Migration
       t.float :score_ratio, :default => 1
 
       t.float :init_required_point, :default => 0
+      t.float :init_gift_point, :default => 2
 
       # 任务数级别
       t.integer :class1, :default => 100
@@ -23,7 +24,7 @@ class CreateSettings < ActiveRecord::Migration
 
       # 自定义评价消耗点数
       t.float :custom_judge, :default => 0.2
-      t.float :extra_word, :default => 1
+      #t.float :extra_word, :default => 1
 
       # 真实交易号级别
       t.integer :real_level, :default => 5
@@ -32,6 +33,10 @@ class CreateSettings < ActiveRecord::Migration
       t.float :transport_price, :default => 0.2
       # 运单出售次数
       t.integer :times_limit, :default => 3
+
+      t.integer :running_task, :default => 10
+      t.integer :total_task, :default => 100
+      t.integer :total_user, :default => 220
 
       t.timestamps
     end

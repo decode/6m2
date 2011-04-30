@@ -63,11 +63,7 @@ class ApplicationController < ActionController::Base
 
   def restore_spend(task)
     user = task.user
-    if task.free_task?
-      point = 0
-    else
-      point = caculate_point(task)
-    end
+    point = task.point
     logger.info("restore spend========================#{point}")
     user.account_credit = user.account_credit + point
     user.payment_money = user.payment_money + task.price

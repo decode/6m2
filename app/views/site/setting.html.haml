@@ -34,14 +34,41 @@
   %li
     = label_tag t('setting.report_punish')
     = number_field_tag 'setting[report_punish]', @setting.report_punish
-  %li
-    = label_tag t('setting.extra_word')
-    = number_field_tag 'setting[extra_word]', @setting.extra_word
+
+  %hr
+
   %li
     = label_tag t('setting.custom_judge')
     = number_field_tag 'setting[custom_judge]', @setting.custom_judge
   %li
     = label_tag t('setting.real_level')
     = number_field_tag 'setting[real_level]', @setting.real_level
+
+  %hr
+
+  %li
+    = label_tag t('setting.init_required_point')
+    = number_field_tag 'setting[init_required_point]', @setting.init_required_point
+  %li
+    = label_tag t('setting.init_gift_point')
+    = number_field_tag 'setting[init_gift_point]', @setting.init_gift_point
+  %li
+    = label_tag t('setting.total_task')
+    = number_field_tag 'setting[total_task]', @setting.total_task
+  %li
+    = label_tag t('setting.running_task')
+    = number_field_tag 'setting[running_task]', @setting.running_task
+  %li
+    = label_tag t('setting.total_user')
+    = number_field_tag 'setting[total_user]', @setting.total_user
+
+  %hr
+
+  %li
+    = label_tag t('setting.transport_price')
+    = number_field_tag 'setting[transport_price]', @setting.transport_price
+  %li
+    = label_tag t('setting.times_limit')
+    = number_field_tag 'setting[times_limit]', @setting.times_limit
   = submit_tag
     

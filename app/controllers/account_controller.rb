@@ -15,9 +15,6 @@ class AccountController < ApplicationController
   def index
     @trades = Trade.where('user_id = ?', current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     @user = current_user
-    # used? 
-    #@small_cashes = Task.where('user_id = ? and task_type = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
-    #@big_cashes = Issue.where('user_id = ? and itype = ?', current_user, 'cash').paginate(:page=>params[:page], :per_page=>10)
   end
   
   def show
@@ -84,8 +81,9 @@ class AccountController < ApplicationController
           if trade.trade_type == 'charge'
             user.account_money = user.account_money + trade.price.to_f
             # 如果是guest用户,自动扣去发布点所需的金额,并增加相应的发布点
-            # update: 根据需求取消
+            # update: 根据需求取消,并赠送发布点
             if user.has_role? 'guest'
+              user.account_credit = user.account_credit + Setting.first.init_gift_point
               #rest = user.account_money - (Setting.first.point_ratio * Setting.first.init_required_point)
               #if rest >= 0
               #  user.account_money = rest

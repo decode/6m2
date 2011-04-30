@@ -7,25 +7,25 @@
     %p
       = t 'site.login_name'
       %br/
-      = f.text_field :username
+      = f.text_field :username, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p
       = t 'page.email'
       %br/
-      = f.text_field :email
+      = f.text_field :email, { :class => 'validate[required],custom[email]' }
     %p
       = t 'site.password'
       %i= t 'site.leave_blank'
       %br/
-      = f.password_field :password
+      = f.password_field :password, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p
       = t 'site.password_confirmation'
       %br/
-      = f.password_field :password_confirmation
+      = f.password_field :password_confirmation, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p
       = t 'site.current_password'
       %i= t 'site.need_current_password'
       %br/
-      = f.password_field :current_password
+      = f.password_field :current_password, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p= f.submit t("site.update")
 
 #roundshape

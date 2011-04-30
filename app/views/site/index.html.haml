@@ -1,5 +1,5 @@
 #mainframe
-  - if @notices.length > 0
+  - if user_signed_in? and @notices.length > 0
     #roundshape
       = link_to t('site.notice') + ": " + @notices.first.title, @notices.last if @notices.length > 0
   %br
@@ -45,5 +45,6 @@
     \|
     = t 'site.user_number'
     = @user_count
-  #roundshape
-    = render 'site/news'
+  - if user_signed_in?
+    #roundshape
+      = render 'site/news'

@@ -6,5 +6,5 @@
     %p
       = t 'page.email'
       %br/
-      = f.text_field :email
+      = f.text_field :email, { :class => 'validate[required],custom[email]' }
     %p= f.submit t('site.send_password_reset')
