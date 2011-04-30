@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
 
   create_table "notices", :force => true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,7 +128,8 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
   create_table "settings", :force => true do |t|
     t.float    "point_ratio",         :default => 1.0
     t.float    "score_ratio",         :default => 1.0
-    t.float    "init_required_point", :default => 10.0
+    t.float    "init_required_point", :default => 0.0
+    t.float    "init_gift_point",     :default => 2.0
     t.integer  "class1",              :default => 100
     t.integer  "class2",              :default => 200
     t.integer  "class3",              :default => 500
@@ -138,11 +139,13 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
     t.float    "charge_punish",       :default => 1.0
     t.float    "report_award",        :default => 1.0
     t.float    "report_punish",       :default => 1.0
-    t.float    "custom_judge",        :default => 1.0
-    t.float    "extra_word",          :default => 1.0
-    t.integer  "real_level",          :default => 20
-    t.float    "transport_price",     :default => 1.0
+    t.float    "custom_judge",        :default => 0.2
+    t.integer  "real_level",          :default => 5
+    t.float    "transport_price",     :default => 0.2
     t.integer  "times_limit",         :default => 3
+    t.integer  "running_task",        :default => 10
+    t.integer  "total_task",          :default => 100
+    t.integer  "total_user",          :default => 220
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -172,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
     t.string   "tran_id"
     t.datetime "published_time"
     t.datetime "takeover_time"
+    t.datetime "pay_time"
     t.datetime "finished_time"
     t.datetime "confirmed_time"
     t.integer  "worker_level",         :default => 0

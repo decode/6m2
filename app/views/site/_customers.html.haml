@@ -1,0 +1,11 @@
+%table
+  - @customers.each do |c|
+    %tr
+      %td
+        = t('service.service') + ': ' + c.username
+      %td
+        - if c.im_q
+          = 'QQ :' + c.im_q
+          = link_to image_tag("http://wpa.qq.com/pa?p=1:#{c.im_q}:4", :alt=>'点击这里给我发消息'), "tencent://message/?uin=#{c.im_q}&Site=&Menu=yes", :target=>'_black'
+          %br
+          = "Email: #{c.im_q}@qq.com"

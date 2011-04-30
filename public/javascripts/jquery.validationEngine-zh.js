@@ -30,11 +30,11 @@
                 },
                 "past": {
                     "regex": "none",
-                    "alertText": "* Date prior to "
+                    "alertText": "* 日期太晚 "
                 },
                 "future": {
                     "regex": "none",
-                    "alertText": "* Date past "
+                    "alertText": "* 日期太早 "
                 },	
                 "maxCheckbox": {
                     "regex": "none",
@@ -48,12 +48,12 @@
                 },
                 "equals": {
                     "regex": "none",
-                    "alertText": "* Fields do not match"
+                    "alertText": "* 不匹配"
                 },
                 "phone": {
                     // credit: jquery.h5validate.js / orefalo
                     "regex": /^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/,
-                    "alertText": "* Invalid phone number"
+                    "alertText": "* 无效的电话号码"
                 },
                 "email": {
                     // Shamelessly lifted from Scott Gonzalez via the Bassistance Validation plugin http://projects.scottsplayground.com/email_address_validation/
@@ -91,7 +91,7 @@
                 },
                 "onlyLetterNumber": {
                     "regex": /^[0-9a-zA-Z]+$/,
-                    "alertText": "* 不能含有特殊字符"
+                    "alertText": "* 只能是数字或者字母"
                 },
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
                 "ajaxUserCall": {

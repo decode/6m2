@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   acts_as_authorization_subject
   
   validates_uniqueness_of :username
-  validates_length_of :username, :within => 6..12
+  validates_length_of :username, :within => 6..20
   #validates_length_of :im_q, :within => 0..20
   #validates_length_of :im, :within => 0..40
   #validates_length_of :bank_name, :bank_account, :mobile, :person_id, :shop_taobao, :shop_taobao_url, :shop_paipai, :shop_paipai_url, :shop_youa, :shop_youa_url, :within => 0..160

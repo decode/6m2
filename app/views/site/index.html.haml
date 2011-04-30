@@ -38,6 +38,10 @@
         = link_to t('home.slide3'), '#'
       %li
         = link_to t('home.slide4'), '#'
+  %br
+  - if user_signed_in?
+    = render 'site/customers'
+
 #right
   #roundshape
     = t 'site.running_task'
@@ -48,3 +52,4 @@
   - if user_signed_in?
     #roundshape
       = render 'site/news'
+
