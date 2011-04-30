@@ -14,7 +14,7 @@ class InitUserRole < ActiveRecord::Migration
     user.has_role! 'user'
     user.has_no_role! 'guest'
     user.confirm!
-    test_init
+    #test_init
   end
 
   def self.down

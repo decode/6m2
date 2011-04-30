@@ -1,9 +1,9 @@
 - semantic_form_for @participant do |f| 
   - f.inputs do
-    = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }
-    = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}
-    = f.input :name
-    = f.input :part_id
-    = f.input :url
+    = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
+    = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
+    = f.input :name, :input_html => { :class => "validate[required],minSize[4]" }
+    = f.input :part_id, :input_html => { :class => "validate[required],minSize[4]" }
+    = f.input :url, :input_html => { :class => "validate[required],custom[url]" }
     = f.input :active, :as => :boolean
     = f.commit_button
