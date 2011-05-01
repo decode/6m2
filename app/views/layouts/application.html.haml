@@ -96,11 +96,11 @@
                     = link_to t('trade.charge_payment'), '/m/charge'
                     = link_to t('trade.charge_point'), '/m/payment'
                     %hr
-                    = link_to t('site.my_transport'), :controller=>'account', :action=> 'transport_list', :id => current_user
+                    = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
                     = link_to t('site.my_participants'), user_participants_url(current_user)
-                    = link_to t('site.operate_password'), :controller => 'account', :action => 'operate_password'
+                    = link_to t('site.operate_password'), "/m/operate_password"
                     %hr
-                    = link_to t('site.my_messages'), :controller => 'account', :action => 'message'
+                    = link_to t('site.my_messages'), '/m/message'
 
 
             - if manager? or admin?

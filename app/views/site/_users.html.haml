@@ -1,7 +1,9 @@
 #tickerContainer
+  .bordershape
+    = t 'site.new_user'
   %dl#ticker
     - @users.each do |u|
       %dt.heading
-        = t 'site.new_user'
-      %dd.text
         = u.username
+      %dd.text
+        = l u.created_at, :format => :short
