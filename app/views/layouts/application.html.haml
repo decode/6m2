@@ -32,6 +32,11 @@
     = javascript_include_tag 'news'
     = stylesheet_link_tag 'news'
 
+    = javascript_include_tag 'ticker'
+    = stylesheet_link_tag 'simpleTicker'
+
+    = javascript_include_tag 'jquery.easyListSplitter'
+
     = stylesheet_link_tag 'formtastic'
     = stylesheet_link_tag 'formtastic_changes'
 
@@ -141,7 +146,7 @@
             - if super?
               %li
                 %span.head_menu
-                  = link_to 'Admin', '/admin'
+                  = link_to t('site.admin'), '/admin'
 
       - if flash[:notice]
         #notice

@@ -1,0 +1,7 @@
+#tickerContainer
+  %dl#ticker
+    - @users.each do |u|
+      %dt.heading
+        = t 'site.new_user'
+      %dd.text
+        = u.username

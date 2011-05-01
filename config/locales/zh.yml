@@ -55,6 +55,7 @@ zh:
 
   site:
     name: "风雨同舟"
+    admin: "后台"
     access_denied: "您暂时没有权限访问该资源"
     label: "首页"
     welcome: "欢迎, %{name}"
@@ -116,6 +117,7 @@ zh:
     operate_password: "操作码管理"
     old_password: "旧密码"
     register_success: "注册成功"
+    new_user: "新加入平台用户"
 
   manage:
     message_box: "收件箱"

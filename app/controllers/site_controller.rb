@@ -12,6 +12,8 @@ class SiteController < ApplicationController
     #role = Role.where(:name => 'admin').first
     #ids = role.user_ids.drop(1)
     #@admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
+
+    @users = User.order("created_at Desc").limit(10)
   end
 
   def setting

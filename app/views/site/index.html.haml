@@ -1,6 +1,6 @@
 #mainframe
   - if user_signed_in? and @notices.length > 0
-    #roundshape
+    .bordershape
       = link_to t('site.notice') + ": " + @notices.first.title, @notices.last if @notices.length > 0
   %br
   #desSlideshow1.desSlideshow
@@ -43,13 +43,16 @@
     = render 'site/customers'
 
 #right
+  - if user_signed_in?
+    #roundshape
+      = render 'site/news'
   #roundshape
     = t 'site.running_task'
     = @running_count
     \|
     = t 'site.user_number'
     = @user_count
-  - if user_signed_in?
-    #roundshape
-      = render 'site/news'
 
+  - if user_signed_in?
+    .bordershape
+      = render 'site/users'

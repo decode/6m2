@@ -1,4 +1,4 @@
-# Sample localization file for English. Add more files in this directory for other locales.
+#fjkl; Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 activemodel:
@@ -116,6 +116,8 @@ en:
     transport_center: "Transport ID Manage"
     operate_password: "Operate Password Manage"
     old_password: "Old Password"
+    register_success: "Register Successful"
+    new_user: "New Users"
 
   manage:
     message_box: "Inbox"

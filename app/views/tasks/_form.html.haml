@@ -13,9 +13,7 @@
       = current_user.active_shop.name
     = f.input :link, :input_html => { :class => "validate[required],custom[url]" }
 
-    %span{:style=>'color:red'}= "实体任务40(0), 80(-2), 120(-3), 200(-4), 500(-5), 1000(-6), 1500以上(-7)"
-    %br
-    %span{:style=>'color:red'}= "虚拟任务40(0), 80(-1.5), 120(-2), 200(-3), 500(-4), 1000(-5), 1500以上(-6)"
+    %span{:style=>'color:red'}= "根据价格消耗相应的发布点,参考平台说明"
     = f.input :price, :input_html => { :class => "validate[required],custom[number],min[0.01]" }
 
     = f.input :tran_type, :as => 'select', :collection => {'顺丰' => 'sf', 'EMS' => 'ems', '申通' => 'st', '圆通' => 'yt', '韵达' => 'yd', '中通' => 'zt'}

@@ -2,6 +2,7 @@
     background-image: url(../images/loading.gif);
     background-position: center center;
     background-repeat: no-repeat;
+    margin: 10px auto;
 }
 .desSlideshow .switchBigPic,.desSlideshow .nav{
     display: none;

@@ -350,3 +350,87 @@ tfoot th, tfoot td {
   top: 2px;
   padding: 1px 4px 15px 5px;
 }
+
+/* line 301, ../../../app/stylesheets/site.scss */
+.bordershape {
+  margin: 10px;
+  border: 1px dashed #92cdec;
+  -moz-border-radius: 9px 9px 9px 9px;
+  -webkit-border-radius: 3px;
+}
+
+/* line 306, ../../../app/stylesheets/site.scss */
+.bordershape a {
+  text-decoration: none;
+}
+
+/* ---------------------------------------- index page customer service ------------------------------------------ */
+/*html{font-size:62.5%}
+body{font-size:1.2em;color:#294f88}*/
+/*.customer_service {margin:10px;border:1px solid #92cdec;background:#d7e7ff;padding:30px 30px 0 30px}*/
+/* line 313, ../../../app/stylesheets/site.scss */
+.customer_service {
+  margin: 10px;
+  border-bottom: 1px solid #92cdec;
+  padding: 30px 30px 0 30px;
+  background: url(/images/manager.png) no-repeat right;
+}
+
+/*h1{margin:0;padding:0 0 30px 0;font-size:2em}
+h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
+p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
+ul,ol{padding:0;margin:0;font-size:1.2em}
+*/
+/* line 319, ../../../app/stylesheets/site.scss */
+.customer_service h1 {
+  margin: 0;
+  padding: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+/* line 320, ../../../app/stylesheets/site.scss */
+.customer_service p {
+  font-size: 1.2em;
+  line-height: 170%;
+  margin-bottom: 30px;
+  clear: both;
+}
+
+/* line 321, ../../../app/stylesheets/site.scss */
+.customer_service ul, ol {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+}
+
+/* line 322, ../../../app/stylesheets/site.scss */
+.customer_service ul, .customer_service ol {
+  list-style-type: none;
+  background: url(/images/dotted.gif) 0 0 repeat-x;
+  width: 180px;
+  float: left;
+  margin: 0 10px 30px 0;
+}
+
+/* line 323, ../../../app/stylesheets/site.scss */
+.customer_service li {
+  background: url(/images/dotted.gif) bottom left repeat-x;
+  width: 180px;
+  float: left;
+  padding: 0;
+}
+
+/* line 324, ../../../app/stylesheets/site.scss */
+.customer_service li a {
+  padding: 8px 20px 8px 0;
+  width: 160px;
+  float: left;
+  background: url(/images/arrow-right.gif) right 12px no-repeat;
+  text-decoration: none;
+  color: #294f88;
+}
+
+/* line 325, ../../../app/stylesheets/site.scss */
+.customer_service li a:hover {
+  background-image: url(/images/arrow-right-dark.gif);
+}
