@@ -1,9 +1,10 @@
 /*#ticker { width:180px; height:300px; border:1px solid #aaaaaa; overflow:auto; }*/
-#ticker { width:90%; height:100%; border:1px solid #aaaaaa; overflow:auto; margin:10px;}
+#ticker { width:97%; height:100%; border:0px solid #aaaaaa; overflow:auto;}
 
 /*#ticker dt { font:normal 14px Georgia; padding:0 10px 5px 10px; background-color:#e5e5e5; padding-top:10px; border:1px solid #ffffff; border-bottom:none; border-right:none; position:relative; }*/
-#ticker dt { font:normal 14px Georgia; padding:0 10px 5px 10px; background-color:#eaf2f5; padding-top:10px; border:1px solid #ffffff; border-bottom:none; border-right:none; position:relative; color:#000}
+#ticker dt { font:normal 14px Georgia; padding:0px 10px 5px 10px; background-color:#fff; padding-top:10px; border:1px solid #e5e5e5; border-left:none; border-bottom:none; border-right:none; position:relative; color:#000}
 
-#ticker dd { margin-left:0; font:normal 11px Verdana; padding:0 10px 10px 10px; border-bottom:1px solid #aaaaaa; background-color:#e5e5e5; border-left:1px solid #ffffff; position:relative;}
-#ticker dd.last { border-bottom:1px solid #ffffff; }
+/*#ticker dd { margin-left:0; font:normal 11px Verdana; padding:0 10px 10px 10px; border-bottom:1px solid #aaaaaa; background-color:#e5e5e5; border-left:1px solid #ffffff; position:relative;}*/
+#ticker dd { margin-left:0; font:normal 11px Verdana; padding:0 10px 10px 10px; border-bottom:1px solid #e5e5e5; background-color:#e5e5e5; border-left:1px solid #e5e5e5; position:relative;}
+#ticker dd.last { border-bottom:1px solid #e5e5e5; }
 #ticker div { margin-top:0; }

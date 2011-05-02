@@ -44,14 +44,13 @@
 
 #right
   - if user_signed_in?
-    #roundshape
+    .bordershape
       = render 'site/news'
-  #roundshape
+  .bordershape
     = t 'site.running_task'
     = @running_count
     \|
     = t 'site.user_number'
     = @user_count
-
   - if user_signed_in?
     = render 'site/users'

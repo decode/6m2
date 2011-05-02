@@ -2,9 +2,9 @@ class Participant < ActiveRecord::Base
   belongs_to :user
   has_many :tasks
 
-  validates_presence_of :name, :part_id, :part_type, :role_type, :url
-  validates_uniqueness_of :name, :part_id, :url, :message => I18n.t('global.existed')
-  validates_length_of :name, :within => 6..40
+  validates_presence_of :part_id, :part_type, :role_type
+  validates_uniqueness_of :part_id, :url, :message => I18n.t('global.existed')
+  validates_length_of :part_id, :within => 6..40
   validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   def make_active

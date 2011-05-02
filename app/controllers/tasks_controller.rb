@@ -136,7 +136,7 @@ class TasksController < ApplicationController
       # 计算任务点
       #@task.point = caculate_point(@task)
       # 绑定店铺
-      @task.shop = current_user.active_shop.name
+      @task.shop = current_user.active_shop.part_id
 
       @task.published_time = Time.now
       isPass = true

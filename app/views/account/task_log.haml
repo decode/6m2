@@ -27,10 +27,13 @@
       - unless task.nil?
         %td= task.id
         %td= link_to task.title, task
-        %td= t.worker_id.nil? ? '-' : User.find(t.worker_id).username 
-        %td= t.price
-        %td= t.status
-        %td= t.description
-        %td= l t.created_at, :format => :long
+      - else
+        %td= t.task_id
+        %td
+      %td= t.worker_id.nil? ? '-' : User.find(t.worker_id).username 
+      %td= t.price
+      %td= t.status
+      %td= t.description
+      %td= l t.created_at, :format => :long
 
 = will_paginate @tasks

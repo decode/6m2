@@ -299,7 +299,9 @@ padding: 1px 4px 15px 5px;
 }
 
 .bordershape { 
-  margin:10px; border: 1px dashed #92cdec;
+  padding: 3px 5px;
+  margin: 10px 10px 0 0;
+  border: 1px dashed #92cdec;
   -moz-border-radius: 9px 9px 9px 9px;
   -webkit-border-radius: 3px;
 }

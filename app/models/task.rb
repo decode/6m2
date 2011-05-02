@@ -42,7 +42,7 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = I18n.t('account.point') + ":" + self.user.account_credit.to_s + "  " + I18n.t('account.account_money') + ":" + self.user.account_money.to_s
+    log.description = I18n.t('account.point') + ":" + (self.user.account_credit-self.point).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money-self.price).to_s
     log.save!
   end
   def log_destroy
@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = I18n.t('global.delete') + " " + I18n.t('account.point') + ":" + self.user.account_credit + "  " + I18n.t('account.account_money') + ":" + self.user.account_money
+    log.description = I18n.t('global.delete') + " " + I18n.t('account.point') + ":" + self.user.account_credit.to_s + "  " + I18n.t('account.account_money') + ":" + self.user.account_money.to_s
     log.save!
   end
 

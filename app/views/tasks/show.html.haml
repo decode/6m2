@@ -13,10 +13,6 @@
     = @task.task_type
 
   %p
-    %b=t 'global.description' 
-    = @task.description
-
-  %p
     %b=t 'global.status'
     = @task.status
 
@@ -56,9 +52,6 @@
     = t 'formtastic.labels.task.task_day'
     = @task.task_day
     %br
-    = t 'formtastic.labels.task.extra_word'
-    = @task.extra_word
-    %br
     = t 'formtastic.labels.task.avoid_day'
     = @task.avoid_day
     /
@@ -70,7 +63,7 @@
       = @task.extra_word
     %br
     = t 'formtastic.labels.task.custom_judge'
-    = @task.custom_judge
+    = convert_yes_no(@task.custom_judge)
     %br
     = t 'formtastic.labels.task.custom_judge_content'
     = @task.custom_judge_content

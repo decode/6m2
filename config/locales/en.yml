@@ -45,6 +45,8 @@ en:
     modify: "Modify"
     system: "System"
     existed: "This record is existed in database"
+    isyes: "Yes"
+    isno: "No"
 
   system:
     password_error: "Wrong Password!"

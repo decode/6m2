@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
   access_control do
-    allow :admin, :manager, :user, :guest
+    allow :admin, :manager
+    allow :user, :guest, :except => [:edit, :update]
     deny anonymous
   end
 
@@ -41,12 +42,17 @@ class ParticipantsController < ApplicationController
   # GET /participants/1/edit
   def edit
     @participant = Participant.find(params[:id])
+    session[:operate_mode] = 'edit'
   end
 
   # POST /participants
   # POST /participants.xml
   def create
     @participant = Participant.new(params[:participant])
+    isPass = true
+    if params[:participant][:role_type] == 'shop' and params[:participant][:url] == ''
+      isPass = false
+    end
     @participant.user = current_user
     if (@participant.role_type == 'shop' and current_user.active_shop.nil?) or (@participant.role_type == 'customer' and current_user.active_participant.nil?)
       @participant.active = true 
@@ -60,7 +66,7 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       Participant.transaction do
-        if @participant.save
+        if isPass and @participant.save
           # 绑定买号以后自动转为user权限
           if isFirst
             current_user.has_no_role! 'guest'
@@ -69,6 +75,7 @@ class ParticipantsController < ApplicationController
           format.html { redirect_to(:back, :notice => t('global.operate_success')) }
           format.xml  { render :xml => @participant, :status => :created, :location => @participant }
         else
+          @participant.errors.add 'url', t('participant.no_shop_url') unless isPass
           format.html { render :action => "new" }
           format.xml  { render :xml => @participant.errors, :status => :unprocessable_entity }
         end
@@ -86,6 +93,7 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
+        session[:operate_mode] = nil
         format.html { redirect_to(@participant, :notice => t('global.operate_success')) }
         format.xml  { head :ok }
       else

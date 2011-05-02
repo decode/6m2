@@ -10,7 +10,7 @@
 
     %li
       = label_tag t('formtastic.labels.task.shop')
-      = current_user.active_shop.name
+      = current_user.active_shop.part_id
     = f.input :link, :input_html => { :class => "validate[required],custom[url]" }
 
     %span{:style=>'color:red'}= "根据价格消耗相应的发布点,参考平台说明"

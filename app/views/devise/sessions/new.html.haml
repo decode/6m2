@@ -1,15 +1,16 @@
 = render :partial => "devise/shared/links"
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %p
-    = t 'site.login_name'
-    %br/
-    = f.text_field :login
-  %p
-    = t 'site.password'
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
+.bordershape
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     %p
-      = f.check_box :remember_me
-      = t 'site.remember_me'
-  %p= f.submit t('site.login')
+      = t 'site.login_name'
+      %br/
+      = f.text_field :login
+    %p
+      = t 'site.password'
+      %br/
+      = f.password_field :password
+    - if devise_mapping.rememberable?
+      %p
+        = f.check_box :remember_me
+        = t 'site.remember_me'
+    %p= f.submit t('site.login')

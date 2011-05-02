@@ -44,6 +44,8 @@ zh:
     modify: "修改"
     system: "系统"
     existed: "在数据库中己有该记录"
+    isyes: "是"
+    isno: "否"
 
   system:
     password_error: "密码错误"
@@ -256,6 +258,7 @@ zh:
     youa: "有啊"
     shop: "店铺"
     customer: "买号"
+    no_shop_url: "绑定店铺必须填写店铺地址"
 
   task:
     confirm: "确认"
@@ -502,10 +505,10 @@ zh:
         tran_time: "时间"
       participant:
         name: "名称"
-        url: "网址"
+        url: "店铺网址"
         status: "状态"
-        active: "默认"
-        part_id: "帐号"
+        active: "是否将帐户设为当前使用的帐户"
+        part_id: "店铺名或小号名"
         part_type: "帐号类别"
         role_type: "帐号类型"
       message:
@@ -546,7 +549,8 @@ zh:
         im: "任何聊天工具的帐号都可填在这里"
         operate_password: "不超过20位"
       participant:
-        part_id: "掌柜名或者旺旺名"
+        part_id: "绑定店铺填写掌柜名, 绑定买号填写旺旺(拍拍、有啊)小号名"
+        url: "若绑定店铺, 则此项必须填写"
     actions:
       create: "创建"
       update: "保存"

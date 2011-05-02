@@ -8,5 +8,9 @@ module ApplicationHelper
     end
     return ''
   end
+
+  def convert_yes_no(condition)
+    return condition ? I18n.t('global.isyes') : I18n.t('global.isno')
+  end
   
 end

@@ -1,9 +1,22 @@
 - semantic_form_for @participant do |f| 
   - f.inputs do
-    = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
-    = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
-    = f.input :name, :input_html => { :class => "validate[required],minSize[4]" }
-    = f.input :part_id, :input_html => { :class => "validate[required],minSize[4]" }
-    = f.input :url, :input_html => { :class => "validate[required],custom[url]" }
+    - if session[:operate_mode] != 'edit'
+      = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
+      = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
+      = f.input :part_id, :input_html => { :class => "validate[required],minSize[6]" }
+      = f.input :url, :input_html => { :size=>60, :class => "validate[custom[url]]" }
+    - else
+      %li
+        = label_tag t('formtastic.labels.participant.role_type')
+        = @participant.role_type
+      %li
+        = label_tag t('formtastic.labels.participant.part_type')
+        = @participant.part_type
+      %li
+        = label_tag t('formtastic.labels.participant.part_id')
+        = @participant.part_id
+      %li
+        = label_tag t('formtastic.labels.participant.url')
+        = @participant.url
     = f.input :active, :as => :boolean
     = f.commit_button

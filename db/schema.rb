@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427140432) do
+ActiveRecord::Schema.define(:version => 20110502065915) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110427140432) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
