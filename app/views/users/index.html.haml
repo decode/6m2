@@ -32,17 +32,17 @@
       %td= user.status
       %td
         - if manager?
-          = link_to t('account.point'), :controller => 'account', :action => 'point', :id => user
-          = link_to t('site.password'), :controller => 'account', :action => 'password', :id => user
-          = link_to t('account.role'), :controller => 'account', :action => 'role', :id => user
-          = link_to t('account.score'), :controller => 'account', :action => 'score', :id => user
-          = link_to t('formtastic.labels.user.operate_password'), :controller => 'account', :action => 'operate_password', :id => user
+          = link_to image_tag('point.png', :alt=>t('account.point')), :controller => 'account', :action => 'point', :id => user
+          = link_to image_tag('password.png', :alt=>t('site.password')), :controller => 'account', :action => 'password', :id => user
+          = link_to image_tag('role.png', :alt=>t('account.role')), :controller => 'account', :action => 'role', :id => user
+          = link_to image_tag('score.png', :alt=>t('account.score')), :controller => 'account', :action => 'score', :id => user
+          = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), :controller => 'account', :action => 'operate_password', :id => user
       %td
         = link_to t('account.confirm'), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
-        = link_to t('global.show'), user
+        = link_to image_tag('view.png', :alt=>t('global.show')), user
         - if super?
-          = link_to t('global.edit'), edit_user_path(user)
-          = link_to t('global.delete'), user, :confirm => 'Are you sure?', :method => :delete
+          = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
+          = link_to image_tag('delete.png', :alt=>t('global.delete')), user, :confirm => t('site.are_you_sure'), :method => :delete
       %td
         = t('account.not_approved') if user.has_role? 'guest'
 
