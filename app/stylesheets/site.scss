@@ -1,14 +1,14 @@
 #sidebar {
-width: 180px; /*width of menu*/
+  width: 180px; /*width of menu*/
 }
 
 #headerbar{
-font: bold 14px Arial;
-color: white;
-background: black url(titlebar.png) repeat-x center left;
-margin-bottom: 10px; /*bottom spacing between header and rest of content*/
-text-transform: uppercase;
-padding: 4px 0 4px 10px; /*header text is indented 10px*/
+  font: bold 14px Arial;
+  color: white;
+  background: black url(titlebar.png) repeat-x center left;
+  margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+  text-transform: uppercase;
+  padding: 4px 0 4px 10px; /*header text is indented 10px*/
 }
 
 #tabs3 {
@@ -179,9 +179,9 @@ padding: 4px 0 4px 10px; /*header text is indented 10px*/
 */
 
 table, th, td {
-	border: 1px solid #D4E0EE;
+	/*border: 1px solid #D4E0EE;*/
 	border-collapse: collapse;
-	font-family: "Trebuchet MS", Arial, sans-serif;
+	/*font-family: "Trebuchet MS", Arial, sans-serif;*/
 	color: #555;
 }
 
@@ -196,7 +196,8 @@ td, th {
 }
 
 thead th {
-	text-align: center;
+	border-bottom: 1px solid #D4E0EE;
+	text-align: left;
 	background: #E6EDF5;
 	color: #4F76A3;
 	font-size: 100% !important;
@@ -206,7 +207,10 @@ tbody th {
 	font-weight: bold;
 }
 
-tbody tr { background: #FCFDFE; }
+tbody tr {
+  background: #FCFDFE; 
+  border-bottom: 1px solid #D4E0EE;
+}
 
 tbody tr.odd { background: #F7F9FC; }
 
@@ -308,6 +312,7 @@ padding: 1px 4px 15px 5px;
 .bordershape a {
 	text-decoration: none;
 }
+
 /* ---------------------------------------- index page customer service ------------------------------------------ */
 /*html{font-size:62.5%}
 body{font-size:1.2em;color:#294f88}*/

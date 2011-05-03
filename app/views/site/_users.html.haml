@@ -4,6 +4,7 @@
   %dl#ticker
     - @users.each do |u|
       %dt.heading
+        = image_tag('user.png')
         = u.username
       %dd.text
         = l u.created_at, :format => :short

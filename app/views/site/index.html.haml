@@ -47,9 +47,11 @@
     .bordershape
       = render 'site/news'
   .bordershape
+    = image_tag("task.png")
     = t 'site.running_task'
     = @running_count
     \|
+    = image_tag("user16.png")
     = t 'site.user_number'
     = @user_count
   - if user_signed_in?

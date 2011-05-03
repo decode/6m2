@@ -1,3 +1,9 @@
+.bordershape
+  = image_tag 'charge.png'
+  = t('account.account_money') + @task.user.account_money.to_s
+  = image_tag 'point.png'
+  = t('account.point') + @task.user.account_credit.to_s
+
 - semantic_form_for @task do |f| 
   - f.inputs do
     = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }

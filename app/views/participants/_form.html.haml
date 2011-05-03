@@ -3,7 +3,7 @@
     - if session[:operate_mode] != 'edit'
       = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
       = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
-      = f.input :part_id, :input_html => { :class => "validate[required],minSize[6]" }
+      = f.input :part_id, :input_html => { :class => "validate[required],minSize[3]" }
       = f.input :url, :input_html => { :size=>60, :class => "validate[custom[url]]" }
     - else
       %li

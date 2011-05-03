@@ -37,8 +37,7 @@
 
     = javascript_include_tag 'jquery.easyListSplitter'
 
-    = stylesheet_link_tag 'formtastic'
-    = stylesheet_link_tag 'formtastic_changes'
+    = stylesheet_link_tag 'formtastic','formtastic_changes'
 
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
@@ -128,7 +127,7 @@
             - if user? or guest?
               %li
                 %span.head_menu
-                  = link_to t('site.service_center')
+                  = link_to t('site.service_center'), '/t/service'
                   = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
                 .sub_menu
                   = link_to t('site.service_list'), '/t/service'

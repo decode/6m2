@@ -3,18 +3,18 @@
     = link_to t('global.edit'), edit_task_path(@task) |
   = link_to t('global.back'), :back
 
-#roundshape
+.bordershape
   %p
     %b=t 'global.title'
     = @task.title
 
   %p
     %b=t 'global.type'
-    = @task.task_type
+    = convert_shop_type(@task.task_type)
 
   %p
     %b=t 'global.status'
-    = @task.status
+    = @task.local_status
 
   - if current_user or manager? or admin?
     %p
@@ -42,7 +42,7 @@
     = @task.tran_id
 
 #mainframe
-  #roundshape
+  .bordershape
     %p
       %b=t 'task.condition'
     %hr
@@ -69,7 +69,7 @@
     = @task.custom_judge_content
 
 #right
-  #roundshape
+  .bordershape
     = t 'task.worker'
     - if manager? or admin?
       = link_to @task.worker.username, @task.worker if @task.worker

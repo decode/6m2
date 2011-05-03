@@ -47,6 +47,7 @@ en:
     existed: "This record is existed in database"
     isyes: "Yes"
     isno: "No"
+    quantity: "Quantity"
 
   system:
     password_error: "Wrong Password!"
@@ -257,6 +258,7 @@ en:
     youa: "Youa"
     shop: "Shop"
     customer: "Customer"
+    in_use: "Used"
 
   task:
     confirm: "Confirm"
@@ -324,6 +326,7 @@ en:
     success: "Request has been post"
     error: "Some problem happens"
     approve_charge: "Approve Charge"
+    request: "Request"
     approve: "Approve"
     reject: "Reject"
     trade_not_found: "Trade not found"
@@ -339,6 +342,8 @@ en:
     bad_deal: "Writing transaction id casually will be serious punished"
     buy_transport: "Buy Transport ID"
     spend: "Spend"
+    charge: "Charge"
+    point: "Point"
 
   setting:
     point_ratio: "Point Ratio"

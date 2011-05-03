@@ -211,9 +211,9 @@
 */
 /* line 181, ../../../app/stylesheets/site.scss */
 table, th, td {
-  border: 1px solid #D4E0EE;
+  /*border: 1px solid #D4E0EE;*/
   border-collapse: collapse;
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  /*font-family: "Trebuchet MS", Arial, sans-serif;*/
   color: #555;
 }
 
@@ -231,51 +231,53 @@ td, th {
 
 /* line 198, ../../../app/stylesheets/site.scss */
 thead th {
-  text-align: center;
+  border-bottom: 1px solid #D4E0EE;
+  text-align: left;
   background: #E6EDF5;
   color: #4F76A3;
   font-size: 100% !important;
 }
 
-/* line 205, ../../../app/stylesheets/site.scss */
+/* line 206, ../../../app/stylesheets/site.scss */
 tbody th {
   font-weight: bold;
 }
 
-/* line 209, ../../../app/stylesheets/site.scss */
+/* line 210, ../../../app/stylesheets/site.scss */
 tbody tr {
   background: #FCFDFE;
+  border-bottom: 1px solid #D4E0EE;
 }
 
-/* line 211, ../../../app/stylesheets/site.scss */
+/* line 215, ../../../app/stylesheets/site.scss */
 tbody tr.odd {
   background: #F7F9FC;
 }
 
-/* line 213, ../../../app/stylesheets/site.scss */
+/* line 217, ../../../app/stylesheets/site.scss */
 table a:link {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 218, ../../../app/stylesheets/site.scss */
+/* line 222, ../../../app/stylesheets/site.scss */
 table a:visited {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 223, ../../../app/stylesheets/site.scss */
+/* line 227, ../../../app/stylesheets/site.scss */
 table a:hover {
   color: #718ABE;
   text-decoration: underline !important;
 }
 
-/* line 228, ../../../app/stylesheets/site.scss */
+/* line 232, ../../../app/stylesheets/site.scss */
 tfoot th, tfoot td {
   font-size: 85%;
 }
 
-/* line 233, ../../../app/stylesheets/site.scss */
+/* line 237, ../../../app/stylesheets/site.scss */
 .shadow1 {
   box-shadow: 5px 5px #818181;
   -webkit-box-shadow: 5px 5px #818181;
@@ -288,7 +290,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 245, ../../../app/stylesheets/site.scss */
+/* line 249, ../../../app/stylesheets/site.scss */
 .shadow {
   box-shadow: 7px 7px 8px #818181;
   -webkit-box-shadow: 7px 7px 8px #818181;
@@ -301,7 +303,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 256, ../../../app/stylesheets/site.scss */
+/* line 260, ../../../app/stylesheets/site.scss */
 #tearshape {
   background: #f1f2f3;
   padding: 3px 5px;
@@ -314,7 +316,7 @@ tfoot th, tfoot td {
   -webkit-border-bottom-right-radius: 9px;
 }
 
-/* line 267, ../../../app/stylesheets/site.scss */
+/* line 271, ../../../app/stylesheets/site.scss */
 #roundshape {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -326,7 +328,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 279, ../../../app/stylesheets/site.scss */
+/* line 283, ../../../app/stylesheets/site.scss */
 .round {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -335,14 +337,14 @@ tfoot th, tfoot td {
   -webkit-border-radius: 5px;
 }
 
-/* line 287, ../../../app/stylesheets/site.scss */
+/* line 291, ../../../app/stylesheets/site.scss */
 .curlycontainer {
   border: 1px solid #b8b8b8;
   margin-bottom: 1em;
   width: 300px;
 }
 
-/* line 293, ../../../app/stylesheets/site.scss */
+/* line 297, ../../../app/stylesheets/site.scss */
 .curlycontainer .innerdiv {
   background: transparent url(brcorner.gif) bottom right no-repeat;
   position: relative;
@@ -351,7 +353,7 @@ tfoot th, tfoot td {
   padding: 1px 4px 15px 5px;
 }
 
-/* line 301, ../../../app/stylesheets/site.scss */
+/* line 305, ../../../app/stylesheets/site.scss */
 .bordershape {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
@@ -360,7 +362,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 308, ../../../app/stylesheets/site.scss */
+/* line 312, ../../../app/stylesheets/site.scss */
 .bordershape a {
   text-decoration: none;
 }
@@ -369,7 +371,7 @@ tfoot th, tfoot td {
 /*html{font-size:62.5%}
 body{font-size:1.2em;color:#294f88}*/
 /*.customer_service {margin:10px;border:1px solid #92cdec;background:#d7e7ff;padding:30px 30px 0 30px}*/
-/* line 315, ../../../app/stylesheets/site.scss */
+/* line 320, ../../../app/stylesheets/site.scss */
 .customer_service {
   margin: 10px;
   border-bottom: 1px solid #92cdec;
@@ -382,14 +384,14 @@ h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
 p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
 ul,ol{padding:0;margin:0;font-size:1.2em}
 */
-/* line 321, ../../../app/stylesheets/site.scss */
+/* line 326, ../../../app/stylesheets/site.scss */
 .customer_service h1 {
   margin: 0;
   padding: 0 0 10px 0;
   font-size: 1.2em;
 }
 
-/* line 322, ../../../app/stylesheets/site.scss */
+/* line 327, ../../../app/stylesheets/site.scss */
 .customer_service p {
   font-size: 1.2em;
   line-height: 170%;
@@ -397,14 +399,14 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   clear: both;
 }
 
-/* line 323, ../../../app/stylesheets/site.scss */
+/* line 328, ../../../app/stylesheets/site.scss */
 .customer_service ul, ol {
   padding: 0;
   margin: 0;
   font-size: 1em;
 }
 
-/* line 324, ../../../app/stylesheets/site.scss */
+/* line 329, ../../../app/stylesheets/site.scss */
 .customer_service ul, .customer_service ol {
   list-style-type: none;
   background: url(/images/dotted.gif) 0 0 repeat-x;
@@ -413,7 +415,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   margin: 0 10px 30px 0;
 }
 
-/* line 325, ../../../app/stylesheets/site.scss */
+/* line 330, ../../../app/stylesheets/site.scss */
 .customer_service li {
   background: url(/images/dotted.gif) bottom left repeat-x;
   width: 180px;
@@ -421,7 +423,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   padding: 0;
 }
 
-/* line 326, ../../../app/stylesheets/site.scss */
+/* line 331, ../../../app/stylesheets/site.scss */
 .customer_service li a {
   padding: 8px 20px 8px 0;
   width: 160px;
@@ -431,7 +433,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   color: #294f88;
 }
 
-/* line 327, ../../../app/stylesheets/site.scss */
+/* line 332, ../../../app/stylesheets/site.scss */
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }

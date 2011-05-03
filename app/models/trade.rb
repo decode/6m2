@@ -13,4 +13,15 @@ class Trade < ActiveRecord::Base
     state :rejected, :value => 'rejected'
     state :approved, :value => 'approved'
   end
+
+  def local_status
+    lstatus = {'request' => I18n.t('trade.request'), 'rejected' => I18n.t('trade.reject'), 'approved' => I18n.t('trade.approve')}
+    return lstatus[self.status]
+  end
+  
+  def local_type
+    ltype = {'charge' => I18n.t('trade.charge'), 'point' => I18n.t('trade.point')}
+    return ltype[self.trade_type]
+  end
+
 end

@@ -12,5 +12,14 @@ module ApplicationHelper
   def convert_yes_no(condition)
     return condition ? I18n.t('global.isyes') : I18n.t('global.isno')
   end
+
+  def convert_shop_type(shop)
+    return image_tag("#{shop}.png")
+  end
+
+  def trade_type_image(trade_type)
+    return image_tag("#{trade_type}.png")
+  end
+    
   
 end

@@ -46,6 +46,7 @@ zh:
     existed: "在数据库中己有该记录"
     isyes: "是"
     isno: "否"
+    quantity: "数量"
 
   system:
     password_error: "密码错误"
@@ -117,7 +118,7 @@ zh:
     user_info: "用户信息"
     transport_center: "运单市场"
     operate_password: "操作码管理"
-    old_password: "旧密码"
+    old_password: "旧操作码"
     register_success: "注册成功"
     new_user: "新加入平台用户"
 
@@ -259,6 +260,7 @@ zh:
     shop: "店铺"
     customer: "买号"
     no_shop_url: "绑定店铺必须填写店铺地址"
+    in_use: "使用中"
 
   task:
     confirm: "确认"
@@ -326,6 +328,7 @@ zh:
     success: "交易己提交"
     error: "交易无法进行,交易数量必须大于0"
     approve_charge: "批准充值"
+    request: "申请"
     approve: "批准"
     reject: "拒绝"
     trade_not_found: "交易不存在"
@@ -341,6 +344,8 @@ zh:
     bad_deal: "禁止胡乱填写交易单号,如经发现严肃处理"
     buy_transport: "购买运单号码"
     spend: "消费"
+    charge: "充值"
+    point: "发布点兑换"
 
   setting:
     point_ratio: "发布兑换比"
@@ -507,10 +512,10 @@ zh:
         name: "名称"
         url: "店铺网址"
         status: "状态"
-        active: "是否将帐户设为当前使用的帐户"
-        part_id: "店铺名或小号名"
-        part_type: "帐号类别"
-        role_type: "帐号类型"
+        active: "默认帐户"
+        part_id: "掌柜名或小号名"
+        part_type: "绑定类型"
+        role_type: "帐号类别"
       message:
         title: "标题"
         content: "内容"
@@ -596,19 +601,19 @@ zh:
         other: "%{count} 分钟"
       about_x_hours:
         one: "大约一小时"
-        other: "大约 %{count} 小时"
+        other: "%{count} 小时"
       x_days:
         one: "1 天"
         other: "%{count} 天"
       about_x_months:
         one: "大约一个月"
-        other: "大约 %{count} 个月"
+        other: "%{count} 个月"
       x_months:
         one: "一个月"
         other: "%{count} 个月"
       about_x_years:
         one: "大约一年"
-        other: "大约 %{count} 年"
+        other: "%{count} 年"
       over_x_years:
         one: "一年多"
         other: "%{count} 年多"

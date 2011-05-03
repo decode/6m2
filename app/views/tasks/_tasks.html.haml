@@ -8,6 +8,7 @@
         %th{:width=>'20%'}=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 
+        %th=t 'task.point'
         %th=t 'task.owner'
         %th=t 'task.worker'
         %th=t 'global.status'
@@ -21,25 +22,27 @@
       - c = cycle("even", "odd")
       %tr{:class=>c}
         %td= task.id
-        %td= task.title
-        %td= task.task_type.include?('v_') ? task.task_type.delete('v_')+t('task.virtual') : task.task_type
+        %td= task.title.length > 10 ? task.title[0, 10] + "..." : task.title
+        %td
+          = convert_shop_type(task.task_type)
         %td= task.price
+        %td= task.point
         %td= link_to task.user.username, task.user unless task.user.nil?
         %td= link_to task.worker.username, task.worker unless task.worker.nil?
         %td= task.local_status
         %td= task.worker_level
         %td= task.task_day
-        %td= task.extra_word
+        %td= convert_yes_no(task.custom_judge)
         %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
         %td
-          = link_to t('global.show'), task
+          = link_to image_tag('view.png'), task
           - if task.can_modify? and task.user == current_user
-            = link_to t('global.edit'), edit_task_url(task)
-            = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
+            = link_to image_tag('edit.png'), edit_task_url(task)
+            = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
-            = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
             = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
             = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
@@ -53,10 +56,11 @@
       /=t('site.task')
     %thead
       %tr
+        %th=t 'task.owner'
         %th{:width=>'20%'}=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 
-        %th=t 'task.owner'
+        %th=t 'task.point'
         %th=t 'task.requirement'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
@@ -64,26 +68,28 @@
     - @tasks.each do |task|
       - c = cycle("even", "odd")
       %tr{:class=>c}
-        %td= task.title
-        %td= task.task_type.include?('v_') ? task.task_type.delete('v_')+t('task.virtual') : task.task_type
-        %td= task.price
         %td
           = task.user.username
           = image_tag "icon_vip#{(task.user.level)}.gif"
+        %td= task.title.length > 10 ? task.title[0, 15] + "..." : task.title
+        %td
+          = convert_shop_type(task.task_type)
+        %td= task.price
+        %td= task.point
         %td
           = t('task.work_day') + task.task_day.to_s + t('global.day')
           = t('task.level') + task.worker_level.to_s
-          = t('task.extra') if task.extra_word
+          = t('task.extra') if task.custom_judge
         %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
         %td
-          = link_to t('global.show'), task if task.can_view?(current_user)
+          = link_to image_tag('view.png'), task if task.can_view?(current_user)
           - if task.can_modify? and task.user == current_user
-            = link_to t('global.edit'), edit_task_url(task)
-            = link_to t('global.delete'), task, :confirm => 'Are you sure?', :method => :delete
+            = link_to image_tag('edit.png'), edit_task_url(task)
+            = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
-            = link_to t('task.do'), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
+            = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
             = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
             = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
