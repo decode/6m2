@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
 
   has_many :articles
 
+  has_many :transactions
+  has_many :business, :class_name => 'Transaction', :foreign_key => 'sales_id'
+
   state_machine :status, :initial => :normal do
     event :suspend do
       transition :normal => :forbid

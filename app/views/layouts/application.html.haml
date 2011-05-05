@@ -73,8 +73,8 @@
                 %span.head_menu
                   =link_to t('site.user_center'), current_user
                   = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                - if guest? or user?
-                  .sub_menu
+                .sub_menu
+                  - if guest? or user?
                     = link_to t('site.my_account'), '/m/index'
                     = link_to t('trade.charge_payment'), '/m/charge'
                     = link_to t('trade.charge_point'), '/m/payment'
@@ -84,6 +84,8 @@
                     = link_to t('site.operate_password'), "/m/operate_password"
                     %hr
                     = link_to t('site.my_messages'), '/m/message'
+                  - if sales?
+                    = link_to t('site.sales_business'), transactions_url
 
 
             - if manager? or admin?
@@ -105,6 +107,8 @@
                     = link_to t('notice.new_notice'), new_notice_url
                     = link_to t('article.new_article'), new_article_url
                     = link_to t('system.message'), '/s/message'
+                    %hr
+                    = link_to t('site.finance_center'), transactions_url
                     %hr
                     = link_to t('site.setting'), '/s/setting'
 

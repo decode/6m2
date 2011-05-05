@@ -1,0 +1,22 @@
+#roundshape
+  = link_to t('global.edit'), edit_transaction_path(@transaction)
+  |
+  \#{link_to t('global.back'), transactions_path}
+%p
+  %b= t 'formtastic.labels.transaction.tid' 
+  = @transaction.tid
+%p
+  %b= t 'formtastic.labels.transaction.amount' 
+  = @transaction.amount
+%p
+  %b= t 'formtastic.labels.transaction.name'
+  = @transaction.name
+%p
+  %b= t 'formtastic.labels.transaction.bank'
+  = @transaction.bank
+%p
+  %b= t 'formtastic.labels.transaction.trade_time'
+  = @transaction.trade_time
+%p
+  %b= t 'formtastic.labels.transaction.description'
+  = @transaction.description

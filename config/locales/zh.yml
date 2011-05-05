@@ -121,6 +121,8 @@ zh:
     old_password: "旧操作码"
     register_success: "注册成功"
     new_user: "新加入平台用户"
+    finance_center: "财务中心"
+    sales_business: "业务申报"
 
   manage:
     message_box: "收件箱"
@@ -348,6 +350,11 @@ zh:
     charge: "充值"
     point: "发布点兑换"
 
+  transaction:
+    no_tid: "交易单号不存在"
+    has_sales: "己有业务员申报"
+
+
   setting:
     point_ratio: "发布兑换比"
     score_ratio: "积分兑换比"
@@ -436,7 +443,8 @@ zh:
   devise:
     no_reply: "请勿回复此邮件"
     welcome: "欢迎"
-    confirm: "点击下面的链接以激活您的帐户"
+    confirm_desc: "点击下面的链接以激活您的帐户"
+    confirm: "激活账号"
     not_link: "如果无法点击,请复制下面的链接,并在浏览器中打开"
     hello: "您好, %{name}"
     change_password: "修改密码"
@@ -530,6 +538,13 @@ zh:
       notice:
         title: "标题"
         content: "内容"
+      transaction:
+        name: "付款人"
+        tid: "交易单号"
+        amount: "金额"
+        bank: "转账银行"
+        trade_time: "入账时间"
+        description: "备注"
     hints:
       task:
         title: "为任务写一个标题,必须大于5个字"

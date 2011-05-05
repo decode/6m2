@@ -121,6 +121,8 @@ en:
     old_password: "Old Password"
     register_success: "Register Successful"
     new_user: "New Users"
+    finance_center: "Finance Center"
+    sales_business: "Sales Business"
 
   manage:
     message_box: "Inbox"
@@ -346,6 +348,10 @@ en:
     charge: "Charge"
     point: "Point"
 
+  transaction:
+    no_tid: "The transaction id does'nt existed"
+    has_sales: "It has sales"
+
   setting:
     point_ratio: "Point Ratio"
     score_ratio: "Score Ratio"
@@ -420,7 +426,8 @@ en:
   devise:
     no_reply: "Don't reply this mail"
     welcome: "Welcome"
-    confirm: "You can confirm your account through the link below:"
+    confirm_desc: "You can confirm your account through the link below:"
+    confirm: "Confirm"
     not_link: "If can not open it, please copy the link below, and open it in your web browser"
     hello: "Hello, %{name}"
     change_password: "Change my password"
@@ -514,6 +521,13 @@ en:
       notice:
         title: "Title"
         content: "Content"
+      transaction:
+        name: "Payment People"
+        tid: "Transaction ID"
+        amount: "Amount"
+        bank: "Bank"
+        trade_time: "Trade Time"
+        description: "Description"
     hints:
       task:
         title: "Write a title for you task."

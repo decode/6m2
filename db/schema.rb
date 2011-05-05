@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502065915) do
+ActiveRecord::Schema.define(:version => 20110505050313) do
 
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
@@ -202,6 +202,19 @@ ActiveRecord::Schema.define(:version => 20110502065915) do
     t.string   "transaction_id"
     t.integer  "user_id"
     t.integer  "to_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "tid"
+    t.string   "name"
+    t.string   "bank"
+    t.float    "amount"
+    t.text     "description"
+    t.datetime "trade_time"
+    t.integer  "user_id"
+    t.integer  "sales_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

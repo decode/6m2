@@ -1,0 +1,28 @@
+#roundshape
+  = link_to t('global.create'), new_transaction_path
+
+%table
+  %caption
+  %thead
+    %tr
+      %th= t 'formtastic.labels.transaction.tid' 
+      %th= t 'formtastic.labels.transaction.name' 
+      %th= t 'formtastic.labels.transaction.bank' 
+      %th= t 'formtastic.labels.transaction.trade_time' 
+      %th= t 'formtastic.labels.transaction.description' 
+      %th
+      %th
+      %th
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.tid
+        %td= transaction.name
+        %td= transaction.bank
+        %td= transaction.trade_time
+        %td= transaction.description
+        %td= link_to image_tag('view.png', :alt=>t('global.show')), transaction
+        %td= link_to image_tag('edit.png', :alt=>t('global.edit')), edit_transaction_path(transaction)
+        %td= link_to image_tag('delete.png', :alt=>t('global.delete')), transaction, :confirm => t('site.are_you_sure'), :method => :delete
+
+= will_paginate @transactions

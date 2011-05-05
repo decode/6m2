@@ -10,6 +10,9 @@ module BoardHelper
   access_control :manager? do
     allow :manager
   end
+  access_control :sales? do
+    allow :sales
+  end
   access_control :user? do
     allow :user
   end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tid: 1
+  name: MyString
+  bank: MyString
+  description: MyText
+
+two:
+  tid: 1
+  name: MyString
+  bank: MyString
+  description: MyText

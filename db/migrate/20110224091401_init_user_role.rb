@@ -5,6 +5,7 @@ class InitUserRole < ActiveRecord::Migration
     user.has_role! 'admin'
     user.has_role! 'manager'
     user.has_role! 'user'
+    user.has_role! 'sales'
     user.has_no_role! 'guest'
     user.confirm!
 

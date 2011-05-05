@@ -6,6 +6,7 @@ $(document).ready(function(){
   $("#new_message").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#new_issue").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#new_participant").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+  $("#new_transaction").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_new").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_edit").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
 
