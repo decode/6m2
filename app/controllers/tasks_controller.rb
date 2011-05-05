@@ -63,7 +63,8 @@ class TasksController < ApplicationController
         else
           notice = t('task.not_enough_point')
         end
-        format.html { redirect_to(:back, :notice => notice) }
+        flash[:error] = notice
+        format.html { redirect_to(:back) }
         format.xml
       else
         format.html # new.html.erb
@@ -149,7 +150,9 @@ class TasksController < ApplicationController
           format.html { redirect_to(@task, :notice => t('task.create_success')) }
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
-          format.html { redirect_to(:back, :notice => t('global.operate_failed')) }
+          format.html {
+            flash[:error] = t('global.operate_failed')
+            redirect_to(:back ) }
           format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
         end
      end

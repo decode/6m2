@@ -1,10 +1,28 @@
+.bordershape
+  = convert_shop_type('taobao')
+  = '-' + t('task.normal_task')
+  \|
+  = convert_shop_type('v_taobao')
+  = '-' + t('task.virtual_task')
+  \|
+  = image_tag('view.png')
+  = '-' + t('global.show')
+  \|
+  = image_tag('do.png')
+  = '-' + t('task.do')
 - if admin? or manager? or session[:view_task] == 'manage'
+  .bordershape
+    = image_tag('edit.png')
+    = '-' + t('global.edit')
+    \|
+    = image_tag('delete.png')
+    = '-' + t('global.delete')
   %table
     %caption
       /=t('site.task')
     %thead
       %tr
-        %th ID
+        %th #
         %th{:width=>'20%'}=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 

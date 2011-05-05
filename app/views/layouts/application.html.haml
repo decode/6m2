@@ -2,9 +2,6 @@
 %html
   %head 
     %title= t 'site.name' 
-    = #stylesheet_link_tag 'hover_drop_2'
-    = #javascript_include_tag :defaults
-    = #javascript_include_tag "iefix"
     = csrf_meta_tag
     = javascript_include_tag 'jquery.min.js'
 
@@ -18,24 +15,11 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
 
-    = javascript_include_tag 'infogrid'
-    = stylesheet_link_tag 'infogrid'
-
-    = javascript_include_tag 'fmenu'
-    = stylesheet_link_tag 'fmenu'
-
-    = javascript_include_tag 'slideshow'
-    = stylesheet_link_tag 'scroller'
-    = javascript_include_tag 'des'
+    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'news', 'jquery.easyListSplitter'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker'
 
     =# javascript_include_tag 'jcarousellite_1.0.1c4'
-    = javascript_include_tag 'news'
-    = stylesheet_link_tag 'news'
-
     =# javascript_include_tag 'ticker'
-    = stylesheet_link_tag 'simpleTicker'
-
-    = javascript_include_tag 'jquery.easyListSplitter'
 
     = stylesheet_link_tag 'formtastic','formtastic_changes'
 
@@ -149,10 +133,12 @@
 
       - if flash[:notice]
         #notice
-          = flash[:notice]
+          :javascript
+            $.jnotify("#{flash[:notice]}");
       - if flash[:error]
         #error
-          = flash[:error]
+          :javascript
+            $.jnotify("#{flash[:error]}", "error");
 
       - if user_signed_in?
         #message

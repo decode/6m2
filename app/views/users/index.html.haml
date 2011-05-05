@@ -1,3 +1,27 @@
+.bordershape
+  = image_tag('point.png')
+  = '-' + t('account.point')
+  \|
+  = image_tag('password.png')
+  = '-' + t('site.password')
+  \|
+  = image_tag('role.png')
+  = '-' + t('account.role')
+  \|
+  = image_tag('score.png')
+  = '-' + t('account.score')
+  \|
+  = image_tag('lock.png')
+  = '-' + t('formtastic.labels.user.operate_password')
+  \|
+  = image_tag('view.png')
+  = '-' + t('global.show')
+  \|
+  = image_tag('edit.png')
+  = '-' + t('global.edit')
+  \|
+  = image_tag('delete.png')
+  = '-' + t('global.delete')
 %table
   %caption
     /= t('site.user_manage')
@@ -5,7 +29,6 @@
       = label_tag t 'site.login_name'
       = search_field_tag 'username', session[:search_username]
       = submit_tag 'Search'
-
   %thead
     %tr
       %th
