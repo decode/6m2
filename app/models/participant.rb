@@ -5,7 +5,7 @@ class Participant < ActiveRecord::Base
   validates_presence_of :part_id, :part_type, :role_type
   validates_uniqueness_of :part_id, :url, :message => I18n.t('global.existed')
   validates_length_of :part_id, :within => 3..40
-  validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
+  #validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
   def make_active
     other = self.user.participants.where(:role_type => self.role_type, :active => true).first

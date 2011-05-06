@@ -10,10 +10,10 @@
 - semantic_form_for @transaction do |f| 
   - f.inputs do
     = f.input :tid, :input_html => { :class => "validate[required], minSize[6]" }
-    - unless sales?
+    - unless salesman?
       = f.input :name, :input_html => { :class => "validate[required]" }
       = f.input :amount, :input_html => { :class => "validate[required], min[0.01]" }
       = f.input :bank
       = f.input :trade_time
       = f.input :description
-      = f.commit_button
+    = f.commit_button

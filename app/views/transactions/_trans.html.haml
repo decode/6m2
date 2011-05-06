@@ -1,0 +1,35 @@
+%table
+  %caption
+  %thead
+    %tr
+      %th= t 'formtastic.labels.transaction.tid' 
+      %th= t 'formtastic.labels.transaction.amount' 
+      %th= t 'formtastic.labels.transaction.name' 
+      %th= t 'formtastic.labels.transaction.bank' 
+      - if session[:transaction_mode] != 'sales'
+        %th= t 'transaction.owner'
+        %th= t 'transaction.sales'
+      %th= t 'formtastic.labels.transaction.trade_time' 
+      %th= t 'formtastic.labels.transaction.description' 
+      %th
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.tid
+        %td= transaction.amount
+        %td= transaction.name
+        %td= transaction.bank
+        - if session[:transaction_mode] != 'sales'
+          %td
+            = transaction.user.username if transaction.user
+          %td
+            = transaction.sales.username if transaction.sales
+        %td= l transaction.trade_time
+        %td= transaction.description
+        %td
+          = link_to image_tag('view.png', :alt=>t('global.show')), transaction
+          - if admin?
+            = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_transaction_path(transaction)
+            = link_to image_tag('delete.png', :alt=>t('global.delete')), transaction, :confirm => t('site.are_you_sure'), :method => :delete
+
+= will_paginate @transactions

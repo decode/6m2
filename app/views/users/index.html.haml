@@ -63,7 +63,7 @@
       %td
         = link_to t('account.confirm'), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
         = link_to image_tag('view.png', :alt=>t('global.show')), user
-        - if super?
+        - if superadmin?
           = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
           = link_to image_tag('delete.png', :alt=>t('global.delete')), user, :confirm => t('site.are_you_sure'), :method => :delete
       %td

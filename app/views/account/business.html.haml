@@ -1,0 +1,12 @@
+#mainframe
+  = render 'transactions/trans'
+
+#right
+  .bordershape
+    = t 'transaction.current_month_business'
+    %hr
+    = t 'transaction.transaction_count'
+    = @transactions.length
+    %br
+    = t 'transaction.month_amount'
+    = @salary

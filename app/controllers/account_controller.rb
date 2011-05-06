@@ -4,8 +4,8 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant do
-      allow :user, :guest
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business do
+      allow :user, :guest, :salesman
     end
     actions :delete_charge do
       allow :user, :admin
@@ -178,6 +178,12 @@ class AccountController < ApplicationController
 
   def message
     @messageboxes = MessageBox.where(:user_id => current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
+  end
+  
+  def business
+    @trans = Transaction.where(:sales_id => current_user.id, :trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    @transactions = @trans.paginate(:page => params[:page], :per_page => 20)
+    @salary = @trans.sum("amount")
   end
   
   # 修改用户的发布点

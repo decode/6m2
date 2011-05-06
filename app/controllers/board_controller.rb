@@ -1,6 +1,6 @@
 class BoardController < ApplicationController
   access_control do
-    allow :super, :admin, :manager, :user
+    allow :superadmin, :admin, :manager, :user
     allow :user, :except => [:check_pass]
     deny anonymous
   end

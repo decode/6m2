@@ -351,6 +351,11 @@ en:
   transaction:
     no_tid: "The transaction id does'nt existed"
     has_sales: "It has sales"
+    owner: "Owner"
+    sales: "Salesman"
+    current_month_business: "Business of Current Month"
+    transaction_count: "Transaction Count"
+    month_amount: "Amount of Current Month"
 
   setting:
     point_ratio: "Point Ratio"

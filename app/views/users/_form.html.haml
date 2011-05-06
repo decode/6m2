@@ -5,10 +5,10 @@
     - if session[:user_edit_mode] == 'password'
       = f.input :password
     - if session[:user_edit_mode] == 'role'
-      - if super?
+      - if superadmin?
         = f.input :role_objects
       - else
-        = f.input :role_objects, :collection => Role.where("name != 'super'")
+        = f.input :role_objects, :collection => Role.where("name != 'superadmin'")
     - if session[:user_edit_mode] == 'score'
       = f.input :score
     - if session[:user_edit_mode] == 'code'

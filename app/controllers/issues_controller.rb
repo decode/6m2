@@ -6,7 +6,7 @@ class IssuesController < ApplicationController
   end
 
   access_control :secret_access?, :filter => false do
-    allow :admin, :manager, :super
+    allow :admin, :manager, :superadmin
   end
 
   # GET /issues

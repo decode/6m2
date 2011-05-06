@@ -1,20 +1,20 @@
 class UsersController < ApplicationController
   access_control do
     allow :admin, :manager
-    allow :user, :guest, :except => [:index, :destroy]
+    allow :salesman, :user, :guest, :except => [:index, :destroy]
     actions :new, :create, :show do
       allow all
     end
   end
 
   access_control :secret_access?, :filter => false do
-    allow :admin, :manager, :super
+    allow :admin, :manager, :superadmin
   end
   
   # GET /users
   # GET /users.xml
   def index
-    if current_user.has_role? 'super'
+    if current_user.has_role? 'superadmin'
       @users = User.all.paginate(:page => params[:page], :per_page => 20)
     else
       @users = User.where('id != 1').paginate(:page => params[:page], :per_page => 20)
@@ -53,6 +53,9 @@ class UsersController < ApplicationController
   
   def show
     session[:user_edit_mode] = nil
+    if current_user.has_role? 'salesman'
+      redirect_to '/m/business'
+    end
     if secret_access?
       @user = User.find(params[:id])
       @trades = Trade.where('user_id = ?', @user).paginate(:page => params[:page], :per_page => 20)

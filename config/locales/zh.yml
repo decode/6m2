@@ -353,6 +353,11 @@ zh:
   transaction:
     no_tid: "交易单号不存在"
     has_sales: "己有业务员申报"
+    owner: "入帐员"
+    sales: "业务员"
+    current_month_business: "本月业务"
+    transaction_count: "交易单数量"
+    month_amount: "交易单金额"
 
 
   setting:

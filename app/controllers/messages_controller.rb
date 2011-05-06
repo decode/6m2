@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   access_control do
-    allow :super, :admin, :manager, :user
+    allow :superadmin, :admin, :manager, :user
     deny anonymous
   end
 

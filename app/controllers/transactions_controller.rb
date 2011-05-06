@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   access_control do
-    allow :admin, :manager, :sales
+    allow :admin, :manager, :salesman
     #allow :sales, :except => [:edit, :update, :destroy]
     deny anonymous
   end
@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
       @transactions = Transaction.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = nil
     else
-      @transactions = Transaction.find('sales_id = ?', current_user.id).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @transactions = Transaction.where('sales_id = ?', current_user.id).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = 'sales'
     end
 
@@ -37,6 +37,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new.xml
   def new
     @transaction = Transaction.new
+    @transaction.trade_time = Time.now
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,18 +53,27 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.xml
   def create
-    @transaction = Transaction.new(params[:transaction])
     isPass = true
     if session[:transaction_mode] == 'sales'
-      @transaction = Transaction.find('tid = ?', @transaction.tid).first
-      if tran
-        @transaction.sales = current_user
+      @transaction = Transaction.where('tid = ?', params[:transaction][:tid]).first
+      if @transaction
+        unless @transaction.sales.nil?
+          flash[:error] = t('transaction.has_sales') 
+          isPass = false
+        else
+          @transaction.sales = current_user
+        end
       else 
-        @transaction.errors.add(t('transaction.no_tid'), 'tid')
-        @transaction.errors.add(t('transaction.has_sales'), 'tid') if @transaction.sales.nil?
+        @transaction = Transaction.new(params[:transaction])
+        flash[:error] = t('transaction.no_tid')
         isPass = false 
       end
+    else
+      @transaction = Transaction.new(params[:transaction])
+      @transaction.user = current_user
     end
+
+    @transaction.trade_time = Time.now if @transaction.trade_time.nil?
 
     respond_to do |format|
       if isPass and @transaction.save

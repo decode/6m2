@@ -64,9 +64,11 @@ class ParticipantsController < ApplicationController
       isFirst = true
     end
 
+    logger.info('======================='+isPass.to_s)
+
     respond_to do |format|
       Participant.transaction do
-        if isPass and @participant.save
+        if isPass and @participant.save!
           # 绑定买号以后自动转为user权限
           if isFirst
             current_user.has_no_role! 'guest'

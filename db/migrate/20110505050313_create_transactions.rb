@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration
   def self.up
     create_table :transactions do |t|
-      t.integer :tid
+      t.string :tid
       t.string :name
       t.string :bank
       t.float :amount

@@ -84,7 +84,7 @@
                     = link_to t('site.operate_password'), "/m/operate_password"
                     %hr
                     = link_to t('site.my_messages'), '/m/message'
-                  - if sales?
+                  - if salesman?
                     = link_to t('site.sales_business'), transactions_url
 
 
@@ -130,7 +130,7 @@
                 %span.head_menu
                   = link_to t('site.rule'), articles_path
 
-            - if super?
+            - if superadmin?
               %li
                 %span.head_menu
                   = link_to t('site.admin'), '/admin'
