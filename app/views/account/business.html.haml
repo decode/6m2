@@ -6,7 +6,15 @@
     = t 'transaction.current_month_business'
     %hr
     = t 'transaction.transaction_count'
-    = @transactions.length
+    = @trans.length
     %br
     = t 'transaction.month_amount'
     = @salary
+  .bordershape
+    = t 'transaction.last_month_business'
+    %hr
+    = t 'transaction.transaction_count'
+    = @last_trans.length
+    %br
+    = t 'transaction.month_amount'
+    = @last_salary

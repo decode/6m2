@@ -48,6 +48,8 @@ en:
     isyes: "Yes"
     isno: "No"
     quantity: "Quantity"
+    from: "From"
+    to: "To"
 
   system:
     password_error: "Wrong Password!"
@@ -59,6 +61,8 @@ en:
 
   site:
     name: "Boat166"
+    admin: "Admin"
+    roles: "Roles"
     access_denied: "Access Denied"
     label: "Site"
     welcome: "Welcome, ${name}"
@@ -356,6 +360,9 @@ en:
     current_month_business: "Business of Current Month"
     transaction_count: "Transaction Count"
     month_amount: "Amount of Current Month"
+    last_month_business: "Business of Last Month"
+    date_empty: "Date can not be empty"
+    business: "Business Statistics"
 
   setting:
     point_ratio: "Point Ratio"

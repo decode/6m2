@@ -47,7 +47,9 @@ zh:
     isyes: "是"
     isno: "否"
     quantity: "数量"
-
+    from: "从"
+    to: "到"
+    
   system:
     password_error: "密码错误"
     login_success: "登录成功"
@@ -59,6 +61,7 @@ zh:
   site:
     name: "风雨同舟"
     admin: "后台"
+    roles: "角色"
     access_denied: "您暂时没有权限访问该资源"
     label: "首页"
     welcome: "欢迎, %{name}"
@@ -358,7 +361,9 @@ zh:
     current_month_business: "本月业务"
     transaction_count: "交易单数量"
     month_amount: "交易单金额"
-
+    last_month_business: "上月业务"
+    date_empty: "日期不能为空"
+    business: "业务统计"
 
   setting:
     point_ratio: "发布兑换比"

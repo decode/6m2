@@ -181,9 +181,16 @@ class AccountController < ApplicationController
   end
   
   def business
-    @trans = Transaction.where(:sales_id => current_user.id, :trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    id = params[:id]
+    if current_user.has_role? 'salesman'
+      session[:transaction_mode] = 'sales' 
+      id = current_user.id
+    end
+    @trans = Transaction.where(:sales_id => id, :trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
     @transactions = @trans.paginate(:page => params[:page], :per_page => 20)
     @salary = @trans.sum("amount")
+    @last_trans = Transaction.where(:sales_id => id, :trade_time => 1.month.ago.at_beginning_of_month..1.month.ago.at_end_of_month)
+    @last_salary = @last_trans.sum("amount")
   end
   
   # 修改用户的发布点

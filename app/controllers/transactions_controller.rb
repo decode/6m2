@@ -9,12 +9,15 @@ class TransactionsController < ApplicationController
   # GET /transactions.xml
   def index
     if current_user.has_role? 'admin'
-      @transactions = Transaction.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @transactions = Transaction.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = nil
     else
-      @transactions = Transaction.where('sales_id = ?', current_user.id).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @transactions = Transaction.where('sales_id = ?', current_user.id).order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = 'sales'
     end
+
+    @trans = Transaction.where(:trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    @current_amount = @trans.sum('amount')
 
     respond_to do |format|
       format.html # index.html.erb

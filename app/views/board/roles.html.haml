@@ -1,0 +1,16 @@
+#roundshape
+  = link_to t('global.create'), :controller => 'board', :action => 'new_role'
+%table
+  %caption
+  %thead
+    %tr
+      %th Name
+      %th
+  %tbody
+    - @roles.each do |r|
+      %tr
+        %td
+          = r.name
+        %td
+          =# link_to image_tag('edit.png', :alt=>t('global.edit')), :controller => 'board', :action => 'edit_role', :id => r
+          = link_to image_tag('delete.png', :alt=>t('global.delete')), :controller => 'board', :action => 'delete_role', :id => r

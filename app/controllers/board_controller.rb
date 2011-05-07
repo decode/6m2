@@ -1,7 +1,8 @@
 class BoardController < ApplicationController
   access_control do
-    allow :superadmin, :admin, :manager, :user
-    allow :user, :except => [:check_pass]
+    allow :superadmin
+    allow :admin, :manager, :user, :except => [:roles, :new_role, :create_role, :delete_role]
+    allow :user, :except => [:check_pass, :roles, :new_role, :create_role, :delete_role]
     deny anonymous
   end
 
@@ -302,11 +303,69 @@ class BoardController < ApplicationController
     session[:message_to] = params[:id]
     redirect_to new_message_url
   end
+
+  #
+  # ==========================================
+  # 角色管理
+  #
+  def roles
+    if current_user.has_role? 'superadmin'
+      @roles = Role.all
+    else
+      redirect_to '/'
+    end
+  end
+
+  def new_role
+    @role = Role.new
+  end
+
+  def create_role
+    @role = Role.new(params[:role])
+    if @role.save
+      flash[:notice] = t('global.operate_success')
+    else
+      flash[:error] = t('global.operate_failed')
+    end
+    redirect_to '/t/roles'
+  end
+
+  def delete_role
+    role = Role.find(params[:id])
+    if role.destroy
+      flash[:notice] = t('global.operate_success')
+    else
+      flash[:error] = t('global.operate_failed')
+    end
+    redirect_to '/t/roles'
+  end
+  # ===========================================
     
   def search_user
     @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
     session[:search_username] = params[:username]
     render 'users/index'
+  end
+  
+  def range_transaction
+    if(params[:from].blank? or params[:to].blank?)
+      flash[:error] = t('transaction.date_empty')
+      redirect_to transactions_url
+    else
+      from = params[:from]
+      to = params[:to]
+      if from == to
+        if from.nil?
+          @trans = Transaction.all
+        else
+          @trans = Transaction.where(:trade_time => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @trans = Transaction.where(:trade_time => from.to_datetime..to.to_datetime)
+      end
+      @transactions = @trans.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
+      @current_amount = @trans.sum('amount')
+    end
   end
   
 

@@ -1,5 +1,6 @@
 %table
   %caption
+
   %thead
     %tr
       %th= t 'formtastic.labels.transaction.tid' 
@@ -23,7 +24,7 @@
           %td
             = transaction.user.username if transaction.user
           %td
-            = transaction.sales.username if transaction.sales
+            = link_to transaction.sales.username, :controller => 'account', :action => 'business', :id => transaction.sales if transaction.sales
         %td= l transaction.trade_time
         %td= transaction.description
         %td

@@ -1,0 +1,39 @@
+#roundshape
+  = link_to t('global.create'), new_transaction_path
+
+#mainframe
+  :javascript
+    $(function() {
+    var dates = $( "#from, #to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 2,
+      dateFormat: "yy/mm/dd",
+      onSelect: function( selectedDate ) {
+        var option = this.id == "from" ? "minDate" : "maxDate",
+          instance = $( this ).data( "datepicker" ),
+          date = $.datepicker.parseDate(
+            instance.settings.dateFormat ||
+            $.datepicker._defaults.dateFormat,
+            selectedDate, instance.settings );
+          dates.not( this ).datepicker( "option", option, date );
+        }
+      });
+    });
+  - form_tag :controller => 'board', :action => 'range_transaction' do
+    = t 'global.from'
+    = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
+    = t 'global.to'
+    = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
+    = submit_tag t('global.show')
+  = render 'transactions/trans'
+
+#right
+  .bordershape
+    = t 'transaction.business'
+    %hr
+    = t 'transaction.transaction_count'
+    = @trans.length
+    %br
+    = t 'transaction.month_amount'
+    = @current_amount

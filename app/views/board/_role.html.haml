@@ -1,0 +1,5 @@
+.bordershape
+  - form_tag :controller => 'board', :action=>'create_role', do
+    = label_tag 'Name'
+    = text_field_tag 'role[name]'
+    = submit_tag t('global.create')
