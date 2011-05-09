@@ -38,6 +38,10 @@ class CreateSettings < ActiveRecord::Migration
       t.integer :total_task, :default => 100
       t.integer :total_user, :default => 220
 
+      # 回收发布点数量限制
+      t.float :recyling_point, :default => 200
+      t.float :recyling_point_ratio, :default => 0.4
+
       t.timestamps
     end
   end

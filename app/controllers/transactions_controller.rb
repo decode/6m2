@@ -1,14 +1,14 @@
 class TransactionsController < ApplicationController
   access_control do
-    allow :admin, :manager, :salesman
-    #allow :sales, :except => [:edit, :update, :destroy]
+    allow :admin, :accountant
+    allow :salesman, :except => [:edit, :update, :destroy]
     deny anonymous
   end
 
   # GET /transactions
   # GET /transactions.xml
   def index
-    if current_user.has_role? 'admin'
+    if current_user.has_role? 'admin' or current_user.has_role? 'accountant'
       @transactions = Transaction.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = nil
     else

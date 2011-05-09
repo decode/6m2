@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
     return self.tasks.where('status = ?', status) 
   end
 
+  def status_todos(status)
+    return self.todos.where('status = ?', status) 
+  end
+
   def active_participant
     return self.participants.where("role_type = 'customer' and active = true").first
   end

@@ -1,28 +1,29 @@
 %table
-  %caption= t 'account.charge'
+  %caption=# t 'account.charge'
   %thead
     %tr
+      %th= '#'
       %th=t 'site.login_name'
       %th=t 'global.quantity'
       %th=t 'global.type'
       %th=t 'trade.transaction_id'
       %th=t 'trade.charged_at'
       %th=t 'global.status'
-      %th{:colspan=>3}
+      %th
 
   - @trades.each do |t|
     - c = cycle("even", "odd")
     %tr{:class=>c}
+      %td= t.id
       %td= t.user.username
       %td= t.price
       %td= trade_type_image(t.trade_type)
       %td= t.transaction_id
       %td= l t.created_at, :format => :long
       %td= t.local_status
-      %td= link_to t('global.delete'), :controller => 'account', :action => 'delete_charge', :id => t if t.trade_type == 'charge' and t.request?
-      - if (admin? or manager?) and t.request?
-        %td
-          = link_to t('trade.approve'), :controller=>'account', :action=>'approve_pass', :id=>t.id
-        %td
-          = link_to t('trade.reject'), :controller=>'account', :action=>'approve_reject', :id=>t.id
+      %td
+        - if (admin? or manager?) and t.request?
+          = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_pass', :id=>t
+          = link_to image_tag('no.png', :alt=>t('trade.reject')), :controller=>'account', :action=>'approve_reject', :id=>t
+        = link_to image_tag('delete.png', :alt=>t('global.delete')), :controller => 'account', :action => 'delete_charge', :id=>t if t.request?
 = will_paginate @trades

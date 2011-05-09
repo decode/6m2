@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money do
       allow :user, :guest, :salesman
     end
     actions :delete_charge do
@@ -23,11 +23,13 @@ class AccountController < ApplicationController
   def charge
     session[:charge_type] = 'charge'
     redirect_to '/' unless user_signed_in?
+    @user = current_user
   end
 
   def delete_charge
     trade = Trade.find(params[:id])
-    trade.destroy if trade.user == current_user and trade.trade_type == 'charge' and trade.request?
+    #trade.destroy if trade.user == current_user and trade.trade_type == 'charge' and trade.request?
+    trade.destroy if trade.user == current_user and trade.request?
     redirect_to :controller => "account"
   end
   
@@ -41,22 +43,36 @@ class AccountController < ApplicationController
       trade.transaction_id = params[:transaction_id] if params[:transaction_id]
       trade.trade_type = session[:charge_type]
       trade.user = user
+      logger.info("====================" + trade.trade_type) 
+      
       if trade.trade_type == 'point'
         rest = user.account_money - (trade.price.to_f * Setting.first.point_ratio)
         if rest >= 0
           Trade.transaction do 
             if trade.save!
-              Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.request_point')
+              Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.request_point') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('trade.success')
             end
           end
         else
           flash[:error] = t('trade.no_enough_money')
         end
+      elsif trade.trade_type == 'recyling'
+        rest = user.account_credit - trade.price.to_f
+        if rest >= 0
+          Trade.transaction do 
+            if trade.save!
+              Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.request_recyling') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              flash[:notice] = t('trade.success')
+            end
+          end
+        else
+          flash[:error] = t('trade.out_point')
+        end
       else
         Trade.transaction do
           if trade.save!
-            Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.request_charge')
+            Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.request_charge') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
             flash[:notice] = t('trade.success') 
           end
         end
@@ -66,7 +82,7 @@ class AccountController < ApplicationController
   end
 
   def approve
-    @trades = Trade.where('status = ? and trade_type = ?', 'request', params[:id]).paginate(:page => params[:page], :per_page => 20)
+    @trades = Trade.where('status = ? and trade_type = ?', 'request', params[:id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
   end
   
   def approve_pass
@@ -84,19 +100,22 @@ class AccountController < ApplicationController
             # update: 根据需求取消,并赠送发布点
             if user.has_role? 'guest'
               user.account_credit = user.account_credit + Setting.first.init_gift_point
-              #rest = user.account_money - (Setting.first.point_ratio * Setting.first.init_required_point)
-              #if rest >= 0
-              #  user.account_money = rest
-              #  user.account_credit = user.account_credit + Setting.first.init_required_point #fix if user has been assign credit before confirm
-              #  user.has_role! :user
-              #  user.has_no_role! :guest
-              #end
               user.has_role! :user
               user.has_no_role! :guest
             end
-            Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve')
+            Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
             user.save!
             flash[:notice] = t('trade.approve_charge')
+          # 发布点回收
+          elsif trade.trade_type == 'recyling'
+            user.account_money = user.account_money + (trade.price.to_f * Setting.first.recyling_point_ratio)
+            user.account_credit = user.account_credit - trade.price.to_f
+            if user.save
+              Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              flash[:notice] = t('global.operate_success')
+            else
+              flash[:error] = t('global.operate_failed')
+            end
           # 发布点批准
           else
             rest = user.account_money - (trade.price.to_f * Setting.first.point_ratio)
@@ -104,6 +123,7 @@ class AccountController < ApplicationController
               user.account_money = rest
               user.account_credit = user.account_credit + trade.price.to_f
               user.save!
+              Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('trade.approve_charge')
             else
               flash[:error] = t('trade.no_enough_money')
@@ -124,7 +144,7 @@ class AccountController < ApplicationController
     Trade.transaction do
       trade.reject
       if trade.save
-        Accountlog.create! :user_id => trade.user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.reject')
+        Accountlog.create! :user_id => trade.user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => trade.trade_type, :description => t('trade.reject')
         flash[:notice] = t('global.operate_success')
       end
     end
@@ -135,8 +155,19 @@ class AccountController < ApplicationController
   def payment
     session[:charge_type] = 'point'
     redirect_to '/' unless user_signed_in?
+    @user = current_user
   end
-  
+
+  # 发布点回收
+  def point_money
+    session[:charge_type] = 'recyling'
+    if current_user.account_credit < Setting.first.recyling_point
+      flash[:error] = t('account.not_enough_recyling_point')
+      redirect_to :back
+    end
+    @user = current_user
+  end
+
   def trade_log
     @user = User.find(params[:id])
     @trades = Accountlog.where('user_id = ?', params[:id]).order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
@@ -148,6 +179,7 @@ class AccountController < ApplicationController
   end
 
   def small_cash
+    session[:view_task] = 'cash'
     @user = User.find(params[:id])
     @tasks = Task.where('user_id = ? and task_type = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end

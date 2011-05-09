@@ -1,5 +1,5 @@
 = render 'user'
-#tearshape
+.bordershape
   /%p#notice= notice
   %p
     %b= t 'global.title'
@@ -18,8 +18,9 @@
       %b= t 'issue.target' 
       = link_to @task.title, @task #eval("#{@issue.itype}.find_by_id(#{@issue.target_id}).title")
 
-#tearshape
-  = render 'penalties' if @issue.penalties.length > 0
+- if @issue.penalties.length > 0
+  .bordershape
+    = render 'penalties'
 
 -# if !@task.nil? and @issue.open? and (admin? or manager?)
   %hr

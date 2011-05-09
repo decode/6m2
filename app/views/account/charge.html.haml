@@ -1,5 +1,5 @@
 #mainframe
-  #charge
+  .bordershape
     - form_tag :action=>'process_charge', do
       = label_tag t('trade.transaction_id')
       = text_field_tag 'transaction_id'
@@ -15,3 +15,8 @@
     %p= t 'trade.must_input'
     %hr
     %p= t 'trade.bad_deal'
+
+  .bordershape
+    = render 'account/user'
+
+

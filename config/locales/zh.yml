@@ -49,6 +49,7 @@ zh:
     quantity: "数量"
     from: "从"
     to: "到"
+    submit: "提交"
     
   system:
     password_error: "密码错误"
@@ -60,6 +61,7 @@ zh:
 
   site:
     name: "风雨同舟"
+    copyright: "版权所有"
     admin: "后台"
     roles: "角色"
     access_denied: "您暂时没有权限访问该资源"
@@ -99,6 +101,7 @@ zh:
     my_task: "我发布的任务"
     my_todo: "我接手的任务"
     my_cash: "我的提现任务"
+    payment_task: "待付款的任务"
     my_account: "我的帐户"
     my_transport: "我的运单号"
     my_messages: "我的消息"
@@ -112,6 +115,7 @@ zh:
     cash_task: "提现处理"
     big_cash: "大额提现"
     small_cash: "小额提现"
+    recyling_point: "发布点回收"
     service_center: "客服中心"
     online_service: "在线咨询"
     service: "平台服务"
@@ -251,11 +255,12 @@ zh:
     confirm: "激活"
     not_confirmed: "未激活"
     not_approved: "未认证"
-    trade_log: "交易记录"
+    trade_log: "帐户记录"
     task_log: "任务记录"
     level: "级别"
     operate_password: "操作密码"
     operate_password_desc: "如果没有设置可不填,密码不正确无法发布任务"
+    not_enough_recyling_point: "发布点未到额度"
 
   participant:
     user: "用户"
@@ -299,6 +304,9 @@ zh:
     end: "己结束"
     total_task: "发布任务总数"
     total_todo: "接手任务总数"
+    total_todo_payment: "待付款金额"
+    total_finish_todo_payment: "己完成任务金额"
+    total_finish_todo_point: "己完成任务发布点"
     not_enough_point: "没有足够发布点或余额"
     not_bind_shop: "没有绑定店铺,无法创建任务"
     point: "发布点"
@@ -329,6 +337,7 @@ zh:
   trade:
     request_charge: "充值申请"
     request_point: "发布点兑换申请"
+    request_recyling: "发布点回收申请"
     charged_at: "充值时间"
     transaction_id: "充值交易单号"
     success: "交易己提交"
@@ -345,6 +354,7 @@ zh:
     charge_payment: "充值"
     manage_point: "发布点兑换管理"
     manage_payment: "充值管理"
+    manage_recyling: "发布点回收管理"
     no_enough_money: "金额不足"
     must_input: "如果充值交易通过银行转账,则必须填写交易单号"
     bad_deal: "禁止胡乱填写交易单号,如经发现严肃处理"
@@ -352,6 +362,8 @@ zh:
     spend: "消费"
     charge: "充值"
     point: "发布点兑换"
+    recyling_point: "发布点回收"
+    out_point: "超出发布点数量"
 
   transaction:
     no_tid: "交易单号不存在"
@@ -387,6 +399,8 @@ zh:
     total_user: "总用户数"
     transport_price: "运单价格"
     times_limit: "运单出售次数限制"
+    recyling_point: "回收发布点限制"
+    recyling_point_ratio: "回收发布点兑换比率"
 
   issue:
     request: "申请"
@@ -408,6 +422,7 @@ zh:
     memo: "解决结果"
     penalty_money: "罚金"
     target: "关联对象"
+    issue_person: "被投诉人"
     
   notice:
     new_notice: "发表公告"

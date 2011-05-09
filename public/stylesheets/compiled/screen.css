@@ -1076,11 +1076,11 @@ body #notice {
 }
 /* line 105, ../../../app/stylesheets/screen.scss */
 body #error {
-  background-color: red;
+  background-color: #ef7070;
 }
 /* line 108, ../../../app/stylesheets/screen.scss */
 body .error {
-  background-color: red;
+  background-color: #ef7070;
 }
 /* line 111, ../../../app/stylesheets/screen.scss */
 body #equal-left {
@@ -1159,4 +1159,24 @@ form input.text, form input.title, form input[type=email], form input[type=text]
 form textarea {
   width: 390px;
   height: 250px;
+}
+
+/* line 122, ../../../app/stylesheets/screen.scss */
+html, body {
+  height: 98%;
+  margin: 0;
+}
+
+/* line 124, ../../../app/stylesheets/screen.scss */
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -20;
+}
+
+/* line 130, ../../../app/stylesheets/screen.scss */
+#footer, #push {
+  height: 20;
+  text-align: center;
 }

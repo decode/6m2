@@ -31,13 +31,16 @@ class BoardController < ApplicationController
       else
         redirect_to '/s/access_denied'
       end
+    elsif params[:task_type] == "payment"
+      session[:view_task] = 'payment'
+      @tasks = Task.where("task_type != ? and status = ?", 'cash', 'running').group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     else
       @tasks = Task.where("task_type in ( '#{params[:task_type]}', 'v_#{params[:task_type]}' ) and status = ? and worker_level <= ?", 'published', current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     end
   end
 
   def task_show
-    session[:view_task] = 'manage'
+    #session[:view_task] = 'manage'
     unless current_user.nil?
       if params[:task_type] == "task"
         @tasks = Task.where("user_id = ? and task_type != ?", current_user, 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
@@ -367,6 +370,27 @@ class BoardController < ApplicationController
       @current_amount = @trans.sum('amount')
     end
   end
-  
 
+  def range_task
+    if(params[:from].blank? or params[:to].blank?)
+      flash[:error] = t('transaction.date_empty')
+      redirect_to '/t/task_list/payment'
+    else
+      from = params[:from]
+      to = params[:to]
+      if from == to
+        if from.nil?
+          @task_list = Task.where("task_type != ? and status = ?", 'cash', 'running')
+        else
+          @task_list = Task.where(:takeover_time => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day).where("task_type != ? and status = ?", 'cash', 'running')
+        end
+      else
+        @task_list = Task.where(:takeover_time => from.to_datetime..to.to_datetime).where("task_type != ? and status = ?", 'cash', 'running')
+      end
+      @tasks = @task_list.group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @current_amount = @tasks.sum('price')
+      render 'tasks/_tasks'
+    end
+  end
+  
 end

@@ -40,6 +40,7 @@ class TransportsController < ApplicationController
   def new
     @transport = Transport.new
     @transport.tran_type = 'sf'
+    @transport.tran_time = Time.now
 
     respond_to do |format|
       format.html # new.html.erb

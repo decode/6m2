@@ -3,45 +3,45 @@
     = link_to t('global.edit'), edit_task_path(@task) |
   = link_to t('global.back'), :back
 
-.bordershape
-  %p
-    %b=t 'global.title'
-    = @task.title
-
-  %p
-    %b=t 'global.type'
-    = convert_shop_type(@task.task_type)
-
-  %p
-    %b=t 'global.status'
-    = @task.local_status
-
-  - if current_user or manager? or admin?
-    %p
-      %b=t 'participant.shop' 
-      = @task.shop
-
-  %p
-    %b=t 'global.links' 
-    = @task.link
-
-  %p
-    %b=t 'global.price' 
-    = @task.price
-
-  %p
-    %b=t 'task.point' 
-    = @task.point
-
-  %p
-    %b= t 'formtastic.labels.task.tran_type'
-    = convert_tran_type(@task.tran_type)
-
-  %p
-    %b= t 'formtastic.labels.task.tran_id'
-    = @task.tran_id
-
 #mainframe
+  .bordershape
+    %p
+      %b=t 'global.title'
+      = @task.title
+
+    %p
+      %b=t 'global.type'
+      = convert_shop_type(@task.task_type)
+
+    %p
+      %b=t 'global.status'
+      = @task.local_status
+
+    - if current_user or manager? or admin?
+      %p
+        %b=t 'participant.shop' 
+        = @task.shop
+
+    %p
+      %b=t 'global.links' 
+      = @task.link
+
+    %p
+      %b=t 'global.price' 
+      = @task.price
+
+    %p
+      %b=t 'task.point' 
+      = @task.point
+
+    %p
+      %b= t 'formtastic.labels.task.tran_type'
+      = convert_tran_type(@task.tran_type)
+
+    %p
+      %b= t 'formtastic.labels.task.tran_id'
+      = @task.tran_id
+
   .bordershape
     %p
       %b=t 'task.condition'
@@ -70,14 +70,25 @@
 
 #right
   .bordershape
+    = t 'task.owner'
+    = @task.user.username
+    %br
+    - if @task.user.im_q
+      = link_to "tencent://message/?uin=#{@task.user.im_q}&Site=&Menu=yes", :target=>'_black' do
+        = "QQ:#{@task.user.im_q}"
+        = image_tag("http://wpa.qq.com/pa?p=1:#{@task.user.im_q}:4", :alt=>'点击这里给我发消息')
+    %hr
     = t 'task.worker'
     - if manager? or admin?
       = link_to @task.worker.username, @task.worker if @task.worker
-      %br
-      = t 'site.my_participants'
-      = @task.participant.name if @task.participant
-    - else
-      = @task.worker.username if @task.worker
+    %br
+    = t 'site.my_participants'
+    = @task.worker.active_participant.part_id if @task.worker
+    %br
+    - if @task.worker and @task.worker.im_q
+      = link_to "tencent://message/?uin=#{@task.worker.im_q}&Site=&Menu=yes", :target=>'_black' do
+        = "QQ:#{@task.worker.im_q}"
+        = image_tag("http://wpa.qq.com/pa?p=1:#{@task.worker.im_q}:4", :alt=>'点击这里给我发消息')
       
     %hr
     = t 'formtastic.labels.task.published_time'
@@ -91,3 +102,5 @@
     %br
     = t 'formtastic.labels.task.confirmed_time'
     = l @task.confirmed_time if @task.confirmed_time
+
+#mainframe

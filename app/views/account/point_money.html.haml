@@ -1,0 +1,11 @@
+#mainframe
+  .bordershape
+    - form_tag :action=>'process_charge', do
+      = label_tag t('site.recyling_point')
+      = number_field_tag 'amount'
+      %br
+      = submit_tag t('global.submit')
+
+#right
+  .bordershape
+    = render 'account/user'

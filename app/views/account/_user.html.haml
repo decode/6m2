@@ -4,10 +4,9 @@
 %p
   %b= t 'page.email'
   = @user.email
-/
-  %p
-    %b= t 'account.role'
-    = @user.role_objects.map { |role| role.name }
+%p
+  %b= t 'account.role'
+  = @user.role_objects.map { |role| role.name }
 %p
   %b= t 'account.level'
   = image_tag "icon_vip#{(@user.level)}.gif"
@@ -36,6 +35,19 @@
 
 %hr
 
+- if admin?
+  %ul
+    %li
+      = t 'task.total_finish_todo_payment'
+      = @user.status_todos('finished').sum('price')
+    %li
+      = t 'task.total_finish_todo_point'
+      = @user.status_todos('finished').sum('point')
+  %hr
+
+%p
+  = t 'task.total_todo_payment'
+  = @user.status_todos('running').sum('price')
 %p
   = t 'task.total_task'
   = @user.tasks.count

@@ -58,10 +58,10 @@ class UsersController < ApplicationController
     end
     if secret_access?
       @user = User.find(params[:id])
-      @trades = Trade.where('user_id = ?', @user).paginate(:page => params[:page], :per_page => 20)
+      @trades = Trade.where('user_id = ?', @user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     else
       @user = @current_user
-      @trades = Trade.where('user_id = ?', @user).paginate(:page => params[:page], :per_page => 20)
+      @trades = Trade.where('user_id = ?', @user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     end
   end
 

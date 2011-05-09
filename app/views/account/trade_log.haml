@@ -24,7 +24,7 @@
       %td= t.trade_id
       %td= t.operator_id.nil? ? '-' : User.find_by_id(t.operator_id).username 
       %td= t.amount
-      %td= t.log_type
+      %td= t.local_type
       %td= t.description
 
 = will_paginate @trades

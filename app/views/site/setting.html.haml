@@ -1,74 +1,81 @@
 %ul
 - form_tag :action => 'update_setting' do
   = hidden_field_tag 'id', @setting.id
-  %li
-    = label_tag t('setting.point_ratio')
-    = number_field_tag 'setting[point_ratio]', @setting.point_ratio
-  %li
-    = label_tag t('setting.score_ratio')
-    = number_field_tag 'setting[score_ratio]', @setting.score_ratio
-  %li
-    = label_tag t('setting.class1')
-    = number_field_tag 'setting[class1]', @setting.class1
-  %li
-    = label_tag t('setting.class2')
-    = number_field_tag 'setting[class2]', @setting.class2
-  %li
-    = label_tag t('setting.class3')
-    = number_field_tag 'setting[class3]', @setting.class3
-  %li
-    = label_tag t('setting.class4')
-    = number_field_tag 'setting[class4]', @setting.class4
-  %li
-    = label_tag t('setting.class5')
-    = number_field_tag 'setting[class5]', @setting.class5
-  %li
-    = label_tag t('setting.task_punish')
-    = number_field_tag 'setting[task_punish]', @setting.task_punish
-  %li
-    = label_tag t('setting.charge_punish')
-    = number_field_tag 'setting[charge_punish]', @setting.charge_punish
-  %li
-    = label_tag t('setting.report_award')
-    = number_field_tag 'setting[report_award]', @setting.report_award
-  %li
-    = label_tag t('setting.report_punish')
-    = number_field_tag 'setting[report_punish]', @setting.report_punish
+  #equal-left
+    .bordershape
+      %li
+        = label_tag t('setting.point_ratio')
+        = number_field_tag 'setting[point_ratio]', @setting.point_ratio
+      %li
+        = label_tag t('setting.score_ratio')
+        = number_field_tag 'setting[score_ratio]', @setting.score_ratio
+      %li
+        = label_tag t('setting.class1')
+        = number_field_tag 'setting[class1]', @setting.class1
+      %li
+        = label_tag t('setting.class2')
+        = number_field_tag 'setting[class2]', @setting.class2
+      %li
+        = label_tag t('setting.class3')
+        = number_field_tag 'setting[class3]', @setting.class3
+      %li
+        = label_tag t('setting.class4')
+        = number_field_tag 'setting[class4]', @setting.class4
+      %li
+        = label_tag t('setting.class5')
+        = number_field_tag 'setting[class5]', @setting.class5
+      %li
+        = label_tag t('setting.task_punish')
+        = number_field_tag 'setting[task_punish]', @setting.task_punish
+      %li
+        = label_tag t('setting.charge_punish')
+        = number_field_tag 'setting[charge_punish]', @setting.charge_punish
+      %li
+        = label_tag t('setting.report_award')
+        = number_field_tag 'setting[report_award]', @setting.report_award
+      %li
+        = label_tag t('setting.report_punish')
+        = number_field_tag 'setting[report_punish]', @setting.report_punish
 
-  %hr
+  #equal-right
+    .bordershape
+      %li
+        = label_tag t('setting.custom_judge')
+        = number_field_tag 'setting[custom_judge]', @setting.custom_judge
+      %li
+        = label_tag t('setting.real_level')
+        = number_field_tag 'setting[real_level]', @setting.real_level
 
-  %li
-    = label_tag t('setting.custom_judge')
-    = number_field_tag 'setting[custom_judge]', @setting.custom_judge
-  %li
-    = label_tag t('setting.real_level')
-    = number_field_tag 'setting[real_level]', @setting.real_level
+    .bordershape
+      %li
+        = label_tag t('setting.init_required_point')
+        = number_field_tag 'setting[init_required_point]', @setting.init_required_point
+      %li
+        = label_tag t('setting.init_gift_point')
+        = number_field_tag 'setting[init_gift_point]', @setting.init_gift_point
+      %li
+        = label_tag t('setting.total_task')
+        = number_field_tag 'setting[total_task]', @setting.total_task
+      %li
+        = label_tag t('setting.running_task')
+        = number_field_tag 'setting[running_task]', @setting.running_task
+      %li
+        = label_tag t('setting.total_user')
+        = number_field_tag 'setting[total_user]', @setting.total_user
 
-  %hr
+    .bordershape
+      %li
+        = label_tag t('setting.transport_price')
+        = number_field_tag 'setting[transport_price]', @setting.transport_price
+      %li
+        = label_tag t('setting.times_limit')
+        = number_field_tag 'setting[times_limit]', @setting.times_limit
 
-  %li
-    = label_tag t('setting.init_required_point')
-    = number_field_tag 'setting[init_required_point]', @setting.init_required_point
-  %li
-    = label_tag t('setting.init_gift_point')
-    = number_field_tag 'setting[init_gift_point]', @setting.init_gift_point
-  %li
-    = label_tag t('setting.total_task')
-    = number_field_tag 'setting[total_task]', @setting.total_task
-  %li
-    = label_tag t('setting.running_task')
-    = number_field_tag 'setting[running_task]', @setting.running_task
-  %li
-    = label_tag t('setting.total_user')
-    = number_field_tag 'setting[total_user]', @setting.total_user
-
-  %hr
-
-  %li
-    = label_tag t('setting.transport_price')
-    = number_field_tag 'setting[transport_price]', @setting.transport_price
-  %li
-    = label_tag t('setting.times_limit')
-    = number_field_tag 'setting[times_limit]', @setting.times_limit
-  = submit_tag
-    
+    .bordershape
+      %li
+        = label_tag t('setting.recyling_point')
+        = number_field_tag 'setting[reclyling_point]', @setting.recyling_point
+      %li
+        = label_tag t('setting.recyling_point_ratio')
+        = number_field_tag 'setting[recyling_point_ratio]', @setting.recyling_point_ratio
+  = submit_tag t('site.update')

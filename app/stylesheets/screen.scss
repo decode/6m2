@@ -103,10 +103,10 @@ body {
     background-color: green;
   }
   #error {
-    background-color: red;
+    background-color: #ef7070;
   }
   .error {
-    background-color: red;
+    background-color: #ef7070;
   }
   #equal-left {
     @include column(12);
@@ -116,5 +116,18 @@ body {
   }
 }
 form {
-  @include blueprint-form; }
+  @include blueprint-form; 
+}
 
+html, body { height: 98%; margin: 0; }
+
+#wrapper{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -20;
+}
+#footer, #push {
+  height: 20;
+  text-align: center;
+}

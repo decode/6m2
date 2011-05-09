@@ -50,6 +50,7 @@ en:
     quantity: "Quantity"
     from: "From"
     to: "To"
+    submit: "Submit"
 
   system:
     password_error: "Wrong Password!"
@@ -61,6 +62,7 @@ en:
 
   site:
     name: "Boat166"
+    copyright: "Copyright"
     admin: "Admin"
     roles: "Roles"
     access_denied: "Access Denied"
@@ -100,6 +102,7 @@ en:
     my_task: "My tasks"
     my_todo: "My todos"
     my_cash: "My Cash Task"
+    payment_task: "Payment Task"
     my_account: "My account"
     my_transport: "My transport id"
     my_participants: "My Participants"
@@ -114,6 +117,7 @@ en:
     cash_task: "Cash Manage"
     big_cash: "Big Cash"
     small_cash: "Small Cash"
+    recyling_point: "Recyling Point"
     service_center: "Service Center"
     service: "Platform Service"
     service_list: "Customer Service"
@@ -256,6 +260,7 @@ en:
     level: "Level"
     operate_password: "Operate Password"
     operate_password_desc: "Not required if not set."
+    not_enough_recyling_point: "Not enough point"
 
   participant:
     user: "User"
@@ -298,6 +303,9 @@ en:
     end: "End"
     total_task: "Total tasks"
     total_todo: "Total todo works"
+    total_todo_payment: "Total todo payment"
+    total_finish_todo_payment: "Total task payment"
+    total_finish_todo_point: "Total task point"
     not_enough_point: "Not enough point or money"
     not_bind_shop: "Not bind shop or adtive shop"
     point: "Point"
@@ -328,6 +336,7 @@ en:
   trade:
     request_charge: "Request Charge"
     request_point: "Request Point Change"
+    request_recyling: "Request Point Recyling"
     charged_at: "Charged time"
     transaction_id: "Transaction ID"
     success: "Request has been post"
@@ -351,6 +360,8 @@ en:
     spend: "Spend"
     charge: "Charge"
     point: "Point"
+    recyling_point: "Recyling Point"
+    out_point: "Out Point Bondary"
 
   transaction:
     no_tid: "The transaction id does'nt existed"
@@ -386,6 +397,8 @@ en:
     total_user: "Total User"
     transport_price: "Transport ID Price"
     times_limit: "Transport ID Sales limit"
+    recyling_point: "Recyling Point"
+    recyling_point_ratio: "Recyling Point Ratio"
 
   issue:
     request: "Request Service"
@@ -407,6 +420,7 @@ en:
     memo: "Memo"
     penalty_money: "Penalty Money"
     target: "Target"
+    issue_person: "Issue Person"
 
   notice:
     new_notice: "New Notice"

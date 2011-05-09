@@ -1,5 +1,14 @@
-- unless @user.nil?
-  = @user.username
-  = @user.account_money
-  = @user.account_credit
-  = @user.payment_money
+.bordershape
+  = t 'issue.issue_person'
+  - if (admin? or manager?) and !@user.nil?
+    = @user.username
+    = t 'account.account_money'
+    = @user.account_money
+    = t 'account.point'
+    = @user.account_credit
+    = t 'trade.payment_amount'
+    = @user.payment_money
+    %hr
+  
+  - unless @task.nil?
+    = @task.participant.part_id
