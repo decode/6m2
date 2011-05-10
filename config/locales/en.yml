@@ -131,6 +131,8 @@ en:
     new_user: "New Users"
     finance_center: "Finance Center"
     sales_business: "Sales Business"
+    task_num: "Task"
+    todo_num: "Todo"
 
   manage:
     message_box: "Inbox"
@@ -250,6 +252,7 @@ en:
     charge_amount: "Charge Amount"
     account_money: "Account Money"
     point: "Point"
+    gain_point: "Gain Point"
     role: "Role"
     score: "Score"
     confirm: "confirm"
@@ -353,6 +356,7 @@ en:
     charge_payment: "Charge Payment"
     manage_point: "Manage Point Charge"
     manage_payment: "Manage Payment Charge"
+    manage_score: "Manage Score Exchange"
     no_enough_money: "No enough money"
     must_input: "If charge by bank transfer, you must fill in transaction id"
     bad_deal: "Writing transaction id casually will be serious punished"
@@ -362,6 +366,8 @@ en:
     point: "Point"
     recyling_point: "Recyling Point"
     out_point: "Out Point Bondary"
+    score_point: "Score to Point"
+    out_score: "Out Score Bondary"
 
   transaction:
     no_tid: "The transaction id does'nt existed"
@@ -399,6 +405,8 @@ en:
     times_limit: "Transport ID Sales limit"
     recyling_point: "Recyling Point"
     recyling_point_ratio: "Recyling Point Ratio"
+    skilled_point_ratio: "Skilled people gain point ratio"
+    score_point: "1 point per score"
 
   issue:
     request: "Request Service"

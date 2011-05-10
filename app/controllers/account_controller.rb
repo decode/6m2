@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money do
+    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money, :score_point do
       allow :user, :guest, :salesman
     end
     actions :delete_charge do
@@ -39,14 +39,13 @@ class AccountController < ApplicationController
     else
       user = User.where('id = ?', current_user).first
       trade = Trade.new
-      trade.price = params[:amount]
+      trade.price = params[:amount].to_f
       trade.transaction_id = params[:transaction_id] if params[:transaction_id]
       trade.trade_type = session[:charge_type]
       trade.user = user
-      logger.info("====================" + trade.trade_type) 
       
       if trade.trade_type == 'point'
-        rest = user.account_money - (trade.price.to_f * Setting.first.point_ratio)
+        rest = user.account_money - (trade.price * Setting.first.point_ratio)
         if rest >= 0
           Trade.transaction do 
             if trade.save!
@@ -58,8 +57,8 @@ class AccountController < ApplicationController
           flash[:error] = t('trade.no_enough_money')
         end
       elsif trade.trade_type == 'recyling'
-        rest = user.account_credit - trade.price.to_f
-        if rest >= 0
+        rest = user.account_credit - trade.price
+        if rest >= 0 and trade.price >= Setting.first.recyling_point
           Trade.transaction do 
             if trade.save!
               Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.request_recyling') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
@@ -68,6 +67,18 @@ class AccountController < ApplicationController
           end
         else
           flash[:error] = t('trade.out_point')
+        end
+      elsif trade.trade_type == 'score'
+        rest = user.score - trade.price
+        if rest >= 0 and trade.price >= Setting.first.score_point
+          Trade.transaction do 
+            if trade.save!
+              Accountlog.create! :user_id => user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'score', :description => t('trade.score_point') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + I18n.t('account.score') + ":" + (user.score).to_s
+              flash[:notice] = t('trade.success')
+            end
+          end
+        else
+          flash[:error] = t('trade.out_score')
         end
       else
         Trade.transaction do
@@ -95,7 +106,7 @@ class AccountController < ApplicationController
         trade.approve
         if trade.save
           if trade.trade_type == 'charge'
-            user.account_money = user.account_money + trade.price.to_f
+            user.account_money = user.account_money + trade.price
             # 如果是guest用户,自动扣去发布点所需的金额,并增加相应的发布点
             # update: 根据需求取消,并赠送发布点
             if user.has_role? 'guest'
@@ -103,25 +114,44 @@ class AccountController < ApplicationController
               user.has_role! :user
               user.has_no_role! :guest
             end
-            Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
-            user.save!
-            flash[:notice] = t('trade.approve_charge')
+            if user.save
+              Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              flash[:notice] = t('trade.approve_charge')
+            else
+              flash[:error] = t('global.operate_failed')
+            end
+
+
           # 发布点回收
           elsif trade.trade_type == 'recyling'
-            user.account_money = user.account_money + (trade.price.to_f * Setting.first.recyling_point_ratio)
-            user.account_credit = user.account_credit - trade.price.to_f
+            user.account_money = user.account_money + (trade.price * Setting.first.recyling_point_ratio)
+            user.account_credit = user.account_credit - trade.price
             if user.save
               Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('global.operate_success')
             else
               flash[:error] = t('global.operate_failed')
             end
+
+
+          # 积分兑换
+          elsif trade.trade_type == 'score'
+            user.account_credit = user.account_credit + (trade.price/Setting.first.score_point)
+            user.score = user.score - trade.price
+            if user.save
+              Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'score', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + I18n.t('account.score') + ":" + (user.score).to_s
+              flash[:notice] = t('global.operate_success')
+            else
+              flash[:error] = t('global.operate_failed')
+            end
+
+
           # 发布点批准
           else
-            rest = user.account_money - (trade.price.to_f * Setting.first.point_ratio)
+            rest = user.account_money - (trade.price * Setting.first.point_ratio)
             if rest >= 0
               user.account_money = rest
-              user.account_credit = user.account_credit + trade.price.to_f
+              user.account_credit = user.account_credit + trade.price
               user.save!
               Accountlog.create! :user_id => user.id, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('trade.approve_charge')
@@ -168,27 +198,43 @@ class AccountController < ApplicationController
     @user = current_user
   end
 
+  # 积分兑换发布点
+  def score_point
+    session[:charge_type] = 'score'
+    setting = Setting.first
+    if setting.score_point > current_user.score - setting.class1
+      flash[:error] = t('account.not_enough_score')
+      redirect_to :back
+    end
+    @user = current_user
+  end
+
+  # 交易记录
   def trade_log
     @user = User.find(params[:id])
     @trades = Accountlog.where('user_id = ?', params[:id]).order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
   end
   
+  # 任务记录
   def task_log
     @user = User.find(params[:id])
     @tasks = Tasklog.where('user_id = ?', params[:id]).order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
   end
 
+  # 小额提现
   def small_cash
     session[:view_task] = 'cash'
     @user = User.find(params[:id])
     @tasks = Task.where('user_id = ? and task_type = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end
 
+  # 大额提现
   def big_cash
     @user = User.find(params[:id])
     @issues = Issue.where('user_id = ? and itype = ?', @user, 'cash').order('created_at DESC').paginate(:page=>params[:page], :per_page=>15)
   end
 
+  # 买号店铺绑定
   def participant
     if current_user.has_role? 'admin'
       @user = User.find(params[:id])
@@ -212,6 +258,7 @@ class AccountController < ApplicationController
     @messageboxes = MessageBox.where(:user_id => current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
   end
   
+  # 业务员报账
   def business
     id = params[:id]
     if current_user.has_role? 'salesman'

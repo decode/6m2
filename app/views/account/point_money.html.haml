@@ -1,8 +1,9 @@
 #mainframe
   .bordershape
-    - form_tag :action=>'process_charge', do
+    - form_tag({:action=>'process_charge'}, :id => 'charge') do
       = label_tag t('site.recyling_point')
-      = number_field_tag 'amount'
+      - point = Setting.first.recyling_point
+      = number_field_tag 'amount', point, :in => point..current_user.account_credit, :class=>"validate[require],custom[number],min[#{point}],max[#{current_user.account_credit}]"
       %br
       = submit_tag t('global.submit')
 

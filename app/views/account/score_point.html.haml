@@ -1,0 +1,12 @@
+#mainframe
+  .bordershape
+    - form_tag({:action=>'process_charge'}, :id => 'charge') do
+      = label_tag t('site.score_point')
+      - score = Setting.first.score_point
+      = number_field_tag 'amount', score, :in => score..current_user.score, :class=>"validate[require],custom[number],min[#{score}],max[#{current_user.score}]"
+      %br
+      = submit_tag t('global.submit')
+
+#right
+  .bordershape
+    = render 'account/user'

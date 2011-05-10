@@ -3,7 +3,7 @@ class CreateSettings < ActiveRecord::Migration
     create_table :settings do |t|
       # 兑换比率
       t.float :point_ratio, :default => 1 # 1发布点价值1
-      t.float :score_ratio, :default => 1
+      t.float :score_ratio, :default => 5 # 1任务价值5个积分
 
       t.float :init_required_point, :default => 0
       t.float :init_gift_point, :default => 2
@@ -41,6 +41,12 @@ class CreateSettings < ActiveRecord::Migration
       # 回收发布点数量限制
       t.float :recyling_point, :default => 200
       t.float :recyling_point_ratio, :default => 0.4
+
+      # 老客户获得发布点比例
+      t.float :skilled_point_ratio, :default => 0.8
+
+      # 积分兑换发布点比例
+      t.float :score_point, :default => 300
 
       t.timestamps
     end

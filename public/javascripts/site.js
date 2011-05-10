@@ -9,7 +9,10 @@ $(document).ready(function(){
   $("#new_transaction").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_new").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_edit").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+  $("#charge").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
 
   $('#customer_service').easyListSplitter({ colNumber: 4 });
+
+  $("#site-bar").jixedbar();
 
 });

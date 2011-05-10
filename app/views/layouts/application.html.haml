@@ -14,8 +14,8 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
 
-    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min'
-    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom'
+    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet'    
 
     =# javascript_include_tag 'jcarousellite_1.0.1c4'
     =# javascript_include_tag 'ticker'
@@ -82,6 +82,7 @@
                       = link_to t('trade.charge_payment'), '/m/charge'
                       = link_to t('trade.charge_point'), '/m/payment'
                       = link_to t('site.recyling_point'), '/m/point_money'
+                      = link_to t('trade.score_point'), '/m/score_point'
                       %hr
                       = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
                       = link_to t('site.my_participants'), user_participants_url(current_user)
@@ -105,6 +106,7 @@
                     = link_to t('trade.manage_payment'), '/m/approve/charge'
                     = link_to t('trade.manage_point'), '/m/approve/point'
                     = link_to t('trade.manage_recyling'), '/m/approve/recyling'
+                    = link_to t('trade.manage_score'), '/m/approve/score'
                     %hr
                     = link_to t('site.issue'), issues_path
                     %hr
@@ -153,23 +155,41 @@
             :javascript
               $.jnotify("#{flash[:error]}", "error");
 
-        - if user_signed_in?
-          #message
-            - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
-            - if messages.length > 0
-              #roundshape
-                - if messages.length == 1
-                  = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
-                - else
-                  = link_to t('message.total_message', :total => messages.length), '/m/message'
-
         #content
           = yield
 
-      #push
+        #site-bar
+          %ul
+            %li{:title=>'Home'}
+              = link_to image_tag('home.png'), '/'
+          %span.jx-searator-left          
+          - if user_signed_in?
+            %ul
+              - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+              - if messages.length > 0
+                %li
+                  - if messages.length == 1
+                    = image_tag 'mail.png', :alt=>''
+                    = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
+                  - else
+                    = image_tag 'mail.png', :alt=>''
+                    = link_to t('message.total_message', :total => messages.length), '/m/message'
+            %ul.jx-bar-button-right
+              %li
+                = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+              %li
+                = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
 
-    #footer
-      = t 'site.copyright'
-      ©
-      = t 'site.name'
+          %div 
+            = t 'site.copyright'
+            ©
+            = t 'site.name'
+          %span.jx-separator-right
 
+      /
+        #push
+    /
+      #footer
+        = t 'site.copyright'
+        ©
+        = t 'site.name'

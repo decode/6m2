@@ -60,7 +60,7 @@ zh:
     unread_message: "末读消息"
 
   site:
-    name: "风雨同舟"
+    name: "同舟共济"
     copyright: "版权所有"
     admin: "后台"
     roles: "角色"
@@ -116,6 +116,7 @@ zh:
     big_cash: "大额提现"
     small_cash: "小额提现"
     recyling_point: "发布点回收"
+    score_point: "积分兑换"
     service_center: "客服中心"
     online_service: "在线咨询"
     service: "平台服务"
@@ -130,6 +131,8 @@ zh:
     new_user: "新加入平台用户"
     finance_center: "财务中心"
     sales_business: "业务申报"
+    task_num: "发布任务数"
+    todo_num: "接手任务数"
 
   manage:
     message_box: "收件箱"
@@ -250,6 +253,7 @@ zh:
     charge_amount: "充值金额"
     account_money: "帐户余额"
     point: "发布点"
+    gain_point: "得到发布点"
     role: "角色"
     score: "积分"
     confirm: "激活"
@@ -261,6 +265,7 @@ zh:
     operate_password: "操作密码"
     operate_password_desc: "如果没有设置可不填,密码不正确无法发布任务"
     not_enough_recyling_point: "发布点未到额度"
+    not_enough_score: "积分未到额度"
 
   participant:
     user: "用户"
@@ -355,6 +360,7 @@ zh:
     manage_point: "发布点兑换管理"
     manage_payment: "充值管理"
     manage_recyling: "发布点回收管理"
+    manage_score: "积分兑换管理"
     no_enough_money: "金额不足"
     must_input: "如果充值交易通过银行转账,则必须填写交易单号"
     bad_deal: "禁止胡乱填写交易单号,如经发现严肃处理"
@@ -363,7 +369,9 @@ zh:
     charge: "充值"
     point: "发布点兑换"
     recyling_point: "发布点回收"
-    out_point: "超出发布点数量"
+    out_point: "操作失败,不能小于最低兑换发布点或超出发布点数量"
+    score_point: "积分兑换"
+    out_score: "操作失败,不能小于最低兑换积分或超出积分值"
 
   transaction:
     no_tid: "交易单号不存在"
@@ -401,6 +409,8 @@ zh:
     times_limit: "运单出售次数限制"
     recyling_point: "回收发布点限制"
     recyling_point_ratio: "回收发布点兑换比率"
+    skilled_point_ratio: "老客户获得发布点比率"
+    score_point: "积分兑换1发布点数"
 
   issue:
     request: "申请"

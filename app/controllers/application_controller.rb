@@ -73,17 +73,29 @@ class ApplicationController < ActionController::Base
 
   def gain(task)
     return if task.free_task?
-    lev = [1, 0.8, 0.8, 0.8, 0.8, 0.8]
+    setting = Setting.first
+    ratio = setting.skilled_point_ratio
+    lev = ([1] << [ratio]*4).flatten
     logger.info("#{task.worker.username} score:#{lev[task.worker.level]} point:#{task.point}===========================================")
     user = task.worker
-    task.worker.score = task.worker.score + lev[task.worker.level]
-    task.worker.account_credit = task.worker.account_credit + task.point
+    user.score = user.score + setting.score_ratio
+    real_point = task.point * lev[user.level]
+    user.account_credit = user.account_credit + real_point
     user.payment_money = user.payment_money + task.price
-    task.worker.account_money = task.worker.account_money + task.price
-    task.worker.save
+    user.account_money = user.account_money + task.price
+    user.save
     #
     # 需要添加用户交易记录
     #
+    log = Tasklog.new
+    log.task_id = task.id
+    log.user_id = user.id
+    log.worker_id = user.id if user
+    log.price = task.price
+    log.point = task.point
+    log.status = task.status
+    log.description = I18n.t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + "  " + I18n.t('account.gain_point') + ":" + real_point.to_s
+    log.save!
   end
 
   def penalty(issue, user, point=0, money=0)

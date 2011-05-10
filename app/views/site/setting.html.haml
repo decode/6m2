@@ -78,4 +78,10 @@
       %li
         = label_tag t('setting.recyling_point_ratio')
         = number_field_tag 'setting[recyling_point_ratio]', @setting.recyling_point_ratio
+      %li
+        = label_tag t('setting.skilled_point_ratio')
+        = number_field_tag 'setting[skilled_point_ratio]', @setting.skilled_point_ratio
+      %li
+        = label_tag t('setting.score_point')
+        = number_field_tag 'setting[score_point]', @setting.score_point
   = submit_tag t('site.update')
