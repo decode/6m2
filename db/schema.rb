@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -126,26 +126,30 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
   end
 
   create_table "settings", :force => true do |t|
-    t.float    "point_ratio",         :default => 1.0
-    t.float    "score_ratio",         :default => 1.0
-    t.float    "init_required_point", :default => 0.0
-    t.float    "init_gift_point",     :default => 2.0
-    t.integer  "class1",              :default => 100
-    t.integer  "class2",              :default => 200
-    t.integer  "class3",              :default => 500
-    t.integer  "class4",              :default => 800
-    t.integer  "class5",              :default => 1000
-    t.float    "task_punish",         :default => 1.0
-    t.float    "charge_punish",       :default => 1.0
-    t.float    "report_award",        :default => 1.0
-    t.float    "report_punish",       :default => 1.0
-    t.float    "custom_judge",        :default => 0.2
-    t.integer  "real_level",          :default => 5
-    t.float    "transport_price",     :default => 0.2
-    t.integer  "times_limit",         :default => 3
-    t.integer  "running_task",        :default => 10
-    t.integer  "total_task",          :default => 100
-    t.integer  "total_user",          :default => 220
+    t.float    "point_ratio",          :default => 1.0
+    t.float    "score_ratio",          :default => 5.0
+    t.float    "init_required_point",  :default => 0.0
+    t.float    "init_gift_point",      :default => 2.0
+    t.integer  "class1",               :default => 100
+    t.integer  "class2",               :default => 200
+    t.integer  "class3",               :default => 500
+    t.integer  "class4",               :default => 800
+    t.integer  "class5",               :default => 1000
+    t.float    "task_punish",          :default => 1.0
+    t.float    "charge_punish",        :default => 1.0
+    t.float    "report_award",         :default => 1.0
+    t.float    "report_punish",        :default => 1.0
+    t.float    "custom_judge",         :default => 0.2
+    t.integer  "real_level",           :default => 5
+    t.float    "transport_price",      :default => 0.2
+    t.integer  "times_limit",          :default => 3
+    t.integer  "running_task",         :default => 10
+    t.integer  "total_task",           :default => 100
+    t.integer  "total_user",           :default => 220
+    t.float    "recyling_point",       :default => 200.0
+    t.float    "recyling_point_ratio", :default => 0.4
+    t.float    "skilled_point_ratio",  :default => 0.8
+    t.float    "score_point",          :default => 300.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -195,7 +199,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
   end
 
   create_table "trades", :force => true do |t|
-    t.string   "price"
+    t.float    "price"
     t.string   "status"
     t.string   "description"
     t.string   "trade_type"
@@ -207,7 +211,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "tid"
+    t.string   "tid"
     t.string   "name"
     t.string   "bank"
     t.float    "amount"
