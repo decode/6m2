@@ -28,163 +28,168 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
   %body
-    #wrapper
-      .container
-        #toolbar
-          - if user_signed_in?
-            =t('site.welcome', :name => current_user.username)
-            |
-            = link_to t('site.profile'), edit_user_registration_path
-            |
-            = link_to t('site.logout'), destroy_user_session_path
-          - else
-            = link_to t('site.login'), new_user_session_path
-            |
-            = link_to t('site.register'), new_user_registration_path
-        #navibar
-          #nicemenu
-            %ul
-              %li
-                %span.head_menu
-                  = link_to t('site.label'), '/'
-              %li
-                %span.head_menu
-                  = link_to t('site.notice_center'), notices_path if user_signed_in?
-
-              - if user_signed_in?
-                %li
-                  %span.head_menu
-                    = link_to t('site.task'), tasks_url
-                    = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                  .sub_menu
-                    = link_to t('site.new_task'), new_task_url if user?
-                    %hr
-                    = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
-                    = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
-                    = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-                    - if guest? or user?
-                      %hr
-                      = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
-                      = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
-                      = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
-                    - if admin?
-                      %hr
-                      = link_to t('site.payment_task'), :controller=>'board', :action=> 'task_list', :task_type => 'payment'
-
-              - if user_signed_in?
-                %li
-                  %span.head_menu
-                    =link_to t('site.user_center'), current_user
-                    = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                  .sub_menu
-                    - if guest? or user?
-                      = link_to t('site.my_account'), '/m/index'
-                      = link_to t('trade.charge_payment'), '/m/charge'
-                      = link_to t('trade.charge_point'), '/m/payment'
-                      = link_to t('site.recyling_point'), '/m/point_money'
-                      = link_to t('trade.score_point'), '/m/score_point'
-                      %hr
-                      = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
-                      = link_to t('site.my_participants'), user_participants_url(current_user)
-                      = link_to t('site.operate_password'), "/m/operate_password"
-                      %hr
-                      = link_to t('site.my_messages'), '/m/message'
-                    - if salesman?
-                      = link_to t('site.sales_business'), transactions_url
-
-
-              - if manager? or admin?
-                %li
-                  %span.head_menu
-                    = link_to t('site.manage_center'), admin? ? users_path : ''
-                    = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                  .sub_menu
-                    = link_to t('site.user_manage'), users_path if admin?
-                    %hr
-                    = link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
-                    = link_to t('site.big_cash'), '/t/big_cash'
-                    = link_to t('trade.manage_payment'), '/m/approve/charge'
-                    = link_to t('trade.manage_point'), '/m/approve/point'
-                    = link_to t('trade.manage_recyling'), '/m/approve/recyling'
-                    = link_to t('trade.manage_score'), '/m/approve/score'
-                    %hr
-                    = link_to t('site.issue'), issues_path
-                    %hr
-                    - if admin?
-                      = link_to t('notice.new_notice'), new_notice_url
-                      = link_to t('article.new_article'), new_article_url
-                      = link_to t('system.message'), '/s/message'
-                      %hr
-                      = link_to t('site.finance_center'), transactions_url
-                      %hr
-                      = link_to t('site.setting'), '/s/setting'
-
-              - if user? or guest?
-                %li
-                  %span.head_menu
-                    = link_to t('site.service_center'), '/t/service'
-                    = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                  .sub_menu
-                    = link_to t('site.service_list'), '/t/service'
-                    = link_to t('site.service'), issues_path 
-
-              - if user?
-                %li
-                  %span.head_menu
-                    = link_to t('site.transport_center'), transports_path
-
-                %li
-                  %span.head_menu
-                    = link_to t('site.rule'), articles_path
-
-              - if superadmin?
-                %li
-                  %span.head_menu
-                    = link_to t('site.admin'), '/admin'
-                    = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
-                  .sub_menu
-                    = link_to t('site.admin'), '/admin'
-                    = link_to t('site.roles'), '/t/roles'
-
-        - if flash[:notice]
-          #notice
-            :javascript
-              $.jnotify("#{flash[:notice]}");
-        - if flash[:error]
-          #error
-            :javascript
-              $.jnotify("#{flash[:error]}", "error");
-
-        #content
-          = yield
-
-        #site-bar
+    .container
+      #toolbar
+        - if user_signed_in?
+          =t('site.welcome', :name => current_user.username)
+          |
+          = link_to t('site.profile'), edit_user_registration_path
+          |
+          = link_to t('site.logout'), destroy_user_session_path
+        - else
+          = link_to t('site.login'), new_user_session_path
+          |
+          = link_to t('site.register'), new_user_registration_path
+      #navibar
+        #nicemenu
           %ul
-            %li{:title=>'Home'}
-              = link_to image_tag('home.png'), '/'
-          %span.jx-searator-left          
-          - if user_signed_in?
-            %ul
-              - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
-              - if messages.length > 0
-                %li
-                  - if messages.length == 1
-                    = image_tag 'mail.png', :alt=>''
-                    = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
-                  - else
-                    = image_tag 'mail.png', :alt=>''
-                    = link_to t('message.total_message', :total => messages.length), '/m/message'
-            %ul.jx-bar-button-right
-              %li
-                = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
-              %li
-                = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
+            %li
+              %span.head_menu
+                = link_to t('site.label'), '/'
+            %li
+              %span.head_menu
+                = link_to t('site.notice_center'), notices_path if user_signed_in?
 
-          %div 
-            = t 'site.copyright'
-            ©
-            = t 'site.name'
-          %span.jx-separator-right
+            - if user_signed_in?
+              %li
+                %span.head_menu
+                  = link_to t('site.task'), tasks_url
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.new_task'), new_task_url if user?
+                  %hr
+                  = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
+                  = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
+                  = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+                  - if guest? or user?
+                    %hr
+                    = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
+                    = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
+                    = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
+                  - if admin?
+                    %hr
+                    = link_to t('site.payment_task'), :controller=>'board', :action=> 'task_list', :task_type => 'payment'
+
+            - if user_signed_in?
+              %li
+                %span.head_menu
+                  =link_to t('site.user_center'), current_user
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  - if guest? or user?
+                    = link_to t('site.my_account'), '/m/index'
+                    = link_to t('trade.charge_payment'), '/m/charge'
+                    = link_to t('trade.charge_point'), '/m/payment'
+                    =# link_to t('site.recyling_point'), '/m/point_money'
+                    = link_to t('trade.score_point'), '/m/score_point'
+                    %hr
+                    = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
+                    = link_to t('site.my_participants'), user_participants_url(current_user)
+                    = link_to t('site.operate_password'), "/m/operate_password"
+                    %hr
+                    = link_to t('site.my_messages'), '/m/message'
+                  - if salesman?
+                    = link_to t('site.sales_business'), transactions_url
+
+
+            - if manager? or admin?
+              %li
+                %span.head_menu
+                  = link_to t('site.manage_center'), admin? ? users_path : ''
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.user_manage'), users_path if admin?
+                  %hr
+                  = link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
+                  = link_to t('site.big_cash'), '/t/big_cash'
+                  = link_to t('trade.manage_payment'), '/m/approve/charge'
+                  = link_to t('trade.manage_point'), '/m/approve/point'
+                  =# link_to t('trade.manage_recyling'), '/m/approve/recyling'
+                  = link_to t('trade.manage_score'), '/m/approve/score'
+                  %hr
+                  = link_to t('site.issue'), issues_path
+                  %hr
+                  - if admin?
+                    = link_to t('notice.new_notice'), new_notice_url
+                    = link_to t('article.new_article'), new_article_url
+                    = link_to t('system.message'), '/s/message'
+                    %hr
+                    = link_to t('site.finance_center'), transactions_url
+                    %hr
+                    = link_to t('site.setting'), '/s/setting'
+
+            - if user? or guest?
+              %li
+                %span.head_menu
+                  = link_to t('site.service_center'), '/t/service'
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.service_list'), '/t/service'
+                  = link_to t('site.service'), issues_path 
+
+            - if user?
+              %li
+                %span.head_menu
+                  = link_to t('site.transport_center'), transports_path
+
+              %li
+                %span.head_menu
+                  = link_to t('site.rule'), articles_path
+
+            - if superadmin?
+              %li
+                %span.head_menu
+                  = link_to t('site.admin'), '/admin'
+                  = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
+                .sub_menu
+                  = link_to t('site.admin'), '/admin'
+                  = link_to t('site.roles'), '/t/roles'
+
+      - if flash[:notice]
+        #notice
+          :javascript
+            $.jnotify("#{flash[:notice]}");
+      - if flash[:error]
+        #error
+          :javascript
+            $.jnotify("#{flash[:error]}", "error");
+
+      #space-left
+        %br
+
+      #middle
+        = yield
+
+      #space-right
+        %br
+
+      #site-bar
+        %ul
+          %li{:title=>'Home'}
+            = link_to image_tag('home.png'), '/'
+        %span.jx-searator-left          
+        - if user_signed_in?
+          %ul
+            - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+            - if messages.length > 0
+              %li
+                - if messages.length == 1
+                  = image_tag 'mail.png', :alt=>''
+                  = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
+                - else
+                  = image_tag 'mail.png', :alt=>''
+                  = link_to t('message.total_message', :total => messages.length), '/m/message'
+          %ul.jx-bar-button-right
+            %li
+              = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+            %li
+              = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
+
+        %div 
+          = t 'site.copyright'
+          ©
+          = t 'site.name'
+        %span.jx-separator-right
 
       /
         #push

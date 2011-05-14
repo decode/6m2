@@ -114,6 +114,15 @@ body {
   #equal-right {
     @include column(12, ture);
   }
+  #space-right {
+    @include column(1, true);
+  }
+  #space-left {
+    @include column(1);
+  }
+  #middle {
+    @include column(22);
+  }
 }
 form {
   @include blueprint-form; 

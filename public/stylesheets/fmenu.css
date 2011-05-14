@@ -8,7 +8,7 @@ p { line-height:18px; }
 
 #info { margin:auto; width:600px; color:#333333; padding:10px; background:#f4f4f4; border:1px solid #DDD; }
 */
-#nicemenu { margin:0 auto; width:100%; margin-top:0px; border-bottom:dotted 1px #E5E5E5; font-size: 18px;}
+#nicemenu { margin:0 auto; width:95%; margin-top:0px; border-bottom:dotted 0px #0066cc; font-size: 16px;}
 /*#nicemenu { margin:0 auto; width:100%; margin-top:0px; border-bottom:dotted 1px #E5E5E5; font-size: 18px; background: #3b69b1; }/*#3b69b1;}*/
 #nicemenu a { color:#0066CC; text-decoration:none; }
 /*#nicemenu a { color:#fff; text-decoration:none; }*/

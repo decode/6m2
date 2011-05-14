@@ -1098,6 +1098,30 @@ body #equal-right {
   width: 49.466%;
   margin-right: 0;
 }
+/* line 117, ../../../app/stylesheets/screen.scss */
+body #space-right {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 3.167%;
+  margin-right: 0;
+}
+/* line 120, ../../../app/stylesheets/screen.scss */
+body #space-left {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 3.167%;
+  margin-right: 1.042%;
+}
+/* line 123, ../../../app/stylesheets/screen.scss */
+body #middle {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 91.556%;
+  margin-right: 1.042%;
+}
 
 /* line 18, ../../../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form label {
@@ -1161,13 +1185,13 @@ form textarea {
   height: 250px;
 }
 
-/* line 122, ../../../app/stylesheets/screen.scss */
+/* line 131, ../../../app/stylesheets/screen.scss */
 html, body {
   height: 98%;
   margin: 0;
 }
 
-/* line 124, ../../../app/stylesheets/screen.scss */
+/* line 133, ../../../app/stylesheets/screen.scss */
 #wrapper {
   min-height: 100%;
   height: auto !important;
@@ -1175,7 +1199,7 @@ html, body {
   margin: 0 auto -20;
 }
 
-/* line 130, ../../../app/stylesheets/screen.scss */
+/* line 139, ../../../app/stylesheets/screen.scss */
 #footer, #push {
   height: 20;
   text-align: center;
