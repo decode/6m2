@@ -23,14 +23,14 @@ class CreateSettings < ActiveRecord::Migration
       t.float:report_punish, :default => 1
 
       # 自定义评价消耗点数
-      t.float :custom_judge, :default => 0.2
+      t.float :custom_judge, :default => 0.5
       #t.float :extra_word, :default => 1
 
       # 真实交易号级别
       t.integer :real_level, :default => 5
 
       # 运单价格
-      t.float :transport_price, :default => 0.2
+      t.float :transport_price, :default => 1.0
       # 运单出售次数
       t.integer :times_limit, :default => 3
 

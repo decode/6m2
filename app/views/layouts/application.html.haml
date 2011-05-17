@@ -167,7 +167,7 @@
         %ul
           %li{:title=>'Home'}
             = link_to image_tag('home.png'), '/'
-        %span.jx-searator-left          
+        %span.jx-separator-left          
         - if user_signed_in?
           %ul
             - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
@@ -179,16 +179,15 @@
                 - else
                   = image_tag 'mail.png', :alt=>''
                   = link_to t('message.total_message', :total => messages.length), '/m/message'
-          %ul.jx-bar-button-right
+          %ul
             %li
               = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
             %li
               = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
-
-        %div 
-          = t 'site.copyright'
-          ©
-          = t 'site.name'
+        %span.jx-separator-left
+        %ul.jx-bar-button-right
+          %li
+            = link_to "#{t('site.copyright')}©#{t('site.name')}", '/'
         %span.jx-separator-right
 
       /

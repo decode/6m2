@@ -79,7 +79,7 @@ class BoardController < ApplicationController
         end
       end
     end
-    redirect_to tasks_path
+    redirect_to '/task_show/todo'
   end
 
   def pay_task
@@ -93,7 +93,7 @@ class BoardController < ApplicationController
         flash[:notice] = t('global.update_success')
       end
     end
-    redirect_to tasks_path
+    redirect_to '/task_show/todo'
   end
 
   def finish_task
@@ -107,7 +107,7 @@ class BoardController < ApplicationController
         flash[:notice] = t('global.update_success')
       end
     end
-    redirect_to tasks_path
+    redirect_to '/task_show/todo'
   end
 
   def argue_task
@@ -130,7 +130,7 @@ class BoardController < ApplicationController
         flash[:notice] = t('task.confirm_success')
       end
     end
-    redirect_to tasks_url
+    redirect_to '/task_show/task'
   end
 
   def task_issue
