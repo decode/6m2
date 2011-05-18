@@ -9,7 +9,7 @@
   - @notices.each do |notice|
     %tr
       %td= notice.title
-      %td= notice.content[0..30] + '...'
+      %td= notice.content.length > 50 ? notice.content[0..50] + '...' : notice.content
       %td= l notice.created_at, :format => :short
       %td
         = link_to t('global.show'), notice

@@ -14,8 +14,8 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
 
-    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min'
-    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet'    
+    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles'
 
     =# javascript_include_tag 'jcarousellite_1.0.1c4'
     =# javascript_include_tag 'ticker'
@@ -149,10 +149,19 @@
         #notice
           :javascript
             $.jnotify("#{flash[:notice]}");
+            /*jQuery.noticeAdd({
+                        text: "#{flash[:notice]}",
+                        stay: false
+                });*/
+
       - if flash[:error]
         #error
           :javascript
             $.jnotify("#{flash[:error]}", "error");
+            /*jQuery.noticeAdd({
+                        text: "#{flash[:error]}",
+                        stay: false
+                });*/
 
       #space-left
         %br

@@ -23,7 +23,7 @@ Temp::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.action_mailer.default_url_options = { :host => 'boat166.com' }
+  config.action_mailer.default_url_options = { :host => 'boat166.net' }
 
   config.action_mailer.delivery_method = :sendmail
   # Defaults to:

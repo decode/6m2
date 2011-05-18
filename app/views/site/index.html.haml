@@ -3,41 +3,61 @@
     .bordershape
       = link_to t('site.notice') + ": " + @notices.first.title, @notices.last if @notices.length > 0
   %br
-  #desSlideshow1.desSlideshow
-    .switchBigPic
-      %div
-        = link_to image_tag('pic1.png'), '#'
-        %p
-          %strong= t 'home.title1'
-          %br
-          = t 'home.content1'
-      %div
-        = link_to image_tag('pic2.png'), '#'
-        %p
-          %strong= t 'home.title2'
-          %br
-          = t 'home.content2'
-      %div
-        = link_to image_tag('pic3.png'), '#'
-        %p
-          %strong= t 'home.title3'
-          %br
-          = t 'home.content3'
-      %div
-        = link_to image_tag('pic4.png'), '#'
-        %p
-          %strong= t 'home.title4'
-          %br
-          = t 'home.content4'
-    %ul.nav
-      %li
-        = link_to t('home.slide1'), '#'
-      %li
-        = link_to t('home.slide2'), '#'
-      %li
-        = link_to t('home.slide3'), '#'
-      %li
-        = link_to t('home.slide4'), '#'
+  #slider
+    = link_to do 
+      = image_tag('pic1.png', :title=>t('home.content1'))
+      %span
+        = t('home.content1')
+    = link_to do 
+      = image_tag('pic2.png', :title=>t('home.content2'))
+      %span
+        = t('home.content2')
+    = link_to do 
+      = image_tag('pic3.png', :title=>t('home.content3'))
+      %span
+        = t('home.content3')
+    = link_to do 
+      = image_tag('pic4.png', :title=>t('home.content4'))
+      %span
+        = t('home.content4')
+
+  %br
+  /
+    #desSlideshow1.desSlideshow
+      .switchBigPic
+        %div
+          = link_to image_tag('pic1.png'), '#'
+          %p
+            %strong= t 'home.title1'
+            %br
+            = t 'home.content1'
+        %div
+          = link_to image_tag('pic2.png'), '#'
+          %p
+            %strong= t 'home.title2'
+            %br
+            = t 'home.content2'
+        %div
+          = link_to image_tag('pic3.png'), '#'
+          %p
+            %strong= t 'home.title3'
+            %br
+            = t 'home.content3'
+        %div
+          = link_to image_tag('pic4.png'), '#'
+          %p
+            %strong= t 'home.title4'
+            %br
+            = t 'home.content4'
+      %ul.nav
+        %li
+          = link_to t('home.slide1'), '#'
+        %li
+          = link_to t('home.slide2'), '#'
+        %li
+          = link_to t('home.slide3'), '#'
+        %li
+          = link_to t('home.slide4'), '#'
   %br
   - if user_signed_in?
     = render 'site/customers'

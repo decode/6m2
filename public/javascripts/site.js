@@ -15,4 +15,11 @@ $(document).ready(function(){
 
   $("#site-bar").jixedbar();
 
+  /*
+  setTimeout(function(){
+    $('#slider').nivoSlider({ pauseTime:5000, pauseOnHover:false, effect:'fade' });
+  }, 1000);
+  */
+  $('#slider').coinslider({ height: 200, hoverPause: false });
+
 });

@@ -39,7 +39,7 @@
 
     = f.input :avoid_day, :as => :select, :collection => (0..10).to_a, :input_html => { :class => "validate[required]" }
 
-    %span{:style=>'color:red'}= t 'task.spend', :point => 0.2
+    %span{:style=>'color:red'}= t 'task.spend', :point => 0.5
     = f.input :custom_judge
     = f.input :custom_judge_content, :as => :text
     %hr
