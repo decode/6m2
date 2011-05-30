@@ -264,6 +264,8 @@ en:
     operate_password: "Operate Password"
     operate_password_desc: "Not required if not set."
     not_enough_recyling_point: "Not enough point"
+    create_account: " create account"
+    delete_account: " delete account"
 
   participant:
     user: "User"
@@ -278,6 +280,7 @@ en:
     confirm: "Confirm"
     do: "Do"
     pay: "Pay"
+    transport: "Transport"
     finish: "Finish"
     condition: "Condition"
     owner: "Owner"
@@ -299,6 +302,7 @@ en:
     published: "Published"
     unpublished: "Un-Published"
     payed: "Payed"
+    transported: "Transported"
     finished: "Finished"
     send_problem: "Argue"
     problem: "Problem"
@@ -501,6 +505,8 @@ en:
         tran_id: "Transportation ID"
         published_time: "Published Time"
         takeover_time: "Takeover Time"
+        pay_time: "Pay Time"
+        transport_time: "Transport Time"
         finished_time: "Finished Time"
         confirmed_time: "Confirmed Time"
         shop: "Shop Name"

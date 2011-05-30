@@ -96,6 +96,20 @@ class BoardController < ApplicationController
     redirect_to '/task_show/todo'
   end
 
+  def send_good
+    @task = Task.find(params[:id])
+    Task.transaction do
+      @task.transport_time = Time.now
+      if @task.cash? and @task.trans
+        msg = Message.create :title => t('message.task_transport', :task => @task.title), :content => t('message.task_transport_content', :task => @task.title, :link => @task.id.to_s)
+        msg.receivers << @task.user
+        msg.save
+        flash[:notice] = t('global.update_success')
+      end
+    end
+    redirect_to '/task_show/task'
+  end
+
   def finish_task
     @task = Task.find(params[:id])
     Task.transaction do

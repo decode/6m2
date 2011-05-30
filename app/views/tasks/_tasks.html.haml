@@ -35,6 +35,9 @@
   \|
   = image_tag('do.png')
   = '-' + t('task.do')
+  \|
+  = image_tag('truck.png')
+  = '-' + t('task.transport')
 - if admin? or manager? or session[:view_task] == 'manage'
   %table
     %caption
@@ -77,6 +80,7 @@
             = link_to image_tag('edit.png'), edit_task_url(task)
             = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
+            = link_to image_tag('truck.png', :alt=>t('task.transport')), :controller=>'board', :action=>'send_good', :id=>task if task.can_trans?
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
@@ -124,6 +128,7 @@
             = link_to image_tag('edit.png'), edit_task_url(task)
             = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
+            = link_to image_tag('truck.png', :alt=>t('task.transport')), :controller=>'board', :action=>'send_good', :id=>task if task.can_trans?
             = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?

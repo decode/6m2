@@ -74,8 +74,8 @@ class Task < ActiveRecord::Base
       transition :running => :cash
     end
     # 卖方发货
-    event :send_good do
-      transition :running => :transport
+    event :trans do
+      transition :cash => :transport
     end
     # 买方收货
     event :receive_good do
@@ -90,15 +90,16 @@ class Task < ActiveRecord::Base
     # 买方好评
     event :finish do
       #transition :money => :finished
-      transition :cash => :finished
+      #transition :cash => :finished
       #transition :running => :finished
+      transition :transport => :finished
     end
     # 卖方结束该流程
     event :over do
       transition [:finished, :problem] => :end
     end
     event :argue do
-      transition [:finished, :running] => :problem
+      transition [:finished, :running, :transport] => :problem
     end
     event :giveup do
       transition :running => :abandon
@@ -107,7 +108,7 @@ class Task < ActiveRecord::Base
     state :published, :value => 'published'
     state :running, :value => 'running'
     state :cash, :value => 'cash'
-    #state :transport, :value => 'transport'
+    state :transport, :value => 'transport'
     #state :received, :value => 'received'
     #state :money, :value => 'money'
     state :pending, :value => 'pending'
@@ -118,7 +119,7 @@ class Task < ActiveRecord::Base
   end
 
   def local_status
-    lang = {'unpublished' => I18n.t('task.unpublished'), 'published' => I18n.t('task.published'), 'running' => I18n.t('task.running'), 'cash' => I18n.t('task.payed'), 'finished' => I18n.t('task.finished'), 'problem' => I18n.t('task.problem'), 'end' => I18n.t('task.end')}
+    lang = {'unpublished' => I18n.t('task.unpublished'), 'published' => I18n.t('task.published'), 'running' => I18n.t('task.running'), 'cash' => I18n.t('task.payed'), 'finished' => I18n.t('task.finished'), 'problem' => I18n.t('task.problem'), 'end' => I18n.t('task.end'), 'transport' => I18n.t('task.transported')}
     return lang[self.status]
   end
 

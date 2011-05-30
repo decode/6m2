@@ -60,6 +60,16 @@ class User < ActiveRecord::Base
     state :ban, :value => 'ban'
   end
 
+  after_create :log_create
+  before_destroy :log_destroy
+  def log_create
+    Accountlog.create! :user_id => self.id, :log_type => 'account', :description => self.username + I18n.t("account.create_account")
+  end
+  
+  def log_destroy
+    Accountlog.create! :user_id => self.id, :log_type => 'account', :description => self.username + I18n.t("account.delete_account")
+  end
+
   def level
     @set = Setting.first
     @level = [@set.class1, 

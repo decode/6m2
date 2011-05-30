@@ -17,6 +17,7 @@ class CreateTasks < ActiveRecord::Migration
       t.datetime :published_time
       t.datetime :takeover_time
       t.datetime :pay_time
+      t.datetime :transport_time
       t.datetime :finished_time
       t.datetime :confirmed_time
 

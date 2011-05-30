@@ -178,7 +178,7 @@
             = link_to image_tag('home.png'), '/'
         %span.jx-separator-left          
         - if user_signed_in?
-          %ul
+          %ul.jx-bar-button-left
             - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
             - if messages.length > 0
               %li
@@ -188,6 +188,7 @@
                 - else
                   = image_tag 'mail.png', :alt=>''
                   = link_to t('message.total_message', :total => messages.length), '/m/message'
+          %span.jx-separator-left
           %ul
             %li
               = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'

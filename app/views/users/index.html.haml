@@ -14,6 +14,9 @@
   = image_tag('lock.png')
   = '-' + t('formtastic.labels.user.operate_password')
   \|
+  = image_tag('activate.png')
+  = '-' + t('account.confirm')
+  \|
   = image_tag('view.png')
   = '-' + t('global.show')
   \|
@@ -45,7 +48,7 @@
     - c = cycle("even", "odd")
     %tr{:class=>c}
       %td
-        =# check_box_tag "users[]", user
+        = user.id # check_box_tag "users[]", user
       %td= user.username
       %td
         = user.role_objects.collect{|r| r.name}
@@ -60,8 +63,8 @@
           = link_to image_tag('role.png', :alt=>t('account.role')), :controller => 'account', :action => 'role', :id => user
           = link_to image_tag('score.png', :alt=>t('account.score')), :controller => 'account', :action => 'score', :id => user
           = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), :controller => 'account', :action => 'operate_password', :id => user
+          = link_to image_tag('activate.png', :alt=>t('account.confirm')), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
       %td
-        = link_to t('account.confirm'), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
         = link_to image_tag('view.png', :alt=>t('global.show')), user
         - if superadmin?
           = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
