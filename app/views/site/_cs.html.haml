@@ -1,0 +1,13 @@
+.bordershape
+  = t 'site.service_list'
+#tickerContainer
+  %dl#ticker
+    - @customers.each do |u|
+      %dt.heading
+        =# image_tag('user.png')
+        = link_to "tencent://message/?uin=#{u.im_q}&Site=&Menu=yes", :target=>'_black' do
+          =# "QQ:#{u.im_q}"
+          = image_tag("http://wpa.qq.com/pa?p=1:#{u.im_q}:4", :alt=>'点击这里给我发消息')
+          = u.username
+      %dd.text
+        = l u.created_at, :format => :short

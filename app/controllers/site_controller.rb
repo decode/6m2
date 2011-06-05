@@ -6,14 +6,15 @@ class SiteController < ApplicationController
     @user_count = @setting.total_user + User.all.length
     @user = current_user
 
-    role = Role.where(:name => 'manager').first
+    role = Role.where(:name => 'admin').first
     ids = role.user_ids.drop(1)
-    @customers = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
+    @customers = User.where(:id => ids).where('im_q is not null').order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
     #role = Role.where(:name => 'admin').first
     #ids = role.user_ids.drop(1)
     #@admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
 
     @users = User.where("username != 'superadmin'").order("created_at Desc").limit(5)
+    @articles = Article.order("created_at DESC").limit(10)
   end
 
   def setting

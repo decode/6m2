@@ -60,7 +60,8 @@
           = link_to t('home.slide4'), '#'
   %br
   - if user_signed_in?
-    = render 'site/customers'
+    =# render 'site/customers'
+    = render 'site/wiki'
 
 #right
   - if user_signed_in?
@@ -76,3 +77,5 @@
     = @user_count
   - if user_signed_in?
     = render 'site/users'
+
+  = render 'site/cs'
