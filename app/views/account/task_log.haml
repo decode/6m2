@@ -1,39 +1,10 @@
 = render 'users/head'
+= @user.username
+/
+  = t('site.user_manage')
+  - form_tag :controller => 'board', :action => 'search_user' do
+    = label_tag t 'site.login_name'
+    = search_field_tag 'username', session[:search_username]
+    = submit_tag 'Search'
 
-%table
-  %caption
-    = @user.username
-    /
-      = t('site.user_manage')
-      - form_tag :controller => 'board', :action => 'search_user' do
-        = label_tag t 'site.login_name'
-        = search_field_tag 'username', session[:search_username]
-        = submit_tag 'Search'
-
-  %thead
-    %tr
-      %th ID
-      %th= t 'site.task_name'
-      %th= t 'task.worker'
-      %th= t 'global.price'
-      %th= t 'formtastic.labels.task.status'
-      %th= t 'formtastic.labels.task.description'
-      %th= t 'global.time'
-
-  - @tasks.each do |t|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      - task = Task.where('id = ?', t.task_id).first
-      - unless task.nil?
-        %td= task.id
-        %td= link_to task.title, task
-      - else
-        %td= t.task_id
-        %td
-      %td= t.worker_id.nil? ? '-' : User.find(t.worker_id).username 
-      %td= t.price
-      %td= t.status
-      %td= t.description
-      %td= l t.created_at, :format => :long
-
-= will_paginate @tasks
+= render 'account/tasklogs'

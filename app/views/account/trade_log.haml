@@ -1,30 +1,10 @@
 = render 'users/head'
 
-%table
-  %caption
-    = @user.username
-    /
-      = t('site.user_manage')
-      - form_tag :controller => 'board', :action => 'search_user' do
-        = label_tag t 'site.login_name'
-        = search_field_tag 'username', session[:search_username]
-        = submit_tag 'Search'
-
-  %thead
-    %tr
-      %th ID
-      %th= t 'manage.service'
-      %th= t 'trade.amount'
-      %th= t 'global.type'
-      %th= t 'global.description'
-
-  - @trades.each do |t|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      %td= t.trade_id
-      %td= t.operator_id.nil? ? '-' : User.find_by_id(t.operator_id).username 
-      %td= t.amount
-      %td= t.local_type
-      %td= t.description
-
-= will_paginate @trades
+= @user.username
+/
+  = t('site.user_manage')
+  - form_tag :controller => 'board', :action => 'search_user' do
+    = label_tag t 'site.login_name'
+    = search_field_tag 'username', session[:search_username]
+    = submit_tag 'Search'
+= render 'account/tradelogs'

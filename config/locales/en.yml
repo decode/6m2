@@ -108,6 +108,8 @@ en:
     my_participants: "My Participants"
     my_messages: "My Messages"
     issue: "Issue"
+    tasklog_center: "Task Log"
+    accountlog_center: "Account Log"
     setting: "Setting"
     manage_center: "Manage Center"
     notice: "Notice"

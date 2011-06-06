@@ -5,6 +5,9 @@ class CreateTasklogs < ActiveRecord::Migration
       t.integer :user_id
       t.integer :worker_id
 
+      t.string :user_name
+      t.string :worker_name
+
       t.float :price
       t.float :point
 

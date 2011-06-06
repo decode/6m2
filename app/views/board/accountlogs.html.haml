@@ -1,0 +1,6 @@
+- form_tag :controller => 'board', :action => 'search_account_log' do
+  = label_tag t 'site.login_name'
+  = search_field_tag 'username', session[:search_username]
+  = submit_tag 'Search'
+
+= render 'account/tradelogs'

@@ -1,0 +1,26 @@
+%table
+  %caption
+  %thead
+    %tr
+      - if session[:view_log] == 'admin'
+        %th UID
+        %th= t 'site.login_name'
+      %th ID
+      %th= t 'manage.service'
+      %th= t 'trade.amount'
+      %th= t 'global.type'
+      %th= t 'global.description'
+
+  - @trades.each do |t|
+    - c = cycle("even", "odd")
+    %tr{:class=>c}
+      - if session[:view_log] == 'admin'
+        %td= t.user_id
+        %td= t.user_name
+      %td= t.trade_id
+      %td= t.operator_name
+      %td= t.amount
+      %td= t.local_type
+      %td= t.description
+
+= will_paginate @trades

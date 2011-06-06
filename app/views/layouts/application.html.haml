@@ -108,6 +108,8 @@
                   = link_to t('trade.manage_score'), '/m/approve/score'
                   %hr
                   = link_to t('site.issue'), issues_path
+                  = link_to t('site.tasklog_center'), '/t/tasklogs'
+                  = link_to t('site.accountlog_center'), '/t/accountlogs'
                   %hr
                   - if admin?
                     = link_to t('notice.new_notice'), new_notice_url

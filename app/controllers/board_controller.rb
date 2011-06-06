@@ -357,6 +357,38 @@ class BoardController < ApplicationController
     redirect_to '/t/roles'
   end
   # ===========================================
+  #
+  # 任务日志管理
+  def tasklogs
+    @tasks = Tasklog.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
+    session[:view_log] = 'admin'
+  end
+    
+  def search_task_log
+    if params[:username].blank?
+      redirect_to '/t/tasklogs'
+    else
+      @tasks = Tasklog.where("user_name like ? or worker_name like ?", "%#{params[:username]}%", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 15) 
+      render 'board/tasklogs'
+    end
+  end
+  # ===========================================
+  #
+  # 帐户日志管理
+  def accountlogs
+    @trades = Accountlog.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+    session[:view_log] = 'admin'
+  end
+
+  def search_account_log
+    if params[:username].blank?
+      redirect_to '/t/accountlogs'
+    else
+      @trades = Accountlog.where('user_name like ? or operator_name like ?', "%#{params[:username]}%", "%#{params[:username]}%").order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+      render 'board/accountlogs'
+    end
+  end
+  # ===========================================
     
   def search_user
     @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
