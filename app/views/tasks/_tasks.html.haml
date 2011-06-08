@@ -36,8 +36,20 @@
   = image_tag('do.png')
   = '-' + t('task.do')
   \|
+  = image_tag('pay.png')
+  = '-' + t('task.pay')
+  \|
   = image_tag('truck.png')
   = '-' + t('task.transport')
+  \|
+  = image_tag('finish.png')
+  = '-' + t('task.finish')
+  \|
+  = image_tag('yes.png')
+  = '-' + t('task.confirm')
+  \|
+  = image_tag('quest.png')
+  = '-' + t('task.send_problem')
 - if admin? or manager? or session[:view_task] == 'manage'
   %table
     %caption
@@ -81,14 +93,14 @@
             = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
             = link_to image_tag('truck.png', :alt=>t('task.transport')), :controller=>'board', :action=>'send_good', :id=>task if task.can_trans?
-            = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+            = link_to image_tag('yes.png', :alt=>t('task.confirm')), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
-            = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
-            = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
+            = link_to image_tag('pay.png', :alt=>t('task.pay')), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
+            = link_to image_tag('finish.png', :alt=>t('task.finish')), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
           - if task.user == current_user or task.worker == current_user
-            = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+            = link_to image_tag('quest.png', :alt=>t('task.send_problem')), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
 
     = will_paginate @tasks
 - else 
@@ -129,13 +141,13 @@
             = link_to image_tag('delete.png'), task, :confirm => 'Are you sure?', :method => :delete
           - if task.user == current_user
             = link_to image_tag('truck.png', :alt=>t('task.transport')), :controller=>'board', :action=>'send_good', :id=>task if task.can_trans?
-            = link_to t('task.confirm'), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
+            = link_to image_tag('yes.png', :alt=>t('task.confirm')), :controller=>'board', :action=>'confirm_task', :id=>task if task.can_over?
           - else
             = link_to image_tag('do.png',:alt=>t('task.do')), :controller=>'board', :action=>'do_task', :id=>task if task.can_takeover?
-            = link_to t('task.pay'), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
-            = link_to t('task.finish'), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
+            = link_to image_tag('pay.png', :alt=>t('task.pay')), :controller=>'board', :action=>'pay_task', :id=>task if task.can_pay?
+            = link_to image_tag('finish.png', :alt=>t('task.finish')), :controller=>'board', :action=>'finish_task', :id=>task if task.can_finish? and task.worker == current_user
 
           - if task.user == current_user or task.worker == current_user
-            = link_to t('task.send_problem'), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
+            = link_to image_tag('quest.png', :alt=>t('task.send_problem')), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
 
   = will_paginate @tasks

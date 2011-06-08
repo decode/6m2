@@ -41,7 +41,7 @@ class Task < ActiveRecord::Base
     log.user_name = self.user.username
     if self.worker
       log.worker_id = self.worker.id 
-      log.worker_name = self.workder.username
+      log.worker_name = self.worker.username
     end
     log.price = self.price
     log.point = self.point
@@ -56,7 +56,7 @@ class Task < ActiveRecord::Base
     log.user_name = self.user.username
     if self.worker
       log.worker_id = self.worker.id 
-      log.worker_name = self.workder.username
+      log.worker_name = self.worker.username
     end
     log.price = self.price
     log.point = self.point
