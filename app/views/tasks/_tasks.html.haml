@@ -50,6 +50,20 @@
   \|
   = image_tag('quest.png')
   = '-' + t('task.send_problem')
+
+.main
+  %p{:title => t('task.demo'), :class=>'blue'}
+    = image_tag('do.png')
+    = '1.' + t('task.worker') + t('task.do')
+    = image_tag('pay.png')
+    = '2.' + t('task.owner') + t('task.pay')
+    = image_tag('truck.png')
+    = '3.' + t('task.owner') + t('task.transport')
+    = image_tag('finish.png')
+    = '4.' + t('task.worker') + t('task.finish')
+    = image_tag('yes.png')
+    = '5.' + t('task.owner') + t('task.confirm')
+
 - if admin? or manager? or session[:view_task] == 'manage'
   %table
     %caption
@@ -151,3 +165,5 @@
             = link_to image_tag('quest.png', :alt=>t('task.send_problem')), :controller=>'board', :action=>'argue_task', :id=>task if task.can_argue?
 
   = will_paginate @tasks
+
+

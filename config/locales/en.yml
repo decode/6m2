@@ -331,6 +331,7 @@ en:
     virtual_task: "Virtual Task"
     virtual: "Virtual"
     spend: "Spend %{point} point"
+    demo: "Demo"
 
   transport:
     unused: "Unused"

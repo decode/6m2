@@ -1,4 +1,6 @@
 Temp::Application.routes.draw do
+  get "status/total"
+
   resources :transactions
 
   resources :articles

@@ -10,6 +10,7 @@
       %th= t 'trade.amount'
       %th= t 'global.type'
       %th= t 'global.description'
+      %th
 
   - @trades.each do |t|
     - c = cycle("even", "odd")
@@ -22,5 +23,6 @@
       %td= t.amount
       %td= t.local_type
       %td= t.description
+      %td= l t.created_at, :format => :long
 
 = will_paginate @trades

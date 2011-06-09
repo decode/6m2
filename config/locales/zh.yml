@@ -334,6 +334,7 @@ zh:
     virtual_task: "虚拟任务"
     virtual: "虚拟"
     spend: "若设置, 扣%{point}发布点"
+    demo: "完整任务流程演示"
 
   transport:
     unused: "未使用"
