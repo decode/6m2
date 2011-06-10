@@ -1,69 +1,69 @@
-%p
-  %b= t 'site.login_name'
-  = @user.username
-%p
-  %b= t 'page.email'
-  = @user.email
-%p
-  %b= t 'account.role'
-  = @user.role_objects.map { |role| role.name }
-%p
-  %b= t 'account.level'
-  = image_tag "icon_vip#{(@user.level)}.gif"
-%p
-  %b= t 'account.registered_time'
-  = l @user.created_at, :format => :long
-%p
-  %b= t 'formtastic.labels.user.current_sign_in_at'
-  = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
+#left3
+  %p
+    %b= t 'site.login_name'
+    = @user.username
+  %p
+    %b= t 'page.email'
+    = @user.email
+  %p
+    %b= t 'account.role'
+    = @user.role_objects.map { |role| role.name }
+  %p
+    %b= t 'account.level'
+    = image_tag "icon_vip#{(@user.level)}.gif"
+  %p
+    %b= t 'account.registered_time'
+    = l @user.created_at, :format => :long
+  %p
+    %b= t 'formtastic.labels.user.current_sign_in_at'
+    = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
+  %br
 
-%hr
-
-%ul
-  %li
-    = t 'account.charge_amount'
-    = @user.account_money
-  %li
-    = t 'account.point'
-    = @user.account_credit
-  %li
-    = t 'trade.payment_amount'
-    = @user.payment_money
-  %li
-    = t 'account.score'
-    = @user.score
-
-%hr
-
-- if admin?
+#middle3
   %ul
     %li
-      = t 'task.total_finish_todo_payment'
-      = @user.status_todos('finished').sum('price')
+      = t 'account.charge_amount'
+      = @user.account_money
     %li
-      = t 'task.total_finish_todo_point'
-      = @user.status_todos('finished').sum('point')
-  %hr
+      = t 'account.point'
+      = @user.account_credit
+    %li
+      = t 'trade.payment_amount'
+      = @user.payment_money
+    %li
+      = t 'account.score'
+      = @user.score
 
-%p
-  = t 'task.total_todo_payment'
-  = @user.status_todos('running').sum('price')
-%p
-  = t 'task.total_task'
-  = @user.tasks.count
-%p
-  = t 'task.total_todo'
-  = @user.todos.count
-%p
-  = t 'task.published'
-  = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
-%p
-  = t 'task.running'
-  = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
-%p
-  = t 'task.finished'
-  = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
-%p
-  = t 'task.problem'
-  = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
+  - if admin?
+    %ul
+      %li
+        = t 'task.total_finish_todo_payment'
+        = @user.status_todos('finished').sum('price')
+      %li
+        = t 'task.total_finish_todo_point'
+        = @user.status_todos('finished').sum('point')
+  %br
+
+#right3
+  %p
+    = t 'task.total_todo_payment'
+    = @user.status_todos('running').sum('price')
+  %p
+    = t 'task.total_task'
+    = @user.tasks.count
+  %p
+    = t 'task.total_todo'
+    = @user.todos.count
+  %p
+    = t 'task.published'
+    = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
+  %p
+    = t 'task.running'
+    = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
+  %p
+    = t 'task.finished'
+    = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
+  %p
+    = t 'task.problem'
+    = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
 

@@ -14,8 +14,8 @@ class SiteController < ApplicationController
     #@admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
 
     @users = User.where("username != 'superadmin'").order("created_at Desc").limit(5)
-    offs = rand(Article.count)
-    @articles = Article.order("created_at DESC").limit(10).offset(offs)
+    #offs = rand(Article.count)
+    @articles = Article.where("article_type = 'wiki'").order("created_at DESC").limit(20)#.offset(offs)
   end
 
   def setting

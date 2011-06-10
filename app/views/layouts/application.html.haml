@@ -14,8 +14,8 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
 
-    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip'
-    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip'
+    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2'
 
     =# javascript_include_tag 'jcarousellite_1.0.1c4'
     =# javascript_include_tag 'ticker'
@@ -26,11 +26,12 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-
   %body
     .container
       #toolbar
+        = link_to image_tag('home.png'), '/'
         - if user_signed_in?
+          |
           =t('site.welcome', :name => current_user.username)
           |
           = link_to t('site.profile'), edit_user_registration_path
@@ -40,12 +41,14 @@
           = link_to t('site.login'), new_user_session_path
           |
           = link_to t('site.register'), new_user_registration_path
+        %br
+        /[if IE]
+          %p
+            %br
+            = t 'site.ie'
       #navibar
         #nicemenu
           %ul
-            %li
-              %span.head_menu
-                = link_to t('site.label'), '/'
             %li
               %span.head_menu
                 = link_to t('site.notice_center'), notices_path if user_signed_in?
@@ -130,7 +133,7 @@
                   = link_to t('site.service_list'), '/t/service'
                   = link_to t('site.service'), issues_path 
 
-            - if user?
+            - if user_signed_in?
               %li
                 %span.head_menu
                   = link_to t('site.transport_center'), transports_path

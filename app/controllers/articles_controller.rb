@@ -14,7 +14,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = Article.all
+    if current_user.has_role? 'admin'
+      @articles = Article.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+    else
+      @articles = Article.where("article_type = 'rule'").order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,10 +58,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(params[:article])
     @article.user = current_user
+    @article.article_type = 'wiki' if @article.article_type.blank?
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to(@article, :notice => 'Article was successfully created.') }
+        format.html { redirect_to(@article, :notice => t('global.operate_success')) }
         format.xml  { render :xml => @article, :status => :created, :location => @article }
       else
         format.html { render :action => "new" }
@@ -73,7 +78,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
+        format.html { redirect_to(@article, :notice => t('global.operate_success')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

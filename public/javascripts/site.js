@@ -7,6 +7,7 @@ $(document).ready(function(){
   $("#new_issue").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#new_participant").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#new_transaction").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+  $("#new_article").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_new").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_edit").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#charge").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
@@ -20,6 +21,14 @@ $(document).ready(function(){
     $('#slider').nivoSlider({ pauseTime:5000, pauseOnHover:false, effect:'fade' });
   }, 1000);
   */
-  $('#slider').coinslider({ height: 200, hoverPause: false });
+  /*$('#slider').coinslider({ height: 150, hoverPause: true });*/
 
+	$('#slides1').bxSlider({
+		prev_image: 'images/btn_arrow_left.jpg',
+		next_image: 'images/btn_arrow_right.jpg',
+		wrapper_class: 'slides1_wrap',
+		/*margin: 70,*/
+		auto: false,
+		auto_controls: false
+	});
 });

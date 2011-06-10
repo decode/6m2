@@ -114,7 +114,8 @@ body{
 
 .main { 
   position:relative;
-  width:600px; 
+  width:100%; 
+  padding-top: 20px;
 }
 /* The styles below are only necessary for the styling of the demo page: */
 /*

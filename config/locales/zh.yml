@@ -60,6 +60,7 @@ zh:
     unread_message: "末读消息"
 
   site:
+    ie: "您的IE浏览器版本太老,可能会影响浏览效果"
     name: "同舟共济"
     copyright: "版权所有"
     admin: "后台"

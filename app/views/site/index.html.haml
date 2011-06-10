@@ -1,25 +1,55 @@
-#mainframe
-  - if user_signed_in? and @notices.length > 0
-    .bordershape
-      = link_to t('site.notice') + ": " + @notices.first.title, @notices.last if @notices.length > 0
+#wide
+  /
+    - if user_signed_in? and @notices.length > 0
+      .bordershape
+        = link_to t('site.notice') + ": " + @notices.first.title, @notices.last if @notices.length > 0
+
   %br
-  #slider
-    = link_to do 
-      = image_tag('pic1.png', :title=>t('home.content1'))
-      %span
-        = t('home.content1')
-    = link_to do 
-      = image_tag('pic2.png', :title=>t('home.content2'))
-      %span
-        = t('home.content2')
-    = link_to do 
-      = image_tag('pic3.png', :title=>t('home.content3'))
-      %span
-        = t('home.content3')
-    = link_to do 
-      = image_tag('pic4.png', :title=>t('home.content4'))
-      %span
-        = t('home.content4')
+  #content
+    #content-inner
+      %ul{:id=>'slides1'}
+        %li
+          = image_tag('p1.png', :title=>t('home.content1'))
+          .content
+            %h3=t('home.title1')
+            %p=t('home.content1')
+          .clear
+        %li
+          = image_tag('p2.png', :title=>t('home.content2'))
+          .content
+            %h3=t('home.title2')
+            %p=t('home.content2')
+          .clear
+        %li
+          = image_tag('p3.png', :title=>t('home.content3'))
+          .content
+            %h3=t('home.title3')
+            %p=t('home.content3')
+          .clear
+        %li
+          = image_tag('p4.png', :title=>t('home.content4'))
+          .content
+            %h3=t('home.title4')
+            %p=t('home.content4')
+          .clear
+  /
+    #slider
+      = link_to do 
+        = image_tag('pic1.png', :title=>t('home.content1'))
+        %span
+          = t('home.content1')
+      = link_to do 
+        = image_tag('pic2.png', :title=>t('home.content2'))
+        %span
+          = t('home.content2')
+      = link_to do 
+        = image_tag('pic3.png', :title=>t('home.content3'))
+        %span
+          = t('home.content3')
+      = link_to do 
+        = image_tag('pic4.png', :title=>t('home.content4'))
+        %span
+          = t('home.content4')
 
   %br
   /
@@ -58,11 +88,11 @@
           = link_to t('home.slide3'), '#'
         %li
           = link_to t('home.slide4'), '#'
-  %br
-  - if user_signed_in?
-    =# render 'site/customers'
-    = render 'site/wiki'
 
+#mainframe
+  -# if user_signed_in?
+    =# render 'site/customers'
+  = render 'site/wiki'
 #right
   - if user_signed_in?
     .bordershape

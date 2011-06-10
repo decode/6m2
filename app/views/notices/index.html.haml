@@ -8,12 +8,11 @@
       %th
   - @notices.each do |notice|
     %tr
-      %td= notice.title
+      %td= notice.title.length > 25 ? notice.title[0..25]+'...' : notice.title
       %td= notice.content.length > 50 ? notice.content[0..50] + '...' : notice.content
       %td= l notice.created_at, :format => :short
       %td
-        = link_to t('global.show'), notice
+        = link_to image_tag('view.png', :alt=>t('global.show')), notice
         - if admin? or manager?
-          = link_to t('global.edit'), edit_notice_path(notice)
-          = link_to t('global.delete'), notice, :confirm => t('site.are_you_sure'), :method => :delete
-%br/
+          = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_notice_path(notice)
+          = link_to image_tag('delete.png', :alt=>t('global.delete')), notice, :confirm => t('site.are_you_sure'), :method => :delete

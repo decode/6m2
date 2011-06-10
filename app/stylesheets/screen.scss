@@ -58,14 +58,19 @@ body {
     //max-width:100%;
     @include container; }
   #toolbar {
-    background: #a9cff3 url(logo.png) no-repeat left;
-    height: 70px;
+    //background: #a9cff3 url(logo.png) no-repeat left;
+    background: url(logo.png) no-repeat left;
+    height: 80px;
     @include column($blueprint-grid-columns);
     text-align: right;
-
-    border-bottom: 1px solid #444; /*--Create bevel effect--*/  
+    color:#0066CC; 
+    //border-bottom: 1px solid #444; /*--Create bevel effect--*/  
     }
+  #toolbar a {
+    text-decoration:none; 
+  }
   #navibar {
+    text-align: right;
     //@include column($blueprint-grid-columns); }
   }
 
@@ -122,6 +127,15 @@ body {
   }
   #middle {
     @include column(22);
+  }
+  #left3 {
+    @include column(8);
+  }
+  #middle3 {
+    @include column(8);
+  }
+  #middle3 {
+    @include column(8, true);
   }
 }
 form {

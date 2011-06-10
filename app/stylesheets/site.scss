@@ -312,6 +312,13 @@ padding: 1px 4px 15px 5px;
 .bordershape a {
 	text-decoration: none;
 }
+.solidshape { 
+  padding: 3px 5px;
+  margin: 10px 10px 0 0;
+  border: 1px solid #92cdec;
+  -moz-border-radius: 9px 9px 9px 9px;
+  -webkit-border-radius: 3px;
+}
 
 /* ---------------------------------------- index page customer service ------------------------------------------ */
 /*html{font-size:62.5%}

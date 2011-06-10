@@ -501,11 +501,20 @@ tfoot th, tfoot td {
   text-decoration: none;
 }
 
+/* line 315, ../../../app/stylesheets/site.scss */
+.solidshape {
+  padding: 3px 5px;
+  margin: 10px 10px 0 0;
+  border: 1px solid #92cdec;
+  -moz-border-radius: 9px 9px 9px 9px;
+  -webkit-border-radius: 3px;
+}
+
 /* ---------------------------------------- index page customer service ------------------------------------------ */
 /*html{font-size:62.5%}
 body{font-size:1.2em;color:#294f88}*/
 /*.customer_service {margin:10px;border:1px solid #92cdec;background:#d7e7ff;padding:30px 30px 0 30px}*/
-/* line 320, ../../../app/stylesheets/site.scss */
+/* line 327, ../../../app/stylesheets/site.scss */
 .customer_service {
   margin: 10px;
   border: 1px solid #92cdec;
@@ -518,14 +527,14 @@ h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
 p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
 ul,ol{padding:0;margin:0;font-size:1.2em}
 */
-/* line 326, ../../../app/stylesheets/site.scss */
+/* line 333, ../../../app/stylesheets/site.scss */
 .customer_service h1 {
   margin: 0;
   padding: 0 0 10px 0;
   font-size: 1.2em;
 }
 
-/* line 327, ../../../app/stylesheets/site.scss */
+/* line 334, ../../../app/stylesheets/site.scss */
 .customer_service p {
   font-size: 1.2em;
   line-height: 170%;
@@ -533,14 +542,14 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   clear: both;
 }
 
-/* line 328, ../../../app/stylesheets/site.scss */
+/* line 335, ../../../app/stylesheets/site.scss */
 .customer_service ul, ol {
   padding: 0;
   margin: 0;
   font-size: 1em;
 }
 
-/* line 329, ../../../app/stylesheets/site.scss */
+/* line 336, ../../../app/stylesheets/site.scss */
 .customer_service ul, .customer_service ol {
   list-style-type: none;
   background: url(/images/dotted.gif) 0 0 repeat-x;
@@ -549,7 +558,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   margin: 0 10px 30px 0;
 }
 
-/* line 330, ../../../app/stylesheets/site.scss */
+/* line 337, ../../../app/stylesheets/site.scss */
 .customer_service li {
   background: url(/images/dotted.gif) bottom left repeat-x;
   width: 180px;
@@ -557,7 +566,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   padding: 0;
 }
 
-/* line 331, ../../../app/stylesheets/site.scss */
+/* line 338, ../../../app/stylesheets/site.scss */
 .customer_service li a {
   padding: 8px 20px 8px 0;
   width: 160px;
@@ -567,7 +576,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   color: #294f88;
 }
 
-/* line 332, ../../../app/stylesheets/site.scss */
+/* line 339, ../../../app/stylesheets/site.scss */
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }
@@ -985,18 +994,25 @@ body #container {
 }
 /* line 60, ../../../app/stylesheets/screen.scss */
 body #toolbar {
-  background: #a9cff3 url(logo.png) no-repeat left;
-  height: 70px;
+  background: url(logo.png) no-repeat left;
+  height: 80px;
   display: inline;
   float: left;
   overflow: hidden;
   width: 99.974%;
   margin-right: 1.042%;
   text-align: right;
-  border-bottom: 1px solid #444;
-  /*--Create bevel effect--*/
+  color: #0066CC;
+}
+/* line 69, ../../../app/stylesheets/screen.scss */
+body #toolbar a {
+  text-decoration: none;
 }
 /* line 72, ../../../app/stylesheets/screen.scss */
+body #navibar {
+  text-align: right;
+}
+/* line 77, ../../../app/stylesheets/screen.scss */
 body #header, body #footer, body #notice, body #error {
   display: inline;
   float: left;
@@ -1004,7 +1020,7 @@ body #header, body #footer, body #notice, body #error {
   width: 99.974%;
   margin-right: 1.042%;
 }
-/* line 74, ../../../app/stylesheets/screen.scss */
+/* line 79, ../../../app/stylesheets/screen.scss */
 body #sidebar {
   display: inline;
   float: left;
@@ -1012,7 +1028,7 @@ body #sidebar {
   width: 24.212%;
   margin-right: 1.042%;
 }
-/* line 77, ../../../app/stylesheets/screen.scss */
+/* line 82, ../../../app/stylesheets/screen.scss */
 body #content {
   display: inline;
   float: left;
@@ -1020,7 +1036,7 @@ body #content {
   width: 99.974%;
   margin-right: 0;
 }
-/* line 82, ../../../app/stylesheets/screen.scss */
+/* line 87, ../../../app/stylesheets/screen.scss */
 body #wide, body #message {
   display: inline;
   float: left;
@@ -1028,7 +1044,7 @@ body #wide, body #message {
   width: 99.974%;
   margin-right: 0;
 }
-/* line 85, ../../../app/stylesheets/screen.scss */
+/* line 90, ../../../app/stylesheets/screen.scss */
 body #status {
   text-align: right;
   display: inline;
@@ -1037,7 +1053,7 @@ body #status {
   width: 99.974%;
   margin-right: 0;
 }
-/* line 89, ../../../app/stylesheets/screen.scss */
+/* line 94, ../../../app/stylesheets/screen.scss */
 body #news {
   display: inline;
   float: left;
@@ -1046,7 +1062,7 @@ body #news {
   margin-right: 1.042%;
   height: 500px;
 }
-/* line 93, ../../../app/stylesheets/screen.scss */
+/* line 98, ../../../app/stylesheets/screen.scss */
 body #mainframe {
   display: inline;
   float: left;
@@ -1054,7 +1070,7 @@ body #mainframe {
   width: 66.302%;
   margin-right: 1.042%;
 }
-/* line 96, ../../../app/stylesheets/screen.scss */
+/* line 101, ../../../app/stylesheets/screen.scss */
 body #right {
   display: inline;
   float: left;
@@ -1062,7 +1078,7 @@ body #right {
   width: 32.63%;
   margin-right: 0;
 }
-/* line 99, ../../../app/stylesheets/screen.scss */
+/* line 104, ../../../app/stylesheets/screen.scss */
 body #left {
   display: inline;
   float: left;
@@ -1070,19 +1086,19 @@ body #left {
   width: 20.003%;
   margin-right: 1.042%;
 }
-/* line 102, ../../../app/stylesheets/screen.scss */
+/* line 107, ../../../app/stylesheets/screen.scss */
 body #notice {
   background-color: green;
 }
-/* line 105, ../../../app/stylesheets/screen.scss */
+/* line 110, ../../../app/stylesheets/screen.scss */
 body #error {
   background-color: #ef7070;
 }
-/* line 108, ../../../app/stylesheets/screen.scss */
+/* line 113, ../../../app/stylesheets/screen.scss */
 body .error {
   background-color: #ef7070;
 }
-/* line 111, ../../../app/stylesheets/screen.scss */
+/* line 116, ../../../app/stylesheets/screen.scss */
 body #equal-left {
   display: inline;
   float: left;
@@ -1090,7 +1106,7 @@ body #equal-left {
   width: 49.466%;
   margin-right: 1.042%;
 }
-/* line 114, ../../../app/stylesheets/screen.scss */
+/* line 119, ../../../app/stylesheets/screen.scss */
 body #equal-right {
   display: inline;
   float: left;
@@ -1098,7 +1114,7 @@ body #equal-right {
   width: 49.466%;
   margin-right: 0;
 }
-/* line 117, ../../../app/stylesheets/screen.scss */
+/* line 122, ../../../app/stylesheets/screen.scss */
 body #space-right {
   display: inline;
   float: left;
@@ -1106,7 +1122,7 @@ body #space-right {
   width: 3.167%;
   margin-right: 0;
 }
-/* line 120, ../../../app/stylesheets/screen.scss */
+/* line 125, ../../../app/stylesheets/screen.scss */
 body #space-left {
   display: inline;
   float: left;
@@ -1114,13 +1130,37 @@ body #space-left {
   width: 3.167%;
   margin-right: 1.042%;
 }
-/* line 123, ../../../app/stylesheets/screen.scss */
+/* line 128, ../../../app/stylesheets/screen.scss */
 body #middle {
   display: inline;
   float: left;
   overflow: hidden;
   width: 91.556%;
   margin-right: 1.042%;
+}
+/* line 131, ../../../app/stylesheets/screen.scss */
+body #left3 {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 32.63%;
+  margin-right: 1.042%;
+}
+/* line 134, ../../../app/stylesheets/screen.scss */
+body #middle3 {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 32.63%;
+  margin-right: 1.042%;
+}
+/* line 137, ../../../app/stylesheets/screen.scss */
+body #middle3 {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 32.63%;
+  margin-right: 0;
 }
 
 /* line 18, ../../../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
@@ -1185,13 +1225,13 @@ form textarea {
   height: 250px;
 }
 
-/* line 131, ../../../app/stylesheets/screen.scss */
+/* line 145, ../../../app/stylesheets/screen.scss */
 html, body {
   height: 98%;
   margin: 0;
 }
 
-/* line 133, ../../../app/stylesheets/screen.scss */
+/* line 147, ../../../app/stylesheets/screen.scss */
 #wrapper {
   min-height: 100%;
   height: auto !important;
@@ -1199,7 +1239,7 @@ html, body {
   margin: 0 auto -20;
 }
 
-/* line 139, ../../../app/stylesheets/screen.scss */
+/* line 153, ../../../app/stylesheets/screen.scss */
 #footer, #push {
   height: 20;
   text-align: center;
