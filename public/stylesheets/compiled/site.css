@@ -397,13 +397,12 @@ body{font-size:1.2em;color:#294f88}*/
 /* line 339, ../../../app/stylesheets/site.scss */
 .customer_service {
   margin: 10px auto;
-  background-color: #e5e5e5;
-  color: black;
+  background-color: white;
+  color: #0066cc;
   padding: 30px 30px 0 30px;
   font: bold;
   font-size: 18px;
-  -moz-border-radius: 9px 9px 9px 9px;
-  -webkit-border-radius: 3px;
+  height: 30px;
 }
 
 /*h1{margin:0;padding:0 0 30px 0;font-size:2em}
@@ -411,14 +410,14 @@ h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
 p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
 ul,ol{padding:0;margin:0;font-size:1.2em}
 */
-/* line 349, ../../../app/stylesheets/site.scss */
+/* line 348, ../../../app/stylesheets/site.scss */
 .customer_service h1 {
   margin: 0;
   padding: 0 0 10px 0;
   font-size: 1.2em;
 }
 
-/* line 350, ../../../app/stylesheets/site.scss */
+/* line 349, ../../../app/stylesheets/site.scss */
 .customer_service p {
   font-size: 1.2em;
   line-height: 170%;
@@ -426,23 +425,23 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   clear: both;
 }
 
-/* line 351, ../../../app/stylesheets/site.scss */
+/* line 350, ../../../app/stylesheets/site.scss */
 .customer_service ul, ol {
   padding: 0;
   margin: 0;
   font-size: 1em;
 }
 
-/* line 352, ../../../app/stylesheets/site.scss */
+/* line 351, ../../../app/stylesheets/site.scss */
 .customer_service ul, .customer_service ol {
   list-style-type: none;
-  /*background:url(/images/dotted.gif) 0 0 repeat-x;*/
+  background: url(/images/dotted.gif) 0 0 repeat-x;
   width: 180px;
   float: left;
   margin: 0 10px 30px 0;
 }
 
-/* line 359, ../../../app/stylesheets/site.scss */
+/* line 358, ../../../app/stylesheets/site.scss */
 .customer_service li {
   background: url(/images/dotted.gif) bottom left repeat-x;
   width: 180px;
@@ -450,7 +449,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   padding: 0;
 }
 
-/* line 365, ../../../app/stylesheets/site.scss */
+/* line 364, ../../../app/stylesheets/site.scss */
 .customer_service li a {
   padding: 8px 20px 8px 0;
   width: 160px;
@@ -460,7 +459,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   color: #294f88;
 }
 
-/* line 366, ../../../app/stylesheets/site.scss */
+/* line 365, ../../../app/stylesheets/site.scss */
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }

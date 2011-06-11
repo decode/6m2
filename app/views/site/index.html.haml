@@ -90,6 +90,8 @@
           = link_to t('home.slide4'), '#'
 
 #mainframe
+  - if user_signed_in?
+    = render 'site/news'
   = render 'site/wiki'
 #right
   .bordershape
@@ -100,9 +102,6 @@
     = image_tag("user16.png")
     = t 'site.user_number'
     = @user_count
-  - if user_signed_in?
-    .bordershape
-      = render 'site/news'
   = render 'site/users'
 
   = render 'site/cs'

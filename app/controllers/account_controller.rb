@@ -11,6 +11,10 @@ class AccountController < ApplicationController
       allow :user, :admin
     end
   end
+
+  access_control :secret_access?, :filter => false do
+    allow :admin, :manager, :superadmin
+  end
   
   def index
     @trades = Trade.where('user_id = ?', current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
@@ -115,7 +119,7 @@ class AccountController < ApplicationController
               user.has_no_role! :guest
             end
             if user.save
-              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('trade.approve_charge')
             else
               flash[:error] = t('global.operate_failed')
@@ -127,7 +131,7 @@ class AccountController < ApplicationController
             user.account_money = user.account_money + (trade.price * Setting.first.recyling_point_ratio)
             user.account_credit = user.account_credit - trade.price
             if user.save
-              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id,:operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'recyling', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('global.operate_success')
             else
               flash[:error] = t('global.operate_failed')
@@ -139,7 +143,7 @@ class AccountController < ApplicationController
             user.account_credit = user.account_credit + (trade.price/Setting.first.score_point)
             user.score = user.score - trade.price
             if user.save
-              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'score', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + I18n.t('account.score') + ":" + (user.score).to_s
+              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'score', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + I18n.t('account.score') + ":" + (user.score).to_s
               flash[:notice] = t('global.operate_success')
             else
               flash[:error] = t('global.operate_failed')
@@ -153,7 +157,7 @@ class AccountController < ApplicationController
               user.account_money = rest
               user.account_credit = user.account_credit + trade.price
               user.save!
-              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
+              Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'point', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
               flash[:notice] = t('trade.approve_charge')
             else
               flash[:error] = t('trade.no_enough_money')
@@ -174,7 +178,7 @@ class AccountController < ApplicationController
     Trade.transaction do
       trade.reject
       if trade.save
-        Accountlog.create! :user_id => trade.user.id, :user_name => user.username, :operator_id => current_user.id, :trade_id => trade.id, :amount => trade.price, :log_type => trade.trade_type, :description => t('trade.reject')
+        Accountlog.create! :user_id => trade.user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => trade.trade_type, :description => t('trade.reject')
         flash[:notice] = t('global.operate_success')
       end
     end
@@ -207,6 +211,12 @@ class AccountController < ApplicationController
       redirect_to :back
     end
     @user = current_user
+  end
+
+  # 充值记录
+  def charge_log
+    secret_access? ? @user = User.find(params[:id]) : @user = @current_user
+    @trades = Trade.where('user_id = ?', @user).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
   end
 
   # 交易记录

@@ -1,5 +1,5 @@
 #roundshape
-  = link_to t('account.charge'), @user
+  = link_to t('account.charge'), :controller=>'account', :action=>'charge_log', :id=>@user
   \|
   = link_to t('site.small_cash'), :controller=>'account', :action=>'small_cash', :id=>@user
   \|

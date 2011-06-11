@@ -140,6 +140,14 @@ zh:
     sales_business: "业务申报"
     task_num: "发布任务数"
     todo_num: "接手任务数"
+    month_title_task: "本月发布任务数"
+    week_title_task: "本周发布任务数"
+    month_title_trade: "本月交易金额"
+    week_title_trade: "本周交易金额"
+    m_task_sum: "本月任务金额"
+    w_task_sum: "本周任务金额"
+    m_trade_sum: "本月交易金额"
+    w_trade_sum: "本周交易金额"
 
   manage:
     message_box: "收件箱"

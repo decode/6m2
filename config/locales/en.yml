@@ -139,6 +139,14 @@ en:
     sales_business: "Sales Business"
     task_num: "Task"
     todo_num: "Todo"
+    month_title_task: "Current Month Tasks"
+    week_title_task: "Current Week Tasks"
+    month_title_trade: "Current Month Trades"
+    week_title_trade: "Current Month Trades"
+    m_task_sum: "Current Month Task Price"
+    w_task_sum: "Current Week Task Price"
+    m_trade_sum: "Current Month Trade Price"
+    w_trade_sum: "Current Week Trade Price"
 
   manage:
     message_box: "Inbox"

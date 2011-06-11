@@ -27,7 +27,9 @@ class BoardController < ApplicationController
     if params[:task_type] == 'cash'
       if current_user.has_role? 'manager'
         #@tasks = Task.where("task_type = ? and status = ?", params[:task_type], 'published').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
-        @tasks = Task.where(:task_type => [params[:task_type], 'v_'+params[:task_type]], :status => 'published').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+        tasks = Task.where(:task_type => [params[:task_type], 'v_'+params[:task_type]]).where("status != 'published'").order('created_at DESC')
+        tasks = Task.where(:task_type => [params[:task_type], 'v_'+params[:task_type]]).where("status = 'published'").order('created_at DESC') + tasks
+        @tasks = tasks.paginate(:page => params[:page], :per_page => 20)
       else
         redirect_to '/s/access_denied'
       end
