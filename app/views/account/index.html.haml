@@ -1,7 +1,6 @@
 = render 'users/head'
 
-#mainframe
-  = render 'trades'
-#right
-  .bordershape
-    = render 'user' unless @user.nil?
+.solidshape
+  = render 'user' unless @user.nil?
+
+= render 'trades'

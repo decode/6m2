@@ -1,4 +1,3 @@
-%h1= t 'site.access_denied'
 
 #roundshape 
   = link_to t('page.back'), :back
@@ -6,3 +5,14 @@
   = link_to t('site.label'), '/'
   \|
   = link_to t('site.my_account'), @current_user
+
+%h1
+  = t 'site.access_denied'
+  %br
+  = t 'site.access_reason'
+
+%p
+  - if guest?
+    = t 'site.access_guest'
+%p
+  = t 'site.access_right'

@@ -1,13 +1,12 @@
-#mainframe
-  .bordershape
-    - form_tag( {:action=>'process_charge'}, :id=>'charge') do
-      = label_tag t('trade.point_amount')
-      = number_field_tag 'amount', 10, :step => 10, :in => 10...5000, :class=>"validate[require],custom[number],min[10],max[5000]"
-      %br
-      = submit_tag t('account.change')
+.solidshape
+  = render 'account/user'
+
+.bordershape
+  - form_tag( {:action=>'process_charge'}, :id=>'charge') do
+    = label_tag t('trade.point_amount')
+    = number_field_tag 'amount', 10, :step => 10, :in => 10...5000, :class=>"validate[require],custom[number],min[10],max[5000]"
+    %br
+    = submit_tag t('account.change')
     
-#right
-  .bordershape
-    = render 'account/user'
 
 

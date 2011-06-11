@@ -1,7 +1,12 @@
-%h2
-  /Edit #{resource_name.to_s.humanize}
-  = t 'account.edit_account'
 #roundshape
+  = link_to t("site.cancel_account"), registration_path(resource_name), :confirm => t("site.are_you_sure"), :method => :delete
+  \|
+  = link_to t("page.back"), :back
+
+/
+  %h2
+    = t 'account.edit_account'
+.bordershape
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
     = devise_error_messages!
     /
@@ -29,8 +34,3 @@
       = f.password_field :current_password, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p= f.submit t("site.update")
 
-#roundshape
-  %p
-    = link_to t("site.cancel_account"), registration_path(resource_name), :confirm => t("site.are_you_sure"), :method => :delete
-  %hr
-  = link_to t("page.back"), :back

@@ -1,5 +1,8 @@
+- if current_user and admin?
+  #roundshape
+    = link_to t('global.create'), new_notice_path
 %table
-  %caption= t 'site.notice'
+  %caption
   %thead
     %tr
       %th= t 'global.title'

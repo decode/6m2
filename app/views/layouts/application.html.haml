@@ -30,8 +30,8 @@
     .container
       #toolbar
         = link_to image_tag('home.png'), '/'
+        \|
         - if user_signed_in?
-          |
           =t('site.welcome', :name => current_user.username)
           |
           = link_to t('site.profile'), edit_user_registration_path

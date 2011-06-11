@@ -1,3 +1,6 @@
+.solidshape
+  = render 'account/user'
+
 #mainframe
   .bordershape
     - form_tag( {:action=>'process_charge'}, :id=>'charge') do
@@ -16,7 +19,5 @@
     %hr
     %p= t 'trade.bad_deal'
 
-  .bordershape
-    = render 'account/user'
 
 

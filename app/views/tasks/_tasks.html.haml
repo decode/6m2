@@ -23,6 +23,7 @@
     = t 'global.to'
     = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
     = submit_tag t('global.show')
+
 .bordershape
   = convert_shop_type('taobao')
   = '-' + t('task.normal_task')
@@ -50,7 +51,6 @@
   \|
   = image_tag('quest.png')
   = '-' + t('task.send_problem')
-
 .main
   %p{:title => t('task.demo'), :class=>'blue'}
     = image_tag('do.png')

@@ -66,12 +66,16 @@ zh:
     admin: "后台"
     roles: "角色"
     access_denied: "您暂时没有权限访问该资源"
+    access_reason: "不能访问的原因可能是:"
+    access_guest: "> 您的权限为访客,请充值成分正式用户"
+    access_right: "> 权限不足,请联系客服人员"
+    login_tip: "注册后,请查收邮件激活帐号后才能登录"
     label: "首页"
     welcome: "欢迎, %{name}"
     login: "登录"
     register: "注册"
     logout: "注销"
-    profile: "设置"
+    profile: "帐户"
     login_name: "用户名"
     password: "密码"
     change_password: "修改密码"
@@ -503,7 +507,7 @@ zh:
     resend: "发送"
     registrations:
       user:
-        inactive_signed_up: "己成功注册,需要激活您的帐号才能继续使用"
+        inactive_signed_up: "己成功注册,请查收帐号激活邮件,并激活您的帐号"
 
   formtastic:
     titles:

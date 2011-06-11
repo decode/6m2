@@ -1,6 +1,7 @@
 = render 'users/head'
 
-= @user.username
+.solidshape
+  = render 'account/user'
 /
   = t('site.user_manage')
   - form_tag :controller => 'board', :action => 'search_user' do
