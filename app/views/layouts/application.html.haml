@@ -49,11 +49,10 @@
       #navibar
         #nicemenu
           %ul
-            %li
-              %span.head_menu
-                = link_to t('site.notice_center'), notices_path if user_signed_in?
-
             - if user_signed_in?
+              %li
+                %span.head_menu
+                  = link_to t('site.notice_center'), notices_path
               %li
                 %span.head_menu
                   = link_to t('site.task'), tasks_url
@@ -152,22 +151,27 @@
                   = link_to t('site.roles'), '/t/roles'
 
       - if flash[:notice]
+        %br
         #notice
-          :javascript
-            $.jnotify("#{flash[:notice]}");
-            /*jQuery.noticeAdd({
-                        text: "#{flash[:notice]}",
-                        stay: false
-                });*/
+          = flash[:notice]
+          /
+            :javascript
+              $.jnotify("#{flash[:notice]}");
+              /*jQuery.noticeAdd({
+                          text: "#{flash[:notice]}",
+                          stay: false
+                  });*/
 
       - if flash[:error]
         #error
-          :javascript
-            $.jnotify("#{flash[:error]}", "error");
-            /*jQuery.noticeAdd({
-                        text: "#{flash[:error]}",
-                        stay: false
-                });*/
+          = flash[:error]
+          /
+            :javascript
+              $.jnotify("#{flash[:error]}", "error");
+              /*jQuery.noticeAdd({
+                          text: "#{flash[:error]}",
+                          stay: false
+                  });*/
 
       #space-left
         %br
@@ -205,7 +209,6 @@
           %li
             = link_to "#{t('site.copyright')}©#{t('site.name')}", '/'
         %span.jx-separator-right
-
       /
         #push
     /

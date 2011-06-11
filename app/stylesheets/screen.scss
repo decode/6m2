@@ -63,7 +63,8 @@ body {
     height: 80px;
     @include column($blueprint-grid-columns);
     text-align: right;
-    color:#0066CC; 
+    //color:#0066CC; 
+    color:#3274d1; 
     //border-bottom: 1px solid #444; /*--Create bevel effect--*/  
     }
   #toolbar a {
@@ -74,7 +75,7 @@ body {
     //@include column($blueprint-grid-columns); }
   }
 
-  #header, #footer, #notice, #error {
+  #header, #footer {
     @include column($blueprint-grid-columns); }
   #sidebar {
     $sidebar-columns: floor($blueprint-grid-columns / 4);
@@ -105,10 +106,18 @@ body {
     @include column(5);
   }
   #notice {
-    background-color: green;
+    background-color: #eaf4f5;
+    width: 92%;
+    margin: 1px auto;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 3px;
   }
   #error {
-    background-color: #ef7070;
+    background-color: #f9767f;
+    width: 92%;
+    margin: 1px auto;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 3px;
   }
   .error {
     background-color: #ef7070;
@@ -134,7 +143,7 @@ body {
   #middle3 {
     @include column(8);
   }
-  #middle3 {
+  #right33{
     @include column(8, true);
   }
 }

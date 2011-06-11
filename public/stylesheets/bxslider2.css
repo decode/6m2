@@ -213,7 +213,7 @@ body {
 
 .bx_pager a {
 	float: left;
-	background: url(bg_pager.png) no-repeat 0 -21px;
+	background: url(/images/bg_pager.png) no-repeat 0 -21px;
 	width: 14px;
 	height: 17px;
 	color: #fff;

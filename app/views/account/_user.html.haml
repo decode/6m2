@@ -43,8 +43,9 @@
         = t 'task.total_finish_todo_point'
         = @user.status_todos('finished').sum('point')
   %br
+  %br
 
-#right3
+#right3-fake
   %p
     = t 'task.total_todo_payment'
     = @user.status_todos('running').sum('price')
@@ -66,4 +67,5 @@
   %p
     = t 'task.problem'
     = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
+  %br
 

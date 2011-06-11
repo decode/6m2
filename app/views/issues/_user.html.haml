@@ -11,4 +11,4 @@
     %hr
   
   - unless @task.nil?
-    = @task.participant.part_id
+    = @task.participant.part_id if @task.participant

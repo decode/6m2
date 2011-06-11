@@ -41,6 +41,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = Article.new
+    @article.article_type = 'wiki'
 
     respond_to do |format|
       format.html # new.html.erb

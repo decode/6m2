@@ -17,18 +17,18 @@
       %td= issue.title
       %td= issue.content
       %td= issue.status
-      %th= issue.user.username
+      %th= issue.user.username if issue.user
       %th= issue.itype
       - dealer = User.where(issue.dealer_id).first
       %th= dealer.nil? ? '-' : dealer.username
       %th= l issue.created_at, :format => :long
-      %td= link_to t('global.show'), issue
-      - if issue.open?
+      %td= link_to image_tag('view.png', :alt=>t('global.show')), issue
+      - if issue.open? or issue.user.nil?
         - if admin? or manager?
           %td= link_to t('global.done'), :controller => 'board', :action => 'fix_issue', :id => issue if issue.can_fix?
           %td= link_to t('global.close'), :controller => 'board', :action => 'close_issue', :id => issue if issue.can_shutdown?
           - if admin?
-            %td= link_to t('global.edit'), edit_issue_path(issue)
-            %td= link_to t('global.delete'), issue, :confirm => 'Are you sure?', :method => :delete
+            %td= link_to image_tag('edit.png', :alt=>t('global.edit')), edit_issue_path(issue)
+            %td= link_to image_tag('delete.png', :alt=>t('global.delete')), issue, :confirm => t('site.are_you_sure'), :method => :delete
 %br/
 = will_paginate @issues

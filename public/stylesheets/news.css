@@ -13,7 +13,9 @@ margin:20px auto;
 #newsticker-demo img { border: 2px solid #FFFFFF; }
 
 #newsticker-demo .title {
-background:#EAF4F5;
+/*background:#EAF4F5;*/
+background:#3274d1;
+color:white;
            text-align:center;
            font-size:14px;
            font-weight:bold;
