@@ -11,5 +11,5 @@
     %p
       = t 'site.password_confirmation'
       %br/
-      = f.password_field :password_confirmation, { :class => 'validate[required],custom[email]' }
+      = f.password_field :password_confirmation, { :class => 'validate[required],minSize[6],maxSize[20]' }
     %p= f.submit t('page.submit')
