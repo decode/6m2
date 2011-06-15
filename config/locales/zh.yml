@@ -293,6 +293,9 @@ zh:
     customer: "买号"
     no_shop_url: "绑定店铺必须填写店铺地址"
     in_use: "使用中"
+    active: "正常"
+    danger: "不安全"
+    pause: "暂停"
 
   task:
     confirm: "确认"

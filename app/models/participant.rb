@@ -35,5 +35,10 @@ class Participant < ActiveRecord::Base
     state :danger, :value => 'danger'
     state :pause, :value => 'pause'
   end
+
+  def local_status
+    s = {'active' => I18n.t('participant.active'), 'danger' => I18n.t('participant.danger'), 'pause' => I18n.t('participant.pause')}
+    return s[self.status]
+  end
   
 end

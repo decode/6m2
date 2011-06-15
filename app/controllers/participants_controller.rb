@@ -74,7 +74,7 @@ class ParticipantsController < ApplicationController
             current_user.has_no_role! 'guest'
             current_user.has_role! 'user'
           end
-          format.html { redirect_to(:back, :notice => t('global.operate_success')) }
+          format.html { redirect_to(participants_path, :notice => t('global.operate_success')) }
           format.xml  { render :xml => @participant, :status => :created, :location => @participant }
         else
           @participant.errors.add 'url', t('participant.no_shop_url') unless isPass

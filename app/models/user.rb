@@ -90,11 +90,11 @@ class User < ActiveRecord::Base
   end
 
   def active_participant
-    return self.participants.where("role_type = 'customer' and active = true").first
+    return self.participants.where("role_type = 'customer' and active = ?", true).first
   end
   
   def active_shop
-    return self.participants.where("role_type = 'shop' and active = true").first
+    return self.participants.where("role_type = 'shop' and active = ?", true).first
   end
   
   protected

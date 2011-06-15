@@ -16,7 +16,7 @@
       %tr
         %td= participant.part_type
         %td= participant.part_id
-        %td= participant.status
+        %td= participant.local_status
         %td= convert_yes_no(participant.active)
         %td= participant.tasks.length
         %td= l participant.created_at, :format => :short
@@ -43,7 +43,7 @@
       %tr
         %td= participant.part_type
         %td= participant.part_id
-        %td= participant.status
+        %td= participant.local_status
         %td= convert_yes_no(participant.active)
         %td= Task.where(:shop => participant.part_id).length
         %td= l participant.created_at, :format => :short

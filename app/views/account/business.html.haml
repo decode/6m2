@@ -1,7 +1,5 @@
-#mainframe
-  = render 'transactions/trans'
-
-#right
+= render 'users/head'
+#equal-left
   .bordershape
     = t 'transaction.current_month_business'
     %hr
@@ -10,6 +8,8 @@
     %br
     = t 'transaction.month_amount'
     = @salary
+
+#equal_right
   .bordershape
     = t 'transaction.last_month_business'
     %hr
@@ -18,3 +18,5 @@
     %br
     = t 'transaction.month_amount'
     = @last_salary
+
+= render 'transactions/trans'

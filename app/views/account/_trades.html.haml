@@ -29,8 +29,10 @@
       %td= l t.created_at, :format => :long
       %td= t.local_status
       %td
-        - if (admin? or manager?) and t.request?
-          = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_pass', :id=>t
-          = link_to image_tag('no.png', :alt=>t('trade.reject')), :controller=>'account', :action=>'approve_reject', :id=>t
-        = link_to image_tag('delete.png', :alt=>t('global.delete')), :controller => 'account', :action => 'delete_charge', :id=>t if t.request?
+        - if t.request?
+          - if admin?# or manager?)
+            = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_pass', :id=>t
+            = link_to image_tag('no.png', :alt=>t('trade.reject')), :controller=>'account', :action=>'approve_reject', :id=>t
+          =# link_to image_tag('delete.png', :alt=>t('global.delete')), :controller => 'account', :action => 'delete_charge', :id=>t, :confirm => 'delete?'
+          = link_to image_tag('delete.png'), t, :confirm => t('site.are_you_sure'), :method => :delete
 = will_paginate @trades

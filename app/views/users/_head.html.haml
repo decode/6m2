@@ -1,5 +1,8 @@
 - if current_user or admin?
   #roundshape
+    - if salesman?
+      = link_to t('transaction.business'), '/m/business'
+      \|
     = link_to t('global.show'), @user
     \|
     = link_to t('global.edit'), edit_user_path(@user)

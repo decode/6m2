@@ -289,6 +289,9 @@ en:
     shop: "Shop"
     customer: "Customer"
     in_use: "Used"
+    active: "Active"
+    danger: "Danger"
+    pause: "Pause"
 
   task:
     confirm: "Confirm"

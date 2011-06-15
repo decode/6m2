@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
   create_table "accountlogs", :force => true do |t|
     t.integer  "user_id"
     t.integer  "operator_id"
+    t.string   "user_name"
+    t.string   "operator_name"
     t.integer  "trade_id"
     t.string   "description"
     t.float    "amount"
@@ -139,9 +141,9 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.float    "charge_punish",        :default => 1.0
     t.float    "report_award",         :default => 1.0
     t.float    "report_punish",        :default => 1.0
-    t.float    "custom_judge",         :default => 0.2
+    t.float    "custom_judge",         :default => 0.5
     t.integer  "real_level",           :default => 5
-    t.float    "transport_price",      :default => 0.2
+    t.float    "transport_price",      :default => 1.0
     t.integer  "times_limit",          :default => 3
     t.integer  "running_task",         :default => 10
     t.integer  "total_task",           :default => 100
@@ -158,6 +160,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.integer  "task_id"
     t.integer  "user_id"
     t.integer  "worker_id"
+    t.string   "user_name"
+    t.string   "worker_name"
     t.float    "price"
     t.float    "point"
     t.string   "status"
@@ -180,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.datetime "published_time"
     t.datetime "takeover_time"
     t.datetime "pay_time"
+    t.datetime "transport_time"
     t.datetime "finished_time"
     t.datetime "confirmed_time"
     t.integer  "worker_level",         :default => 0

@@ -17,6 +17,8 @@ Temp::Application.routes.draw do
 
   resources :tasks
 
+  resources :trades
+
   get "manage/user"
 
   devise_for :users

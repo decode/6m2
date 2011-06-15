@@ -53,9 +53,9 @@ class UsersController < ApplicationController
   
   def show
     session[:user_edit_mode] = nil
-    if current_user.has_role? 'salesman'
-      redirect_to '/m/business'
-    end
+    #if current_user.has_role? 'salesman'
+    #  redirect_to '/m/business'
+    #end
     secret_access? ? @user = User.find(params[:id]) : @user = @current_user
 
     @month_tasks = Task.where(:user_id => @user.id, :confirmed_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month).order('confirmed_time ASC')

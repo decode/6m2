@@ -33,8 +33,8 @@ class AccountController < ApplicationController
   def delete_charge
     trade = Trade.find(params[:id])
     #trade.destroy if trade.user == current_user and trade.trade_type == 'charge' and trade.request?
-    trade.destroy if trade.user == current_user and trade.request?
-    redirect_to :controller => "account"
+    trade.destroy if (trade.user == current_user or current_user.has_role?('admin')) and trade.request?
+    redirect_to "/m/approve/charge"
   end
   
   def process_charge
@@ -178,7 +178,7 @@ class AccountController < ApplicationController
     Trade.transaction do
       trade.reject
       if trade.save
-        Accountlog.create! :user_id => trade.user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => trade.trade_type, :description => t('trade.reject')
+        Accountlog.create! :user_id => trade.user.id, :user_name => current_user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => trade.trade_type, :description => t('trade.reject')
         flash[:notice] = t('global.operate_success')
       end
     end
@@ -277,6 +277,7 @@ class AccountController < ApplicationController
       session[:transaction_mode] = 'sales' 
       id = current_user.id
     end
+    @user = current_user
     @trans = Transaction.where(:sales_id => id, :trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
     @transactions = @trans.paginate(:page => params[:page], :per_page => 20)
     @salary = @trans.sum("amount")
