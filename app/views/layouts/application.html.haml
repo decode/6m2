@@ -15,8 +15,8 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
 
-    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min'
-    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min'
+    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy'
     /[if lt IE 9]
       = javascript_include_tag 'excanvas.min'
 
@@ -67,7 +67,7 @@
                   = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
                   = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
                   = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-                  - if guest? or user?
+                  - if guest? or user? or manager?
                     %hr
                     = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
                     = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'

@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
       point = p[ index==step.length ? index-1 : index ]
 
       # 按完成时间计算
-      point = point + task.task_day - 1
+      day_point = {1=>0, 2=>0, 3=>0.5, 4=>1, 5=>1.5, 6=>2}
+      point = point + day_point[task.task_day]
 
       # 附加词语
       #point = point + Setting.first.extra_word if task.extra_word

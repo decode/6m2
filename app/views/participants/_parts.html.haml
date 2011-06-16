@@ -14,8 +14,6 @@
         %th= t 'global.task'
         %th= t 'global.created_at'
         %th
-        %th
-        %th
     - @participants.each do |participant|
       %tr
         %td= participant.part_type
@@ -23,12 +21,14 @@
         %td= participant.local_status
         %td
           = convert_yes_no(participant.active)
-          = link_to image_tag('yes.png', :alt=>t('participant.make_active')), :controller=>'board', :action=>'active_participant', :id=>participant.id unless participant.active
+          = link_to image_tag('yes.png', :alt=>t('participant.make_active')), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')} unless participant.active
         %td= participant.tasks.length
         %td= l participant.created_at, :format => :short
-        %td= link_to image_tag('view.png'), participant
-        %td=# link_to image_tag('edit.png'), edit_participant_path(participant)
-        %td= link_to image_tag('delete.png'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?
+        %td
+          = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
+          - if admin?
+          = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
+          = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
   = will_paginate @participants
 
 #equal-right
@@ -43,8 +43,6 @@
         %th= t 'global.task'
         %th= t 'global.created_at'
         %th
-        %th
-        %th
     - @shops.each do |participant|
       %tr
         %td= participant.part_type
@@ -52,10 +50,12 @@
         %td= participant.local_status
         %td
           = convert_yes_no(participant.active)
-          = link_to image_tag('yes.png', :alt=>t('participant.make_active')), :controller=>'board', :action=>'active_participant', :id=>participant.id unless participant.active
-        %td= Task.where(:shop => participant.part_id).length
+          = link_to image_tag('yes.png', :alt=>t('participant.make_active')), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')} unless participant.active
+        %td= participant.tasks.length
         %td= l participant.created_at, :format => :short
-        %td= link_to image_tag('view.png'), participant
-        %td=# link_to image_tag('edit.png'), edit_participant_path(participant)
-        %td= link_to image_tag('delete.png'), participant, :confirm => t('site.are_you_sure'), :method => :delete if admin?
+        %td
+          = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
+          - if admin?
+          = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
+          = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
   = will_paginate @shops
