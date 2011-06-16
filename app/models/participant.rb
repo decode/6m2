@@ -40,5 +40,5 @@ class Participant < ActiveRecord::Base
     s = {'active' => I18n.t('participant.active'), 'danger' => I18n.t('participant.danger'), 'pause' => I18n.t('participant.pause')}
     return s[self.status]
   end
-  
+
 end

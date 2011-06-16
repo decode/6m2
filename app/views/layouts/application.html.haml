@@ -2,6 +2,7 @@
 %html
   %head 
     %title= t 'site.name' 
+    = favicon_link_tag
     = csrf_meta_tag
     = javascript_include_tag 'jquery.min.js'
 
@@ -153,28 +154,16 @@
                   = link_to t('site.admin'), '/admin'
                   = link_to t('site.roles'), '/t/roles'
 
-      - if flash[:notice]
-        %br
-        #notice
-          = flash[:notice]
-          /
-            :javascript
-              $.jnotify("#{flash[:notice]}");
-              /*jQuery.noticeAdd({
-                          text: "#{flash[:notice]}",
-                          stay: false
-                  });*/
-
-      - if flash[:error]
-        #error
-          = flash[:error]
-          /
-            :javascript
-              $.jnotify("#{flash[:error]}", "error");
-              /*jQuery.noticeAdd({
-                          text: "#{flash[:error]}",
-                          stay: false
-                  });*/
+      #wide
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "#{name}"
+      /
+        :javascript
+          $.jnotify("#{flash[:notice]}");
+          /*jQuery.noticeAdd({
+                      text: "#{flash[:notice]}",
+                      stay: false
+              });*/
 
       #space-left
         %br

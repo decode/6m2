@@ -40,7 +40,7 @@
       %th= t 'account.charge_amount' 
       %th= t 'account.point'
       %th= t 'account.score'
-      %th= t 'global.status' 
+      %th= 'IP' #t 'global.status' 
       %th= t 'account.account_manage'
       %th{:colspan=>4}= t 'global.operation'
 
@@ -51,11 +51,11 @@
         = user.id # check_box_tag "users[]", user
       %td= user.username
       %td
-        = user.role_objects.collect{|r| r.name}
+        = user.role_objects.collect{|r| r.name[0..3]}.join(' ')
       %td= user.account_money
       %td= user.account_credit
       %td= user.score
-      %td= user.status
+      %td= user.last_sign_in_ip
       %td
         - if manager?
           = link_to image_tag('point.png', :alt=>t('account.point')), :controller => 'account', :action => 'point', :id => user

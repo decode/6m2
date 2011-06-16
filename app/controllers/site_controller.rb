@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   def index
     @notices = Notice.order("created_at Desc").limit(5)
     @setting = Setting.first
-    @running_count = @setting.running_task + Task.where("status = 'published'").length
+    @running_count = @setting.running_task + Task.all.length
     @user_count = @setting.total_user + User.all.length
     @user = current_user
 

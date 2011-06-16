@@ -1,5 +1,16 @@
-= render :partial => "devise/shared/links"
-#mainframe
+#wide
+  = render :partial => "devise/shared/links"
+#sl
+  %br
+#sm
+  .solidshape
+    = t 'site.login_tip'
+    %br
+    = t 'site.login_tip1'
+    %br
+    = t 'site.login_tip2'
+    %br
+    = t 'site.login_tip3'
   .bordershape
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %p
@@ -15,6 +26,5 @@
           = f.check_box :remember_me
           = t 'site.remember_me'
       %p= f.submit t('site.login')
-#right
-  .solidshape
-    = t 'site.login_tip'
+#sr
+  %br

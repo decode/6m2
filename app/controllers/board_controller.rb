@@ -391,6 +391,16 @@ class BoardController < ApplicationController
     end
   end
   # ===========================================
+  #
+  # 用户帐号激活管理
+  def active_participant
+    part = Participant.find(params[:id])
+    if part
+      part.make_active 
+      part.save
+    end
+    redirect_to :back
+  end
     
   def search_user
     @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)

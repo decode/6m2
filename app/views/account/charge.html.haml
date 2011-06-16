@@ -8,8 +8,8 @@
       = text_field_tag 'transaction_id'
       %br
       = label_tag t('account.charge_amount')
-      = select_tag 'amount', options_for_select([100,200,300,500,800,1000,2000]), :class=>"validate[require],custom[number],min[100],max[2000]"
-      =# number_field_tag 'amount', :class=>'validate[require]'
+      =# select_tag 'amount', options_for_select([100,200,300,500,800,1000,2000]), :class=>"validate[require],custom[number],min[100],max[2000]"
+      = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[1],max[2000]"
       %br
       = submit_tag t('account.charge')
 
@@ -18,6 +18,3 @@
     %p= t 'trade.must_input'
     %hr
     %p= t 'trade.bad_deal'
-
-
-

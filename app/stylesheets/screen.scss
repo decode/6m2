@@ -107,12 +107,13 @@ body {
   }
   #notice {
     background-color: #eaf4f5;
+    height: 90%;
     width: 92%;
     margin: 1px auto;
     -moz-border-radius: 9px 9px 9px 9px;
     -webkit-border-radius: 3px;
   }
-  #error {
+  #error, #alert {
     background-color: #f9767f;
     width: 92%;
     margin: 1px auto;
@@ -146,6 +147,11 @@ body {
   #right33{
     @include column(8, true);
   }
+  #sl { @include column(5); }
+  #sm { @include column(14); }
+  #sr { @include column(5, true); }
+  #il { @include column(12); }
+  #ir { @include column(12, true); }
 }
 form {
   @include blueprint-form; 

@@ -15,9 +15,9 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     if current_user.has_role? 'superadmin'
-      @users = User.all.paginate(:page => params[:page], :per_page => 20)
+      @users = User.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     else
-      @users = User.where('id != 1').paginate(:page => params[:page], :per_page => 20)
+      @users = User.where('id != 1').order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
     end
     session[:user_edit_mode] = nil
 

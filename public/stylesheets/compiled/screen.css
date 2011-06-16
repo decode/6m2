@@ -288,21 +288,21 @@ body.bp form.inline p {
 
 /* line 121, ../../../app/stylesheets/site.scss */
 .formContainer {
-  background-color: #a9cff3;
+  background-color: #eaf2f5;
   border: none;
   padding: 30px;
   width: 600px;
   margin: 50px auto;
 }
 
-/* line 130, ../../../app/stylesheets/site.scss */
+/* line 131, ../../../app/stylesheets/site.scss */
 .formContainer h3 {
   margin: 0px;
   padding: 0px 0px 10px 0px;
   font-size: 135%;
 }
 
-/* line 136, ../../../app/stylesheets/site.scss */
+/* line 137, ../../../app/stylesheets/site.scss */
 .rowContainer {
   width: 100%;
   overflow: hidden;
@@ -310,7 +310,7 @@ body.bp form.inline p {
   height: 34px;
 }
 
-/* line 143, ../../../app/stylesheets/site.scss */
+/* line 144, ../../../app/stylesheets/site.scss */
 .rowContainer label {
   width: 140px;
   float: left;
@@ -318,12 +318,12 @@ body.bp form.inline p {
   font-weight: bold;
 }
 
-/* line 150, ../../../app/stylesheets/site.scss */
+/* line 151, ../../../app/stylesheets/site.scss */
 .rowContainer input[type="text"] {
   width: 200px;
 }
 
-/* line 154, ../../../app/stylesheets/site.scss */
+/* line 155, ../../../app/stylesheets/site.scss */
 .tooltipContainer {
   height: 16px;
   font-size: 11px;
@@ -335,7 +335,7 @@ body.bp form.inline p {
   padding: 0px 20px;
 }
 
-/* line 169, ../../../app/stylesheets/site.scss */
+/* line 170, ../../../app/stylesheets/site.scss */
 .error {
   color: #990000;
 }
@@ -344,7 +344,7 @@ body.bp form.inline p {
 	Cusco Sky table styles
 	written by Braulio Soncco http://www.buayacorp.com
 */
-/* line 182, ../../../app/stylesheets/site.scss */
+/* line 183, ../../../app/stylesheets/site.scss */
 table, th, td {
   /*border: 1px solid #D4E0EE;*/
   border-collapse: collapse;
@@ -352,19 +352,19 @@ table, th, td {
   color: #555;
 }
 
-/* line 189, ../../../app/stylesheets/site.scss */
+/* line 190, ../../../app/stylesheets/site.scss */
 caption {
   font-size: 150%;
   font-weight: bold;
   margin: 5px;
 }
 
-/* line 195, ../../../app/stylesheets/site.scss */
+/* line 196, ../../../app/stylesheets/site.scss */
 td, th {
   padding: 4px;
 }
 
-/* line 199, ../../../app/stylesheets/site.scss */
+/* line 200, ../../../app/stylesheets/site.scss */
 thead th {
   border-bottom: 1px solid #D4E0EE;
   text-align: left;
@@ -373,46 +373,46 @@ thead th {
   font-size: 100% !important;
 }
 
-/* line 207, ../../../app/stylesheets/site.scss */
+/* line 208, ../../../app/stylesheets/site.scss */
 tbody th {
   font-weight: bold;
 }
 
-/* line 211, ../../../app/stylesheets/site.scss */
+/* line 212, ../../../app/stylesheets/site.scss */
 tbody tr {
   background: #FCFDFE;
   border-bottom: 1px solid #D4E0EE;
 }
 
-/* line 216, ../../../app/stylesheets/site.scss */
+/* line 217, ../../../app/stylesheets/site.scss */
 tbody tr.odd {
   background: #F7F9FC;
 }
 
-/* line 218, ../../../app/stylesheets/site.scss */
+/* line 219, ../../../app/stylesheets/site.scss */
 table a:link {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 223, ../../../app/stylesheets/site.scss */
+/* line 224, ../../../app/stylesheets/site.scss */
 table a:visited {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 228, ../../../app/stylesheets/site.scss */
+/* line 229, ../../../app/stylesheets/site.scss */
 table a:hover {
   color: #718ABE;
   text-decoration: underline !important;
 }
 
-/* line 233, ../../../app/stylesheets/site.scss */
+/* line 234, ../../../app/stylesheets/site.scss */
 tfoot th, tfoot td {
   font-size: 85%;
 }
 
-/* line 238, ../../../app/stylesheets/site.scss */
+/* line 239, ../../../app/stylesheets/site.scss */
 .shadow1 {
   box-shadow: 5px 5px #818181;
   -webkit-box-shadow: 5px 5px #818181;
@@ -425,7 +425,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 250, ../../../app/stylesheets/site.scss */
+/* line 251, ../../../app/stylesheets/site.scss */
 .shadow {
   box-shadow: 7px 7px 8px #818181;
   -webkit-box-shadow: 7px 7px 8px #818181;
@@ -438,7 +438,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 261, ../../../app/stylesheets/site.scss */
+/* line 262, ../../../app/stylesheets/site.scss */
 #tearshape {
   background: #f1f2f3;
   padding: 3px 5px;
@@ -451,7 +451,7 @@ tfoot th, tfoot td {
   -webkit-border-bottom-right-radius: 9px;
 }
 
-/* line 272, ../../../app/stylesheets/site.scss */
+/* line 273, ../../../app/stylesheets/site.scss */
 #roundshape {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -463,7 +463,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 284, ../../../app/stylesheets/site.scss */
+/* line 285, ../../../app/stylesheets/site.scss */
 .round {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -472,14 +472,14 @@ tfoot th, tfoot td {
   -webkit-border-radius: 5px;
 }
 
-/* line 292, ../../../app/stylesheets/site.scss */
+/* line 293, ../../../app/stylesheets/site.scss */
 .curlycontainer {
   border: 1px solid #b8b8b8;
   margin-bottom: 1em;
   width: 300px;
 }
 
-/* line 298, ../../../app/stylesheets/site.scss */
+/* line 299, ../../../app/stylesheets/site.scss */
 .curlycontainer .innerdiv {
   background: transparent url(brcorner.gif) bottom right no-repeat;
   position: relative;
@@ -488,7 +488,7 @@ tfoot th, tfoot td {
   padding: 1px 4px 15px 5px;
 }
 
-/* line 306, ../../../app/stylesheets/site.scss */
+/* line 307, ../../../app/stylesheets/site.scss */
 .bordershape {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
@@ -497,12 +497,12 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 313, ../../../app/stylesheets/site.scss */
+/* line 314, ../../../app/stylesheets/site.scss */
 .bordershape a {
   text-decoration: none;
 }
 
-/* line 316, ../../../app/stylesheets/site.scss */
+/* line 317, ../../../app/stylesheets/site.scss */
 .solidshape {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
@@ -511,7 +511,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 324, ../../../app/stylesheets/site.scss */
+/* line 325, ../../../app/stylesheets/site.scss */
 .fullshape {
   font-size: 14px;
   text-align: center;
@@ -528,7 +528,7 @@ tfoot th, tfoot td {
 /*html{font-size:62.5%}
 body{font-size:1.2em;color:#294f88}*/
 /*.customer_service {margin:10px;border:1px solid #92cdec;background:#d7e7ff;padding:30px 30px 0 30px}*/
-/* line 339, ../../../app/stylesheets/site.scss */
+/* line 340, ../../../app/stylesheets/site.scss */
 .customer_service {
   margin: 10px auto;
   background-color: white;
@@ -544,14 +544,14 @@ h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
 p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
 ul,ol{padding:0;margin:0;font-size:1.2em}
 */
-/* line 348, ../../../app/stylesheets/site.scss */
+/* line 349, ../../../app/stylesheets/site.scss */
 .customer_service h1 {
   margin: 0;
   padding: 0 0 10px 0;
   font-size: 1.2em;
 }
 
-/* line 349, ../../../app/stylesheets/site.scss */
+/* line 350, ../../../app/stylesheets/site.scss */
 .customer_service p {
   font-size: 1.2em;
   line-height: 170%;
@@ -559,14 +559,14 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   clear: both;
 }
 
-/* line 350, ../../../app/stylesheets/site.scss */
+/* line 351, ../../../app/stylesheets/site.scss */
 .customer_service ul, ol {
   padding: 0;
   margin: 0;
   font-size: 1em;
 }
 
-/* line 351, ../../../app/stylesheets/site.scss */
+/* line 352, ../../../app/stylesheets/site.scss */
 .customer_service ul, .customer_service ol {
   list-style-type: none;
   background: url(/images/dotted.gif) 0 0 repeat-x;
@@ -575,7 +575,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   margin: 0 10px 30px 0;
 }
 
-/* line 358, ../../../app/stylesheets/site.scss */
+/* line 359, ../../../app/stylesheets/site.scss */
 .customer_service li {
   background: url(/images/dotted.gif) bottom left repeat-x;
   width: 180px;
@@ -583,7 +583,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   padding: 0;
 }
 
-/* line 364, ../../../app/stylesheets/site.scss */
+/* line 365, ../../../app/stylesheets/site.scss */
 .customer_service li a {
   padding: 8px 20px 8px 0;
   width: 160px;
@@ -593,7 +593,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   color: #294f88;
 }
 
-/* line 365, ../../../app/stylesheets/site.scss */
+/* line 366, ../../../app/stylesheets/site.scss */
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }
@@ -1106,24 +1106,25 @@ body #left {
 /* line 108, ../../../app/stylesheets/screen.scss */
 body #notice {
   background-color: #eaf4f5;
+  height: 90%;
   width: 92%;
   margin: 1px auto;
   -moz-border-radius: 9px 9px 9px 9px;
   -webkit-border-radius: 3px;
 }
-/* line 115, ../../../app/stylesheets/screen.scss */
-body #error {
+/* line 116, ../../../app/stylesheets/screen.scss */
+body #error, body #alert {
   background-color: #f9767f;
   width: 92%;
   margin: 1px auto;
   -moz-border-radius: 9px 9px 9px 9px;
   -webkit-border-radius: 3px;
 }
-/* line 122, ../../../app/stylesheets/screen.scss */
+/* line 123, ../../../app/stylesheets/screen.scss */
 body .error {
   background-color: #ef7070;
 }
-/* line 125, ../../../app/stylesheets/screen.scss */
+/* line 126, ../../../app/stylesheets/screen.scss */
 body #equal-left {
   display: inline;
   float: left;
@@ -1131,7 +1132,7 @@ body #equal-left {
   width: 49.466%;
   margin-right: 1.042%;
 }
-/* line 128, ../../../app/stylesheets/screen.scss */
+/* line 129, ../../../app/stylesheets/screen.scss */
 body #equal-right {
   display: inline;
   float: left;
@@ -1139,7 +1140,7 @@ body #equal-right {
   width: 49.466%;
   margin-right: 0;
 }
-/* line 131, ../../../app/stylesheets/screen.scss */
+/* line 132, ../../../app/stylesheets/screen.scss */
 body #space-right {
   display: inline;
   float: left;
@@ -1147,7 +1148,7 @@ body #space-right {
   width: 3.167%;
   margin-right: 0;
 }
-/* line 134, ../../../app/stylesheets/screen.scss */
+/* line 135, ../../../app/stylesheets/screen.scss */
 body #space-left {
   display: inline;
   float: left;
@@ -1155,7 +1156,7 @@ body #space-left {
   width: 3.167%;
   margin-right: 1.042%;
 }
-/* line 137, ../../../app/stylesheets/screen.scss */
+/* line 138, ../../../app/stylesheets/screen.scss */
 body #middle {
   display: inline;
   float: left;
@@ -1163,7 +1164,7 @@ body #middle {
   width: 91.556%;
   margin-right: 1.042%;
 }
-/* line 140, ../../../app/stylesheets/screen.scss */
+/* line 141, ../../../app/stylesheets/screen.scss */
 body #left3 {
   display: inline;
   float: left;
@@ -1171,7 +1172,7 @@ body #left3 {
   width: 32.63%;
   margin-right: 1.042%;
 }
-/* line 143, ../../../app/stylesheets/screen.scss */
+/* line 144, ../../../app/stylesheets/screen.scss */
 body #middle3 {
   display: inline;
   float: left;
@@ -1179,12 +1180,52 @@ body #middle3 {
   width: 32.63%;
   margin-right: 1.042%;
 }
-/* line 146, ../../../app/stylesheets/screen.scss */
+/* line 147, ../../../app/stylesheets/screen.scss */
 body #right33 {
   display: inline;
   float: left;
   overflow: hidden;
   width: 32.63%;
+  margin-right: 0;
+}
+/* line 150, ../../../app/stylesheets/screen.scss */
+body #sl {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 20.003%;
+  margin-right: 1.042%;
+}
+/* line 151, ../../../app/stylesheets/screen.scss */
+body #sm {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 57.884%;
+  margin-right: 1.042%;
+}
+/* line 152, ../../../app/stylesheets/screen.scss */
+body #sr {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 20.003%;
+  margin-right: 0;
+}
+/* line 153, ../../../app/stylesheets/screen.scss */
+body #il {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 49.466%;
+  margin-right: 1.042%;
+}
+/* line 154, ../../../app/stylesheets/screen.scss */
+body #ir {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  width: 49.466%;
   margin-right: 0;
 }
 
@@ -1250,13 +1291,13 @@ form textarea {
   height: 250px;
 }
 
-/* line 154, ../../../app/stylesheets/screen.scss */
+/* line 160, ../../../app/stylesheets/screen.scss */
 html, body {
   height: 98%;
   margin: 0;
 }
 
-/* line 156, ../../../app/stylesheets/screen.scss */
+/* line 162, ../../../app/stylesheets/screen.scss */
 #wrapper {
   min-height: 100%;
   height: auto !important;
@@ -1264,7 +1305,7 @@ html, body {
   margin: 0 auto -20;
 }
 
-/* line 162, ../../../app/stylesheets/screen.scss */
+/* line 168, ../../../app/stylesheets/screen.scss */
 #footer, #push {
   height: 20;
   text-align: center;

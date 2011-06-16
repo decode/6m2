@@ -7,7 +7,7 @@
     = @user.email
   %p
     %b= t 'account.role'
-    = @user.role_objects.map { |role| role.name }
+    = @user.role_objects.map { |role| role.name }.join('/')
   %p
     %b= t 'account.level'
     = image_tag "icon_vip#{(@user.level)}.gif"

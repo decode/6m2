@@ -35,19 +35,21 @@ class Task < ActiveRecord::Base
     self.point = point
   end
   def log_save
-    log = Tasklog.new
-    log.task_id = self.id
-    log.user_id = self.user.id
-    log.user_name = self.user.username
-    if self.worker
-      log.worker_id = self.worker.id 
-      log.worker_name = self.worker.username
+    if ['published', 'running', 'end'].include?(self.status)
+      log = Tasklog.new
+      log.task_id = self.id
+      log.user_id = self.user.id
+      log.user_name = self.user.username
+      if self.worker
+        log.worker_id = self.worker.id 
+        log.worker_name = self.worker.username
+      end
+      log.price = self.price
+      log.point = self.point
+      log.status = self.status
+      log.description = I18n.t('account.point') + ":" + (self.user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money).to_s
+      log.save!
     end
-    log.price = self.price
-    log.point = self.point
-    log.status = self.status
-    log.description = I18n.t('account.point') + ":" + (self.user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money).to_s
-    log.save!
   end
   def log_destroy
     log = Tasklog.new

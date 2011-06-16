@@ -8,8 +8,8 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.xml
   def index
-    @participants = current_user.participants.where("role_type = 'customer'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
-    @shops = current_user.participants.where("role_type = 'shop'").order("active DESC").paginate(:page => params[:page], :per_page => 10)
+    @participants = current_user.participants.where("role_type = 'customer'").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @shops = current_user.participants.where("role_type = 'shop'").order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,6 +31,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/new
   # GET /participants/new.xml
   def new
+    session[:operate_mode] = nil
     @participant = Participant.new
 
     respond_to do |format|
@@ -50,7 +51,12 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     isPass = true
-    if params[:participant][:role_type] == 'shop' and params[:participant][:url] == ''
+    if params[:participant][:role_type] == 'shop' 
+      if params[:participant][:url].blank?
+        @participant.errors.add 'url', t('participant.no_shop_url')
+      else
+        @participant.errors.add 'url', t('participant.shop_existed') if Participant.where('url = ?', params[:participant][:url]).length > 0
+      end
       isPass = false
     end
     @participant.user = current_user
@@ -77,7 +83,6 @@ class ParticipantsController < ApplicationController
           format.html { redirect_to(participants_path, :notice => t('global.operate_success')) }
           format.xml  { render :xml => @participant, :status => :created, :location => @participant }
         else
-          @participant.errors.add 'url', t('participant.no_shop_url') unless isPass
           format.html { render :action => "new" }
           format.xml  { render :xml => @participant.errors, :status => :unprocessable_entity }
         end
