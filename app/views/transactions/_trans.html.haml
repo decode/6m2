@@ -25,7 +25,7 @@
             = transaction.user.username if transaction.user
           %td
             = link_to transaction.sales.username, :controller => 'account', :action => 'business', :id => transaction.sales if transaction.sales
-        %td= l transaction.trade_time
+        %td= l transaction.trade_time, :format => :long
         %td= transaction.description
         %td
           = link_to image_tag('view.png', :alt=>t('global.show')), transaction

@@ -5,6 +5,8 @@ class TransactionsController < ApplicationController
     deny anonymous
   end
 
+  autocomplete :user, :username
+
   # GET /transactions
   # GET /transactions.xml
   def index

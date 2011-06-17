@@ -619,6 +619,9 @@ zh:
         bank: "转账银行"
         trade_time: "入账时间"
         description: "备注"
+        account_name: "付款人平台帐号"
+        account_id: "平台ID"
+        point: "发布点"
     hints:
       task:
         title: "为任务写一个标题,必须大于5个字"

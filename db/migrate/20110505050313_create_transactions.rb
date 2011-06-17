@@ -8,6 +8,10 @@ class CreateTransactions < ActiveRecord::Migration
       t.text :description
       t.datetime :trade_time
 
+      t.float :point
+      t.string :account_name
+      t.integer :account_id
+
       t.references :user
       t.integer :sales_id
 

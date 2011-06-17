@@ -1,7 +1,15 @@
 #roundshape
   = link_to t('global.create'), new_transaction_path
-
-#mainframe
+#wide
+  .solidshape
+    = t 'transaction.business'
+    %br
+    = t 'transaction.transaction_count'
+    = @trans.length
+    %br
+    = t 'transaction.month_amount'
+    = @current_amount
+#wide
   - if admin?
     :javascript
       $(function() {
@@ -29,12 +37,3 @@
       = submit_tag t('global.show')
   = render 'transactions/trans'
 
-#right
-  .bordershape
-    = t 'transaction.business'
-    %hr
-    = t 'transaction.transaction_count'
-    = @trans.length
-    %br
-    = t 'transaction.month_amount'
-    = @current_amount

@@ -54,10 +54,13 @@ class ParticipantsController < ApplicationController
     if params[:participant][:role_type] == 'shop' 
       if params[:participant][:url].blank?
         @participant.errors.add 'url', t('participant.no_shop_url')
+        isPass = false
       else
-        @participant.errors.add 'url', t('participant.shop_existed') if Participant.where('url = ?', params[:participant][:url]).length > 0
+        if Participant.where('url = ?', params[:participant][:url]).length > 0
+          @participant.errors.add 'url', t('participant.shop_existed')
+          isPass = false
+        end
       end
-      isPass = false
     end
     @participant.user = current_user
     if (@participant.role_type == 'shop' and current_user.active_shop.nil?) or (@participant.role_type == 'customer' and current_user.active_participant.nil?)
@@ -66,7 +69,7 @@ class ParticipantsController < ApplicationController
       @participant.make_active if params[:participant][:active] == '1'
     end
     isFirst = false
-    if current_user.has_role? 'guest' and current_user.active_participant.length == 0
+    if current_user.has_role? 'guest' and current_user.active_participant.nil? and current_user.active_participant.length == 0
       isFirst = true
     end
 

@@ -1,7 +1,9 @@
 Temp::Application.routes.draw do
   get "status/total"
 
-  resources :transactions
+  resources :transactions do
+    get :autocomplete_user_username, :on => :collection
+  end
 
   resources :articles
 
