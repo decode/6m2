@@ -71,6 +71,8 @@ class BoardController < ApplicationController
         @task.worker = current_user
         @task.participant = current_user.active_participant
         @task.takeover_time = Time.now
+        @task.worker_part_id = current_user.active_participant.id
+        @task.worker_part_name = current_user.active_participant.part_id
 
         if @task.takeover
           msg = Message.create :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)

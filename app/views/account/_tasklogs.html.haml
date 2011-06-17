@@ -9,6 +9,7 @@
         %th= t 'task.owner' 
         %th WID
         %th= t 'task.worker'
+      %th= t 'task.worker'
       %th= t 'global.price'
       %th= t 'formtastic.labels.task.status'
       %th= t 'formtastic.labels.task.description'
@@ -29,9 +30,7 @@
         %td= t.user_name
         %td= t.worker_id
         %td= t.worker_name
-      - u = User.find(t.worker_id)
-      - if u
-        %td= link_to u.username, u
+      %td= t.worker_part_name
       %td= t.price
       %td= t.status
       %td= t.description

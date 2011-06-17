@@ -39,10 +39,9 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :supervisor_id
       t.references :participant
 
-      t.integer :workder_part_id #小号
+      t.integer :worker_part_id #小号
       t.string :worker_part_name #小号名
 
-      #真实物流
       t.references :transport
     end
   end

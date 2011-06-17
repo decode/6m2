@@ -84,10 +84,10 @@
     %br
     = t 'site.my_participants'
     - if @task.worker
-      - if @task.worker.active_participant
-        = @task.worker.active_participant.part_id 
-        = link_to "http://amos1.taobao.com/msg.ww?v=2&uid=#{@task.worker.active_participant.part_id}&s=2", :target=>'_black' do
-          = image_tag("http://amos1.taobao.com/online.ww?v=2&uid=#{@task.worker.active_participant.part_id}&s=2", :alt=>'点击这里给我发消息')
+      - if @task.worker_part_name
+        = @task.worker_part_name
+        = link_to "http://amos1.taobao.com/msg.ww?v=2&uid=#{@task.worker_part_name}&s=2", :target=>'_black' do
+          = image_tag("http://amos1.taobao.com/online.ww?v=2&uid=#{@task.worker_part_name}&s=2", :alt=>'点击这里给我发消息')
       - if @task.worker.im_q
         = link_to "tencent://message/?uin=#{@task.worker.im_q}&Site=&Menu=yes", :target=>'_black' do
           = image_tag("http://wpa.qq.com/pa?p=1:#{@task.worker.im_q}:4", :alt=>'点击这里给我发消息')

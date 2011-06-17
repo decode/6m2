@@ -43,6 +43,8 @@ class Task < ActiveRecord::Base
       if self.worker
         log.worker_id = self.worker.id 
         log.worker_name = self.worker.username
+        log.worker_part_id = self.worker.active_participant.id
+        log.worker_part_name = self.worker.active_participant.part_id
       end
       log.price = self.price
       log.point = self.point
@@ -59,6 +61,8 @@ class Task < ActiveRecord::Base
     if self.worker
       log.worker_id = self.worker.id 
       log.worker_name = self.worker.username
+      log.worker_part_id = self.worker.active_participant.id
+      log.worker_part_name = self.worker.active_participant.part_id
     end
     log.price = self.price
     log.point = self.point

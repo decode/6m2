@@ -166,6 +166,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.float    "point"
     t.string   "status"
     t.string   "description"
+    t.integer  "worker_part_id"
+    t.string   "worker_part_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -200,6 +202,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.integer  "worker_id"
     t.integer  "supervisor_id"
     t.integer  "participant_id"
+    t.integer  "worker_part_id"
+    t.string   "worker_part_name"
     t.integer  "transport_id"
   end
 
@@ -222,6 +226,9 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.float    "amount"
     t.text     "description"
     t.datetime "trade_time"
+    t.float    "point"
+    t.string   "account_name"
+    t.integer  "account_id"
     t.integer  "user_id"
     t.integer  "sales_id"
     t.datetime "created_at"
