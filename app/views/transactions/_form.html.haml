@@ -14,10 +14,9 @@
       = f.input :name, :input_html => { :class => "validate[required]" }
       = f.input :amount, :input_html => { :class => "validate[required], min[0.01]" }
       = f.input :bank
-      %li
-        = label_tag t('formtastic.labels.transaction.account_name')
-        = f.autocomplete_field :account_name, autocomplete_user_username_transactions_path
-      = f.input :point, :input_html => { :class => "custom[number],min[0.01]" }
+      - if session[:operate_mode] != 'edit'
+        = f.autocompleted_input :account_name, :url => autocomplete_user_username_transactions_path
+        = f.input :point, :input_html => { :class => "custom[number],min[0.01]" }
       = f.input :trade_time
       = f.input :description
     = f.commit_button

@@ -12,7 +12,8 @@
       = check_box_tag "virtual"
       %p{:class => 'inline-hints'}
         = t 'formtastic.hints.task.virtual'
-    = f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}, :input_html => { :class => "validate[required]" }
+    =# f.input :task_type, :as => 'select', :collection => {'淘宝' => 'taobao', '拍拍' => 'paipai', '有啊'=>'youa', '提现'=>'cash'}, :input_html => { :class => "validate[required]" }
+    = f.input :task_type, :as => 'select', :collection => {@local_type => @part_type, '提现'=>'cash'}, :input_html => { :class => "validate[required]" }
 
     %li
       = label_tag t('formtastic.labels.task.shop')

@@ -349,6 +349,7 @@ en:
     can_not_delete: "can not delete this task"
     error_self: "Can not take yourself's task"
     error_buyer: "Unbind a buyer account"
+    error_diff: "Account type is different with task type"
     error_level: "Your account level is below the requirement"
     error_avoidday: "Can't take task in setting days"
     error_day: "Every day can take only 6 tasks"
@@ -360,6 +361,7 @@ en:
     virtual: "Virtual"
     spend: "Spend %{point} point"
     demo: "Demo"
+    check_store: "Please check if you have enough money and point"
 
   transport:
     unused: "Unused"

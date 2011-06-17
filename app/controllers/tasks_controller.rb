@@ -51,27 +51,40 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.xml
   def new
-    @task = Task.new
-    @task.user = current_user
-    @task.task_type = "taobao"
-    @task.status = 'unpublished'
-    @task.worker_level = 0
-    @task.task_day = 1
-    @task.extra_word = false
-    @task.avoid_day = 0
-    #@task.task_level = 0
-    @task.real_level = 0 
-    @task.shop = current_user.active_shop.name if current_user.active_shop
+    isPass = true
+    if current_user.active_shop.nil? or (current_user.account_credit <= 0 and current_user.account_money <= 0)
+      isPass = false
+      if current_user.active_shop.nil?
+        notice = t('task.not_bind_shop') 
+      else
+        notice = t('task.not_enough_point')
+      end
+    else
+      @task = Task.new
+      @task.user = current_user
+      @task.task_type = current_user.active_shop.part_type
+      @task.status = 'unpublished'
+      @task.worker_level = 0
+      @task.task_day = 1
+      @task.extra_word = false
+      @task.avoid_day = 0
+      #@task.task_level = 0
+      @task.real_level = 0 
+      @task.shop = current_user.active_shop.name if current_user.active_shop
+
+      s = {'taobao' => t('participant.taobao'), 'paipai' => t('participant.paipai'), 'youa' => t('participant.youa'=>'youa')}
+      @part_type = current_user.active_shop.part_type
+      @local_type = s[@part_type]
+    end
 
     respond_to do |format|
-      if current_user.active_shop.nil? or (current_user.account_credit <= 0 and current_user.account_money <= 0)
-        if current_user.active_shop.nil?
-          notice = t('task.not_bind_shop') 
-        else
-          notice = t('task.not_enough_point')
-        end
+      unless isPass        
         flash[:error] = notice
-        format.html { redirect_to(:back) }
+        if current_user.active_shop.nil?
+          format.html { redirect_to(participants_path) }
+        else
+          format.html { redirect_to(:back) }
+        end
         format.xml
       else
         format.html # new.html.erb
@@ -158,7 +171,7 @@ class TasksController < ApplicationController
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
           format.html {
-            flash[:error] = t('global.operate_failed')
+            flash[:error] = t('global.operate_failed') + ', ' + t('task.check_store')
             redirect_to(:back ) }
           format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
         end

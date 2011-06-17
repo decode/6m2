@@ -57,33 +57,36 @@ class UsersController < ApplicationController
     #  redirect_to '/m/business'
     #end
     secret_access? ? @user = User.find(params[:id]) : @user = @current_user
+    if @user.nil?
+      redirect_to new_user_session_path 
+    else
+      @month_tasks = Task.where(:user_id => @user.id, :confirmed_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month).order('confirmed_time ASC')
+      @month_tasks_sum = @month_tasks.sum('price')
+      @month = [0]*31
+      @month_tasks.each do |t|
+        @month[t.confirmed_time.day-1] = @month[t.confirmed_time.day-1] + 1
+      end
 
-    @month_tasks = Task.where(:user_id => @user.id, :confirmed_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month).order('confirmed_time ASC')
-    @month_tasks_sum = @month_tasks.sum('price')
-    @month = [0]*31
-    @month_tasks.each do |t|
-      @month[t.confirmed_time.day-1] = @month[t.confirmed_time.day-1] + 1
-    end
+      @week_tasks = Task.where(:user_id => @user.id, :confirmed_time => Time.now.at_beginning_of_week..Time.now.at_end_of_week).order('confirmed_time ASC')
+      @week_tasks_sum = @week_tasks.sum('price')
+      @week = [0]*7
+      @week_tasks.each do |t|
+        @week[t.confirmed_time.wday] = @week[t.confirmed_time.wday] + 1
+      end
 
-    @week_tasks = Task.where(:user_id => @user.id, :confirmed_time => Time.now.at_beginning_of_week..Time.now.at_end_of_week).order('confirmed_time ASC')
-    @week_tasks_sum = @week_tasks.sum('price')
-    @week = [0]*7
-    @week_tasks.each do |t|
-      @week[t.confirmed_time.wday] = @week[t.confirmed_time.wday] + 1
-    end
+      @month_trades = Trade.where(:user_id => @user.id, :created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month).order('created_at ASC')
+      @month_trades_sum = @month_trades.sum('price')
+      @month_t = [0]*31
+      @month_trades.each do |t|
+        @month_t[t.created_at.day-1] = @month_t[t.created_at.day-1] + t.price
+      end
 
-    @month_trades = Trade.where(:user_id => @user.id, :created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month).order('created_at ASC')
-    @month_trades_sum = @month_trades.sum('price')
-    @month_t = [0]*31
-    @month_trades.each do |t|
-      @month_t[t.created_at.day-1] = @month_t[t.created_at.day-1] + t.price
-    end
-
-    @week_trades = Trade.where(:user_id => @user.id, :created_at => Time.now.at_beginning_of_week..Time.now.at_end_of_week).order('created_at ASC')
-    @week_trades_sum = @week_trades.sum('price')
-    @week_t = [0]*7
-    @week_trades.each do |t|
-      @week_t[t.created_at.wday] = @week_t[t.created_at.wday] + t.price
+      @week_trades = Trade.where(:user_id => @user.id, :created_at => Time.now.at_beginning_of_week..Time.now.at_end_of_week).order('created_at ASC')
+      @week_trades_sum = @week_trades.sum('price')
+      @week_t = [0]*7
+      @week_trades.each do |t|
+        @week_t[t.created_at.wday] = @week_t[t.created_at.wday] + t.price
+      end
     end
   end
 

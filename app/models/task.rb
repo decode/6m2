@@ -170,6 +170,12 @@ class Task < ActiveRecord::Base
       error = error + ' ' + I18n.t('task.error_buyer') 
       return [false,error]
     end
+    # 小号类型必须和任务相同,提现操作除外
+    c01 = !(self.task_type != user.active_participant.part_type and self.task_type != 'cash')
+    unless c01
+      error = error + ' ' + I18n.t('task.error_diff') 
+      return [false,error]
+    end
     # manager权限或不低于指定级别
     c1 = (user.has_role?('manager') or user.level >= self.worker_level)
     unless c1

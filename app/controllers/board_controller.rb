@@ -64,7 +64,8 @@ class BoardController < ApplicationController
     @task = Task.find(params[:id])
     isPass, error = @task.can_do?(current_user)
     unless isPass
-      flash[:error] = error
+      flash[:error] = I18n.t('task.error_head') + ', ' + error
+      redirect_to tasks_path
     else
       Task.transaction do
         @task.worker = current_user
@@ -80,8 +81,8 @@ class BoardController < ApplicationController
           flash[:error] = t('global.operate_failed') 
         end
       end
+      redirect_to '/task_show/todo'
     end
-    redirect_to '/task_show/todo'
   end
 
   def pay_task
