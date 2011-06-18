@@ -110,18 +110,22 @@ class TransactionsController < ApplicationController
       Transaction.transaction do
         if isPass and @transaction.save
           if @user
+            # 没有充值id, 则是发布点购买操作
+            if session[:trade_id].blank?
             @user.account_credit = @user.account_credit + @transaction.point if @transaction.point
-            @user.account_money = @user.account_money + @transaction.amount
-            @user.save
-            Accountlog.create! :user_id => @user.id, :user_name => @user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (@user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (@user.account_money).to_s
-            unless session[:trade_id].blank?
+            # 如果是批准充值, 则加充值金额给用户
+            else
+              @user.account_money = @user.account_money + @transaction.amount
               trade = Trade.find(session[:trade_id])
               trade.approve
               trade.save
               session[:trade_id] = nil
               session[:transaction_id] = nil
               session[:transaction_user_id] = nil
+              # 保存日志
+              Accountlog.create! :user_id => @user.id, :user_name => @user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (@user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (@user.account_money).to_s
             end
+            @user.save
           end
           format.html { redirect_to(@transaction, :notice => t('global.operate_success')) }
           format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }

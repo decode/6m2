@@ -97,14 +97,17 @@ class AccountController < ApplicationController
   end
 
   def approve
+    session[:trade_id] = nil
+    session[:transaction_id] = nil
+    session[:transaction_user_id] = nil
     @trades = Trade.where('status = ? and trade_type = ?', 'request', params[:id]).order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
   end
 
   def approve_charge
     trade = Trade.find_by_id(params[:id])
+    session[:trade_id] = trade.id
     session[:transaction_id] = trade.transaction_id
     session[:transaction_user_id] = trade.user_id
-    session[:trade_id] = trade.id
     redirect_to new_transaction_path
   end
   

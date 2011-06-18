@@ -11,10 +11,10 @@
   - f.inputs do
     = f.input :tid, :input_html => { :class => "validate[required], minSize[6]" }
     - unless salesman?
-      = f.input :name, :input_html => { :class => "validate[required]" }
-      = f.input :amount, :input_html => { :class => "validate[required], min[0.01]" }
       = f.input :bank
+      = f.input :name, :input_html => { :class => "validate[required]" }
       - if session[:operate_mode] != 'edit'
+        = f.input :amount, :input_html => { :class => "validate[required], min[0.01]" }
         = f.autocompleted_input :account_name, :url => autocomplete_user_username_transactions_path, :input_html => { :class => "validate[required], minSize[6]" }
         = f.input :point, :input_html => { :class => "custom[number],min[0.01]" }
       = f.input :trade_time
