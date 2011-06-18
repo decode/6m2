@@ -44,6 +44,13 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @transaction.trade_time = Time.now
+    unless session[:transaction_user_id].blank? and session[:transaction_id].blank?
+      @transaction.tid = session[:transaction_id]
+      user = User.find(session[:transaction_user_id])
+      @transaction.account_name = user.username
+      trade = Trade.find(session[:trade_id])
+      @transaction.amount = trade.price
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -84,18 +91,16 @@ class TransactionsController < ApplicationController
     @user
     point = params[:transaction][:point]
     account_name = params[:transaction][:account_name]
-    unless point.blank?
-      if account_name.blank?
-        @transaction.errors.add 'account_name', t('transaction.no_account_name')
-        isPass = false
+    if account_name.blank?
+      @transaction.errors.add 'account_name', t('transaction.no_account_name')
+      isPass = false
+    else
+      @user = User.where(:username => account_name).first
+      if @user
+        @transaction.account_id = @user.id
       else
-        @user = User.where(:username => account_name).first
-        if @user
-          @transaction.account_id = @user.id
-        else
-          @transaction.errors.add 'account_name', t('transaction.not_account_name')
-          isPass = false
-        end
+        @transaction.errors.add 'account_name', t('transaction.not_account_name')
+        isPass = false
       end
     end
 
@@ -105,8 +110,18 @@ class TransactionsController < ApplicationController
       Transaction.transaction do
         if isPass and @transaction.save
           if @user
-            @user.account_credit = @user.account_credit + @transaction.point
+            @user.account_credit = @user.account_credit + @transaction.point if @transaction.point
+            @user.account_money = @user.account_money + @transaction.amount
             @user.save
+            Accountlog.create! :user_id => @user.id, :user_name => @user.username, :operator_id => current_user.id, :operator_name => current_user.username, :trade_id => trade.id, :amount => trade.price, :log_type => 'charge', :description => t('trade.approve') + ' ' + t('account.point') + ":" + (@user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (@user.account_money).to_s
+            unless session[:trade_id].blank?
+              trade = Trade.find(session[:trade_id])
+              trade.approve
+              trade.save
+              session[:trade_id] = nil
+              session[:transaction_id] = nil
+              session[:transaction_user_id] = nil
+            end
           end
           format.html { redirect_to(@transaction, :notice => t('global.operate_success')) }
           format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
