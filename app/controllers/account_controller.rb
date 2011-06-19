@@ -34,17 +34,21 @@ class AccountController < ApplicationController
     trade = Trade.find(params[:id])
     #trade.destroy if trade.user == current_user and trade.trade_type == 'charge' and trade.request?
     trade.destroy if (trade.user == current_user or current_user.has_role?('admin')) and trade.request?
-    redirect_to "/m/approve/charge"
+    redirect_to :back#"/m/approve/charge"
   end
   
   def process_charge
-    unless user_signed_in? and !session[:charge_type].nil? and params[:amount].to_f > 0
+    if !(user_signed_in? and !session[:charge_type].nil? and params[:amount].to_f > 0)
       flash[:error] = t('trade.error')
+    elsif Trade.where(:transaction_id => params[:transaction_id]).length > 0
+      flash[:error] = t('trade.exist_tid')
     else
       user = User.where('id = ?', current_user).first
       trade = Trade.new
       trade.price = params[:amount].to_f
       trade.transaction_id = params[:transaction_id] if params[:transaction_id]
+      trade.name = params[:name]
+      trade.pay_type = params[:pay_type]
       trade.trade_type = session[:charge_type]
       trade.user = user
       
@@ -107,6 +111,8 @@ class AccountController < ApplicationController
     @transaction.tid = trade.transaction_id
     @transaction.account_name = trade.user.username
     @transaction.amount = trade.price
+    @transaction.pay_type = trade.pay_type
+    @transaction.name = trade.name
     session[:trade_id] = trade.id
     render 'transactions/_form'
   end
@@ -271,7 +277,14 @@ class AccountController < ApplicationController
   def parts
     @participants = current_user.participants.where('role_type = ?', params[:id]).paginate(:page=>params[:page], :per_page=>10)
   end
-    
+
+  # 小号任务列表
+  def participant_tasks
+    @participant = current_user.participants.find(params[:id])
+    @tasks = @participant.tasks.order("created_at DESC").paginate(:page=>params[:page], :per_page=>10)
+    render 'tasks/_tasks'
+  end
+  
   def transport_list
     @user = User.find(params[:id])
     @transports = @user.transports.paginate(:page=>params[:page], :per_page=>15)

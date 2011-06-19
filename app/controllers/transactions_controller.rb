@@ -93,29 +93,31 @@ class TransactionsController < ApplicationController
     end
 
     if isPass
-      @user
-      point = params[:transaction][:point]
-      account_name = params[:transaction][:account_name]
-      if account_name.blank?
-        @transaction.errors.add 'account_name', t('transaction.no_account_name')
-        isPass = false
-      else
-        @user = User.where(:username => account_name).first
-        if @user
-          @transaction.account_id = @user.id
-        else
-          @transaction.errors.add 'account_name', t('transaction.not_account_name')
+      unless session[:transaction_mode] == 'sales'
+        @user
+        point = params[:transaction][:point]
+        account_name = params[:transaction][:account_name]
+        if account_name.blank?
+          @transaction.errors.add 'account_name', t('transaction.no_account_name')
           isPass = false
+        else
+          @user = User.where(:username => account_name).first
+          if @user
+            @transaction.account_id = @user.id
+          else
+            @transaction.errors.add 'account_name', t('transaction.not_account_name')
+            isPass = false
+          end
         end
-      end
 
-      @transaction.trade_time = Time.now if @transaction.trade_time.nil?
+        @transaction.trade_time = Time.now if @transaction.trade_time.nil?
+      end
     end
 
     respond_to do |format|
       Transaction.transaction do
         if isPass and @transaction.save
-          if @user
+          if @user and session[:transaction_mode] != 'sales'
             # 没有充值id, 则是发布点购买操作
             log_type = 'charge'
             if @transaction.point

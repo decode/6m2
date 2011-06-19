@@ -24,4 +24,8 @@ class Trade < ActiveRecord::Base
     return ltype[self.trade_type]
   end
 
+  def local_pay_type
+    s = {'zfb'=>I18n.t('trade.zfb'), 'cft'=>I18n.t('trade.cft'), 'wy'=>I18n.t('trade.wy')}
+    return s[self.pay_type]
+  end
 end

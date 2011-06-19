@@ -13,11 +13,11 @@
     - unless salesman?
       = f.input :bank
       = f.input :name, :input_html => { :class => "validate[required]" }
+      = f.input :pay_type, :as => :radio, :collection => { t('trade.zfb')=>'zfb', t('trade.cft')=>'cft', t('trade.wy')=>'wy' }
       - if session[:operate_mode] != 'edit'
         = f.input :amount, :input_html => { :class => "validate[required], min[0.01]" }
         = f.autocompleted_input :account_name, :url => autocomplete_user_username_transactions_path, :input_html => { :class => "validate[required], minSize[6]" }
-        = f.input :point, :input_html => { :class => "custom[number],min[0.01]" }
+        = f.input :point, :input_html => { :class => "custom[number],min[0.01]" } if session[:trade_id].blank?
       = f.input :trade_time
       = f.input :description
     = f.commit_button
-    = session[:trade_id]

@@ -5,4 +5,10 @@ class Transaction < ActiveRecord::Base
   validates_uniqueness_of :tid
   validates_presence_of :tid, :amount, :trade_time, :account_name
   validates_numericality_of :amount, :greater_than => 0
+
+  def local_pay_type
+    s = {'zfb'=>I18n.t('trade.zfb'), 'cft'=>I18n.t('trade.cft'), 'wy'=>I18n.t('trade.wy')}
+    return s[self.pay_type]
+  end
+  
 end

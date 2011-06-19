@@ -7,6 +7,7 @@
       %th= t 'formtastic.labels.transaction.amount' 
       %th= t 'formtastic.labels.transaction.name' 
       %th= t 'formtastic.labels.transaction.bank' 
+      %th= t 'formtastic.labels.transaction.pay_type' 
       - if session[:transaction_mode] != 'sales'
         %th= t 'transaction.owner'
         %th= t 'transaction.sales'
@@ -22,6 +23,7 @@
         %td= transaction.amount
         %td= transaction.name
         %td= transaction.bank
+        %td= transaction.local_pay_type
         - if session[:transaction_mode] != 'sales'
           %td
             = transaction.user.username if transaction.user

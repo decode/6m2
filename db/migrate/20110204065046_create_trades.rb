@@ -7,6 +7,8 @@ class CreateTrades < ActiveRecord::Migration
       t.string :trade_type
 
       t.string :transaction_id
+      t.string :pay_type
+      t.string :name
 
       t.references :user
       t.integer :to_id

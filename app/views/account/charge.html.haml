@@ -4,14 +4,37 @@
 #wide
   .bordershape
     - form_tag( {:action=>'process_charge'}, :id=>'charge') do
-      = label_tag t('trade.transaction_id')
-      = text_field_tag 'transaction_id', '', :class=>"validate[required]"
-      %br
-      = label_tag t('account.charge_amount')
-      =# select_tag 'amount', options_for_select([100,200,300,500,800,1000,2000]), :class=>"validate[require],custom[number],min[100],max[2000]"
-      = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[1],max[2000]"
-      %br
-      = submit_tag t('account.charge')
+      %table
+        %tr
+          %td
+            = label_tag t('trade.transaction_id')
+          %td
+            = text_field_tag 'transaction_id', '', :class=>"validate[required]"
+        %tr
+          %td
+            = label_tag t('trade.name')
+          %td
+            = text_field_tag 'name', '', :class=>"validate[required]"
+        %tr
+          %td
+            = label_tag t('trade.pay_type')
+          %td
+            = radio_button_tag 'pay_type', 'zfb', true#:class=>"validate[required]"
+            = t 'trade.zfb'
+            = radio_button_tag 'pay_type', 'cft', false
+            = t 'trade.cft'
+            = radio_button_tag 'pay_type', 'wy', false
+            = t 'trade.wy'
+        %tr
+          %td
+            = label_tag t('account.charge_amount')
+          %td
+            =# select_tag 'amount', options_for_select([100,200,300,500,800,1000,2000]), :class=>"validate[require],custom[number],min[100],max[2000]"
+            = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[1],max[2000]"
+        %tr
+          %td
+            = submit_tag t('account.charge')
+          %td
 /
   #right
     #roundshape

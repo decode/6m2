@@ -30,7 +30,7 @@
             = image_tag('yes.png') 
           - else
             = link_to t('participant.make_active'), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')}
-        %td= participant.tasks.length
+        %td= link_to participant.tasks.length, :controller=>'account', :action=>'participant_tasks', :id=> participant
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?
@@ -60,7 +60,7 @@
             = image_tag('yes.png') 
           - else
             = link_to t('participant.make_active'), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')}
-        %td= participant.tasks.length
+        %td= link_to participant.tasks.length, :controller=>'account', :action=>'participant_tasks', :id=> participant
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?

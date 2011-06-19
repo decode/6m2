@@ -14,6 +14,8 @@
       %th=t 'global.quantity'
       %th=t 'global.type'
       %th=t 'trade.transaction_id'
+      %th=t 'trade.name'
+      %th=t 'trade.pay_type'
       %th=t 'trade.charged_at'
       %th=t 'global.status'
       %th
@@ -26,6 +28,8 @@
       %td= t.price
       %td= trade_type_image(t.trade_type)
       %td= t.transaction_id
+      %td= t.name
+      %td= t.local_pay_type
       %td= l t.created_at, :format => :long
       %td= t.local_status
       %td
@@ -36,6 +40,5 @@
             - else
               = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_charge', :id=>t
             = link_to image_tag('no.png', :alt=>t('trade.reject')), :controller=>'account', :action=>'approve_reject', :id=>t
-          =# link_to image_tag('delete.png', :alt=>t('global.delete')), :controller => 'account', :action => 'delete_charge', :id=>t, :confirm => 'delete?'
-          = link_to image_tag('delete.png'), t, :confirm => t('site.are_you_sure'), :method => :delete
+          = link_to image_tag('delete.png', :alt=>t('global.delete')), {:controller => 'account', :action => 'delete_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
 = will_paginate @trades

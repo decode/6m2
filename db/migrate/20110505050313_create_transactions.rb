@@ -7,6 +7,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.float :amount
       t.text :description
       t.datetime :trade_time
+      t.string :pay_type
 
       t.float :point
       t.string :account_name
