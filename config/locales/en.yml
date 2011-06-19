@@ -8,6 +8,8 @@ activemodel:
 
 en:
   hello: "Hello world"
+  errors:
+    save_error: "Save date error"
 
   global:
     title: "Title"
@@ -401,13 +403,15 @@ en:
     spend: "Spend"
     charge: "Charge"
     point: "Point"
+    record: "Record"
     recyling_point: "Recyling Point"
     out_point: "Out Point Bondary"
     score_point: "Score to Point"
     out_score: "Out Score Bondary"
 
   transaction:
-    no_tid: "The transaction id does'nt existed"
+    no_tid: "The transaction id does not existed"
+    exist_tid: "The transaction id is existed"
     has_sales: "It has sales"
     owner: "Owner"
     sales: "Salesman"
@@ -483,6 +487,7 @@ en:
   message:
     make_read: "Read"
     make_unread: "Unread"
+    message_tail: " messages"
     total_message: "There are %{total} unread messages"
     task_takeover: "Task %{task} has been take over"
     task_takeover_content: "Task %{task} has been take over,<br>link: http://www.boat166.com/message/%{link}"

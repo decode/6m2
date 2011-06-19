@@ -102,7 +102,9 @@
         %td= link_to task.worker.username, task.worker unless task.worker.nil?
         %td= task.local_status
         %td= task.worker_level
-        %td= task.task_day
+        %td
+          = task.task_day 
+          = t 'task.finish_left', :day=>"#{task.task_day - (Time.now.day - task.transport_time.day)}" if task.transport_time and task.transport?
         %td= convert_yes_no(task.custom_judge)
         %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
         %td

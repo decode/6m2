@@ -1,12 +1,12 @@
 - if @transaction.errors.any?
   .bordershape
-  #error_explanation
-    %h2
-      = pluralize(@transaction.errors.count, "error")
-      prohibited this transaction from being saved:
-    %ul
-      - @transaction.errors.full_messages.each do |msg|
-        %li= msg
+    #error_explanation
+      %h2
+        = pluralize(@transaction.errors.count, "error")
+        = t 'errors.save_error' + ':'
+      %ul
+        - @transaction.errors.full_messages.each do |msg|
+          %li= msg
 - semantic_form_for @transaction do |f| 
   - f.inputs do
     = f.input :tid, :input_html => { :class => "validate[required], minSize[6]" }
@@ -20,3 +20,4 @@
       = f.input :trade_time
       = f.input :description
     = f.commit_button
+    = session[:trade_id]

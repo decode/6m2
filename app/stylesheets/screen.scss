@@ -169,3 +169,47 @@ html, body { height: 98%; margin: 0; }
   height: 20;
   text-align: center;
 }
+
+.visibleDiv
+{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight
+{
+    position: fixed;
+    width: 250px;
+    border: solid 1px #e1e1e1;
+    vertical-align: middle;
+    background: white;
+    text-align: center;
+}
+.visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight a
+{
+  color: #3274d1;
+  text-decoration: none;
+}
+#topLeft
+{
+  top: 10px;
+  left: 10px;
+}
+
+#topRight
+{
+  top: 10px;
+  right: 10px;
+}
+
+#bottomLeft
+{
+  bottom: 10px;
+  left: 10px;
+}
+
+#bottomRight
+{
+  bottom: 10px;
+  right: 10px;
+}

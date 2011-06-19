@@ -1,10 +1,12 @@
 #wide
   #roundshape
     = link_to t('global.create'), new_participant_path
-  - if @participants.length > 1 or @shops.length > 1
-    .bordershape
-      = image_tag('yes.png')
-      = '-' + t('participant.make_active')
+  .bordershape
+    = image_tag('view.png')
+    = '-' + t('global.show')
+    \|
+    = image_tag('edit.png')
+    = '-' + t('global.edit')
 
 #equal-left
   %table

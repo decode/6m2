@@ -29,8 +29,9 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+
   %body
-    .container
+    #wrapper.container
       #toolbar
         = link_to image_tag('home.png'), '/'
         \|
@@ -174,37 +175,49 @@
       #space-right
         %br
 
-      #site-bar
-        %ul
-          %li{:title=>'Home'}
-            = link_to image_tag('home.png'), '/'
-        %span.jx-separator-left          
-        - if user_signed_in?
-          %ul.jx-bar-button-left
-            - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
-            - if messages.length > 0
-              %li
-                - if messages.length == 1
-                  = image_tag 'mail.png', :alt=>''
-                  = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
-                - else
-                  = image_tag 'mail.png', :alt=>''
-                  = link_to t('message.total_message', :total => messages.length), '/m/message'
-          %span.jx-separator-left
-          %ul
-            %li
-              = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
-            %li
-              = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
-        %span.jx-separator-left
-        %ul.jx-bar-button-right
-          %li
-            = link_to "#{t('site.copyright')}©#{t('site.name')}", '/'
-        %span.jx-separator-right
       /
-        #push
-    /
-      #footer
-        = t 'site.copyright'
-        ©
-        = t 'site.name'
+        #site-bar
+          %ul
+            %li{:title=>'Home'}
+              = link_to image_tag('home.png'), '/'
+          %span.jx-separator-left          
+          - if user_signed_in?
+            %ul.jx-bar-button-left
+              - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+              - if messages.length > 0
+                %li
+                  - if messages.length == 1
+                    = image_tag 'mail.png', :alt=>''
+                    = link_to messages.first.message.title, :controller => 'board', :action => 'view_message', :id => messages.first.message
+                  - else
+                    = image_tag 'mail.png', :alt=>''
+                    = link_to t('message.total_message', :total => messages.length), '/m/message'
+            %span.jx-separator-left
+            %ul
+              %li
+                = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+              %li
+                = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
+          %span.jx-separator-left
+          %ul.jx-bar-button-right
+            %li
+              = link_to "#{t('site.copyright')}©#{t('site.name')}", '/'
+          %span.jx-separator-right
+      - if user_signed_in?
+        .visibleDiv
+        #bottomRight
+          - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+          - if messages.length > 0
+            - if messages.length == 1
+              = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
+            - else
+              = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), '/m/message'
+          = image_tag 'todo.png'
+          = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+          = image_tag 'tasks.png'
+          = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
+      #push
+    #footer
+      = t 'site.copyright'
+      ©
+      = t 'site.name'

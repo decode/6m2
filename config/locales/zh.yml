@@ -8,6 +8,7 @@ zh:
     messages:
       not_saved: "操作失败"
       record_invalid: "无效的记录"
+    save_error: "保存数据出错"
   global:
     title: "标题"
     content: "内容"
@@ -148,8 +149,8 @@ zh:
     new_user: "新加入平台用户"
     finance_center: "财务中心"
     sales_business: "业务申报"
-    task_num: "发布任务数"
-    todo_num: "接手任务数"
+    task_num: "发布"
+    todo_num: "接手"
     month_title_task: "本月发布任务数"
     week_title_task: "本周发布任务数"
     month_title_trade: "本月交易金额"
@@ -366,6 +367,7 @@ zh:
     spend: "若设置, 扣%{point}发布点"
     demo: "完整任务流程演示"
     check_store: "请检查帐户余额或发布点是否充足"
+    finish_left: "(%{day}天)"
 
   transport:
     unused: "未使用"
@@ -406,6 +408,7 @@ zh:
     spend: "消费"
     charge: "充值"
     point: "发布点兑换"
+    record: "入账"
     recyling_point: "发布点回收"
     out_point: "操作失败,不能小于最低兑换发布点或超出发布点数量"
     score_point: "积分兑换"
@@ -413,6 +416,7 @@ zh:
 
   transaction:
     no_tid: "交易单号不存在"
+    exist_tid: "交易单号己存在"
     has_sales: "己有业务员申报"
     owner: "入帐员"
     sales: "业务员"
@@ -490,6 +494,7 @@ zh:
   message:
     make_read: "己读"
     make_unread: "未读"
+    message_tail: "条消息"
     total_message: "有%{total}条新的消息,请注意查看"
     task_takeover: "任务 %{task} 己被接手,请关注"
     task_takeover_content: "任务 %{task} 己被接手,<a href='/tasks/%{link}'>任务链接</a>"

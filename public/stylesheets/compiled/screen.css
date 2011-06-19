@@ -1310,3 +1310,50 @@ html, body {
   height: 20;
   text-align: center;
 }
+
+/* line 174, ../../../app/stylesheets/screen.scss */
+.visibleDiv {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* line 180, ../../../app/stylesheets/screen.scss */
+.visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight {
+  position: fixed;
+  width: 250px;
+  border: solid 1px #e1e1e1;
+  vertical-align: middle;
+  background: white;
+  text-align: center;
+}
+
+/* line 189, ../../../app/stylesheets/screen.scss */
+.visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight a {
+  color: #3274d1;
+  text-decoration: none;
+}
+
+/* line 194, ../../../app/stylesheets/screen.scss */
+#topLeft {
+  top: 10px;
+  left: 10px;
+}
+
+/* line 200, ../../../app/stylesheets/screen.scss */
+#topRight {
+  top: 10px;
+  right: 10px;
+}
+
+/* line 206, ../../../app/stylesheets/screen.scss */
+#bottomLeft {
+  bottom: 10px;
+  left: 10px;
+}
+
+/* line 212, ../../../app/stylesheets/screen.scss */
+#bottomRight {
+  bottom: 10px;
+  right: 10px;
+}
