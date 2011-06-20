@@ -12,4 +12,9 @@ class MessageBox < ActiveRecord::Base
     state :unread, :value => 'unread'
     state :read, :value => 'read'
   end
+
+  def local_status
+    s = {'unread' => I18n.t('message.unread'), 'read' => I18n.t('message.read')}
+    return s[self.status]
+  end
 end

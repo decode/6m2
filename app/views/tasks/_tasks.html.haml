@@ -42,6 +42,9 @@
   = image_tag('do.png')
   = '-' + t('task.do')
   \|
+  = image_tag('price.png')
+  = '-' + t('task.price')
+  \|
   = image_tag('pay.png')
   = '-' + t('task.pay')
   \|
@@ -60,14 +63,16 @@
   %p{:title => t('task.demo'), :class=>'blue'}
     = image_tag('do.png')
     = '1.' + t('task.worker') + t('task.do')
+    = image_tag('price.png')
+    = '2.' + t('task.owner') + t('task.price')
     = image_tag('pay.png')
-    = '2.' + t('task.worker') + t('task.pay')
+    = '3.' + t('task.worker') + t('task.pay')
     = image_tag('truck.png')
-    = '3.' + t('task.owner') + t('task.transport')
+    = '4.' + t('task.owner') + t('task.transport')
     = image_tag('finish.png')
-    = '4.' + t('task.worker') + t('task.finish')
+    = '5.' + t('task.worker') + t('task.finish')
     = image_tag('yes.png')
-    = '5.' + t('task.owner') + t('task.confirm')
+    = '6.' + t('task.owner') + t('task.confirm')
 
 - if admin? or manager? or session[:view_task] == 'manage'
   %table
@@ -113,6 +118,7 @@
             = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
             = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
           - if task.user == current_user
+            = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:id=>'tip',:title=>t('task.price')} if task.can_pricing?
             = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:id => 'tip', :title=>t('task.transport')} if task.can_trans?
             = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:id => 'tip', :title=>t('task.confirm')} if task.can_over?
           - else
@@ -161,6 +167,7 @@
             = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
             = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
           - if task.user == current_user
+            = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:id=>'tip',:title=>t('task.price')} if task.can_pricing?
             = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:id => 'tip', :title=>t('task.transport')} if task.can_trans?
             = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:id => 'tip', :title=>t('task.confirm')} if task.can_over?
           - else

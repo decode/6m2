@@ -339,6 +339,7 @@ en:
     send_problem: "Argue"
     problem: "Problem"
     running: "Running"
+    price: "Priced"
     end: "End"
     total_task: "Total tasks"
     total_todo: "Total todo works"

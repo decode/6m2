@@ -87,11 +87,25 @@ class BoardController < ApplicationController
     end
   end
 
+  def price_task
+    @task = Task.find(params[:id])
+    Task.transaction do
+      @task.pay_time = Time.now
+      if @task.running? and @task.pricing
+        msg = Message.create :title => t('message.task_pricing', :task => @task.title), :content => t('message.task_pricing_content', :task => @task.title, :link => @task.id.to_s)
+        msg.receivers << @task.worker
+        msg.save
+        flash[:notice] = t('global.update_success')
+      end
+    end
+    redirect_to '/task_show/todo'
+  end
+
   def pay_task
     @task = Task.find(params[:id])
     Task.transaction do
       @task.pay_time = Time.now
-      if @task.running? and @task.pay
+      if @task.price? and @task.pay
         msg = Message.create :title => t('message.task_pay', :task => @task.title), :content => t('message.task_pay_content', :task => @task.title, :link => @task.id.to_s)
         msg.receivers << @task.user
         msg.save
@@ -107,7 +121,7 @@ class BoardController < ApplicationController
       @task.transport_time = Time.now
       if @task.cash? and @task.trans
         msg = Message.create :title => t('message.task_transport', :task => @task.title), :content => t('message.task_transport_content', :task => @task.title, :link => @task.id.to_s)
-        msg.receivers << @task.user
+        msg.receivers << @task.worker
         msg.save
         flash[:notice] = t('global.update_success')
       end

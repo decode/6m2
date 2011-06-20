@@ -17,7 +17,7 @@
         %td= message.title
         %td= message.msg_type
         %td= message.priority
-        %td= m.status
+        %td= m.local_status
         %td= l message.created_at, :format => :short
         %td
           = link_to t('message.make_read'), :controller => 'board', :action => 'mb_read', :id => m if m.unread?
