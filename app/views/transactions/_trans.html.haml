@@ -14,8 +14,10 @@
         %th= t 'formtastic.labels.transaction.account_name'
         %th= t 'formtastic.labels.transaction.point'
       %th= t 'formtastic.labels.transaction.trade_time' 
-      %th= t 'formtastic.labels.transaction.description' 
       %th
+        = t 'formtastic.labels.transaction.description' 
+      %th
+        = link_to image_tag('save_01.png')+t('global.export'), '/t/export_transaction'
   %tbody
     - @transactions.each do |transaction|
       %tr

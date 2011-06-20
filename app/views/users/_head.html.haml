@@ -5,7 +5,7 @@
       \|
     = link_to t('global.show'), @user
     \|
-    = link_to t('global.edit'), edit_user_path(@user)
+    = link_to t('site.personal_info'), edit_user_path(@user)
     \|
     = link_to t('site.my_participants'), :controller=>'account', :action=>'participant', :id=>@user
     \|

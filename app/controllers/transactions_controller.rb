@@ -16,16 +16,40 @@ class TransactionsController < ApplicationController
   # GET /transactions.xml
   def index
     session[:operate_mode] = nil
+    from = session[:date_from]
+    to =  session[:date_to]
+    if from.blank? or to.blank?
+      @trans = Transaction.where(:trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    else
+      if from == to
+        if from.nil?
+          @trans = Transaction.all
+        else
+          @trans = Transaction.where(:trade_time => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @trans = Transaction.where(:trade_time => from.to_datetime..to.to_datetime)
+      end
+    end
+    @current_amount = @trans.sum('amount')
+
+    # 管理员或者会计
     if current_user.has_role? 'admin' or current_user.has_role? 'accountant'
-      @transactions = Transaction.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
+      @transactions = @trans.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = nil
     else
-      @transactions = Transaction.where('sales_id = ?', current_user.id).order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
+      @transactions = @trans.where('sales_id = ?', current_user.id).order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
       session[:transaction_mode] = 'sales'
     end
+    @points = @trans.where('point is not null')
+    @points_num = @points.length
+    @points_amount = @points.sum('point')
+    @points_price = @points.sum('amount')
 
-    @trans = Transaction.where(:trade_time => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
-    @current_amount = @trans.sum('amount')
+    @charges = @trans.where(:point=>nil)
+    @charges_num = @charges.length
+    @charges_amount = @charges.sum('point')
+    @charges_price = @charges.sum('amount')
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,7 +2,7 @@ class BoardController < ApplicationController
   access_control do
     allow :superadmin
     allow :admin, :manager, :user, :except => [:roles, :new_role, :create_role, :delete_role]
-    allow :user, :except => [:check_pass, :roles, :new_role, :create_role, :delete_role]
+    allow :user, :except => [:check_pass, :roles, :new_role, :create_role, :delete_role, :accountlogs, :tasklogs]
     deny anonymous
   end
 
@@ -26,18 +26,17 @@ class BoardController < ApplicationController
   def task_list
     if params[:task_type] == 'cash'
       if current_user.has_role? 'manager'
-        #@tasks = Task.where("task_type = ? and status = ?", params[:task_type], 'published').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
         tasks = Task.where(:task_type => [params[:task_type], 'v_'+params[:task_type]]).where("status != 'published'").order('created_at DESC')
         tasks = Task.where(:task_type => [params[:task_type], 'v_'+params[:task_type]]).where("status = 'published'").order('created_at DESC') + tasks
-        @tasks = tasks.paginate(:page => params[:page], :per_page => 20)
+        @tasks = tasks.paginate(:page => params[:page], :per_page => 15)
       else
         redirect_to '/s/access_denied'
       end
     elsif params[:task_type] == "payment"
       session[:view_task] = 'payment'
-      @tasks = Task.where("task_type != ? and status = ?", 'cash', 'running').group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
+      @tasks = Task.where("task_type != ? and status = ?", 'cash', 'price').group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
     else
-      @tasks = Task.where("task_type in ( '#{params[:task_type]}', 'v_#{params[:task_type]}' ) and status = ? and worker_level <= ?", 'published', current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+      @tasks = Task.where("task_type in ( '#{params[:task_type]}', 'v_#{params[:task_type]}' ) and status = ? and worker_level <= ?", 'published', current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
     end
   end
 
@@ -400,12 +399,31 @@ class BoardController < ApplicationController
   end
 
   def search_account_log
-    if params[:username].blank?
-      redirect_to '/t/accountlogs'
+    from = params[:from]
+    to = params[:to]
+    session[:username] = params[:username]
+    session[:from] = from
+    session[:to] = to
+    if from.blank? or to.blank?
+      @trades = Accountlog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
     else
-      @trades = Accountlog.where('user_name like ? or operator_name like ?', "%#{params[:username]}%", "%#{params[:username]}%").order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
-      render 'board/accountlogs'
+      if from == to
+        if from.nil?
+          @trades= Accountlog.all
+        else
+          @trades = Accountlog.where(:created_at => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @trades= Accountlog.where(:created_at => from.to_datetime..to.to_datetime)
+      end
     end
+    if params[:username].blank?
+      #redirect_to '/t/accountlogs'
+      @trades = @trades.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+    else
+      @trades = @trades.where('user_name like ? or operator_name like ?', "%#{params[:username]}%", "%#{params[:username]}%").order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+    end
+    render 'board/accountlogs'
   end
   # ===========================================
   #
@@ -426,24 +444,9 @@ class BoardController < ApplicationController
   end
   
   def range_transaction
-    if(params[:from].blank? or params[:to].blank?)
-      flash[:error] = t('transaction.date_empty')
-      redirect_to transactions_url
-    else
-      from = params[:from]
-      to = params[:to]
-      if from == to
-        if from.nil?
-          @trans = Transaction.all
-        else
-          @trans = Transaction.where(:trade_time => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
-        end
-      else
-        @trans = Transaction.where(:trade_time => from.to_datetime..to.to_datetime)
-      end
-      @transactions = @trans.order('trade_time DESC').paginate(:page => params[:page], :per_page => 20)
-      @current_amount = @trans.sum('amount')
-    end
+    session[:date_from] = params[:from]
+    session[:date_to] = params[:to]
+    redirect_to transactions_url
   end
 
   def range_task
@@ -465,6 +468,44 @@ class BoardController < ApplicationController
       @tasks = @task_list.group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
       @current_amount = @tasks.sum('price')
       render 'tasks/_tasks'
+    end
+  end
+
+  def export_transaction
+    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Disposition'] = 'attachment; filename="transaction-export.xls"'
+    headers['Cache-Control'] = ''
+    if session[:date_from].blank? or session[:date_to].blank?
+      @records = Transaction.order('created_at DESC')  
+    else
+      @records = Transaction.where(:trade_time => session[:date_from]..session[:date_to]).order('created_at DESC')  
+    end
+  end
+
+  def export_accountlog
+    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Disposition'] = 'attachment; filename="account-export.xls"'
+    headers['Cache-Control'] = ''
+    from = session[:from]
+    to = session[:to]
+    if from.blank? or to.blank?
+      @trades = Accountlog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    else
+      if from == to
+        if from.nil?
+          @trades= Accountlog.all
+        else
+          @trades = Accountlog.where(:created_at => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @trades= Accountlog.where(:created_at => from.to_datetime..to.to_datetime)
+      end
+    end
+    username = session[:username]
+    if username.blank?
+      @records = @trades.order('created_at DESC')
+    else
+      @records = @trades.where('user_name like ? or operator_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC')
     end
   end
   

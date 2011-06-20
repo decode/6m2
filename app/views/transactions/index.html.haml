@@ -2,13 +2,34 @@
   = link_to t('global.create'), new_transaction_path
 #wide
   .solidshape
-    = t 'transaction.business'
-    %br
-    = t 'transaction.transaction_count'
-    = @trans.length
-    %br
-    = t 'transaction.month_amount'
-    = @current_amount
+    %table
+      %tr
+        %th 
+          = t 'transaction.business'
+        %th
+          = t 'transaction.transaction_count'
+        %th
+          = t 'transaction.month_amount'
+        %th
+          = t 'account.point'
+      %tr
+        %td= t 'account.charge'
+        %td= @charges_num
+        %td= @charges_price
+        %td= @charges_amount
+      %tr
+        %td= t 'account.point'
+        %td= @points_num
+        %td= @points_price
+        %td= @points_amount
+      %tr
+        %td
+          = t 'global.total'
+        %td
+          = @trans.length
+        %td
+          = @current_amount
+        %td
 #wide
   - if admin?
     :javascript

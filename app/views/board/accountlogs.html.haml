@@ -1,6 +1,31 @@
+
+:javascript
+  $(function() {
+  var dates = $( "#from, #to" ).datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 2,
+    dateFormat: "yy/mm/dd",
+    onSelect: function( selectedDate ) {
+      var option = this.id == "from" ? "minDate" : "maxDate",
+        instance = $( this ).data( "datepicker" ),
+        date = $.datepicker.parseDate(
+          instance.settings.dateFormat ||
+          $.datepicker._defaults.dateFormat,
+          selectedDate, instance.settings );
+        dates.not( this ).datepicker( "option", option, date );
+      }
+    });
+  });
 - form_tag :controller => 'board', :action => 'search_account_log' do
+  = t 'global.from'
+  = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
+  = t 'global.to'
+  = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
+  %br
   = label_tag t 'site.login_name'
-  = search_field_tag 'username', session[:search_username]
+  = search_field_tag 'username', ''
   = submit_tag 'Search'
+  = link_to image_tag('save_01.png')+t('global.export'), '/t/export_accountlog'
 
 = render 'account/tradelogs'

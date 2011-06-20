@@ -53,6 +53,8 @@ en:
     from: "From"
     to: "To"
     submit: "Submit"
+    export: "Export"
+    total: "Total"
 
   system:
     password_error: "Wrong Password!"
@@ -90,6 +92,7 @@ en:
     profile: "Profile"
     login_name: "Login"
     password: "Password"
+    personal_info: "Personal Info"
     change_password: "Change Password"
     password_confirmation: "Password Confirmation"
     current_password: "Current Password"
