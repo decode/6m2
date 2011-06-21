@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    username = session[:search_username]
     if current_user.has_role? 'superadmin'
       @users = User.order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
     else

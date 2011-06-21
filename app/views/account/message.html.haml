@@ -1,5 +1,6 @@
 #roundshape
-  = link_to t('global.delete_all'), :controller => 'board', :action => 'mb_delete_all'
+  = link_to t('global.read_all'), :controller => 'board', :action => 'mb_read_all'
+  = link_to t('global.delete_all'), {:controller => 'board', :action => 'mb_delete_all'}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
 %table
   %caption
   %thead

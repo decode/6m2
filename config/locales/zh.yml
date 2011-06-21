@@ -20,6 +20,7 @@ zh:
     create: "创建"
     delete: "删除"
     delete_all: "全部删除"
+    read_all: "全部己读"
     description: "描述"
     before: "前"
     after: "后"

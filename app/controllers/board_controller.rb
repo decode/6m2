@@ -320,6 +320,14 @@ class BoardController < ApplicationController
     end
   end
 
+  def mb_read_all
+    current_user.message_boxes.where("status = 'unread'").each do |m|
+      m.make_read
+    end
+    flash[:notice] = t("global.operate_success")
+    redirect_to '/m/message'
+  end
+
   # 删除所有消息
   def mb_delete_all
     current_user.message_boxes.find_each do |m|
@@ -457,7 +465,7 @@ class BoardController < ApplicationController
   end
     
   def search_user
-    @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 10)
+    @users = User.where("username like ? and username != 'superadmin'", "%#{params[:username]}%").order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     session[:search_username] = params[:username]
     render 'users/index'
   end

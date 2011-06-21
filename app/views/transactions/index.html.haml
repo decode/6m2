@@ -50,11 +50,12 @@
           }
         });
       });
-    - form_tag :controller => 'board', :action => 'range_transaction' do
-      = t 'global.from'
-      = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
-      = t 'global.to'
-      = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
-      = submit_tag t('global.show')
+    .solidshape
+      - form_tag :controller => 'board', :action => 'range_transaction' do
+        = t 'global.from'
+        = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
+        = t 'global.to'
+        = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
+        = submit_tag t('global.show')
   = render 'transactions/trans'
 

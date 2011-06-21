@@ -22,6 +22,7 @@ en:
     create: "Create"
     delete: "Delete"
     delete_all: "Delete All"
+    read_all: "Read All"
     description: "Description"
     before: " before"
     after: " after"

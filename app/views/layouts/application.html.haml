@@ -37,9 +37,9 @@
         \|
         - if user_signed_in?
           =t('site.welcome', :name => current_user.username)
-          |
           - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
           - if messages.length > 0
+            \|
             - if messages.length == 1
               = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
             - else

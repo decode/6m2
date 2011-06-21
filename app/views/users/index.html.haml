@@ -31,7 +31,7 @@
     - form_tag :controller => 'board', :action => 'search_user' do
       = label_tag t 'site.login_name'
       = search_field_tag 'username', session[:search_username]
-      = submit_tag 'Search'
+      = submit_tag t('global.show')
   %thead
     %tr
       %th
