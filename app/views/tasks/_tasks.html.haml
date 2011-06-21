@@ -86,6 +86,8 @@
       %br
       = t 'task.p5'
       %br
+      %br
+      = t 'task.p6'
 
 - if admin? or manager? or session[:view_task] == 'manage'
   %table
@@ -142,7 +144,7 @@
           - if task.user == current_user or task.worker == current_user
             = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:id=>'tip',:title=>t('task.send_problem')} if task.can_argue?
 
-    = will_paginate @tasks
+  = will_paginate @tasks
 - else 
   %table
     %caption

@@ -113,7 +113,7 @@ class TasksController < ApplicationController
         @task.user = current_user
       end
       
-      logger.info("============ Task Status ==========" + @task.status)
+      #logger.info("============ Task Status ==========" + @task.status)
       #if params[:task][:published] == 'true'
       #@task.publish
       #end
@@ -143,7 +143,7 @@ class TasksController < ApplicationController
         end
         @task.tran_type, @task.tran_id = tid
 
-        logger.info("============ Transport ID ==========" + @task.tran_type + "|" + @task.tran_id)
+        #logger.info("============ Transport ID ==========" + @task.tran_type + "|" + @task.tran_id)
       else
         # 手工填写单号
         tran_type = params[:task][:tran_type]
