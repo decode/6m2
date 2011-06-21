@@ -383,12 +383,31 @@ class BoardController < ApplicationController
   end
     
   def search_task_log
+    from = params[:from]
+    to = params[:to]
+    session[:username] = params[:username]
+    session[:from] = from
+    session[:to] = to
+    if from.blank? or to.blank?
+      @tasks= Tasklog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    else
+      if from == to
+        if from.nil?
+          @tasks= Tasklog.all
+        else
+          @tasks= Tasklog.where(:created_at => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @tasks= Tasklog.where(:created_at => from.to_datetime..to.to_datetime)
+      end
+    end
     if params[:username].blank?
-      redirect_to '/t/tasklogs'
+      #redirect_to '/t/tasklogs'
+      @tasks = @tasks.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
     else
       @tasks = Tasklog.where("user_name like ? or worker_name like ?", "%#{params[:username]}%", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 15) 
-      render 'board/tasklogs'
     end
+    render 'board/tasklogs'
   end
   # ===========================================
   #
@@ -493,7 +512,7 @@ class BoardController < ApplicationController
     else
       if from == to
         if from.nil?
-          @trades= Accountlog.all
+          @trades = Accountlog.all
         else
           @trades = Accountlog.where(:created_at => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
         end
@@ -509,4 +528,30 @@ class BoardController < ApplicationController
     end
   end
   
+  def export_tasklog
+    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Disposition'] = 'attachment; filename="task-export.xls"'
+    headers['Cache-Control'] = ''
+    from = session[:from]
+    to = session[:to]
+    if from.blank? or to.blank?
+      @tasks = Tasklog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
+    else
+      if from == to
+        if from.nil?
+          @tasks = Tasklog.all
+        else
+          @tasks = Tasklog.where(:created_at => from.to_datetime.at_beginning_of_day..(from.to_datetime+1.day).at_beginning_of_day)
+        end
+      else
+        @tasks = Tasklog.where(:created_at => from.to_datetime..to.to_datetime)
+      end
+    end
+    username = session[:username]
+    if username.blank?
+      @records = @tasks.order('created_at DESC')
+    else
+      @records = @tasks.where('user_name like ? or operator_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC')
+    end
+  end
 end

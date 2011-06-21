@@ -368,6 +368,12 @@ en:
     spend: "Spend %{point} point"
     demo: "Demo"
     check_store: "Please check if you have enough money and point"
+    finish_left: "(%{day} day)"
+    p1: ""
+    p2: ""
+    p3: ""
+    p4: ""
+    p5: ""
 
   transport:
     unused: "Unused"

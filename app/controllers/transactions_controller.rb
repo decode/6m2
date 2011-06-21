@@ -73,6 +73,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @transaction.trade_time = Time.now
+    @transaction.pay_type = 'zfb'
 
     respond_to do |format|
       format.html # new.html.erb
@@ -142,6 +143,11 @@ class TransactionsController < ApplicationController
       Transaction.transaction do
         if isPass and @transaction.save
           if @user and session[:transaction_mode] != 'sales'
+            # 如果是未认证用户,则转为认证用户
+            if @user.has_role? 'guest'
+              @user.has_role! :user
+              @user.has_no_role! :guest
+            end
             # 没有充值id, 则是发布点购买操作
             log_type = 'charge'
             if @transaction.point

@@ -1,4 +1,3 @@
-
 :javascript
   $(function() {
   var dates = $( "#from, #to" ).datepicker({
@@ -18,14 +17,14 @@
     });
   });
 - form_tag :controller => 'board', :action => 'search_account_log' do
-  = t 'global.from'
-  = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
-  = t 'global.to'
-  = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
-  %br
-  = label_tag t 'site.login_name'
-  = search_field_tag 'username', ''
-  = submit_tag 'Search'
-  = link_to image_tag('save_01.png')+t('global.export'), '/t/export_accountlog'
+  .solidshape
+    = t 'global.from'
+    = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
+    = t 'global.to'
+    = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
+    = label_tag t 'site.login_name'
+    = search_field_tag 'username', ''
+    = submit_tag t('global.show')
+    = link_to image_tag('save_01.png')+t('global.export'), '/t/export_accountlog'
 
 = render 'account/tradelogs'

@@ -59,20 +59,33 @@
   \|
   = image_tag('quest.png')
   = '-' + t('task.send_problem')
-.main
-  %p{:title => t('task.demo'), :class=>'blue'}
-    = image_tag('do.png')
-    = '1.' + t('task.worker') + t('task.do')
-    = image_tag('price.png')
-    = '2.' + t('task.owner') + t('task.price')
-    = image_tag('pay.png')
-    = '3.' + t('task.worker') + t('task.pay')
-    = image_tag('truck.png')
-    = '4.' + t('task.owner') + t('task.transport')
-    = image_tag('finish.png')
-    = '5.' + t('task.worker') + t('task.finish')
-    = image_tag('yes.png')
-    = '6.' + t('task.owner') + t('task.confirm')
+#wide
+  .main
+    %p{:title => t('task.demo'), :class=>'blue'}
+      = image_tag('do.png')
+      = '1.' + t('task.worker') + t('task.do')
+      = image_tag('price.png')
+      = '2.' + t('task.owner') + t('task.price')
+      = image_tag('pay.png')
+      = '3.' + t('task.worker') + t('task.pay')
+      = image_tag('truck.png')
+      = '4.' + t('task.owner') + t('task.transport')
+      = image_tag('finish.png')
+      = '5.' + t('task.worker') + t('task.finish')
+      = image_tag('yes.png')
+      = '6.' + t('task.owner') + t('task.confirm')
+      %br
+      %br
+      = t 'task.p1'
+      %br
+      = t 'task.p2'
+      %br
+      = t 'task.p3'
+      %br
+      = t 'task.p4'
+      %br
+      = t 'task.p5'
+      %br
 
 - if admin? or manager? or session[:view_task] == 'manage'
   %table

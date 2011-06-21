@@ -325,7 +325,7 @@ tfoot th, tfoot td {
   color: black;
   font-weight: bold;
   text-decoration: none;
-  -moz-border-radius: 9px 9px 9px 9px;
+  -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px;
 }
 
@@ -359,7 +359,7 @@ tfoot th, tfoot td {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
   border: 1px dashed #92cdec;
-  -moz-border-radius: 9px 9px 9px 9px;
+  -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px;
 }
 
@@ -373,7 +373,7 @@ tfoot th, tfoot td {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
   border: 1px solid #92cdec;
-  -moz-border-radius: 9px 9px 9px 9px;
+  -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px;
 }
 
@@ -386,7 +386,7 @@ tfoot th, tfoot td {
   border: 1px solid #3274d1;
   padding: 3px 5px;
   margin: 10px auto;
-  -moz-border-radius: 9px 9px 9px 9px;
+  -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px;
 }
 
