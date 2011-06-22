@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   #before_filter :authenticate_user!
+  before_filter :set_locale
+ 
+  def set_locale
+    I18n.locale = :zh || I18n.default_locale
+  end
 
   def caculate_point(task)
     point = 0
