@@ -85,7 +85,7 @@ en:
     sign_rule4: ""
     sign_rule5: ""
     label: "Site"
-    welcome: "Welcome, ${name}"
+    welcome: "Welcome, %{name}"
     login: "Login"
     register: "Register"
     register_agree: "Register and Agree Service Contract"
