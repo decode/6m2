@@ -123,7 +123,7 @@ DEPENDENCIES
   devise
   exception_notification
   fancy-buttons
-  formtastic (~> 1.2.3)
+  formtastic
   haml
   jquery-rails
   mysql2 (< 0.3)

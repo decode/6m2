@@ -34,8 +34,8 @@
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?
-          = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
-          = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+            = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
+            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
   = will_paginate @participants
 
 #equal-right
@@ -64,6 +64,6 @@
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?
-          = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
-          = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+            = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
+            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
   = will_paginate @shops
