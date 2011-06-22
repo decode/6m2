@@ -296,6 +296,8 @@ en:
     not_enough_recyling_point: "Not enough point"
     create_account: " create account"
     delete_account: " delete account"
+    modify_point: "Point"
+    tid: "Charge ID"
 
   participant:
     user: "User"

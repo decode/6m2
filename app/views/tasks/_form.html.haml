@@ -3,11 +3,37 @@
   = t('account.account_money') + @task.user.account_money.to_s
   = image_tag 'point.png'
   = t('account.point') + @task.user.account_credit.to_s
-
+:javascript
+  $(function() {
+    $("#task_custom_judge").each(function() {
+     this.checked = false;
+    });
+    $("#task_custom_judge_content_input").hide('fast');
+    $("#task_custom_judge").click(function() {
+      if(this.checked) {
+        $("#task_custom_judge_content_input").show('fast');
+      }
+      else {
+        $("#task_custom_judge_content_input").hide('fast');
+      }
+     });
+    $("#virtual").each(function() {
+     this.checked = false;
+    });
+    $("#task_task_type").val('#{@part_type}');
+    $("#task_task_type").change(function() {
+      if(this.value=='cash') {
+        $("#virtual_task").hide('fast');
+      }
+      else {
+        $("#virtual_task").show('fast');
+      }
+     });
+   });
 - semantic_form_for @task do |f| 
   - f.inputs do
     = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
-    %li
+    %li{:id=>'virtual_task'}
       = label_tag t('task.virtual_task')
       = check_box_tag "virtual"
       %p{:class => 'inline-hints'}
@@ -40,7 +66,7 @@
 
     = f.input :avoid_day, :as => :select, :collection => [0,10,20,30,40,50,60], :input_html => { :class => "validate[required]" }
 
-    %span{:style=>'color:red'}= t 'task.spend', :point => 0.5
+    %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.custom_judge
     = f.input :custom_judge
     = f.input :custom_judge_content, :as => :text
     %hr

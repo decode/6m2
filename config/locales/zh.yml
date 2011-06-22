@@ -280,6 +280,7 @@ zh:
     female: "女"
     charge: "充值"
     change: "兑换"
+    credit: "发布点变更"
     charge_amount: "充值金额"
     account_money: "帐户余额"
     point: "发布点"
@@ -298,6 +299,8 @@ zh:
     not_enough_score: "积分未到额度"
     create_account: " 创建帐户"
     delete_account: " 删除帐户"
+    modify_point: "修改发布点"
+    tid: "充值ID"
 
   participant:
     user: "用户"

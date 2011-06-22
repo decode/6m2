@@ -1,3 +1,15 @@
+:javascript
+  $(function() {
+    $("#participant_role_type").val('');
+    $("#participant_role_type").change(function() {
+      if(this.value=='customer') {
+        $("#participant_url_input").hide('fast');
+      }
+      else {
+        $("#participant_url_input").show('fast');
+      }
+    });
+  });
 - semantic_form_for @participant do |f| 
   - f.inputs do
     - if session[:operate_mode] != 'edit'

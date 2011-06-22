@@ -116,9 +116,9 @@ class UsersController < ApplicationController
       User.transaction do
         if isPass and @user.update_attributes(params[:user])
           if session[:user_edit_mode] == 'point'
-            Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => @user.account_credit, :log_type=>'credit', :description => 'modify credit'
+            Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => @user.account_credit, :log_type=>'credit', :description => t('account.modify_point'), :user_name => @user.username, :operator_name => current_user.username
           else
-            Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => 0, :log_type=>'account', :description => log_str
+            Accountlog.create! :user_id => @user.id, :operator_id => current_user.id, :amount => 0, :log_type=>'account', :description => log_str, :user_name => @user.username, :operator_name => current_user.username
           end
           session[:user_edit_mode] = nil
           format.html { redirect_to(@user, :notice => t('account.update_success')) }
