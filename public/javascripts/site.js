@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   $('#customer_service').easyListSplitter({ colNumber: 4 });
 
-  $("#site-bar").jixedbar();
+  /*$("#site-bar").jixedbar();*/
 
   /*
   setTimeout(function(){
