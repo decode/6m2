@@ -69,8 +69,8 @@ class ParticipantsController < ApplicationController
       @participant.make_active if params[:participant][:active] == '1'
     end
     isFirst = false
-    if current_user.has_role? 'guest' and current_user.active_participant.nil? and current_user.active_participant.length == 0
-      isFirst = true
+    if current_user.has_role? 'guest' and current_user.active_participant.nil?
+      isFirst = true #if current_user.active_participant.length == 0
     end
 
     logger.info('======================='+isPass.to_s)
