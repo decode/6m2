@@ -181,7 +181,7 @@ class Task < ActiveRecord::Base
       return [false,error]
     end
     # 小号类型必须和任务相同,提现操作除外
-    c01 = !(self.task_type != user.active_participant.part_type and self.task_type != 'cash')
+    c01 = (self.task_type.include?(user.active_participant.part_type) or self.task_type == 'cash')
     unless c01
       error = error + ' ' + I18n.t('task.error_diff') 
       return [false,error]
