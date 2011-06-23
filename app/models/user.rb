@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
   attr_accessible :login, :account_credit
-  attr_accessible :role_object_ids, :score, :operate_password
+  attr_accessible :role_object_ids, :score, :operate_password, :status
   attr_accessible :im, :im_q, :bank_name, :bank_account, :mobile, :person_id, :shop_taobao, :shop_taobao_url, :shop_paipai, :shop_paipai_url, :shop_youa, :shop_youa_url
 
   # Acl9 configuration

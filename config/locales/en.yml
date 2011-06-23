@@ -146,6 +146,7 @@ en:
     running_task: "Running Task"
     user_number: "Registered User"
     user_info: "User Information"
+    platform_status: "Platform Status"
     transport_center: "Transport ID Manage"
     operate_password: "Operate Password Manage"
     old_password: "Old Password"
@@ -357,6 +358,7 @@ en:
     point: "Point"
     can_not_delete: "can not delete this task"
     error_self: "Can not take yourself's task"
+    error_state: "You have break the rule, so that you account are forbidden, please contact system manager"
     error_buyer: "Unbind a buyer account"
     error_diff: "Account type is different with task type"
     error_level: "Your account level is below the requirement"
@@ -582,6 +584,7 @@ en:
         account_credit: "Point"
         current_sign_in_at: "Last Sign In At"
         operate_password: "Operate Password"
+        status: "Status"
       issue:
         title: "Title"
         content: "Content"

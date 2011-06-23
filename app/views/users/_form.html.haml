@@ -17,6 +17,9 @@
         = password_field_tag 'old_password', '', :size => 50, :maxlength=>20
         %p{:class => 'inline-hints'}没有设置则不填
       = f.input :operate_password, :input_html => { :maxlength=>20 }
+    - if session[:user_edit_mode] == 'state'
+      - if admin?
+        = f.input :status, :collection => ['normal', 'ban', 'forbid']
 
     - if session[:user_edit_mode].nil?
       = f.input :im

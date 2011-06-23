@@ -174,6 +174,12 @@ class Task < ActiveRecord::Base
       error = error + t('task.error_self') 
       return [false,error]
     end
+    # 用户不能被锁定
+    c00 = user.normal?
+    unless c00
+      error = error + ' ' + I18n.t('task.error_state') 
+      return [false,error]
+    end
     # 小号必须定义
     c0 = !user.active_participant.nil?
     unless c0

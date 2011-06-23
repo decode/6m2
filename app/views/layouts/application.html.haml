@@ -16,8 +16,8 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
     = javascript_include_tag "autocomplete-rails.js"
-    = javascript_include_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.jixedbar.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy'
-    = stylesheet_link_tag 'infogrid', 'fmenu', 'jquery.jnotify.min', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy'
+    = javascript_include_tag 'infogrid', 'fmenu', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy'
     /[if lt IE 9]
       = javascript_include_tag 'excanvas.min'
 
@@ -131,6 +131,7 @@
                     =# link_to t('article.new_article'), new_article_url
                     = link_to t('site.finance_center'), transactions_url
                     %hr
+                    = link_to t('site.platform_status'), '/status/total'
                     = link_to t('system.message'), '/s/message'
                     %hr
                     = link_to t('site.setting'), '/s/setting'

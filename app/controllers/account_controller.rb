@@ -354,5 +354,16 @@ class AccountController < ApplicationController
     session[:user_edit_mode] = 'code'
     redirect_to edit_user_url(@user)
   end
+
+  # 更改用户状态
+  def user_state
+    if params[:id] and current_user.has_role? 'admin'
+      @user = User.find(params[:id])
+      session[:user_edit_mode] = 'state'
+      redirect_to edit_user_url(@user)
+    else
+      redirect_to :back
+    end
+  end
   
 end

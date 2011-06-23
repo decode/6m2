@@ -146,6 +146,7 @@ zh:
     running_task: "当前任务数"
     user_number: "注册用户数"
     user_info: "用户信息"
+    platform_status: "平台状态"
     transport_center: "平台市场"
     operate_password: "操作码管理"
     old_password: "旧操作码"
@@ -362,6 +363,7 @@ zh:
     can_not_delete: "无法删除该任务"
     error_head: "无法接手该任务"
     error_self: "不能接手自己的任务"
+    error_state: "用户因为违规等问题,己被暂时禁用,请联系平台管理员解除"
     error_buyer: "未绑定买号"
     error_diff: "当前使用的买号类型与任务类型不一致"
     error_level: "没有权限或用户级别太低"
@@ -613,6 +615,7 @@ zh:
         account_credit: "发布点"
         current_sign_in_at: "上次登录时间"
         operate_password: "操作码"
+        status: "状态"
       issue:
         title: "标题"
         content: "内容"
