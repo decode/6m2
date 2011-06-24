@@ -10,7 +10,7 @@
       %th= t 'global.type'
       %th= t 'manage.service'
       %th= t 'global.created_at'
-      %th{:colspan=>5}
+      %th
   - @issues.each do |issue|
     - c = cycle("even", "odd")
     %tr{:class=>c}
@@ -22,13 +22,14 @@
       - dealer = User.where(issue.dealer_id).first
       %th= dealer.nil? ? '-' : dealer.username
       %th= l issue.created_at, :format => :long
-      %td= link_to image_tag('view.png', :alt=>t('global.show')), issue
-      - if issue.open? or issue.user.nil?
-        - if admin? or manager?
-          %td= link_to t('global.done'), :controller => 'board', :action => 'fix_issue', :id => issue if issue.can_fix?
-          %td= link_to t('global.close'), :controller => 'board', :action => 'close_issue', :id => issue if issue.can_shutdown?
+      %td
+        = link_to image_tag('view.png', :alt=>t('global.show')), issue
+        - if issue.open? or issue.user.nil?
           - if admin?
-            %td= link_to image_tag('edit.png', :alt=>t('global.edit')), edit_issue_path(issue)
-            %td= link_to image_tag('delete.png', :alt=>t('global.delete')), issue, :confirm => t('site.are_you_sure'), :method => :delete
+            = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_issue_path(issue)
+            = link_to image_tag('delete.png', :alt=>t('global.delete')), issue, :confirm => t('site.are_you_sure'), :method => :delete
+          - if !issue.task_issue? and (admin? or manager?)
+            = link_to t('global.done'), :controller => 'board', :action => 'fix_issue', :id => issue if issue.can_fix?
+            = link_to t('global.close'), :controller => 'board', :action => 'close_issue', :id => issue if issue.can_shutdown?
 %br/
 = will_paginate @issues

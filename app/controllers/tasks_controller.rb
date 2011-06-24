@@ -95,6 +95,10 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    s = {'taobao' => t('participant.taobao'), 'paipai' => t('participant.paipai'), 'youa' => t('participant.youa'=>'youa')}
+    @part_type = current_user.active_shop.part_type
+    @local_type = s[@part_type]
+
     @task = Task.find(params[:id])
     unless @task.can_modify?
       flash[:error] = I18n.t('task.can_not_modify')
@@ -201,7 +205,7 @@ class TasksController < ApplicationController
       Task.transaction do 
         if isPass and @task.can_modify? and @task.update_attributes(params[:task])
           spend(@task)
-          format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
+          format.html { redirect_to(@task, :notice => t('global.operate_success')) }
           format.xml  { head :ok }
         else
           format.html { render :action => "edit" }

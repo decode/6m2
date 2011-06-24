@@ -4,6 +4,7 @@
   |
   = label_tag t('issue.penalty_money')
   = p.money
-  |
-  = label_tag t('site.login_name')
-  = p.user.username
+  - if admin?
+    |
+    = label_tag t('site.login_name')
+    = p.user.username

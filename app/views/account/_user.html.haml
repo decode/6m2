@@ -27,9 +27,10 @@
     %li
       = t 'account.point'
       = @user.account_credit
-    %li
-      = t 'trade.payment_amount'
-      = @user.payment_money
+    /
+      %li
+        = t 'trade.payment_amount'
+        = @user.payment_money
     %li
       = t 'account.score'
       = @user.score

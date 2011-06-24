@@ -106,7 +106,7 @@ class ApplicationController < ActionController::Base
 
   def penalty(issue, user, point=0, money=0)
     ActiveRecord::Base.transaction do
-      user.score = user.score - point
+      user.account_credit = user.account_credit - point
       p = Penalty.find_by_issue_id(issue.id)
       if p.nil?
         p = Penalty.new 
@@ -117,6 +117,7 @@ class ApplicationController < ActionController::Base
       p.money = money
       p.save
       user.save
+      Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => current_user.id, :operator_name => current_user.username, :amount => point, :log_type => 'point_penalty', :description => I18n.t('trade.point_penalty') + ' ' + t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s
     end
   end
 

@@ -11,4 +11,6 @@
     %hr
   
   - unless @task.nil?
-    = @task.participant.part_id if @task.participant
+    = t('formtastic.labels.participant.part_id') + ": "
+    = @task.worker_part_name if @task.worker_part_name
+    =# @task.participant.part_id if @task.participant

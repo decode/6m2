@@ -172,21 +172,24 @@ class BoardController < ApplicationController
         task = issue.get_source
         if 'user' == params[:issue_source]
           # 任务发布者造成的问题,返积分给任务执行者并确认这个任务完成
-          logger.info('user problem=======================')
+          #logger.info('user problem=======================')
           target_user = task.user
           Task.transaction do
             task.over
-            gain(task)
           end
         else
           # 任务执行者造成的问题 
           target_user = task.worker
           Task.transaction do
-            restore_spend(task) if params[:return_point]
             task.over
           end
         end
-        if params[:penalty]
+        unless params[:return_point].blank?
+          restore_spend(task) 
+        else
+          gain(task)
+        end
+        unless params[:penalty].blank?
           penalty(issue, target_user, params[:penalty_value].to_f)
         end
         issue.fix
@@ -203,22 +206,30 @@ class BoardController < ApplicationController
   
   def fix_issue
     issue = Issue.find(params[:id])
-    if issue.open?
-      issue.fix
-      if issue.save
-        flash[:notice] = t('issue.has_fixed')
+    unless issue.task_issue?
+      if issue.open?
+        issue.fix
+        if issue.save
+          flash[:notice] = t('issue.has_fixed')
+        end
+      else
+        flash[:error] = t('issue.can_not_modify')
       end
     else
-      flash[:error] = t('issue.can_not_modify')
+      flash[:error] = t('issue.task_issue_error')
     end
     redirect_to issues_url
   end
 
   def close_issue
     issue = Issue.find(params[:id])
-    issue.shutdown
-    if issue.save
-      flash[:notice] = t('issue.has_close')
+    unless issue.task_issue?
+      issue.shutdown
+      if issue.save
+        flash[:notice] = t('issue.has_close')
+      end
+    else
+      flash[:error] = t('issue.task_issue_error')
     end
     redirect_to issues_url
   end

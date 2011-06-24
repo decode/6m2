@@ -115,10 +115,11 @@ class Task < ActiveRecord::Base
     end
     # 卖方结束该流程
     event :over do
-      transition [:finished, :problem] => :end
+      #transition [:finished, :problem] => :end
+      transition [:finished] => :end
     end
     event :argue do
-      transition [:finished, :running, :transport] => :problem
+      transition [:finished, :running, :transport, :price, :cash] => :problem
     end
     event :giveup do
       transition :running => :abandon

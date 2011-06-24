@@ -5,6 +5,7 @@ class Issue < ActiveRecord::Base
 
   validates_length_of :title, :within => 4..30
   validates_length_of :content, :within => 0..160
+  validates_presence_of :title, :content, :itype
 
   state_machine :status, :initial => :open do
     event :fix do
@@ -27,5 +28,10 @@ class Issue < ActiveRecord::Base
   def get_source
     return eval("#{self.itype}.find_by_id(#{self.target_id})") unless self.itype.nil? and self.target_id.nil?
   end
+
+  def task_issue?
+    return self.itype == 'Task'
+  end
+  
   
 end

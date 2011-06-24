@@ -24,12 +24,14 @@
 
 -# if !@task.nil? and @issue.open? and (admin? or manager?)
   %hr
-- if @issue.open? and (admin? or manager?)
-  = render 'operation' 
-  %hr
-  - if admin? or manager?
-    = link_to t('issue.close_issue'), :controller=>'board', :action=>'close_issue', :id=>@issue
-    |
-    = link_to t('global.edit'), edit_issue_path(@issue)
-    |
-\#{link_to t('global.back'), issues_path}
+%br
+#wide
+  - if @issue.open? and (admin? or manager?)
+    = render 'operation' 
+    %hr
+    - if admin? or manager?
+      = link_to t('issue.close_issue'), :controller=>'board', :action=>'close_issue', :id=>@issue
+      |
+      = link_to t('global.edit'), edit_issue_path(@issue)
+      |
+  \#{link_to t('global.back'), issues_path}

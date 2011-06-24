@@ -423,6 +423,7 @@ en:
     charge: "Charge"
     point: "Point"
     record: "Record"
+    point_penalty: "Point Penalty"
     recyling_point: "Recyling Point"
     out_point: "Out Point Bondary"
     score_point: "Score to Point"
@@ -489,6 +490,7 @@ en:
     penalty_money: "Penalty Money"
     target: "Target"
     issue_person: "Issue Person"
+    task_issue_error: "Task issue can not closed or fixed"
 
   notice:
     new_notice: "New Notice"

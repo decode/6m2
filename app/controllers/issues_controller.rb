@@ -13,9 +13,9 @@ class IssuesController < ApplicationController
   # GET /issues.xml
   def index
     if secret_access?
-      @issues = Issue.where('itype != ?', 'cash').paginate(:page => params[:page], :per_page => 10)
+      @issues = Issue.where('itype != ?', 'cash').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     else
-      @issues = Issue.where('itype != ? and user_id = ?', 'cash', current_user).paginate(:page => params[:page], :per_page => 10)
+      @issues = Issue.where('itype != ? and user_id = ?', 'cash', current_user).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     end
 
     respond_to do |format|

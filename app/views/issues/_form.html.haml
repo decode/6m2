@@ -11,10 +11,13 @@
     |
     = label_tag t('global.price')
     = @task.price
+    |
+    = label_tag t('task.point')
+    = @task.point
 
 = semantic_form_for @issue do |f| 
   = f.inputs do
     = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
     = f.input :content, :as => :text, :input_html => { :class => "validate[required],minSize[5]" }
-    = f.input :itype, :as => :select, :collection => {'大额提现' => 'cash', '一般问题' => 'normal'}, :input_html => { :class => "validate[required]" } if session[:issue_type].nil?
+    = f.input :itype, :as => :select, :collection => {'任务' => 'Task', '大额提现' => 'cash', '一般问题' => 'normal'}, :input_html => { :class => "validate[required]" } if session[:issue_type].nil?
     = f.submit t('issue.send')
