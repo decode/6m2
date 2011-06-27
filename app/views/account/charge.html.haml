@@ -30,7 +30,7 @@
             = label_tag t('account.charge_amount')
           %td
             =# select_tag 'amount', options_for_select([100,200,300,500,800,1000,2000]), :class=>"validate[require],custom[number],min[100],max[2000]"
-            = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[1],max[2000]"
+            = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[100],max[2000]"
         %tr
           %td
             = submit_tag t('account.charge')
