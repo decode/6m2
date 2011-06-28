@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money, :score_point do
+    actions :charge, :process_charge, :payment, :process_payment, :charge_log, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money, :score_point do
       allow :user, :guest, :salesman
     end
     actions :delete_charge do
