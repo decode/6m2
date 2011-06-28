@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
       if task.worker_level > 0
         point = point + 0.2
       end
+
+      # 同一买家不能接任务重复天数
+      avoid_day = {0=>0, 10=>0.1, 20=>0.2, 30=>0.3, 40=>0.4, 50=>0.5, 60=>0.6}
+      point = point + avoid_day[task.avoid_day]
     end
     return point
   end

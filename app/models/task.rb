@@ -197,11 +197,10 @@ class Task < ActiveRecord::Base
     c1 = (user.has_role?('manager') or user.level >= self.worker_level)
     unless c1
       error = error + ' ' + I18n.t('task.error_level') 
-      logger.info("======================#{user.level} #{self.worker_level}============================")
       return [false,error]
     end
-    # 发任务方限制天数内不能接任务
-    c2 = user.todos.where(:finished_time => (self.created_at-self.avoid_day.day) .. self.created_at, :user_id => self.user.id).length == 0
+    # 发任务方限制天数内不能接任务, 客服除外,但是限制小号避免重复接手
+    c2 = ( (user.has_role?('manager') and user.active_participant.tasks.where(:takeover_time => (self.created_at-self.avoid_day.day) .. self.created_at, :participant_id => user.active_participant.id).length == 0) or user.todos.where(:takeover_time => (self.created_at-self.avoid_day.day) .. self.created_at, :user_id => self.user.id).length == 0 )
     unless c2
       error = error + ' ' + I18n.t('task.error_avoidday') 
       return [false,error]
