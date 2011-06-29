@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
       if task.virtual_task?
         p = [1, 2, 3, 4, 5, 6, 7] 
       else
-        p = [1, 1.5, 2, 3, 4, 5, 6]
+        #p = [1, 1.5, 2, 3, 4, 5, 6]
+        p = [1, 1, 1, 1, 1, 1, 1]
       end
       index = step.select{ |s| s < task.price }.length
       point = p[ index==step.length ? index-1 : index ]
