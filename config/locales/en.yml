@@ -542,6 +542,8 @@ en:
     registrations:
       user:
         inactive_signed_up: "己成功注册,需要激活您的帐号才能继续使用"
+    failure:
+      already_authenticated: "User has already loggin"
 
 
   formtastic:

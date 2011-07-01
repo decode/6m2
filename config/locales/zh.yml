@@ -580,6 +580,8 @@ zh:
     registrations:
       user:
         inactive_signed_up: "己成功注册,请查收帐号激活邮件,并激活您的帐号"
+    failure:
+      already_authenticated: "用户己登录"
 
   formtastic:
     titles:
