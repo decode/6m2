@@ -126,7 +126,7 @@
         %td
           = task.task_day 
           - if task.transport_time and task.transport?
-            - if (Time.now.month - task.transport_time.month) != 0
+            - if Time.now.month - task.transport_time.month != 0
               - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
             - else
               - day = Time.now.day - trak.transport_time.day
