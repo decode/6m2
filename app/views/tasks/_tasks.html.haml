@@ -90,12 +90,12 @@
       = t 'task.p6'
 
 - if admin? or manager? or session[:view_task] == 'manage'
-  %table
+  %table{:id=>'data_table', :class=>'tablesorter'}
     %caption
       /=t('site.task')
     %thead
       %tr
-        %th #
+        %th
         %th{:width=>'20%'}=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 
@@ -110,47 +110,49 @@
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
 
-    - @tasks.each do |task|
-      - c = cycle("even", "odd")
-      %tr{:class=>c}
-        %td= task.id
-        %td= task.title.length > 10 ? task.title[0, 10] + "..." : task.title
-        %td
-          = convert_shop_type(task.task_type)
-        %td= task.price
-        %td= task.point
-        %td= link_to task.user.username, task.user unless task.user.nil?
-        %td= link_to task.worker.username, task.worker unless task.worker.nil?
-        %td= task.local_status
-        %td= task.worker_level
-        %td
-          = task.task_day 
-          - if task.transport_time and task.transport?
-            - if Time.now.month - task.transport_time.month != 0
-              - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
-            - else
-              - day = Time.now.day - task.transport_time.day
-            = t 'task.finish_left', :day=>"#{task.task_day - day}"
-        %td= convert_yes_no(task.custom_judge)
-        %td= task.avoid_day
-        %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
-        %td
-          = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
-          = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
-          - if task.user == current_user
-            - if task.can_modify?
-              = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
-              = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
-            = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:confirm => t('task.q_price'), :id=>'tip',:title=>t('task.price')} if task.can_pricing?
-            = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:confirm => t('task.q_transport'), :id => 'tip', :title=>t('task.transport')} if task.can_trans?
-            = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:confirm => t('task.q_confirm'), :id => 'tip', :title=>t('task.confirm')} if task.can_over?
-          - if task.worker == current_user
-            = link_to image_tag('pay.png', :alt=>t('task.pay')), {:controller=>'board', :action=>'pay_task', :id=>task}, {:confirm => t('task.q_pay'), :id=>'tip',:title=>t('task.pay')} if task.can_pay?
-            = link_to image_tag('finish.png', :alt=>t('task.finish')), {:controller=>'board', :action=>'finish_task', :id=>task}, {:confirm => t('task.q_finish'), :id=>'tip',:title=>t('task.finish')} if task.can_finish?
-          - if task.user == current_user or task.worker == current_user
-            = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem')} if task.can_argue?
+    %tbody
+      - @tasks.each do |task|
+        - c = cycle("even", "odd")
+        %tr{:class=>c}
+          %td= task.id
+          %td= task.title.length > 10 ? task.title[0, 10] + "..." : task.title
+          %td
+            = convert_shop_type(task.task_type)
+          %td= task.price
+          %td= task.point
+          %td= link_to task.user.username, task.user unless task.user.nil?
+          %td= link_to task.worker.username, task.worker unless task.worker.nil?
+          %td= task.local_status
+          %td= task.worker_level
+          %td
+            = task.task_day 
+            - if task.transport_time and task.transport?
+              - if Time.now.month - task.transport_time.month != 0
+                - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
+              - else
+                - day = Time.now.day - task.transport_time.day
+              = t 'task.finish_left', :day=>"#{task.task_day - day}"
+          %td= convert_yes_no(task.custom_judge)
+          %td= task.avoid_day
+          %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+          %td
+            = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
+            = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
+            - if task.user == current_user
+              - if task.can_modify?
+                = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
+                = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
+              = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:confirm => t('task.q_price'), :id=>'tip',:title=>t('task.price')} if task.can_pricing?
+              = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:confirm => t('task.q_transport'), :id => 'tip', :title=>t('task.transport')} if task.can_trans?
+              = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:confirm => t('task.q_confirm'), :id => 'tip', :title=>t('task.confirm')} if task.can_over?
+            - if task.worker == current_user
+              = link_to image_tag('pay.png', :alt=>t('task.pay')), {:controller=>'board', :action=>'pay_task', :id=>task}, {:confirm => t('task.q_pay'), :id=>'tip',:title=>t('task.pay')} if task.can_pay?
+              = link_to image_tag('finish.png', :alt=>t('task.finish')), {:controller=>'board', :action=>'finish_task', :id=>task}, {:confirm => t('task.q_finish'), :id=>'tip',:title=>t('task.finish')} if task.can_finish?
+            - if task.user == current_user or task.worker == current_user
+              = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem')} if task.can_argue?
 
   = will_paginate @tasks
+
 - else 
   %table
     %caption
@@ -165,39 +167,38 @@
         %th=t 'task.requirement'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
-
-    - @tasks.each do |task|
-      - c = cycle("even", "odd")
-      %tr{:class=>c}
-        %td
-          = task.user.username
-          = image_tag "icon_vip#{(task.user.level)}.gif"
-        %td= task.title.length > 10 ? task.title[0, 15] + "..." : task.title
-        %td
-          = convert_shop_type(task.task_type)
-        %td= task.price
-        %td= task.point
-        %td
-          = t('task.work_day') + task.task_day.to_s + t('global.day')
-          = t('task.level') + task.worker_level.to_s
-          = t('task.extra') if task.custom_judge
-        %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
-        %td
-          = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
-          - if task.user == current_user
-            - if task.can_modify?
-              = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
-              = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
-            = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:confirm => t('task.q_price'), :id=>'tip',:title=>t('task.price')} if task.can_pricing?
-            = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:confirm => t('task.q_transport'), :id => 'tip', :title=>t('task.transport')} if task.can_trans?
-            = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:confirm => t('task.q_confirm'), :id => 'tip', :title=>t('task.confirm')} if task.can_over?
-          - if task.worker == current_user
-            = link_to image_tag('pay.png', :alt=>t('task.pay')), {:controller=>'board', :action=>'pay_task', :id=>task}, {:confirm => t('task.q_pay'), :id=>'tip',:title=>t('task.pay')} if task.can_pay?
-            = link_to image_tag('finish.png', :alt=>t('task.finish')), {:controller=>'board', :action=>'finish_task', :id=>task}, {:confirm => t('task.q_finish'), :id=>'tip',:title=>t('task.finish')} if task.can_finish?
-          - if task.user == current_user or task.worker == current_user
-            = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
-            = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem')} if task.can_argue?
+    %tbody
+      - @tasks.each do |task|
+        - c = cycle("even", "odd")
+        %tr{:class=>c}
+          %td
+            = task.user.username
+            = image_tag "icon_vip#{(task.user.level)}.gif"
+          %td= task.title.length > 10 ? task.title[0, 15] + "..." : task.title
+          %td
+            = convert_shop_type(task.task_type)
+          %td= task.price
+          %td= task.point
+          %td
+            = t('task.work_day') + task.task_day.to_s + t('global.day')
+            = t('task.level') + task.worker_level.to_s
+            = t('task.extra') if task.custom_judge
+          %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+          %td
+            = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
+            - if task.user == current_user
+              - if task.can_modify?
+                = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
+                = link_to image_tag('delete.png'), task, {:confirm => t('site.are_you_sure'), :method => :delete, :id=>'tip', :title=>t('global.delete')}
+              = link_to image_tag('price.png',:alt=>t('task.price')), {:controller=>'board', :action=>'price_task', :id=>task}, {:confirm => t('task.q_price'), :id=>'tip',:title=>t('task.price')} if task.can_pricing?
+              = link_to image_tag('truck.png', :alt=>t('task.transport')), {:controller=>'board', :action=>'send_good', :id=>task}, {:confirm => t('task.q_transport'), :id => 'tip', :title=>t('task.transport')} if task.can_trans?
+              = link_to image_tag('yes.png', :alt=>t('task.confirm')), {:controller=>'board', :action=>'confirm_task', :id=>task}, {:confirm => t('task.q_confirm'), :id => 'tip', :title=>t('task.confirm')} if task.can_over?
+            - if task.worker == current_user
+              = link_to image_tag('pay.png', :alt=>t('task.pay')), {:controller=>'board', :action=>'pay_task', :id=>task}, {:confirm => t('task.q_pay'), :id=>'tip',:title=>t('task.pay')} if task.can_pay?
+              = link_to image_tag('finish.png', :alt=>t('task.finish')), {:controller=>'board', :action=>'finish_task', :id=>task}, {:confirm => t('task.q_finish'), :id=>'tip',:title=>t('task.finish')} if task.can_finish?
+            - if task.user == current_user or task.worker == current_user
+              = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
+              = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem')} if task.can_argue?
 
   = will_paginate @tasks
-
 

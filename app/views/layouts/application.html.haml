@@ -16,7 +16,7 @@
     = formtastic_stylesheet_link_tag
     = include_tiny_mce_if_needed
     = javascript_include_tag "autocomplete-rails.js"
-    = javascript_include_tag 'infogrid', 'fmenu', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy'
+    = javascript_include_tag 'infogrid', 'fmenu', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy', 'jquery.tablesorter.min'
     = stylesheet_link_tag 'infogrid', 'fmenu', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy'
     /[if lt IE 9]
       = javascript_include_tag 'excanvas.min'
@@ -183,15 +183,26 @@
       #space-right
         %br
 
-      - if user_signed_in?
-        .visibleDiv
-        #bottomRight
+      /
+        - if user_signed_in?
+          .visibleDiv
+          #bottomRight
+
+      #push
+    #space-left
+      %br
+    #middle
+      #footer
+        - if user_signed_in?
           = image_tag 'todo.png'
           = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+          \|
           = image_tag 'tasks.png'
           = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
-      #push
-    #footer
-      = t 'site.copyright'
-      ©
-      = t 'site.name'
+          \|
+        = t 'site.copyright'
+        ©
+        = t 'site.name'
+    #space-right
+
+

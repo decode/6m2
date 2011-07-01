@@ -25,7 +25,7 @@
   \|
   = image_tag('delete.png')
   = '-' + t('global.delete')
-%table
+%table{:id=>'data_table', :class=>'tablesorter'}
   %caption
     /= t('site.user_manage')
     - form_tag :controller => 'board', :action => 'search_user' do

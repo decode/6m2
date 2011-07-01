@@ -463,3 +463,35 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }
+
+/* table sorter style */
+/* line 369, ../../../app/stylesheets/site.scss */
+table.tablesorter thead tr .header {
+  /*background-image: url(/images/bg.gif);*/
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
+}
+
+/* line 375, ../../../app/stylesheets/site.scss */
+table.tablesorter tbody tr:hover {
+  /*background: #dfeef9;*/
+  background: #e6edf5;
+}
+
+/* line 379, ../../../app/stylesheets/site.scss */
+table.tablesorter thead tr .headerSortUp {
+  background-image: url(/images/asc.gif);
+}
+
+/* line 382, ../../../app/stylesheets/site.scss */
+table.tablesorter thead tr .headerSortDown {
+  background-image: url(/images/desc.gif);
+}
+
+/* line 385, ../../../app/stylesheets/site.scss */
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+  padding-right: 20px;
+  background-color: #a3c0ea;
+  color: white;
+}

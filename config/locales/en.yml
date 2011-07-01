@@ -66,6 +66,8 @@ en:
     unread_message: "Unread Message"
 
   site:
+    previous: "&#8592; Previous"
+    next: "Next &#8594;"
     name: "Boat166"
     copyright: "Copyright"
     admin: "Admin"

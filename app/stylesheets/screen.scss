@@ -169,7 +169,15 @@ html, body { height: 98%; margin: 0; }
   height: 20;
   text-align: center;
 }
-
+#footer {
+  font-size: 14px;
+  text-align: right;
+}
+#footer a {
+  text-decoration: none;
+  /*color: #5d91db;*/
+  color: #0066cc;
+}
 .visibleDiv
 {
   position: fixed;

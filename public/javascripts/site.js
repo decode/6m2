@@ -1,16 +1,6 @@
 $(document).ready(function(){
   $(".formtastic").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  /*
-  $("#new_task").validationEngine('attach', {promptPosition : "centerRight", scroll: true});
-  $("#new_transport").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_notice").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_article").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_message").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_issue").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_participant").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_transaction").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  $("#new_article").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
-  */
+
   $("#user_new").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_edit").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#charge").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
@@ -18,9 +8,7 @@ $(document).ready(function(){
 
   $('#customer_service').easyListSplitter({ colNumber: 4 });
 
-
   /*$("#site-bar").jixedbar();*/
-
   /*
   setTimeout(function(){
     $('#slider').nivoSlider({ pauseTime:5000, pauseOnHover:false, effect:'fade' });
@@ -36,4 +24,6 @@ $(document).ready(function(){
 		auto: true,
 		auto_controls: false
 	});
+
+  $("#data_table").tablesorter(); 
 });
