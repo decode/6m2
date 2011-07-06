@@ -32,11 +32,14 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
   %body
-    #wrapper.container
+    #wrapper
+      /.container
       #toolbar
-        = link_to image_tag('home.png'), '/'
+        = link_to image_tag('home.png'), '/', {:title=>t('site.label')}
         \|
         - if user_signed_in?
+          = link_to image_tag('info.png'), notices_path, {:title=>t('site.notice_center')}
+          \|
           =t('site.welcome', :name => current_user.username)
           - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
           - if messages.length > 0
@@ -62,9 +65,21 @@
         #nicemenu
           %ul
             - if user_signed_in?
-              %li
-                %span.head_menu
-                  = link_to t('site.notice_center'), notices_path
+              - if guest? or user?
+                %li
+                  %span.short
+                    = link_to new_task_url do
+                      = image_tag('add.png')
+                      = t('site.new_task') 
+                %li
+                  %span.short
+                    = link_to '/m/charge' do
+                      = image_tag('add.png')
+                      = t('trade.charge_payment') 
+              /
+                %li
+                  %span.head_menu
+                    = link_to t('site.notice_center'), notices_path
               %li
                 %span.head_menu
                   = link_to t('site.task'), tasks_url
@@ -166,43 +181,29 @@
       #wide
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "#{name}"
-      /
-        :javascript
-          $.jnotify("#{flash[:notice]}");
-          /*jQuery.noticeAdd({
-                      text: "#{flash[:notice]}",
-                      stay: false
-              });*/
 
-      #space-left
-        %br
+      = yield
 
-      #middle
-        = yield
+    #push
 
-      #space-right
-        %br
-
-      /
-        - if user_signed_in?
-          .visibleDiv
-          #bottomRight
-
-      #push
-    #space-left
-      %br
-    #middle
-      #footer
-        - if user_signed_in?
-          = image_tag 'todo.png'
-          = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
-          \|
-          = image_tag 'tasks.png'
-          = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
-          \|
-        = t 'site.copyright'
-        ©
-        = t 'site.name'
-    #space-right
-
-
+    #footer
+      - if user_signed_in?
+        = image_tag 'todo.png'
+        = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, '/task_show/todo'
+        = t('task.w_cash')
+        = current_user.status_todos('price').length.to_s
+        = t('task.w_finish')
+        = current_user.status_todos('transport').length.to_s
+        \|
+        = image_tag 'tasks.png'
+        = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, '/task_show/task'
+        = t('task.w_price')
+        = current_user.status_tasks('running').length.to_s
+        = t('task.w_transport')
+        = current_user.status_tasks('cash').length.to_s
+        = t('task.w_end')
+        = current_user.status_tasks('finished').length.to_s
+        \|
+      = t 'site.copyright'
+      ©
+      = t 'site.name'

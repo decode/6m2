@@ -179,7 +179,10 @@
 	Cusco Sky table styles
 	written by Braulio Soncco http://www.buayacorp.com
 */
-
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
 table, th, td {
 	/*border: 1px solid #D4E0EE;*/
 	border-collapse: collapse;

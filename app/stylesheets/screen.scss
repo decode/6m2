@@ -56,7 +56,8 @@ body {
 
   #container {
     //max-width:100%;
-    @include container; }
+    //@include container; }
+    @include column($blueprint-grid-columns); }
   #toolbar {
     //background: #a9cff3 url(logo.png) no-repeat left;
     background: url(logo.png) no-repeat left;
@@ -107,15 +108,12 @@ body {
   }
   #notice {
     background-color: #90ee90;
-    height: 90%;
-    width: 92%;
     margin: 1px auto;
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px;
   }
   #error, #alert {
     background-color: #f9767f;
-    width: 92%;
     margin: 1px auto;
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px;
@@ -158,7 +156,9 @@ form {
 }
 
 html, body { height: 98%; margin: 0; }
-
+.maincontent {
+  height: 100%;
+}
 #wrapper{
   min-height: 100%;
   height: auto !important;
