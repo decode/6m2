@@ -23,13 +23,13 @@
       %th= dealer.nil? ? '-' : dealer.username
       %th= l issue.created_at, :format => :long
       %td
-        = link_to image_tag('view.png', :alt=>t('global.show')), issue
+        = link_to image_tag('view.png', :alt=>t('global.show')), issue, {:title => t('global.show')} 
         - if issue.open? or issue.user.nil?
           - if admin?
-            = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_issue_path(issue)
+            = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_issue_path(issue), {:title => t('global.edit')}
             = link_to image_tag('delete.png', :alt=>t('global.delete')), issue, :confirm => t('site.are_you_sure'), :method => :delete
           - if !issue.task_issue? and (admin? or manager?)
-            = link_to t('global.done'), :controller => 'board', :action => 'fix_issue', :id => issue if issue.can_fix?
-            = link_to t('global.close'), :controller => 'board', :action => 'close_issue', :id => issue if issue.can_shutdown?
+            = link_to t('global.done'), {:controller => 'board', :action => 'fix_issue', :id => issue}, {:confirm => t('site.are_you_sure')} if issue.can_fix?
+            = link_to t('global.close'), {:controller => 'board', :action => 'close_issue', :id => issue}, {:confirm => t('site.are_you_sure')} if issue.can_shutdown?
 %br/
 = will_paginate @issues

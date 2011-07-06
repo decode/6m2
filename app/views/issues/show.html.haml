@@ -17,6 +17,8 @@
     %p
       %b= t 'issue.target' 
       = link_to @task.title, @task #eval("#{@issue.itype}.find_by_id(#{@issue.target_id}).title")
+  %p
+    = @issue.description
 
 - if @issue.penalties.length > 0
   .bordershape

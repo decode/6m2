@@ -174,20 +174,20 @@ class BoardController < ApplicationController
           # 任务发布者造成的问题,返积分给任务执行者并确认这个任务完成
           #logger.info('user problem=======================')
           target_user = task.user
-          Task.transaction do
-            task.over
-          end
+          task.over
         else
           # 任务执行者造成的问题 
           target_user = task.worker
-          Task.transaction do
-            task.over
-          end
+          task.over
         end
+        issue.description = t('issue.task_source', :source => target_user.username)
+
         unless params[:return_point].blank?
           restore_spend(task) 
+          issue.description = issue.description + t('issue.point_to_owner')
         else
           gain(task)
+          issue.description = issue.description + t('issue.point_to_worker')
         end
         unless params[:penalty].blank?
           penalty(issue, target_user, params[:penalty_value].to_f)

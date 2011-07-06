@@ -496,6 +496,9 @@ en:
     target: "Target"
     issue_person: "Issue Person"
     task_issue_error: "Task issue can not closed or fixed"
+    task_source: "Wrong side: %{source} "
+    point_to_owner: "Restore to owner"
+    point_to_worker: "Restore to worker"
 
   notice:
     new_notice: "New Notice"

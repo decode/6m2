@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     #task.save
     point = task.point
     
-    logger.info("spend======================== #{point}")
+    #logger.info("spend======================== #{point}")
     price = task.price.nil? ? 0 : task.price
     res = user.account_credit - point
     if res > 0
@@ -75,11 +75,23 @@ class ApplicationController < ActionController::Base
   def restore_spend(task)
     user = task.user
     point = task.point
-    logger.info("restore spend========================#{point}")
+    #logger.info("restore spend========================#{point}")
     user.account_credit = user.account_credit + point
     user.payment_money = user.payment_money + task.price
     user.account_money = user.account_money + task.price
     user.save
+    #
+    # 需要添加用户交易记录
+    #
+    log = Tasklog.new
+    log.task_id = task.id
+    log.user_id = user.id
+    log.worker_id = user.id if user
+    log.price = task.price
+    log.point = task.point
+    log.status = task.status
+    log.description = I18n.t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + "  " + I18n.t('account.restore_point') + ":" + point.to_s
+    log.save!
   end
 
   def gain(task)
@@ -87,7 +99,7 @@ class ApplicationController < ActionController::Base
     setting = Setting.first
     ratio = setting.skilled_point_ratio
     lev = ([1] << [ratio]*4).flatten
-    logger.info("#{task.worker.username} score:#{lev[task.worker.level]} point:#{task.point}===========================================")
+    #logger.info("#{task.worker.username} score:#{lev[task.worker.level]} point:#{task.point}===========================================")
     user = task.worker
     user.score = user.score + setting.score_ratio
     real_point = task.point * lev[user.level]
