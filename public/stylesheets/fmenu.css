@@ -42,7 +42,8 @@ p { line-height:18px; }
 #nicemenu a.item_line { border-top:solid 1px #E5E5E5; padding-top:6px !important; margin-top:3px; }
 
 #nicemenu li span.short, #nicemenu li span.short a{ 
-  background-color: #999;
+  /*background-color: #64b1d8;*/
+  background-color: #648bd8;
 }	
 #nicemenu li span.short a:hover { 
   text-decoration:none; 

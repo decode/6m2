@@ -41,4 +41,9 @@ class Participant < ActiveRecord::Base
     return s[self.status]
   end
 
+  # 该帐号下发布的任务数
+  def own_tasks
+    return Task.where(:shop => self.part_id)
+  end
+
 end

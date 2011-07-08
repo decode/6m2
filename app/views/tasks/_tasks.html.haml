@@ -96,7 +96,7 @@
     %thead
       %tr
         %th
-        %th{:width=>'20%'}=t 'global.title'
+        %th=t 'global.title'
         %th=t 'global.type'
         %th=t 'global.price' 
         %th=t 'task.point'
@@ -121,7 +121,12 @@
           %td= task.price
           %td= task.point
           %td= link_to task.user.username, task.user unless task.user.nil?
-          %td= link_to task.worker.username, task.worker unless task.worker.nil?
+          %td
+            = link_to task.worker.username, task.worker unless task.worker.nil?
+            - if task.participant
+              = link_to "(#{task.worker_part_name})", task.participant
+            - else
+              = "(#{task.worker_part_name})" unless task.worker.nil?
           %td= task.local_status
           %td= task.worker_level
           %td
@@ -134,7 +139,11 @@
               = t 'task.finish_left', :day=>"#{task.task_day - day}"
           %td= convert_yes_no(task.custom_judge)
           %td= task.avoid_day
-          %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+          %td
+            - if (Date.today - task.published_time.to_date).to_i > 3
+              = l task.published_time, :format => :short
+            - else
+              = (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
           %td
             = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
             = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
@@ -183,7 +192,11 @@
             = t('task.work_day') + task.task_day.to_s + t('global.day')
             = t('task.level') + task.worker_level.to_s
             = t('task.extra') if task.custom_judge
-          %td= (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
+          %td
+            - if (Date.today - task.published_time.to_date).to_i > 3
+              = l task.published_time, :format => :short
+            - else
+              = (distance_of_time_in_words task.published_time, Time.now) + t('global.before')
           %td
             = link_to image_tag('do.png',:alt=>t('task.do')), {:controller=>'board', :action=>'do_task', :id=>task}, {:confirm => t('task.q_do'), :id=>'tip',:title=>t('task.do')} if task.can_takeover?
             - if task.user == current_user

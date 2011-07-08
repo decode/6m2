@@ -4,7 +4,7 @@ class AccountController < ApplicationController
     actions :index do
       allow all
     end
-    actions :charge, :process_charge, :payment, :process_payment, :charge_log, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money, :score_point do
+    actions :charge, :process_charge, :payment, :process_payment, :charge_log, :trade_log, :task_log, :small_cash, :big_cash, :transport_list, :operate_password, :message, :participant, :business, :point_money, :score_point, :participant_tasks do
       allow :user, :guest, :salesman
     end
     actions :delete_charge do
@@ -280,9 +280,22 @@ class AccountController < ApplicationController
 
   # 小号任务列表
   def participant_tasks
-    @participant = current_user.participants.find(params[:id])
-    @tasks = @participant.tasks.order("created_at DESC").paginate(:page=>params[:page], :per_page=>10)
-    render 'tasks/_tasks'
+    if secret_access?
+      @participant = Participant.find(params[:id])
+    else
+      @participant = current_user.participants.find(params[:id])
+    end
+    if @participant
+      if @participant.role_type == 'customer'
+        @tasks = @participant.tasks.order("created_at DESC").paginate(:page=>params[:page], :per_page=>15)
+      else
+        @tasks = @participant.own_tasks.order("created_at DESC").paginate(:page=>params[:page], :per_page=>15)
+      end
+      render 'tasks/_tasks'
+    else
+      flash[:error] = t('global.operate_failed')
+      redirect_to participants_path
+    end
   end
   
   def transport_list

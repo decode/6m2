@@ -32,6 +32,7 @@ class BoardController < ApplicationController
       else
         redirect_to '/s/access_denied'
       end
+    # 全局待付款的任务
     elsif params[:task_type] == "payment"
       session[:view_task] = 'payment'
       @tasks = Task.where("task_type != ? and status = ?", 'cash', 'price').group('worker_id').order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
@@ -56,7 +57,13 @@ class BoardController < ApplicationController
   end
 
   def status_task
-    @tasks = Task.where("status = ?", params[:task_status]).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    @tasks = current_user.tasks.where("status = ?", params[:task_status]).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
+    render 'tasks/_tasks'
+  end
+
+  def status_todo
+    @tasks = current_user.todos.where("status = ?", params[:task_status]).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
+    render 'tasks/_tasks'
   end
   
   def do_task
@@ -397,16 +404,10 @@ class BoardController < ApplicationController
   #
   # 任务日志管理
   def tasklogs
-    @tasks = Tasklog.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
-    session[:view_log] = 'admin'
-  end
+    username = session[:username]
+    from = session[:from]
+    to = session[:to]
     
-  def search_task_log
-    from = params[:from]
-    to = params[:to]
-    session[:username] = params[:username]
-    session[:from] = from
-    session[:to] = to
     if from.blank? or to.blank?
       @tasks= Tasklog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
     else
@@ -420,28 +421,32 @@ class BoardController < ApplicationController
         @tasks= Tasklog.where(:created_at => from.to_datetime..to.to_datetime)
       end
     end
-    if params[:username].blank?
+    if username.blank?
       #redirect_to '/t/tasklogs'
       @tasks = @tasks.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
     else
-      @tasks = Tasklog.where("user_name like ? or worker_name like ?", "%#{params[:username]}%", "%#{params[:username]}%").paginate(:page => params[:page], :per_page => 15) 
+      @tasks = Tasklog.where("user_name like ? or worker_name like ?", "%#{username}%", "%#{username}%").paginate(:page => params[:page], :per_page => 15) 
     end
-    render 'board/tasklogs'
-  end
-  # ===========================================
-  #
-  # 帐户日志管理
-  def accountlogs
-    @trades = Accountlog.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+
     session[:view_log] = 'admin'
   end
-
-  def search_account_log
+    
+  def search_task_log
     from = params[:from]
     to = params[:to]
     session[:username] = params[:username]
     session[:from] = from
     session[:to] = to
+    redirect_to :action => 'tasklogs'
+  end
+  # ===========================================
+  #
+  # 帐户日志管理
+  def accountlogs
+    username = session[:username]
+    from = session[:from]
+    to = session[:to]
+
     if from.blank? or to.blank?
       @trades = Accountlog.where(:created_at => Time.now.at_beginning_of_month..Time.now.at_end_of_month)
     else
@@ -455,13 +460,22 @@ class BoardController < ApplicationController
         @trades= Accountlog.where(:created_at => from.to_datetime..to.to_datetime)
       end
     end
-    if params[:username].blank?
+    if username.blank?
       #redirect_to '/t/accountlogs'
       @trades = @trades.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
     else
-      @trades = @trades.where('user_name like ? or operator_name like ?', "%#{params[:username]}%", "%#{params[:username]}%").order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
+      @trades = @trades.where('user_name like ? or operator_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
     end
-    render 'board/accountlogs'
+    session[:view_log] = 'admin'
+  end
+
+  def search_account_log
+    from = params[:from]
+    to = params[:to]
+    session[:username] = params[:username]
+    session[:from] = from
+    session[:to] = to
+    redirect_to :action => 'accountlogs'
   end
   # ===========================================
   #
