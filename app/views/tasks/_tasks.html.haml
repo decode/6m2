@@ -163,7 +163,7 @@
   = will_paginate @tasks
 
 - else 
-  %table
+  %table{:id=>'data_table', :class=>'tablesorter'}
     %caption
       /=t('site.task')
     %thead
