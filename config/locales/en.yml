@@ -385,6 +385,7 @@ en:
     p4: ""
     p5: ""
     p6: ""
+    taskday_hint: "You'd better choose more than one days"
 
   transport:
     unused: "Unused"
