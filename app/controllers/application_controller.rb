@@ -15,11 +15,13 @@ class ApplicationController < ActionController::Base
     unless task.free_task?
       # 按金额计算
       step = [40, 80, 120, 200, 500, 1000, 1500]
+      #step = [79, 119, 179, 259, 359, 499, 699, 999]
       if task.virtual_task?
         p = [1, 2, 3, 4, 5, 6, 7] 
       else
         #p = [1, 1.5, 2, 3, 4, 5, 6]
         p = [1, 1, 1, 1, 1, 1, 1]
+        #p = [1, 1.5, 2, 2.5, 3, 4, 5, 6]
       end
       index = step.select{ |s| s < task.price }.length
       point = p[ index==step.length ? index-1 : index ]
