@@ -29,6 +29,22 @@
     $(function() {
       $('#tip').tipsy({gravity: 's'});
     });
+
+:javascript
+  $(function() {
+    $("tr").hover(
+    function () {
+      var detail = $(this).find('#task_detail');
+      detail.show('normal');
+    }
+    );
+    $("tr").mouseleave(
+    function () {
+      var detail = $(this).find('#task_detail');
+      detail.hide('fast');
+    }
+    );
+  });
 .bordershape
   = convert_shop_type('taobao')
   = '-' + t('task.normal_task')
@@ -96,17 +112,14 @@
     %thead
       %tr
         %th
-        %th=t 'global.title'
         %th=t 'global.type'
+        %th=t 'global.title'
         %th=t 'global.price' 
         %th=t 'task.point'
         %th=t 'task.owner'
         %th=t 'task.worker'
         %th=t 'global.status'
-        %th=t 'task.level'
         %th=t 'task.work_day'
-        %th=t 'task.extra'
-        %th=t 'formtastic.labels.task.avoid_day'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
 
@@ -115,9 +128,22 @@
         - c = cycle("even", "odd")
         %tr{:class=>c}
           %td= task.id
-          %td= task.title.length > 10 ? task.title[0, 10] + "..." : task.title
           %td
             = convert_shop_type(task.task_type)
+          %td{:width=>'20%'}
+            = task.title.length > 20 ? task.title[0, 20] + "..." : task.title
+            #task_detail{:style=>'display:none'}
+              - if task.worker_level > 0
+                =t 'task.level'
+                = task.worker_level
+              =t 'task.work_day'
+              = task.task_day
+              =t 'formtastic.labels.task.avoid_day'
+              = task.avoid_day
+              - if task.custom_judge
+                =t 'task.extra'
+              - if task.custom_msg
+                =t 'formtastic.labels.task.custom_msg'
           %td= task.price
           %td= task.point
           %td= link_to task.user.username, task.user unless task.user.nil?
@@ -128,17 +154,13 @@
             - else
               = "(#{task.worker_part_name})" unless task.worker.nil?
           %td= task.local_status
-          %td= task.worker_level
           %td
-            = task.task_day 
             - if task.transport_time and task.transport?
               - if Time.now.month - task.transport_time.month != 0
                 - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
               - else
                 - day = Time.now.day - task.transport_time.day
               = t 'task.finish_left', :day=>"#{task.task_day - day}"
-          %td= convert_yes_no(task.custom_judge)
-          %td= task.avoid_day
           %td
             - if (Date.today - task.published_time.to_date).to_i > 3
               = l task.published_time, :format => :short

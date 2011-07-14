@@ -25,6 +25,10 @@ class CreateSettings < ActiveRecord::Migration
       # 自定义评价消耗点数
       t.float :custom_judge, :default => 0.5
       #t.float :extra_word, :default => 1
+      # 客户留言
+      t.float :custom_msg, :default => 0.2
+      # 五星评价
+      t.float :all_star, :default => 0.2
 
       # 真实交易号级别
       t.integer :real_level, :default => 5

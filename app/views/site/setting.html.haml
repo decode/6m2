@@ -43,6 +43,12 @@
         = label_tag t('setting.custom_judge')
         = number_field_tag 'setting[custom_judge]', @setting.custom_judge
       %li
+        = label_tag t('setting.custom_msg')
+        = number_field_tag 'setting[custom_msg]', @setting.custom_msg
+      %li
+        = label_tag t('setting.all_star')
+        = number_field_tag 'setting[all_star]', @setting.all_star
+      %li
         = label_tag t('setting.real_level')
         = number_field_tag 'setting[real_level]', @setting.real_level
 

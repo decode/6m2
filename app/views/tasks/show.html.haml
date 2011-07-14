@@ -62,11 +62,20 @@
       = t 'formtastic.labels.task.extra_word'
       = @task.extra_word
     %br
+    = t 'formtastic.labels.task.all_star'
+    = convert_yes_no(@task.all_star)
+    %br
     = t 'formtastic.labels.task.custom_judge'
     = convert_yes_no(@task.custom_judge)
     %br
     = t 'formtastic.labels.task.custom_judge_content'
     = @task.custom_judge_content
+    %br
+    = t 'formtastic.labels.task.custom_msg'
+    = convert_yes_no(@task.custom_msg)
+    %br
+    = t 'formtastic.labels.task.custom_msg_content'
+    = @task.custom_msg_content
 
 #right
   .bordershape

@@ -81,9 +81,9 @@ class BoardController < ApplicationController
         @task.worker_part_name = current_user.active_participant.part_id
 
         if @task.takeover
-          msg = Message.create :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
-          msg.receivers << @task.user
-          msg.save
+          #msg = Message.create :title => t('message.task_takeover', :task => @task.title), :content => t('message.task_takeover_content', :task => @task.title, :link => @task.id.to_s)
+          #msg.receivers << @task.user
+          #msg.save
           flash[:notice] = t('task.do_task') 
         else
           flash[:error] = t('global.operate_failed') 
@@ -98,9 +98,9 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.pay_time = Time.now
       if @task.running? and @task.pricing
-        msg = Message.create :title => t('message.task_pricing', :task => @task.title), :content => t('message.task_pricing_content', :task => @task.title, :link => @task.id.to_s)
-        msg.receivers << @task.worker
-        msg.save
+        #msg = Message.create :title => t('message.task_pricing', :task => @task.title), :content => t('message.task_pricing_content', :task => @task.title, :link => @task.id.to_s)
+        #msg.receivers << @task.worker
+        #msg.save
         flash[:notice] = t('global.update_success')
       end
     end
@@ -112,9 +112,9 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.pay_time = Time.now
       if @task.price? and @task.pay
-        msg = Message.create :title => t('message.task_pay', :task => @task.title), :content => t('message.task_pay_content', :task => @task.title, :link => @task.id.to_s)
-        msg.receivers << @task.user
-        msg.save
+        #msg = Message.create :title => t('message.task_pay', :task => @task.title), :content => t('message.task_pay_content', :task => @task.title, :link => @task.id.to_s)
+        #msg.receivers << @task.user
+        #msg.save
         flash[:notice] = t('global.update_success')
       end
     end
@@ -126,9 +126,9 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.transport_time = Time.now
       if @task.cash? and @task.trans
-        msg = Message.create :title => t('message.task_transport', :task => @task.title), :content => t('message.task_transport_content', :task => @task.title, :link => @task.id.to_s)
-        msg.receivers << @task.worker
-        msg.save
+        #msg = Message.create :title => t('message.task_transport', :task => @task.title), :content => t('message.task_transport_content', :task => @task.title, :link => @task.id.to_s)
+        #msg.receivers << @task.worker
+        #msg.save
         flash[:notice] = t('global.update_success')
       end
     end
@@ -140,9 +140,9 @@ class BoardController < ApplicationController
     Task.transaction do
       @task.finished_time = Time.now
       if @task.finish
-        msg = Message.create :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :task => @task.title, :link => @task.id.to_s)
-        msg.receivers << @task.user
-        msg.save
+        #msg = Message.create :title => t('message.task_finish', :task => @task.title), :content => t('message.task_finish_content', :task => @task.title, :link => @task.id.to_s)
+        #msg.receivers << @task.user
+        #msg.save
         flash[:notice] = t('global.update_success')
       end
     end
@@ -163,9 +163,9 @@ class BoardController < ApplicationController
       task.confirmed_time = Time.now
       if task.over
         gain(task)
-        msg = Message.create :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
-        msg.receivers << task.worker
-        msg.save
+        #msg = Message.create :title => t('message.task_confirm', :task => task.title), :content => t('message.task_confirm_content', :task => task.title, :link => task.id.to_s)
+        #msg.receivers << task.worker
+        #msg.save
         flash[:notice] = t('task.confirm_success')
       end
     end

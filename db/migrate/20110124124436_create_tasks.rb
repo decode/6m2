@@ -30,6 +30,10 @@ class CreateTasks < ActiveRecord::Migration
       t.boolean :custom_judge, :default => false
       t.string :custom_judge_content
       t.integer :real_level, :default => 0 #实际接任务的帐户级别
+      # Add at 201107141942
+      t.boolean :all_star, :default => false #5星评价
+      t.boolean :msg, :default => false #客户留言
+      t.string :msg_content #客户留言内容
 
       t.timestamps
 

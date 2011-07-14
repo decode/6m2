@@ -36,6 +36,12 @@ class ApplicationController < ActionController::Base
       # 自定义评价
       point = point + Setting.first.custom_judge if task.custom_judge
 
+      # 自定义留言
+      point = point + Setting.first.custom_msg if task.custom_msg
+
+      # 自定义星级评价
+      point = point + Setting.first.all_star if task.all_star
+
       # 接任务人等级
       level = [0, 1, 2, 3, 4, 5]
       #point = point + level[task.worker_level]
