@@ -104,7 +104,7 @@ class BoardController < ApplicationController
         flash[:notice] = t('global.update_success')
       end
     end
-    redirect_to '/task_show/todo'
+    redirect_to '/task_show/task'
   end
 
   def pay_task

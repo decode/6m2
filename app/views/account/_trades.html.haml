@@ -36,9 +36,9 @@
         - if t.request?
           - if admin?# or manager?)
             - if t.trade_type != 'charge'
-              = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_pass', :id=>t
+              = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_pass', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'), :class=>'operate'}
             - else
-              = link_to image_tag('ok.png', :alt=>t('trade.approve')), :controller=>'account', :action=>'approve_charge', :id=>t
-            = link_to image_tag('no.png', :alt=>t('trade.reject')), :controller=>'account', :action=>'approve_reject', :id=>t
-          = link_to image_tag('delete.png', :alt=>t('global.delete')), {:controller => 'account', :action => 'delete_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+              = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'),:class=>'operate'}
+            = link_to image_tag('no.png', :alt=>t('trade.reject')), {:controller=>'account', :action=>'approve_reject', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.reject'),:class=>'operate'}
+          = link_to image_tag('delete.png', :alt=>t('global.delete')), {:controller => 'account', :action => 'delete_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete'), :class=>'operate'}
 = will_paginate @trades

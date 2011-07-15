@@ -60,13 +60,13 @@
       %td
         - if admin? or manager? or superadmin?
           - if superadmin?
-            = link_to image_tag('state.png', :alt=>t('global.status')), :controller => 'account', :action => 'user_state', :id => user
-          = link_to image_tag('point.png', :alt=>t('account.point')), :controller => 'account', :action => 'point', :id => user
-          = link_to image_tag('password.png', :alt=>t('site.password')), :controller => 'account', :action => 'password', :id => user
-          = link_to image_tag('role.png', :alt=>t('account.role')), :controller => 'account', :action => 'role', :id => user
-          = link_to image_tag('score.png', :alt=>t('account.score')), :controller => 'account', :action => 'score', :id => user
-          = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), :controller => 'account', :action => 'operate_password', :id => user
-          = link_to image_tag('activate.png', :alt=>t('account.confirm')), :controller => 'account', :action => 'confirm', :id => user unless user.confirmed?
+            = link_to image_tag('state.png', :alt=>t('global.status')), {:controller => 'account', :action => 'user_state', :id => user}, {:class=>'operate'}
+          = link_to image_tag('point.png', :alt=>t('account.point')), {:controller => 'account', :action => 'point', :id => user}, {:class=>'operate'}
+          = link_to image_tag('password.png', :alt=>t('site.password')), {:controller => 'account', :action => 'password', :id => user}, {:class=>'operate'}
+          = link_to image_tag('role.png', :alt=>t('account.role')), {:controller => 'account', :action => 'role', :id => user}, {:class=>'operate'}
+          = link_to image_tag('score.png', :alt=>t('account.score')), {:controller => 'account', :action => 'score', :id => user}, {:class=>'operate'}
+          = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), {:controller => 'account', :action => 'operate_password', :id => user}, {:class=>'operate'}
+          = link_to image_tag('activate.png', :alt=>t('account.confirm')), {:controller => 'account', :action => 'confirm', :id => user}, {:class=>'operate'} unless user.confirmed?
       %td
         = link_to image_tag('view.png', :alt=>t('global.show')), user
         - if superadmin?
