@@ -89,7 +89,7 @@ class BoardController < ApplicationController
           flash[:error] = t('global.operate_failed') 
         end
       end
-      redirect_to '/task_show/todo'
+      redirect_to @task#'/task_show/todo'
     end
   end
 

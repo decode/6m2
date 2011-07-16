@@ -19,6 +19,7 @@ gem 'devise' # Devise must be required before RailsAdmin
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 gem 'formtastic'#, '~> 1.2.3'
+gem "simple_form"
 
 gem 'state_machine'
 

@@ -131,9 +131,9 @@
           %td= task.id
           %td
             = convert_shop_type(task.task_type)
-          %td{:width=>'20%'}
+          %td
             = task.title.length > 10 ? task.title[0, 10] + "..." : task.title
-            %span{:id=>'task_operate',:style=>'display:none'}
+            %div{:id=>'task_operate',:style=>'display:none'}
               = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
               - if task.can_modify?
                 = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}
@@ -223,7 +223,7 @@
           %td
             = task.title.length > 10 ? task.title[0, 10] + "..." : task.title
             - if task.user == current_user
-              %span{:id=>'task_operate',:style=>'display:none'}
+              %div{:id=>'task_operate',:style=>'display:none'}
                 = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
                 - if task.can_modify?
                   = link_to image_tag('edit.png'), edit_task_url(task), {:id=>'tip', :title=>t('global.edit')}

@@ -1,0 +1,84 @@
+zh:
+
+  helpers:
+    submit:
+      task:
+        create: "发布任务"
+        update: "更新任务"
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: '必填'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Some errors were found, please take a look:"
+    # Labels and hints examples
+    # labels:
+    #   password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail para efetuar o sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   username: 'User name to sign in.'
+    #   password: 'No special characters, please.'
+    labels:
+      task:
+        title: "任务标题"
+        task_type: "任务类型"
+        description: "任务描述"
+        price: "担保金"
+        status: "状态"
+        link: "链接"
+        worker_level: "接手人平台级别"
+        real_level: "真实信用级别(买家信用级别)"
+        task_day: "完成时间"
+        extra_word: "是否带字好评"
+        avoid_day: "用户任务间隔天数"
+        task_level: "任务级别"
+        all_star: "用户5星评价"
+        custom_judge: "自定义评价"
+        custom_judge_content: "评价内容"
+        custom_msg: "自定义用户留言"
+        custom_msg_content: "留言内容"
+        tran_type: "物流"
+        tran_id: "物流单号"
+        published_time: "发布时间"
+        takeover_time: "接手时间"
+        pay_time: "付款时间"
+        transport_time: "发货时间"
+        finished_time: "完成时间"
+        confirmed_time: "确认时间"
+        shop: "掌柜名"
+    hints:
+      task:
+        title: "为任务写一个标题,必须大于5个字"
+        task_type: "taobao, paipai, youa任务.还可发布提现任务,与当前绑定的店铺帐号相关联"
+        price: "担保金=商品价格+邮费"
+        status: "必须选择发布之后,任务才会发布到任务中心,任务发布之后,不能修改,请认真核实"
+        link: "真实交易链接,链接的商品必须是店铺里的商品"
+        tran_type: "发货的快递公司,如果不选系统自动随机生成,可以填写从运单市场上购买的运单号"
+        tran_id: "发货的运单号,如果不填系统自动生成"
+        description: "为任务写一些描述性的文字,可以不写"
+        worker_level: "接任务人在平台中的级别,不选则任何级别的平台用户都可见"
+        real_level: "指定接任务人小号的级别"
+        task_day: "多少天完成给评价,卖家发货后间隔的收货确认天数"
+        avoid_day: "设置多少天内同一买家不能接受任务,本项设置为额外服务,平台本身己对安全交易有限制"
+        extra_word: "不选则是默认不带字好评"
+        all_star: "设置后,买家必须全5星评价,不设置则买家随意打分"
+        custom_judge: "收货后的评价"
+        custom_judge_content: "要求接任务的买家在评价中填写的内容,必须选中自定义评价此项才有效,可以不填让买家自己写评价"
+        custom_msg: "用户买东西之后的留言"
+        custom_msg_content: "自定义用户在留言栏中的内容,如商品的颜色尺寸等,增加可信度,必须选中自定义留言此项才有效,可以不填"
+        transport_id: "如果不填系统自动生成一个单号"
+        shop: "店铺名称,必须和绑定的店铺对应"
+        virtual: "选中则发布为虚拟任务"
+    placeholders:
+      task:
+        link: "http://www..."
+

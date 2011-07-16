@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $(".formtastic").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
+  $(".simple_form").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
 
   $("#user_new").validationEngine('attach', {promptPosition : "centerRight", scroll: false});
   $("#user_edit").validationEngine('attach', {promptPosition : "centerRight", scroll: false});

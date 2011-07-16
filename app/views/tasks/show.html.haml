@@ -24,7 +24,7 @@
 
     %p
       %b=t 'global.links' 
-      = @task.link
+      = link_to @task.link, @task.link
 
     %p
       %b=t 'global.price' 
@@ -69,13 +69,13 @@
     = convert_yes_no(@task.custom_judge)
     %br
     = t 'formtastic.labels.task.custom_judge_content'
-    = @task.custom_judge_content
+    = h @task.custom_judge_content
     %br
     = t 'formtastic.labels.task.custom_msg'
     = convert_yes_no(@task.custom_msg)
     %br
     = t 'formtastic.labels.task.custom_msg_content'
-    = @task.custom_msg_content
+    = h @task.custom_msg_content
 
 #right
   .bordershape
