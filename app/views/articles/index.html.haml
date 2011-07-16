@@ -13,8 +13,8 @@
       %th
     - @articles.each do |article|
       %tr
-        %td= article.title.length > 30 ? article.title[0, 30]+'...' : article.title
-        %td= (article.content.length > 60) ? article.content[0..60] + "..." : article.content
+        %td= article.title.length > 20 ? article.title[0, 20]+'...' : article.title
+        %td= (article.content.length > 40) ? article.content[0..40] + "..." : article.content
         %td= article.article_type
         %td= article.user.username if article.user
         %td= link_to image_tag('view.png', :alt=>t('global.show')), article

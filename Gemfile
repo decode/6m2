@@ -32,8 +32,10 @@ gem "fancy-buttons"
 
 gem 'rails3-jquery-autocomplete'
 
-gem 'tiny_mce'
+#gem 'tiny_mce'
 gem 'exception_notification'
+
+gem 'rmagick', :require=>false
 #gem "meta_where"
 #gem "meta_search"
 

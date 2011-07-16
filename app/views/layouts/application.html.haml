@@ -14,7 +14,7 @@
     =# javascript_include_tag 'rails'
     = stylesheet_link_tag 'formtastic','formtastic_changes'
     = formtastic_stylesheet_link_tag
-    = include_tiny_mce_if_needed
+    =# include_tiny_mce_if_needed
     = javascript_include_tag "autocomplete-rails.js"
     = javascript_include_tag 'infogrid', 'fmenu', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy', 'jquery.tablesorter.min'
     = stylesheet_link_tag 'infogrid', 'fmenu', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy'
@@ -30,6 +30,8 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+
+    = tinymce_managed_javascript_tag "articles"
 
   %body
     #wrapper
