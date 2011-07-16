@@ -1,4 +1,11 @@
-#left3
+
+#nav
+  = link_to t('account.info_basic'), '#', {:title=>'info_basic'}
+  = link_to t('account.info_account'), '#', {:title=>'info_account'}
+  = link_to t('account.info_task'), '#', {:title=>'info_task'}
+  .clear
+
+#info_basic.hiddencontent
   %p
     %b= t 'site.login_name'
     = @user.username
@@ -17,36 +24,30 @@
   %p
     %b= t 'formtastic.labels.user.current_sign_in_at'
     = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
-  %br
 
-#middle3
-  %ul
+#info_account.hiddencontent
+  %p
+    = t 'account.charge_amount'
+    = @user.account_money
+  %p
+    = t 'account.point'
+    = @user.account_credit
+  /
     %li
-      = t 'account.charge_amount'
-      = @user.account_money
-    %li
-      = t 'account.point'
-      = @user.account_credit
-    /
-      %li
-        = t 'trade.payment_amount'
-        = @user.payment_money
-    %li
-      = t 'account.score'
-      = @user.score
-
+      = t 'trade.payment_amount'
+      = @user.payment_money
+  %p
+    = t 'account.score'
+    = @user.score
   - if admin?
-    %ul
-      %li
-        = t 'task.total_finish_todo_payment'
-        = @user.status_todos('finished').sum('price')
-      %li
-        = t 'task.total_finish_todo_point'
-        = @user.status_todos('finished').sum('point')
-  %br
-  %br
+    %p
+      = t 'task.total_finish_todo_payment'
+      = @user.status_todos('finished').sum('price')
+    %p
+      = t 'task.total_finish_todo_point'
+      = @user.status_todos('finished').sum('point')
 
-#right3-fake
+#info_task.hiddencontent
   %p
     = t 'task.total_todo_payment'
     = @user.status_todos('running').sum('price')
@@ -68,5 +69,4 @@
   %p
     = t 'task.problem'
     = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
-  %br
 

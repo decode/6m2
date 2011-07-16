@@ -667,3 +667,55 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 #task_detail {
   font-size: 80%;
 }
+
+/* line 482, ../../../app/stylesheets/site.scss */
+#nav a, #nav a:active, #nav a:visited {
+  display: block;
+  float: left;
+  padding: 5px 8px;
+  background: #DAF1C9;
+  color: green;
+  margin-right: 10px;
+  text-decoration: none;
+  outline: none;
+}
+
+/* line 492, ../../../app/stylesheets/site.scss */
+#nav a.selected, #nav a.selected:active, #nav a.selected:visited {
+  background: #C51D1D;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+/* line 498, ../../../app/stylesheets/site.scss */
+#nav2 a, #nav2 a:active, #nav2 a:visited {
+  display: block;
+  float: left;
+  padding: 5px 8px;
+  background: #DAF1C9;
+  color: green;
+  margin-right: 10px;
+  text-decoration: none;
+  outline: none;
+}
+
+/* line 508, ../../../app/stylesheets/site.scss */
+#nav2 a.selected, #nav2 a.selected:active, #nav2 a.selected:visited {
+  background: #C51D1D;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+/* line 514, ../../../app/stylesheets/site.scss */
+.hiddencontent, .hiddencontent2 {
+  padding: 12px;
+  background: white;
+  display: none;
+}
+
+/* line 519, ../../../app/stylesheets/site.scss */
+.clear {
+  clear: both;
+}

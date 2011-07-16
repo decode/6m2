@@ -308,6 +308,9 @@ zh:
     delete_account: " 删除帐户"
     modify_point: "修改发布点"
     tid: "充值ID"
+    info_basic: "基本信息"
+    info_account: "帐户信息"
+    info_task: "任务信息"
 
   participant:
     user: "用户"

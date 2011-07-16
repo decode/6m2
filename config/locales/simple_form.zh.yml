@@ -44,7 +44,7 @@ zh:
         all_star: "用户5星评价"
         custom_judge: "自定义评价"
         custom_judge_content: "评价内容"
-        custom_msg: "自定义用户留言"
+        custom_msg: "自定义购买留言"
         custom_msg_content: "留言内容"
         tran_type: "物流"
         tran_id: "物流单号"
@@ -59,7 +59,7 @@ zh:
       task:
         title: "为任务写一个标题,必须大于5个字"
         task_type: "taobao, paipai, youa任务.还可发布提现任务,与当前绑定的店铺帐号相关联"
-        price: "担保金=商品价格+邮费"
+        price: "担保金=商品价格+邮费, 买家拍下之后, 如果价格不符, 请及时改价"
         status: "必须选择发布之后,任务才会发布到任务中心,任务发布之后,不能修改,请认真核实"
         link: "真实交易链接,链接的商品必须是店铺里的商品"
         tran_type: "发货的快递公司,如果不选系统自动随机生成,可以填写从运单市场上购买的运单号"
@@ -73,7 +73,7 @@ zh:
         all_star: "设置后,买家必须全5星评价,不设置则买家随意打分"
         custom_judge: "收货后的评价"
         custom_judge_content: "要求接任务的买家在评价中填写的内容,必须选中自定义评价此项才有效,可以不填让买家自己写评价"
-        custom_msg: "用户买东西之后的留言"
+        custom_msg: "用户拍下东西之后,发货前给卖家的留言"
         custom_msg_content: "自定义用户在留言栏中的内容,如商品的颜色尺寸等,增加可信度,必须选中自定义留言此项才有效,可以不填"
         transport_id: "如果不填系统自动生成一个单号"
         shop: "店铺名称,必须和绑定的店铺对应"
@@ -81,4 +81,6 @@ zh:
     placeholders:
       task:
         link: "http://www..."
+        custom_msg_content: "例如: 码数, 尺寸, 颜色..."
+        custom_judge_content: "例如: 东西非常好,下次再来..."
 

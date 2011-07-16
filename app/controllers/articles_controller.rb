@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  layout 'article'
   include TinymceFilemanager
   access_control do
     allow :admin, :manager, :user

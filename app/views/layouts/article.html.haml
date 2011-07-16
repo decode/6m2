@@ -28,6 +28,8 @@
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
+    = tinymce_managed_javascript_tag "articles"
+
   %body
     #wrapper
       /.container
