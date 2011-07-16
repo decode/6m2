@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/tinymce_filemanager"]
+	path = vendor/plugins/tinymce_filemanager
+	url = git://github.com/galdomedia/tinymce_filemanager.git
