@@ -109,7 +109,8 @@ class UsersController < ApplicationController
     log_str = t('global.modify') + t('site.user_info')
     isPass = true
     if session[:user_edit_mode] == 'code'
-      isPass = false if !@user.operate_password.nil? and (params[:old_password] != @user.operate_password or current_user.has_role? 'admin')
+      isPass = false if !@user.operate_password.blank? and params[:old_password] != @user.operate_password
+      isPass = true if current_user.has_role? 'admin'
       log_str = t('global.modify') + t('site.operate_password')
     end
     respond_to do |format|
@@ -124,7 +125,8 @@ class UsersController < ApplicationController
           format.html { redirect_to(@user, :notice => t('account.update_success')) }
           format.xml  { head :ok }
         else
-          format.html { redirect_to(:back, :error => t('account.update_failed')) }
+          flash[:error] = t('account.update_failed')
+          format.html { redirect_to :back }
           format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
         end
       end
