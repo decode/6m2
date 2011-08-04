@@ -10,6 +10,7 @@ class CreateParticipants < ActiveRecord::Migration
       t.integer :score
       t.float :life
       t.boolean :active
+      t.string :description
 
       t.references :user
 

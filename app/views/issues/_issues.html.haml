@@ -4,7 +4,6 @@
   %thead
     %tr
       %th= t 'global.title'
-      %th= t 'global.content'
       %th= t 'global.status'
       %th= t 'site.login_name'
       %th= t 'global.type'
@@ -12,10 +11,8 @@
       %th= t 'global.created_at'
       %th
   - @issues.each do |issue|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
+    %tr{:class=>'double'}
       %td= issue.title
-      %td= issue.content
       %td= issue.status
       %th= issue.user.username if issue.user
       %th= issue.itype
@@ -31,5 +28,11 @@
           - if !issue.task_issue? and (admin? or manager?)
             = link_to t('global.done'), {:controller => 'board', :action => 'fix_issue', :id => issue}, {:confirm => t('site.are_you_sure')} if issue.can_fix?
             = link_to t('global.close'), {:controller => 'board', :action => 'close_issue', :id => issue}, {:confirm => t('site.are_you_sure')} if issue.can_shutdown?
-%br/
-= will_paginate @issues
+    %tr
+      %td{:colspan=>8}
+        #task_detail
+          = issue.content.length > 30 ? issue.content[0,30]+'...' : issue.content
+  %tfoot
+    %tr
+      %th{:colspan=>8}
+        = will_paginate @issues

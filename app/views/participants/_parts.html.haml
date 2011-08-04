@@ -18,6 +18,7 @@
         %th= t 'formtastic.labels.participant.status'
         %th= t 'formtastic.labels.participant.active'
         %th= t 'global.task'
+        %th= t 'formtastic.labels.participant.description'
         %th
     - @participants.each do |participant|
       %tr
@@ -31,11 +32,12 @@
           - else
             = link_to t('participant.make_active'), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')}
         %td= link_to participant.tasks.length, :controller=>'account', :action=>'participant_tasks', :id=> participant
+        %td= participant.description
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?
             = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
-            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')} if participant.tasks.length == 0
   = will_paginate @participants
 
 #equal-right
@@ -48,6 +50,7 @@
         %th= t 'formtastic.labels.participant.status'
         %th= t 'formtastic.labels.participant.active'
         %th= t 'global.task'
+        %th= t 'formtastic.labels.participant.description'
         %th
     - @shops.each do |participant|
       %tr
@@ -61,9 +64,10 @@
           - else
             = link_to t('participant.make_active'), {:controller=>'board', :action=>'active_participant', :id=>participant.id}, {:title=>t('participant.make_active')}
         %td= link_to participant.own_tasks.length, :controller=>'account', :action=>'participant_tasks', :id=> participant
+        %td= participant.description
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
           - if admin?
             = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
-            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+            = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')} if participant.own_tasks.length == 0
   = will_paginate @shops

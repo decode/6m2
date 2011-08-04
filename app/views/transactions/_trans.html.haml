@@ -1,6 +1,5 @@
 %table
   %caption
-
   %thead
     %tr
       %th= t 'formtastic.labels.transaction.tid' 
@@ -13,14 +12,11 @@
         %th= t 'transaction.sales'
         %th= t 'formtastic.labels.transaction.account_name'
         %th= t 'formtastic.labels.transaction.point'
-      %th= t 'formtastic.labels.transaction.trade_time' 
-      %th
-        = t 'formtastic.labels.transaction.description' 
       %th
         = link_to image_tag('save_01.png')+t('global.export'), '/t/export_transaction'
   %tbody
     - @transactions.each do |transaction|
-      %tr
+      %tr{:class=>'double'}
         %td= transaction.tid
         %td= transaction.amount
         %td= transaction.name
@@ -31,14 +27,26 @@
             = transaction.user.username if transaction.user
           %td
             = link_to transaction.sales.username, :controller => 'account', :action => 'business', :id => transaction.sales if transaction.sales
-          %td= transaction.account_name
+          %td
+            - user = User.where(:username => transaction.account_name).first
+            - if user
+              = link_to transaction.account_name, :controller => 'board', :action => 'trans_list', :id => user
+            - else
+              = transaction.account_name
           %td= transaction.point
-        %td= l transaction.trade_time, :format => :long
-        %td= transaction.description
         %td
           = link_to image_tag('view.png', :alt=>t('global.show')), transaction
           - if admin?
             = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_transaction_path(transaction)
             = link_to image_tag('delete.png', :alt=>t('global.delete')), transaction, :confirm => t('site.are_you_sure'), :method => :delete
+      %tr
+        %td{:colspan=>9}
+          #task_detail
+            = t 'formtastic.labels.transaction.trade_time' 
+            = l transaction.trade_time, :format => :short
+            = transaction.description
 
-= will_paginate @transactions
+    %tfoot
+      %tr
+        %th{:colspan=>9}
+          = will_paginate @transactions

@@ -64,6 +64,7 @@ zh:
     unread_message: "末读消息"
 
   site:
+    user_not_exist: "用户不存在"
     previous: "&#8592;前页"
     next: "后页&#8594;"
     ie: "您的IE浏览器版本太老,可能会影响浏览效果"
@@ -297,6 +298,7 @@ zh:
     charge_log: "充值记录"
     trade_log: "帐户记录"
     task_log: "任务记录"
+    transaction_log: "交易记录"
     small_cash_log: "小额提现记录"
     big_cash_log: "大额提现记录"
     level: "级别"
@@ -475,6 +477,8 @@ zh:
     business: "业务统计"
     no_account_name: "如果填写了发布点,平台用户名必须同时填写"
     not_account_name: "平台用户名不存在"
+    length: "交易笔数:"
+    amount: "交易金额:"
 
   setting:
     point_ratio: "发布兑换比"
@@ -672,6 +676,7 @@ zh:
         part_id: "掌柜名或小号名"
         part_type: "绑定类型"
         role_type: "帐号类别"
+        description: "备注"
       message:
         title: "标题"
         content: "内容"

@@ -1,4 +1,7 @@
 .bordershape
+  = image_tag('list.png')
+  = '-' + t('account.transaction_log')
+  \|
   = image_tag('point.png')
   = '-' + t('account.point')
   \|
@@ -61,6 +64,7 @@
         - if admin? or manager? or superadmin?
           - if superadmin?
             = link_to image_tag('state.png', :alt=>t('global.status')), {:controller => 'account', :action => 'user_state', :id => user}, {:class=>'operate'}
+          = link_to image_tag('list.png', :alt=>t('account.transaction_log')), {:controller => 'board', :action => 'trans_list', :id => user}, {:class=>'operate'}
           = link_to image_tag('point.png', :alt=>t('account.point')), {:controller => 'account', :action => 'point', :id => user}, {:class=>'operate'}
           = link_to image_tag('password.png', :alt=>t('site.password')), {:controller => 'account', :action => 'password', :id => user}, {:class=>'operate'}
           = link_to image_tag('role.png', :alt=>t('account.role')), {:controller => 'account', :action => 'role', :id => user}, {:class=>'operate'}

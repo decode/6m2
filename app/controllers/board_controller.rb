@@ -6,6 +6,10 @@ class BoardController < ApplicationController
     deny anonymous
   end
 
+  access_control :secret_access?, :filter => false do
+    allow :admin, :manager, :superadmin
+  end
+
   def users
     @users = User.find :all
   end
@@ -587,4 +591,19 @@ class BoardController < ApplicationController
       @records = @tasks.where('user_name like ? or operator_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC')
     end
   end
+
+  def trans_list
+    if secret_access?
+      user = User.where(:id=>params[:id]).first
+      unless user
+        flash[:error] = t('site.user_not_exist')
+        redirect_to current_user
+      end
+    else
+      user = current_user
+    end
+    @trans = user.own_transactions
+    @transactions = @trans.order('created_at DESC').paginate(:page=>params[:page], :per_page => 20)
+  end
+  
 end

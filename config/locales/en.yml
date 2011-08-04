@@ -66,6 +66,7 @@ en:
     unread_message: "Unread Message"
 
   site:
+    user_not_exist: "User not exist"
     previous: "&#8592; Previous"
     next: "Next &#8594;"
     name: "Boat166"
@@ -294,6 +295,7 @@ en:
     charge_log: "Charge Log"
     trade_log: "Trade Log"
     task_log: "Task Log"
+    transaction_log: "Transaction Log"
     small_cash_log: "Small Cash Log"
     big_cash_log: "Big Cash Log"
     level: "Level"
@@ -448,6 +450,8 @@ en:
     last_month_business: "Business of Last Month"
     date_empty: "Date can not be empty"
     business: "Business Statistics"
+    length: "Times"
+    amount: "Amount"
 
   setting:
     point_ratio: "Point Ratio"
@@ -625,6 +629,7 @@ en:
         part_id: "Account"
         part_type: "Type"
         role_type: "Role Type"
+        description: "Memo"
       message:
         title: "Title"
         content: "Content"

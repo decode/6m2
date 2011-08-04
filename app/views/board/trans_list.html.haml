@@ -1,0 +1,9 @@
+#wide
+  .bordershape
+    = t('transaction.length') + @trans.length.to_s
+    = t('formtastic.labels.transaction.amount') + @trans.sum('amount').to_s
+    = t('formtastic.labels.transaction.point') + @trans.sum('point').to_s
+
+#wide
+  = render 'transactions/trans'
+

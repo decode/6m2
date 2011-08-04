@@ -24,6 +24,9 @@
   %b= t 'formtastic.labels.transaction.point'
   = @transaction.point
 %p
+  %b= t 'transaction.owner'
+  = @transaction.user.username if @transaction.user
+%p
   %b= t 'transaction.sales'
   = @transaction.sales.username if @transaction.sales
 %p

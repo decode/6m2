@@ -96,6 +96,11 @@ class User < ActiveRecord::Base
   def active_shop
     return self.participants.where("role_type = 'shop' and active = ?", true).first
   end
+
+  def own_transactions
+    Transaction.where(:account_name => self.username)
+  end
+  
   
   protected
 

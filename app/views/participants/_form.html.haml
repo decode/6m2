@@ -30,5 +30,6 @@
       %li
         = label_tag t('formtastic.labels.participant.url')
         = @participant.url
+    = f.input :description
     = f.input :active, :as => :boolean
     = f.commit_button
