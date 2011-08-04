@@ -35,7 +35,7 @@
         %td= participant.description
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
-          - if admin?
+          - if admin? or participant.user == current_user
             = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
             = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')} if participant.tasks.length == 0
   = will_paginate @participants
@@ -67,7 +67,7 @@
         %td= participant.description
         %td
           = link_to image_tag('view.png'), participant, {:title=>t('global.show')}
-          - if admin?
+          - if admin? or participant.user == current_user
             = link_to image_tag('edit.png'), edit_participant_path(participant), {:title=>t('global.edit')}
             = link_to image_tag('delete.png'), participant, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')} if participant.own_tasks.length == 0
   = will_paginate @shops

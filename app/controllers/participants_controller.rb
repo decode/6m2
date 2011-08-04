@@ -1,7 +1,7 @@
 class ParticipantsController < ApplicationController
   access_control do
-    allow :admin, :manager
-    allow :user, :guest, :except => [:edit, :update]
+    allow :admin, :manager, :user
+    allow :guest, :except => [:edit, :update]
     deny anonymous
   end
 
