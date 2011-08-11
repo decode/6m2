@@ -34,6 +34,7 @@ class Task < ActiveRecord::Base
     point = app.caculate_point(self)
     self.point = point
   end
+
   def log_save
     if ['published', 'running', 'end'].include?(self.status)
       log = Tasklog.new

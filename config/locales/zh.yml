@@ -1,9 +1,12 @@
-activemodel:
-  attributes:
-    user:
-      login: "用戶名或邮箱"
-
 zh:
+  activerecord:
+    attributes:
+      user:
+        login: "用戶名或邮箱"
+    errors:
+      models:
+        task:
+          blank: "不能为空"
   errors:
     messages:
       not_saved: "操作失败"
