@@ -76,5 +76,7 @@
         - if superadmin?
           = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
           = link_to image_tag('delete.png', :alt=>t('global.delete')), user, :confirm => t('site.are_you_sure'), :method => :delete
-
-= will_paginate @users
+  %tfoot
+    %tr
+      %th{:collect=>7}
+        = will_paginate @users
