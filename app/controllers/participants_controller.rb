@@ -51,6 +51,8 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     isPass = true
+    if params[:participant][:part_id].contains? ' '
+    end
     if params[:participant][:role_type] == 'shop' 
       if params[:participant][:url].blank?
         @participant.errors.add 'url', t('participant.no_shop_url')
@@ -73,7 +75,7 @@ class ParticipantsController < ApplicationController
       isFirst = true #if current_user.active_participant.length == 0
     end
 
-    logger.info('======================='+isPass.to_s)
+    #logger.info('======================='+isPass.to_s)
 
     respond_to do |format|
       Participant.transaction do

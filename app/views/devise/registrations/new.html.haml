@@ -19,7 +19,7 @@
       = devise_error_messages!
       .rowContainer
         = label_tag t('site.login_name')
-        = f.text_field :username, { :class => 'validate[required],minSize[6],maxSize[20],custom[onlyLetterNumber]' }
+        = f.text_field :username, { :class => 'validate[required],minSize[6],maxSize[20],custom[normalName]' }
       .rowContainer
         = label_tag t('page.email')
         = f.text_field :email, { :class => 'validate[required],custom[email]' }

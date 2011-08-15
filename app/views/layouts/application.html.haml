@@ -20,6 +20,9 @@
     = stylesheet_link_tag 'infogrid', 'fmenu', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy', 'simpleform'
     /[if lt IE 9]
       = javascript_include_tag 'excanvas.min'
+    /
+      /[if lt IE 7]
+        = javascript_include_tag 'unitpngfix'
 
     = javascript_include_tag 'site'
 

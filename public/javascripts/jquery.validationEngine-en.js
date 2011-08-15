@@ -130,6 +130,10 @@
 	                },
                 "validate2fields": {
                     "alertText": "* Please input HELLO"
+                },
+                "normalName": {
+                    "regex": /^[0-9a-zA-Z_\u4e00-\u9fa5]+$/,
+                    "alertText": "* Illegal Name"
                 }
             };
             
