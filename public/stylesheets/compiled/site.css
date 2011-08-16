@@ -212,11 +212,12 @@
 */
 /* line 182, ../../../app/stylesheets/site.scss */
 table {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 186, ../../../app/stylesheets/site.scss */
+/* line 187, ../../../app/stylesheets/site.scss */
 table, th, td {
   /*border: 1px solid #D4E0EE;*/
   border-collapse: collapse;
@@ -224,19 +225,19 @@ table, th, td {
   color: #555;
 }
 
-/* line 193, ../../../app/stylesheets/site.scss */
+/* line 194, ../../../app/stylesheets/site.scss */
 caption {
   font-size: 150%;
   font-weight: bold;
   margin: 5px;
 }
 
-/* line 199, ../../../app/stylesheets/site.scss */
+/* line 200, ../../../app/stylesheets/site.scss */
 td, th {
   padding: 4px;
 }
 
-/* line 203, ../../../app/stylesheets/site.scss */
+/* line 204, ../../../app/stylesheets/site.scss */
 thead th {
   border-bottom: 1px solid #D4E0EE;
   text-align: left;
@@ -245,30 +246,30 @@ thead th {
   font-size: 100% !important;
 }
 
-/* line 211, ../../../app/stylesheets/site.scss */
+/* line 212, ../../../app/stylesheets/site.scss */
 tbody th {
   font-weight: bold;
 }
 
-/* line 215, ../../../app/stylesheets/site.scss */
+/* line 216, ../../../app/stylesheets/site.scss */
 tbody tr {
   background: #FCFDFE;
   /*border-bottom: 1px solid #D4E0EE;*/
 }
 
-/* line 220, ../../../app/stylesheets/site.scss */
+/* line 221, ../../../app/stylesheets/site.scss */
 tbody tr.double {
   border-top: 1px solid #D4E0EE;
 }
 
-/* line 223, ../../../app/stylesheets/site.scss */
+/* line 224, ../../../app/stylesheets/site.scss */
 tbody tr.odd {
   /*background: #F7F9FC;*/
   border-top: 1px solid #D4E0EE;
   border-bottom: 1px solid #D4E0EE;
 }
 
-/* line 228, ../../../app/stylesheets/site.scss */
+/* line 229, ../../../app/stylesheets/site.scss */
 table a.operate {
   font-size: 11px;
   color: black;
@@ -285,42 +286,42 @@ table a.operate {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-/* line 243, ../../../app/stylesheets/site.scss */
+/* line 244, ../../../app/stylesheets/site.scss */
 table a.operate:hover {
   color: white;
   text-decoration: none;
 }
 
-/* line 247, ../../../app/stylesheets/site.scss */
+/* line 248, ../../../app/stylesheets/site.scss */
 table a.operate:hover {
   background-color: #fc9200;
 }
 
-/* line 250, ../../../app/stylesheets/site.scss */
+/* line 251, ../../../app/stylesheets/site.scss */
 table a:link {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 255, ../../../app/stylesheets/site.scss */
+/* line 256, ../../../app/stylesheets/site.scss */
 table a:visited {
   color: #718ABE;
   text-decoration: none;
 }
 
-/* line 260, ../../../app/stylesheets/site.scss */
+/* line 261, ../../../app/stylesheets/site.scss */
 table a:hover {
   color: #718ABE;
   /*text-decoration: underline !important;*/
   text-decoration: none;
 }
 
-/* line 266, ../../../app/stylesheets/site.scss */
+/* line 267, ../../../app/stylesheets/site.scss */
 tfoot th, tfoot td {
   font-size: 85%;
 }
 
-/* line 271, ../../../app/stylesheets/site.scss */
+/* line 272, ../../../app/stylesheets/site.scss */
 .shadow1 {
   box-shadow: 5px 5px #818181;
   -webkit-box-shadow: 5px 5px #818181;
@@ -333,7 +334,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 283, ../../../app/stylesheets/site.scss */
+/* line 284, ../../../app/stylesheets/site.scss */
 .shadow {
   box-shadow: 7px 7px 8px #818181;
   -webkit-box-shadow: 7px 7px 8px #818181;
@@ -346,7 +347,7 @@ tfoot th, tfoot td {
   border: 1px solid black;
 }
 
-/* line 294, ../../../app/stylesheets/site.scss */
+/* line 295, ../../../app/stylesheets/site.scss */
 #tearshape {
   background: #f1f2f3;
   padding: 3px 5px;
@@ -359,7 +360,7 @@ tfoot th, tfoot td {
   -webkit-border-bottom-right-radius: 9px;
 }
 
-/* line 305, ../../../app/stylesheets/site.scss */
+/* line 306, ../../../app/stylesheets/site.scss */
 #roundshape {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -371,7 +372,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 317, ../../../app/stylesheets/site.scss */
+/* line 318, ../../../app/stylesheets/site.scss */
 .round {
   background: #eaf2f5;
   padding: 3px 5px;
@@ -380,14 +381,14 @@ tfoot th, tfoot td {
   -webkit-border-radius: 5px;
 }
 
-/* line 325, ../../../app/stylesheets/site.scss */
+/* line 326, ../../../app/stylesheets/site.scss */
 .curlycontainer {
   border: 1px solid #b8b8b8;
   margin-bottom: 1em;
   width: 300px;
 }
 
-/* line 331, ../../../app/stylesheets/site.scss */
+/* line 332, ../../../app/stylesheets/site.scss */
 .curlycontainer .innerdiv {
   background: transparent url(brcorner.gif) bottom right no-repeat;
   position: relative;
@@ -396,7 +397,7 @@ tfoot th, tfoot td {
   padding: 1px 4px 15px 5px;
 }
 
-/* line 339, ../../../app/stylesheets/site.scss */
+/* line 340, ../../../app/stylesheets/site.scss */
 .bordershape {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
@@ -405,12 +406,12 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 346, ../../../app/stylesheets/site.scss */
+/* line 347, ../../../app/stylesheets/site.scss */
 .bordershape a {
   text-decoration: none;
 }
 
-/* line 349, ../../../app/stylesheets/site.scss */
+/* line 350, ../../../app/stylesheets/site.scss */
 .solidshape {
   padding: 3px 5px;
   margin: 10px 10px 0 0;
@@ -419,7 +420,7 @@ tfoot th, tfoot td {
   -webkit-border-radius: 3px;
 }
 
-/* line 357, ../../../app/stylesheets/site.scss */
+/* line 358, ../../../app/stylesheets/site.scss */
 .fullshape {
   font-size: 14px;
   text-align: center;
@@ -436,7 +437,7 @@ tfoot th, tfoot td {
 /*html{font-size:62.5%}
 body{font-size:1.2em;color:#294f88}*/
 /*.customer_service {margin:10px;border:1px solid #92cdec;background:#d7e7ff;padding:30px 30px 0 30px}*/
-/* line 372, ../../../app/stylesheets/site.scss */
+/* line 373, ../../../app/stylesheets/site.scss */
 .customer_service {
   margin: 10px auto;
   background-color: white;
@@ -452,14 +453,14 @@ h2{margin:0;padding:10px 0 5px 0;font-size:1.5em;clear:both}
 p{font-size:1.2em;line-height:170%;margin-bottom:30px;clear:both}
 ul,ol{padding:0;margin:0;font-size:1.2em}
 */
-/* line 381, ../../../app/stylesheets/site.scss */
+/* line 382, ../../../app/stylesheets/site.scss */
 .customer_service h1 {
   margin: 0;
   padding: 0 0 10px 0;
   font-size: 1.2em;
 }
 
-/* line 382, ../../../app/stylesheets/site.scss */
+/* line 383, ../../../app/stylesheets/site.scss */
 .customer_service p {
   font-size: 1.2em;
   line-height: 170%;
@@ -467,14 +468,14 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   clear: both;
 }
 
-/* line 383, ../../../app/stylesheets/site.scss */
+/* line 384, ../../../app/stylesheets/site.scss */
 .customer_service ul, ol {
   padding: 0;
   margin: 0;
   font-size: 1em;
 }
 
-/* line 384, ../../../app/stylesheets/site.scss */
+/* line 385, ../../../app/stylesheets/site.scss */
 .customer_service ul, .customer_service ol {
   list-style-type: none;
   background: url(/images/dotted.gif) 0 0 repeat-x;
@@ -483,7 +484,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   margin: 0 10px 30px 0;
 }
 
-/* line 391, ../../../app/stylesheets/site.scss */
+/* line 392, ../../../app/stylesheets/site.scss */
 .customer_service li {
   background: url(/images/dotted.gif) bottom left repeat-x;
   width: 180px;
@@ -491,7 +492,7 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   padding: 0;
 }
 
-/* line 397, ../../../app/stylesheets/site.scss */
+/* line 398, ../../../app/stylesheets/site.scss */
 .customer_service li a {
   padding: 8px 20px 8px 0;
   width: 160px;
@@ -501,13 +502,13 @@ ul,ol{padding:0;margin:0;font-size:1.2em}
   color: #294f88;
 }
 
-/* line 398, ../../../app/stylesheets/site.scss */
+/* line 399, ../../../app/stylesheets/site.scss */
 .customer_service li a:hover {
   background-image: url(/images/arrow-right-dark.gif);
 }
 
 /* table sorter style */
-/* line 401, ../../../app/stylesheets/site.scss */
+/* line 402, ../../../app/stylesheets/site.scss */
 table.tablesorter thead tr .header {
   /*background-image: url(/images/bg.gif);*/
   background-repeat: no-repeat;
@@ -515,23 +516,23 @@ table.tablesorter thead tr .header {
   cursor: pointer;
 }
 
-/* line 407, ../../../app/stylesheets/site.scss */
+/* line 408, ../../../app/stylesheets/site.scss */
 table.tablesorter tbody tr:hover {
   /*background: #dfeef9;*/
   background: #e6edf5;
 }
 
-/* line 411, ../../../app/stylesheets/site.scss */
+/* line 412, ../../../app/stylesheets/site.scss */
 table.tablesorter thead tr .headerSortUp {
   background-image: url(/images/asc.gif);
 }
 
-/* line 414, ../../../app/stylesheets/site.scss */
+/* line 415, ../../../app/stylesheets/site.scss */
 table.tablesorter thead tr .headerSortDown {
   background-image: url(/images/desc.gif);
 }
 
-/* line 417, ../../../app/stylesheets/site.scss */
+/* line 418, ../../../app/stylesheets/site.scss */
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
   padding-right: 20px;
   background-color: #a3c0ea;
@@ -539,7 +540,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 
 /* CSS3 buttons */
-/* line 424, ../../../app/stylesheets/site.scss */
+/* line 425, ../../../app/stylesheets/site.scss */
 .button, .button:visited {
   background: #222222 url(/images/overlay.png) repeat-x;
   display: inline-block;
@@ -556,23 +557,23 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   cursor: pointer;
 }
 
-/* line 440, ../../../app/stylesheets/site.scss */
+/* line 441, ../../../app/stylesheets/site.scss */
 .button:hover {
   background-color: #111;
   color: #fff;
 }
 
-/* line 441, ../../../app/stylesheets/site.scss */
+/* line 442, ../../../app/stylesheets/site.scss */
 .button:active {
   top: 1px;
 }
 
-/* line 442, ../../../app/stylesheets/site.scss */
+/* line 443, ../../../app/stylesheets/site.scss */
 .small.button, .small.button:visited {
   font-size: 11px;
 }
 
-/* line 444, ../../../app/stylesheets/site.scss */
+/* line 445, ../../../app/stylesheets/site.scss */
 .button, .button:visited,
 .medium.button, .medium.button:visited {
   font-size: 13px;
@@ -581,94 +582,94 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
 }
 
-/* line 451, ../../../app/stylesheets/site.scss */
+/* line 452, ../../../app/stylesheets/site.scss */
 .large.button, .large.button:visited {
   font-size: 14px;
   padding: 8px 14px 9px;
 }
 
-/* line 456, ../../../app/stylesheets/site.scss */
+/* line 457, ../../../app/stylesheets/site.scss */
 .super.button, .super.button:visited {
   font-size: 34px;
   padding: 8px 14px 9px;
 }
 
-/* line 461, ../../../app/stylesheets/site.scss */
+/* line 462, ../../../app/stylesheets/site.scss */
 .pink.button, .magenta.button:visited {
   background-color: #e22092;
 }
 
-/* line 462, ../../../app/stylesheets/site.scss */
+/* line 463, ../../../app/stylesheets/site.scss */
 .pink.button:hover {
   background-color: #c81e82;
 }
 
-/* line 463, ../../../app/stylesheets/site.scss */
+/* line 464, ../../../app/stylesheets/site.scss */
 .green.button, .green.button:visited {
   background-color: #91bd09;
 }
 
-/* line 464, ../../../app/stylesheets/site.scss */
+/* line 465, ../../../app/stylesheets/site.scss */
 .green.button:hover {
   background-color: #749a02;
 }
 
-/* line 465, ../../../app/stylesheets/site.scss */
+/* line 466, ../../../app/stylesheets/site.scss */
 .red.button, .red.button:visited {
   background-color: #e62727;
 }
 
-/* line 466, ../../../app/stylesheets/site.scss */
+/* line 467, ../../../app/stylesheets/site.scss */
 .red.button:hover {
   background-color: #cf2525;
 }
 
-/* line 467, ../../../app/stylesheets/site.scss */
+/* line 468, ../../../app/stylesheets/site.scss */
 .orange.button, .orange.button:visited {
   background-color: #ff5c00;
 }
 
-/* line 468, ../../../app/stylesheets/site.scss */
+/* line 469, ../../../app/stylesheets/site.scss */
 .orange.button:hover {
   background-color: #d45500;
 }
 
-/* line 469, ../../../app/stylesheets/site.scss */
+/* line 470, ../../../app/stylesheets/site.scss */
 .blue.button, .blue.button:visited {
   background-color: #2981e4;
 }
 
-/* line 470, ../../../app/stylesheets/site.scss */
+/* line 471, ../../../app/stylesheets/site.scss */
 .blue.button:hover {
   background-color: #2575cf;
 }
 
-/* line 471, ../../../app/stylesheets/site.scss */
+/* line 472, ../../../app/stylesheets/site.scss */
 .yellow.button, .yellow.button:visited {
   background-color: #ffb515;
 }
 
-/* line 472, ../../../app/stylesheets/site.scss */
+/* line 473, ../../../app/stylesheets/site.scss */
 .yellow.button:hover {
   background-color: #fc9200;
 }
 
-/* line 473, ../../../app/stylesheets/site.scss */
+/* line 474, ../../../app/stylesheets/site.scss */
 .white.button, .white.button:visited {
   background-color: white;
 }
 
-/* line 474, ../../../app/stylesheets/site.scss */
+/* line 475, ../../../app/stylesheets/site.scss */
 .white.button:hover {
   background-color: #fc9200;
 }
 
-/* line 477, ../../../app/stylesheets/site.scss */
+/* line 478, ../../../app/stylesheets/site.scss */
 #task_detail {
   font-size: 80%;
 }
 
-/* line 481, ../../../app/stylesheets/site.scss */
+/* line 482, ../../../app/stylesheets/site.scss */
 #nav a, #nav a:active, #nav a:visited {
   display: block;
   float: left;
@@ -680,7 +681,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   outline: none;
 }
 
-/* line 491, ../../../app/stylesheets/site.scss */
+/* line 492, ../../../app/stylesheets/site.scss */
 #nav a.selected, #nav a.selected:active, #nav a.selected:visited {
   background: #C51D1D;
   color: #fff;
@@ -688,7 +689,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   outline: none;
 }
 
-/* line 497, ../../../app/stylesheets/site.scss */
+/* line 498, ../../../app/stylesheets/site.scss */
 #nav2 a, #nav2 a:active, #nav2 a:visited {
   display: block;
   float: left;
@@ -700,7 +701,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   outline: none;
 }
 
-/* line 507, ../../../app/stylesheets/site.scss */
+/* line 508, ../../../app/stylesheets/site.scss */
 #nav2 a.selected, #nav2 a.selected:active, #nav2 a.selected:visited {
   background: #C51D1D;
   color: #fff;
@@ -708,14 +709,14 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   outline: none;
 }
 
-/* line 513, ../../../app/stylesheets/site.scss */
+/* line 514, ../../../app/stylesheets/site.scss */
 .hiddencontent, .hiddencontent2 {
   padding: 12px;
   background: white;
   display: none;
 }
 
-/* line 518, ../../../app/stylesheets/site.scss */
+/* line 519, ../../../app/stylesheets/site.scss */
 .clear {
   clear: both;
 }
