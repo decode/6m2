@@ -32,6 +32,9 @@
 
   %body
     #wrapper
+      #wide
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "#{name}"
       /.container
       #toolbar
         = link_to image_tag('home.png'), '/', {:title=>t('site.label')}
@@ -176,10 +179,6 @@
                 .sub_menu
                   = link_to t('site.admin'), '/admin'
                   = link_to t('site.roles'), '/t/roles'
-
-      #wide
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "#{name}"
 
       = yield
 
