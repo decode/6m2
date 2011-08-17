@@ -836,6 +836,51 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   clear: both;
 }
 
+/* line 523, ../../../app/stylesheets/site.scss */
+#notice_list {
+  margin: 30px;
+}
+
+/* line 527, ../../../app/stylesheets/site.scss */
+#notice_head {
+  font: bold;
+  font-size: 18px;
+  color: #0066cc;
+  border-bottom: 1px dotted #3274d1;
+}
+
+/* line 533, ../../../app/stylesheets/site.scss */
+#notice_head h1 {
+  margin: 0;
+  padding: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+/* line 538, ../../../app/stylesheets/site.scss */
+#notice_title {
+  font-size: 120%;
+}
+
+/* line 541, ../../../app/stylesheets/site.scss */
+#notice_title a {
+  display: block;
+  text-decoration: none;
+  outline: none;
+  color: #0066cc;
+}
+
+/* line 547, ../../../app/stylesheets/site.scss */
+#notice_date {
+  color: gray;
+  text-align: right;
+  font-size: 80%;
+}
+
+/* line 552, ../../../app/stylesheets/site.scss */
+#notice_body {
+  border-bottom: 1px dotted #0066cc;
+}
+
 /* line 26, ../../../app/stylesheets/screen.scss */
 body.bp {
   line-height: 1.5;

@@ -1,23 +1,36 @@
-#newsticker-demo
-  .title= t 'site.notice'
-  .newsticker-jcarousellite
-    %ul
-      - if @notices.length == 0
-        %li
-          .thumbnail
-            /= image_tag 'news.jpg'
-          .info
-            = t 'site.no_news'
-            %span.cat
-              news
-          .clear
-      - for n in @notices
-        %li
-          .thumbnail
-            = #image_tag('news.jpg')
-          .info
-            = link_to n.title, n
-            %span.cat
-              = l n.created_at, :format => :long
-          .clear
+/
+  #newsticker-demo
+    .title= t 'site.notice'
+    .newsticker-jcarousellite
+      %ul
+        - if @notices.length == 0
+          %li
+            .thumbnail
+              /= image_tag 'news.jpg'
+            .info
+              = t 'site.no_news'
+              %span.cat
+                news
+            .clear
+        - for n in @notices
+          %li
+            .thumbnail
+              = #image_tag('news.jpg')
+            .info
+              = link_to n.title, n
+              %span.cat
+                = l n.created_at, :format => :long
+            .clear
+
+#notice_list
+  #notice_head
+    %h1
+      = image_tag 'warning.png'
+      = t 'site.notice'
+  - for n in @notices
+    #notice_body
+      #notice_title= link_to n.title, n
+      #notice_content
+        = n.content.length > 50 ? n.content[0,50] + ' ...' : n.content
+      #notice_date= l n.created_at, :format => :long
 
