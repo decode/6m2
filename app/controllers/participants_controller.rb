@@ -51,8 +51,6 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     isPass = true
-    if params[:participant][:part_id].contains? ' '
-    end
     if params[:participant][:role_type] == 'shop' 
       if params[:participant][:url].blank?
         @participant.errors.add 'url', t('participant.no_shop_url')
