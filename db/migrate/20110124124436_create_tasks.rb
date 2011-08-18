@@ -35,6 +35,9 @@ class CreateTasks < ActiveRecord::Migration
       t.boolean :msg, :default => false #客户留言
       t.string :msg_content #客户留言内容
 
+      t.string :custom_msg
+      t.string :custom_msg_content
+
       t.timestamps
 
       #用户关系

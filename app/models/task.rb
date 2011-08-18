@@ -52,7 +52,7 @@ class Task < ActiveRecord::Base
       log.price = self.price
       log.point = self.point
       log.status = self.status
-      log.description = I18n.t('account.point') + ":" + (self.user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money).to_s
+      log.description = log_string(I18n.t('account.point'), self.price, self.point)
       log.save!
     end
   end
@@ -70,8 +70,12 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = I18n.t('global.delete') + " " + I18n.t('account.point') + ":" + self.user.account_credit.to_s + "  " + I18n.t('account.account_money') + ":" + self.user.account_money.to_s
+    log.description = log_string(I18n.t('global.delete'), self.price, self.point)
     log.save!
+  end
+
+  def log_string(log_type, price=0, point=0)
+    return log_type + ":" + (self.user.account_credit-point).round(1).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money-price).to_s
   end
 
   state_machine :status, :initial => :unpublished do

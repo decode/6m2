@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.integer  "score"
     t.float    "life"
     t.boolean  "active"
+    t.string   "description"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -142,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.float    "report_award",         :default => 1.0
     t.float    "report_punish",        :default => 1.0
     t.float    "custom_judge",         :default => 0.5
+    t.float    "custom_msg",           :default => 0.2
+    t.float    "all_star",             :default => 0.2
     t.integer  "real_level",           :default => 5
     t.float    "transport_price",      :default => 1.0
     t.integer  "times_limit",          :default => 3
@@ -196,6 +199,11 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.boolean  "custom_judge",         :default => false
     t.string   "custom_judge_content"
     t.integer  "real_level",           :default => 0
+    t.boolean  "all_star",             :default => false
+    t.boolean  "msg",                  :default => false
+    t.string   "msg_content"
+    t.string   "custom_msg"
+    t.string   "custom_msg_content"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -213,6 +221,8 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.string   "description"
     t.string   "trade_type"
     t.string   "transaction_id"
+    t.string   "pay_type"
+    t.string   "name"
     t.integer  "user_id"
     t.integer  "to_id"
     t.datetime "created_at"
@@ -226,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20110505050313) do
     t.float    "amount"
     t.text     "description"
     t.datetime "trade_time"
+    t.string   "pay_type"
     t.float    "point"
     t.string   "account_name"
     t.integer  "account_id"

@@ -11,6 +11,7 @@
         %th= t 'task.worker'
       %th= t 'task.worker'
       %th= t 'global.price'
+      %th= t 'account.point'
       %th= t 'formtastic.labels.task.status'
       /
         %th= t 'formtastic.labels.task.description'
@@ -34,6 +35,7 @@
           %td= t.worker_name
         %td= t.worker_part_name
         %td= t.price
+        %td= t.point
         %td= t.local_status
         %td= l t.created_at, :format => :short
       %tr

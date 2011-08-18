@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
     price = task.price.nil? ? 0 : task.price
     res = user.account_credit - point
     if res > 0
-      user.account_credit = res
+      user.account_credit = res.round(1)
       user.payment_money = user.payment_money - price
       user.account_money = user.account_money - price
       user.save

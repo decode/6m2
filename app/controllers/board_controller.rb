@@ -429,7 +429,7 @@ class BoardController < ApplicationController
       #redirect_to '/t/tasklogs'
       @tasks = @tasks.order('created_at DESC').paginate(:page=>params[:page], :per_page => 15)
     else
-      @tasks = Tasklog.where("user_name like ? or worker_name like ?", "%#{username}%", "%#{username}%").paginate(:page => params[:page], :per_page => 15) 
+      @tasks = @tasks.where("user_name like ? or worker_name like ?", "%#{username}%", "%#{username}%").order('created_at DESC').paginate(:page => params[:page], :per_page => 15) 
     end
 
     session[:view_log] = 'admin'
