@@ -177,7 +177,7 @@ class Task < ActiveRecord::Base
     # 不能接自己创建的任务
     c = (self.user != user)
     unless c
-      error = error + t('task.error_self') 
+      error = error + I18n.t('task.error_self') 
       return [false,error]
     end
     # 用户不能被锁定

@@ -120,7 +120,6 @@
         %th=t 'task.owner'
         %th=t 'task.worker'
         %th=t 'global.status'
-        %th=t 'task.work_day'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
 
@@ -147,8 +146,8 @@
               = link_to "(#{task.worker_part_name})", task.participant
             - else
               = "(#{task.worker_part_name})" unless task.worker.nil?
-          %td= task.local_status
           %td
+            = task.local_status
             - if task.transport_time and task.transport?
               - day = 0
               - if Time.now.month - task.transport_time.month != 0
@@ -211,7 +210,6 @@
         %th=t 'task.point'
         %th=t 'task.owner'
         %th=t 'global.status'
-        %th=t 'task.work_day'
         %th=t 'formtastic.labels.task.published_time'
         %th=t 'global.operation'
     %tbody
@@ -233,8 +231,8 @@
           %td
             = task.user.username
             = image_tag "icon_vip#{(task.user.level)}.gif"
-          %td= task.local_status
           %td
+            = task.local_status
             - if task.transport_time and task.transport? and (task.user == current_user or task.worker == current_user)
               - if Time.now.month - task.transport_time.month != 0
                 - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
