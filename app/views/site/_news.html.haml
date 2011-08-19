@@ -1,27 +1,3 @@
-/
-  #newsticker-demo
-    .title= t 'site.notice'
-    .newsticker-jcarousellite
-      %ul
-        - if @notices.length == 0
-          %li
-            .thumbnail
-              /= image_tag 'news.jpg'
-            .info
-              = t 'site.no_news'
-              %span.cat
-                news
-            .clear
-        - for n in @notices
-          %li
-            .thumbnail
-              = #image_tag('news.jpg')
-            .info
-              = link_to n.title, n
-              %span.cat
-                = l n.created_at, :format => :long
-            .clear
-
 #notice_list
   #notice_head
     %h1
