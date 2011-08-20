@@ -74,8 +74,8 @@ class ApplicationController < ActionController::Base
     res = user.account_credit - point
     if res > 0
       user.account_credit = res.round(1)
-      user.payment_money = user.payment_money - price
-      user.account_money = user.account_money - price
+      user.payment_money = (user.payment_money - price).round(1)
+      user.account_money = (user.account_money - price).round(1)
       user.save
     end
   end
