@@ -334,6 +334,7 @@ zh:
     make_active: "设为当前帐号"
 
   task:
+    delete: "删除任务"
     q_do: "确认接手任务?"
     q_price: "确认己改价?"
     q_pay: "确认己付款?"

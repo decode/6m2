@@ -91,15 +91,7 @@ class ApplicationController < ActionController::Base
     #
     # 需要添加用户交易记录
     #
-    log = Tasklog.new
-    log.task_id = task.id
-    log.user_id = user.id
-    log.worker_id = user.id if user
-    log.price = task.price
-    log.point = task.point
-    log.status = task.status
-    log.description = I18n.t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + "  " + I18n.t('account.restore_point') + ":" + point.to_s
-    log.save!
+    task.save_log('', user, 0, 0, I18n.t('account.restore_point') + ":" + point.to_s)
   end
 
   def gain(task)
@@ -118,15 +110,7 @@ class ApplicationController < ActionController::Base
     #
     # 需要添加用户交易记录
     #
-    log = Tasklog.new
-    log.task_id = task.id
-    log.user_id = user.id
-    log.worker_id = user.id if user
-    log.price = task.price
-    log.point = task.point
-    log.status = task.status
-    log.description = I18n.t('account.point') + ":" + (user.account_credit).to_s + "  " + I18n.t('account.account_money') + ":" + (user.account_money).to_s + "  " + I18n.t('account.gain_point') + ":" + real_point.to_s
-    log.save!
+    task.save_log('', user, 0, 0, I18n.t('account.gain_point') + ":" + real_point.to_s)
   end
 
   def penalty(issue, user, point=0, money=0)

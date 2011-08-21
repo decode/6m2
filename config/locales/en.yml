@@ -324,6 +324,7 @@ en:
     make_active: "Make Active"
 
   task:
+    delete: "Delete Task"
     confirm: "Confirm"
     do: "Do"
     pay: "Pay"

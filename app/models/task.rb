@@ -37,30 +37,19 @@ class Task < ActiveRecord::Base
 
   def log_save
     if ['published', 'running', 'end'].include?(self.status)
-      log = Tasklog.new
-      log.task_id = self.id
-      log.user_id = self.user.id
-      log.user_name = self.user.username
-      if self.worker
-        log.worker_id = self.worker.id 
-        log.worker_name = self.worker.username
-        if self.worker.active_participant
-          log.worker_part_id = self.worker.active_participant.id
-          log.worker_part_name = self.worker.active_participant.part_id
-        end
-      end
-      log.price = self.price
-      log.point = self.point
-      log.status = self.status
-      log.description = log_string('', self.price, self.point)
-      log.save!
+      save_log('', self.user, self.price, self.point)
     end
   end
   def log_destroy
+    save_log(I18n.t('task.delete'), self.user, 0, 0)
+  end
+
+  # 保存任务日志
+  def save_log(log_type, user, price=0, point=0, append_desc='')
     log = Tasklog.new
     log.task_id = self.id
-    log.user_id = self.user.id if self.user
-    log.user_name = self.user.username
+    log.user_id = user.id if user
+    log.user_name = user.username
     if self.worker
       log.worker_id = self.worker.id 
       log.worker_name = self.worker.username
@@ -70,12 +59,8 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = log_string(I18n.t('global.delete'), self.price, self.point)
+    log.description = log_type + " " + I18n.t('account.point') + ":" + (user.account_credit-point).round(1).to_s + " " + I18n.t('account.account_money') + ":" + (user.account_money-price).round(1).to_s + " " + append_desc
     log.save!
-  end
-
-  def log_string(log_type, price=0, point=0)
-    return log_type + ' ' + I18n.t('account.point') + ":" + (self.user.account_credit-point).round(1).to_s + "  " + I18n.t('account.account_money') + ":" + (self.user.account_money-price).round(1).to_s
   end
 
   state_machine :status, :initial => :unpublished do
