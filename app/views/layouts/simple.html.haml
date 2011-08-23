@@ -32,51 +32,29 @@
           $('.gmenu').fixedMenu();
       });
   %body
+    .gmenu
+      %ul
+        - if user_signed_in?
+          %li
+            = raw("<a href='#'>test<span class='garrow'></span></a>")
+            %ul
+              %li
+                - if user?
+                  = link_to t('site.new_task'), new_task_url
+              %li
+                = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
+              %li
+                = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
+              %li
+                = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+              %li
+                = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+          %li
+            = link_to '#' do
+              = t('site.task')
+              %span.garrow
     #wrapper
       #toolbar
-        .gmenu
-          %ul
-            - if user_signed_in?
-              %li
-                = link_to '#' do
-                  = raw(t('site.task') + "<span class='garrow'></span>")
-                .garrow
-                %ul
-                  %li
-                    - if user?
-                      = link_to t('site.new_task'), new_task_url
-                  %li
-                    = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
-                  %li
-                    = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
-                  %li
-                    = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-              %li
-                = link_to '#' do
-                  = t('site.task')
-                  %span.arrow
-
-          = link_to image_tag('home.png'), '/', {:title=>t('site.label')}
-          \|
-          - if user_signed_in?
-            = link_to image_tag('info.png'), notices_path, {:title=>t('site.notice_center')}
-            \|
-            =t('site.welcome', :name => current_user.username)
-            - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
-            - if messages.length > 0
-              \|
-              - if messages.length == 1
-                = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
-              - else
-                = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), '/m/message'
-            |
-            = link_to t('site.profile'), edit_user_registration_path
-            |
-            = link_to t('site.logout'), destroy_user_session_path
-          - else
-            = link_to t('site.login'), new_user_session_path
-            |
-            = link_to t('site.register'), new_user_registration_path
       %br
       /[if IE]
         %p

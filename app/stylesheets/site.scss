@@ -554,7 +554,10 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 
 /*Google Style Menu */
-
+body{
+  padding:0;
+  margin:0;
+}
 .gmenu{
   //font: 13px/27px Arial,sans-serif;
   margin-left: 200px;

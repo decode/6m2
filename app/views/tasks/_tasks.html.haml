@@ -45,37 +45,38 @@
     }
     );
   });
-#wide
-  .bordershape
-    = convert_shop_type('taobao')
-    = '-' + t('task.normal_task')
-    \|
-    = convert_shop_type('v_taobao')
-    = '-' + t('task.virtual_task')
-    \|
-    = image_tag('view.png')
-    = '-' + t('global.show')
-    \|
-    = image_tag('do.png')
-    = '-' + t('task.do')
-    \|
-    = image_tag('price.png')
-    = '-' + t('task.price')
-    \|
-    = image_tag('pay.png')
-    = '-' + t('task.pay')
-    \|
-    = image_tag('truck.png')
-    = '-' + t('task.transport')
-    \|
-    = image_tag('finish.png')
-    = '-' + t('task.finish')
-    \|
-    = image_tag('yes.png')
-    = '-' + t('task.confirm')
-    \|
-    = image_tag('quest.png')
-    = '-' + t('task.send_problem')
+/
+  #wide
+    .bordershape
+      = convert_shop_type('taobao')
+      = '-' + t('task.normal_task')
+      \|
+      = convert_shop_type('v_taobao')
+      = '-' + t('task.virtual_task')
+      \|
+      = image_tag('view.png')
+      = '-' + t('global.show')
+      \|
+      = image_tag('do.png')
+      = '-' + t('task.do')
+      \|
+      = image_tag('price.png')
+      = '-' + t('task.price')
+      \|
+      = image_tag('pay.png')
+      = '-' + t('task.pay')
+      \|
+      = image_tag('truck.png')
+      = '-' + t('task.transport')
+      \|
+      = image_tag('finish.png')
+      = '-' + t('task.finish')
+      \|
+      = image_tag('yes.png')
+      = '-' + t('task.confirm')
+      \|
+      = image_tag('quest.png')
+      = '-' + t('task.send_problem')
 #wide
   .main
     %p{:title => t('task.demo'), :class=>'blue'}
