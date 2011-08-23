@@ -176,6 +176,7 @@ class TasksController < ApplicationController
           format.xml  { render :xml => @task, :status => :created, :location => @task }
         else
           format.html {
+            logger.error("Task Creation Error:  [" + current_user.username + "]  " + params[:task].to_s)
             flash[:error] = t('global.operate_failed') + ', ' + t('task.check_store')
             redirect_to(:back ) }
           format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }

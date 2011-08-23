@@ -588,7 +588,7 @@ class BoardController < ApplicationController
     if username.blank?
       @records = @tasks.order('created_at DESC')
     else
-      @records = @tasks.where('user_name like ? or operator_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC')
+      @records = @tasks.where('user_name like ? or worker_name like ?', "%#{username}%", "%#{username}%").order('created_at DESC')
     end
   end
 
