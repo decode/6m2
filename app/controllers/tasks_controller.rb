@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  layout 'simple'
+
   access_control do
     allow :admin, :manager, :user, :guest
     deny anonymous

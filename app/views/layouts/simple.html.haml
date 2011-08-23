@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+%html
+  %head 
+    %title= t 'site.name' 
+    = favicon_link_tag
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
+    = javascript_include_tag 'jquery.min.js'
+
+    = javascript_include_tag 'jquery.validationEngine'
+    = javascript_include_tag 'jquery.validationEngine-zh'
+    = stylesheet_link_tag 'validationEngine.jquery'
+
+    =# javascript_include_tag 'rails'
+    =# stylesheet_link_tag 'formtastic'#,'formtastic_changes'
+    = formtastic_stylesheet_link_tag
+    =# include_tiny_mce_if_needed
+    = javascript_include_tag "autocomplete-rails.js"
+    = javascript_include_tag 'infogrid', 'fmenu', 'slideshow', 'des', 'jquery.easyListSplitter','jquery-ui-1.8.12.custom.min', 'jquery.notice', 'coin-slider.min', 'slideout_tooltip', 'jquery.bxslider2.min', 'jquery.jqplot.min', 'jquery.tipsy', 'jquery.tablesorter.min', 'jtabber'
+    = stylesheet_link_tag 'infogrid', 'fmenu', 'scroller', 'news', 'simpleTicker', 'smoothness/jquery-ui-1.8.12.custom', 'default/jx.stylesheet', 'jquery.notice', 'coin-slider-styles', 'slideout_tooltip', 'bxslider2', 'jquery.jqplot.min', 'tipsy', 'simpleform'
+    /[if lt IE 9]
+      = javascript_include_tag 'excanvas.min'
+
+    = javascript_include_tag 'site'
+
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+    :javascript
+      $('document').ready(function(){
+          $('.gmenu').fixedMenu();
+      });
+  %body
+    #wrapper
+      #toolbar
+        .gmenu
+          %ul
+            - if user_signed_in?
+              %li
+                = link_to '#' do
+                  = raw(t('site.task') + "<span class='garrow'></span>")
+                .garrow
+                %ul
+                  %li
+                    - if user?
+                      = link_to t('site.new_task'), new_task_url
+                  %li
+                    = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
+                  %li
+                    = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
+                  %li
+                    = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
+              %li
+                = link_to '#' do
+                  = t('site.task')
+                  %span.arrow
+
+          = link_to image_tag('home.png'), '/', {:title=>t('site.label')}
+          \|
+          - if user_signed_in?
+            = link_to image_tag('info.png'), notices_path, {:title=>t('site.notice_center')}
+            \|
+            =t('site.welcome', :name => current_user.username)
+            - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+            - if messages.length > 0
+              \|
+              - if messages.length == 1
+                = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
+              - else
+                = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), '/m/message'
+            |
+            = link_to t('site.profile'), edit_user_registration_path
+            |
+            = link_to t('site.logout'), destroy_user_session_path
+          - else
+            = link_to t('site.login'), new_user_session_path
+            |
+            = link_to t('site.register'), new_user_registration_path
+      %br
+      /[if IE]
+        %p
+          %br
+          = t 'site.ie'
+      #wide
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "#{name}"
+
+
+      = yield
+
+    #push
+
+    #footer
+      - if user_signed_in?
+        = image_tag 'todo.png'
+        = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'running'
+        = link_to t('task.w_cash')+current_user.status_todos('price').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'price'
+        = link_to t('task.w_finish')+current_user.status_todos('transport').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'transport'
+        = image_tag 'tasks.png'
+        = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'published'
+        = link_to t('task.w_price')+current_user.status_tasks('running').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'running'
+        = link_to t('task.w_transport')+current_user.status_tasks('cash').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'cash'
+        = link_to t('task.w_end')+current_user.status_tasks('finished').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'finished'
+        \|
+      = t 'site.copyright'
+      ©
+      = t 'site.name'
