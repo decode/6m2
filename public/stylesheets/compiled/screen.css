@@ -1480,7 +1480,7 @@ body #simple_toolbar {
   width: 99.974%;
   margin-right: 1.042%;
   color: #3274d1;
-  border-bottom: 1px dotted #0066cc;
+  border-bottom: 1px solid #0066cc;
   /*--Create bevel effect--*/
 }
 /* line 78, ../../../app/stylesheets/screen.scss */
@@ -1604,7 +1604,7 @@ body #space-right {
   display: inline;
   float: left;
   overflow: hidden;
-  width: 3.167%;
+  width: 11.585%;
   margin-right: 0;
 }
 /* line 140, ../../../app/stylesheets/screen.scss */
@@ -1612,7 +1612,7 @@ body #space-left {
   display: inline;
   float: left;
   overflow: hidden;
-  width: 3.167%;
+  width: 7.376%;
   margin-right: 1.042%;
 }
 /* line 143, ../../../app/stylesheets/screen.scss */
@@ -1620,7 +1620,7 @@ body #middle {
   display: inline;
   float: left;
   overflow: hidden;
-  width: 91.556%;
+  width: 83.138%;
   margin-right: 1.042%;
 }
 /* line 146, ../../../app/stylesheets/screen.scss */
@@ -1628,7 +1628,7 @@ body #left3 {
   display: inline;
   float: left;
   overflow: hidden;
-  width: 32.63%;
+  width: 7.376%;
   margin-right: 1.042%;
 }
 /* line 149, ../../../app/stylesheets/screen.scss */
@@ -1778,7 +1778,7 @@ html, body {
 /* line 179, ../../../app/stylesheets/screen.scss */
 #footer {
   font-size: 14px;
-  text-align: right;
+  text-align: center;
 }
 
 /* line 183, ../../../app/stylesheets/screen.scss */

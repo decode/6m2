@@ -73,7 +73,7 @@ body {
     background: url(/images/small_logo.png) no-repeat left;
     @include column($blueprint-grid-columns);
     color:#3274d1; 
-    border-bottom: 1px dotted #0066cc; /*--Create bevel effect--*/  
+    border-bottom: 1px solid #0066cc; /*--Create bevel effect--*/  
     }
   #toolbar a {
     text-decoration:none; 
@@ -135,16 +135,16 @@ body {
     @include column(12, ture);
   }
   #space-right {
-    @include column(1, true);
+    @include column(3, true);
   }
   #space-left {
-    @include column(1);
+    @include column(2);
   }
   #middle {
-    @include column(22);
+    @include column(20);
   }
   #left3 {
-    @include column(8);
+    @include column(2);
   }
   #middle3 {
     @include column(8);
@@ -178,7 +178,7 @@ html, body { height: 98%; margin: 0; }
 }
 #footer {
   font-size: 14px;
-  text-align: right;
+  text-align: center;
 }
 #footer a {
   text-decoration: none;

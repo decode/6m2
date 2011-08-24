@@ -75,8 +75,11 @@
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "#{name}"
 
-
-      = yield
+      #space-left
+        %br
+      #middle
+        = yield
+      #space-right
 
     #push
 
