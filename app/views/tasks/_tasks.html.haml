@@ -85,6 +85,18 @@
     = link_to '/m/charge' do
       = image_tag('add.png')
       = t('trade.charge_payment') 
+    - if user_signed_in?
+      |
+      = image_tag 'todo.png'
+      = link_to t('site.todo_num')+current_user.status_todos('running').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'running'
+      = link_to t('task.w_cash')+current_user.status_todos('price').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'price'
+      = link_to t('task.w_finish')+current_user.status_todos('transport').length.to_s, :controller=>'board', :action=>'status_todo', :task_status=>'transport'
+      |
+      = image_tag 'tasks.png'
+      = link_to t('site.task_num')+current_user.status_tasks('published').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'published'
+      = link_to t('task.w_price')+current_user.status_tasks('running').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'running'
+      = link_to t('task.w_transport')+current_user.status_tasks('cash').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'cash'
+      = link_to t('task.w_end')+current_user.status_tasks('finished').length.to_s, :controller=>'board', :action=>'status_task', :task_status=>'finished'
 #wide
   .main
     %p{:title => t('task.demo'), :class=>'blue'}

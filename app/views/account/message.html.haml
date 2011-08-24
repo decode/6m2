@@ -1,6 +1,9 @@
 #roundshape
   = link_to t('global.read_all'), :controller => 'board', :action => 'mb_read_all'
+  \|
   = link_to t('global.delete_all'), {:controller => 'board', :action => 'mb_delete_all'}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+  \|
+  = link_to t('global.back'), :back
 %table
   %caption
   %thead
@@ -24,5 +27,7 @@
           = link_to t('message.make_read'), :controller => 'board', :action => 'mb_read', :id => m if m.unread?
           = link_to t('global.show'), :controller => 'board', :action => 'view_message', :id => m.message
           = link_to t('global.delete'), :controller => 'board', :action => 'make_delete', :id => m
-
-= will_paginate @messageboxes
+  %tfoot
+    %tr
+      %th
+        = will_paginate @messageboxes
