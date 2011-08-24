@@ -1,4 +1,6 @@
 class BoardController < ApplicationController
+  layout 'simple'
+
   access_control do
     allow :superadmin
     allow :admin, :manager, :user, :except => [:roles, :new_role, :create_role, :delete_role]

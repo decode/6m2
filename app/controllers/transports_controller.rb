@@ -1,4 +1,6 @@
 class TransportsController < ApplicationController
+  layout 'simple'
+
   access_control do
     allow :admin, :manager
     allow :user, :except => [:new, :edit, :update, :destroy]

@@ -27,34 +27,50 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-    :javascript
-      $('document').ready(function(){
-          $('.gmenu').fixedMenu();
-      });
   %body
-    .gmenu
-      %ul
-        - if user_signed_in?
-          %li
-            = raw("<a href='#'>test<span class='garrow'></span></a>")
-            %ul
-              %li
-                - if user?
-                  = link_to t('site.new_task'), new_task_url
-              %li
-                = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
-              %li
-                = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
-              %li
-                = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-              %li
-                = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-          %li
-            = link_to '#' do
-              = t('site.task')
-              %span.garrow
     #wrapper
-      #toolbar
+      #simple_toolbar
+        .simple_menu
+          - if user_signed_in?
+            #navi
+              %ul
+                %li
+                  = link_to t('site.task'), tasks_url
+                  = link_to t('site.user_center'), current_user
+                  = link_to t('site.service_center'), '/t/service'
+                  = link_to t('site.transport_center'), transports_path
+                  = link_to t('site.rule'), articles_path
+                  - if manager? or admin?
+                    = link_to t('site.manage_center'), admin? ? users_path : ''
+                  - if superadmin?
+                    = link_to t('site.admin'), '/admin'
+          #account_bar
+            = link_to '/', {:title=>t('site.label')} do
+              = image_tag('home.png')
+              = t('site.label')
+            - if user_signed_in?
+              = link_to notices_path, {:title=>t('site.notice_center')} do
+                = image_tag('info.png')
+                = t('site.notice_center')
+              - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
+              - if messages.length > 0
+                - if messages.length == 1
+                  = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
+                - else
+                  = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), '/m/message'
+              = link_to edit_user_registration_path do
+                = image_tag('user_info.png')
+                = t('site.profile')
+              = link_to destroy_user_session_path do
+                = image_tag('logout.png')
+                = t('site.logout')
+            - else
+              = link_to new_user_session_path do
+                = image_tag('login.png')
+                = t('site.login')
+              = link_to new_user_registration_path do
+                = image_tag('sign_up.png')
+                = t('site.register')
       %br
       /[if IE]
         %p

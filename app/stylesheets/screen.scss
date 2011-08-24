@@ -68,6 +68,13 @@ body {
     color:#3274d1; 
     //border-bottom: 1px solid #444; /*--Create bevel effect--*/  
     }
+  #simple_toolbar {
+    //background: #a9cff3 url(logo.png) no-repeat left;
+    background: url(/images/small_logo.png) no-repeat left;
+    @include column($blueprint-grid-columns);
+    color:#3274d1; 
+    border-bottom: 1px dotted #0066cc; /*--Create bevel effect--*/  
+    }
   #toolbar a {
     text-decoration:none; 
   }

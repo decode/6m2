@@ -35,27 +35,34 @@
           = content_tag :div, msg, :id => "#{name}"
       /.container
       #toolbar
-        = link_to image_tag('home.png'), '/', {:title=>t('site.label')}
-        \|
         - if user_signed_in?
-          = link_to image_tag('info.png'), notices_path, {:title=>t('site.notice_center')}
-          \|
           =t('site.welcome', :name => current_user.username)
+        = link_to '/', {:title=>t('site.label')} do
+          = image_tag('home.png')
+          = t('site.label')
+        - if user_signed_in?
+          = link_to notices_path, {:title=>t('site.notice_center')} do
+            = image_tag('info.png')
+            = t('site.notice_center')
           - messages = current_user.message_boxes.where(:status => 'unread').order("created_at DESC")
           - if messages.length > 0
-            \|
             - if messages.length == 1
               = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), :controller => 'board', :action => 'view_message', :id => messages.first.message
             - else
               = link_to image_tag('message.png') + messages.length.to_s + t('message.message_tail'), '/m/message'
-          |
-          = link_to t('site.profile'), edit_user_registration_path
-          |
-          = link_to t('site.logout'), destroy_user_session_path
+          = link_to edit_user_registration_path do
+            = image_tag('user_info.png')
+            = t('site.profile')
+          = link_to destroy_user_session_path do
+            = image_tag('logout.png')
+            = t('site.logout')
         - else
-          = link_to t('site.login'), new_user_session_path
-          |
-          = link_to t('site.register'), new_user_registration_path
+          = link_to new_user_session_path do
+            = image_tag('login.png')
+            = t('site.login')
+          = link_to new_user_registration_path do
+            = image_tag('sign_up.png')
+            = t('site.register')
         %br
         /[if IE]
           %p
@@ -103,7 +110,7 @@
             - if user_signed_in?
               %li
                 %span.head_menu
-                  =link_to t('site.user_center'), current_user
+                  = link_to t('site.user_center'), current_user
                   = image_tag 'arrow.png', :width => 18, :height => 15, :align => 'top', :class => 'arrow'
                 .sub_menu
                   - if guest? or user?

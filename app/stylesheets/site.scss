@@ -554,13 +554,9 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 
 /*Google Style Menu */
-body{
-  padding:0;
-  margin:0;
-}
 .gmenu{
-  //font: 13px/27px Arial,sans-serif;
-  margin-left: 200px;
+  font: 13px/27px Arial,sans-serif;
+  margin-left: 100px;
   color:#3366CC;
   height:30px;
   //background: url(/images/back.gif) repeat-x;
@@ -598,10 +594,10 @@ body{
   display:none;
   padding: 0px 16px 0px 0;
 }
-.active ul{
+.gactive ul{
   display:block !important; 
 }
-.active a{
+.gactive a{
   background-color: white;
   border: 1px solid #C3D1EC;
   border-bottom: 0;
@@ -612,14 +608,14 @@ body{
   position:relative;
   z-index: 1;
 }
-.active a:hover{
+.gactive a:hover{
   background-color:white;
 }
-.active ul a:hover{
+.gactive ul a:hover{
   background-color:#e4ebf8;
 }
 
-.active ul a{
+.gactive ul a{
   border: 0 !important;
   box-shadow: 0 0 0 #CCCCCC;
   border:0;
@@ -631,4 +627,47 @@ body{
   margin-left: 5px;
   position: relative;
   top: 20px;
+}
+
+/*Simple Navigator Menu*/
+.simple_menu {
+  width: 100%;
+  color:#3366CC;
+  height:20px;
+  float: left;
+}
+.simple_menu a {
+  text-decoration: none;
+  padding: 4px 8px 7px;
+  color:#3366CC;
+  outline:none;
+  border: 1px solid #444;
+}
+.simple_menu a:hover {
+  background-color:#e4ebf8;
+}
+.simple_menu a{
+  border: 0 !important;
+  box-shadow: 0 0 0 #CCCCCC;
+  border:0;
+  width: 100%;
+}
+.simple_menu a:hover {
+
+}
+.simple_menu ul{
+  list-style: none;
+  margin:0;
+  padding:0 0 0 10px;
+}
+.simple_menu ul li {
+  padding:0;
+  float:left;
+}
+#navi {
+  margin-left: 100px;
+}
+#account_bar {
+  float:right;
+  //margin-right:0px;
 }

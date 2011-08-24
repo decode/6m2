@@ -78,6 +78,14 @@
       = image_tag('quest.png')
       = '-' + t('task.send_problem')
 #wide
+  .bordershape
+    = link_to new_task_url do
+      = image_tag('add.png')
+      = t('site.new_task') 
+    = link_to '/m/charge' do
+      = image_tag('add.png')
+      = t('trade.charge_payment') 
+#wide
   .main
     %p{:title => t('task.demo'), :class=>'blue'}
       = image_tag('do.png')
@@ -115,7 +123,6 @@
     %thead
       %tr
         %th
-        %th=t 'global.type'
         %th=t 'site.task_name'
         %th=t 'global.price' 
         %th=t 'task.point'
@@ -132,7 +139,6 @@
           %td= task.id
           %td
             = convert_shop_type(task.task_type)
-          %td
             = task.title.length > 15 ? task.title[0, 15] + "..." : task.title
             %div{:id=>'task_operate',:style=>'display:none'}
               = link_to image_tag('view.png'), task, {:id=>'tip', :title=>t('global.show')}
@@ -178,8 +184,7 @@
               = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem'), :class=>'operate'} if task.can_argue?
         %tr
           %td
-          %td
-          %td{:colspan=>9}
+          %td{:colspan=>7}
             #task_detail
               /{:style=>'display:none'}
               - if task.worker_level > 0
@@ -206,8 +211,7 @@
       /=t('site.task')
     %thead
       %tr
-        %th=t 'global.type'
-        %th{:width=>'20%'}=t 'global.title'
+        %th=t 'global.title'
         %th=t 'global.price' 
         %th=t 'task.point'
         %th=t 'task.owner'
@@ -220,7 +224,6 @@
         %tr{:class=>'double'}
           %td
             = convert_shop_type(task.task_type)
-          %td
             = task.title.length > 15 ? task.title[0, 15] + "..." : task.title
             - if task.user == current_user
               %div{:id=>'task_operate',:style=>'display:none'}
@@ -261,8 +264,7 @@
             - if task.user == current_user or task.worker == current_user
               = link_to image_tag('quest.png', :alt=>t('task.send_problem')), {:controller=>'board', :action=>'argue_task', :id=>task}, {:confirm => t('task.q_argue'), :id=>'tip',:title=>t('task.send_problem'), :class=>'operate'} if task.can_argue?
         %tr
-          %td
-          %td{:colspan=>8}
+          %td{:colspan=>7}
             #task_detail
               /{:style=>'display:none'}
               - if task.worker_level > 0
