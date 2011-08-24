@@ -1,6 +1,7 @@
 = render 'users/head'
 
-.solidshape
-  = render 'user' unless @user.nil?
+#wide
+  .solidshape
+    = render 'user' unless @user.nil?
 
-= render 'trades'
+  = render 'trades'

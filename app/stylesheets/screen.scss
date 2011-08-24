@@ -138,13 +138,13 @@ body {
     @include column(3, true);
   }
   #space-left {
-    @include column(2);
+    @include column(1);
   }
   #middle {
-    @include column(20);
+    @include column(22);
   }
   #left3 {
-    @include column(2);
+    @include column(1);
   }
   #middle3 {
     @include column(8);
