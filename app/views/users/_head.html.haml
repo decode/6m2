@@ -1,25 +1,26 @@
 - if current_user or admin?
-  #roundshape
-    - if salesman?
-      = link_to t('transaction.business'), '/m/business'
+  #wide
+    #roundshape
+      - if salesman?
+        = link_to t('transaction.business'), '/m/business'
+        \|
+      = link_to t('global.show'), @user
       \|
-    = link_to t('global.show'), @user
-    \|
-    = link_to t('site.personal_info'), edit_user_path(@user)
-    \|
-    = link_to t('site.operate_password'), "/m/operate_password"
-    \|
-    = link_to t('site.my_participants'), :controller=>'account', :action=>'participant', :id=>@user
-    \|
-    = link_to t('account.charge_log'), :controller=>'account', :action=>'charge_log', :id=>@user
-    \|
-    = link_to t('account.small_cash_log'), :controller=>'account', :action=>'small_cash', :id=>@user
-    \|
-    = link_to t('account.big_cash_log'), :controller=>'account', :action=>'big_cash', :id=>@user
-    \|
-    = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
-    \|
-    = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user
-    \|
-    = link_to t('global.back'), :back
+      = link_to t('site.personal_info'), edit_user_path(@user)
+      \|
+      = link_to t('site.operate_password'), "/m/operate_password"
+      \|
+      = link_to t('site.my_participants'), :controller=>'account', :action=>'participant', :id=>@user
+      \|
+      = link_to t('account.charge_log'), :controller=>'account', :action=>'charge_log', :id=>@user
+      \|
+      = link_to t('account.small_cash_log'), :controller=>'account', :action=>'small_cash', :id=>@user
+      \|
+      = link_to t('account.big_cash_log'), :controller=>'account', :action=>'big_cash', :id=>@user
+      \|
+      = link_to t('account.trade_log'), :controller=>'account', :action=>'trade_log', :id=>@user
+      \|
+      = link_to t('account.task_log'), :controller=>'account', :action=>'task_log', :id=>@user
+      \|
+      = link_to t('global.back'), :back
 
