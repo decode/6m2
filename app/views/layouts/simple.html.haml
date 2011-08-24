@@ -71,11 +71,6 @@
               = link_to new_user_registration_path do
                 = image_tag('sign_up.png')
                 = t('site.register')
-      %br
-      /[if IE]
-        %p
-          %br
-          = t 'site.ie'
       #wide
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "#{name}"
@@ -86,6 +81,9 @@
     #push
 
     #footer
+      /[if IE]
+        = t 'site.ie'
+        \|
       = t 'site.copyright'
       ©
       = t 'site.name'
