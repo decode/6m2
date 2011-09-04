@@ -169,16 +169,17 @@
                 = "(#{task.worker_part_name})" unless task.worker.nil?
             %td
               = task.local_status
-              - if task.transport_time and task.transport?
-                - day = 0
-                - if Time.now.month - task.transport_time.month != 0
-                  - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
-                - else
-                  - day = Time.now.day - task.transport_time.day
-                - if task.task_day - day >= 0
-                  = t 'task.finish_left', :day=>"#{task.task_day - day}"
-                - else
-                  = t 'task.overdue', :day=>"#{day - task.task_day}"
+              /
+                - if task.transport_time and task.transport?
+                  - day = 0
+                  - if Time.now.month - task.transport_time.month != 0
+                    - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
+                  - else
+                    - day = Time.now.day - task.transport_time.day
+                  - if task.task_day - day >= 0
+                    = t 'task.finish_left', :day=>"#{task.task_day - day}"
+                  - else
+                    = t 'task.overdue', :day=>"#{day - task.task_day}"
             %td
               - if (Date.today - task.published_time.to_date).to_i > 3
                 = l task.published_time, :format => :short
@@ -203,8 +204,11 @@
                 - if task.worker_level > 0
                   =t 'task.level'
                   = task.worker_level
-                =t 'task.work_day'
-                = task.task_day
+
+                /
+                  =t 'task.work_day'
+                  = task.task_day
+
                 - if task.avoid_day > 0
                   =t 'formtastic.labels.task.avoid_day'
                   = task.avoid_day
@@ -252,14 +256,15 @@
             %td
               = task.local_status
               - if task.transport_time and task.transport? and (task.user == current_user or task.worker == current_user)
-                - if Time.now.month - task.transport_time.month != 0
-                  - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
-                - else
-                  - day = Time.now.day - task.transport_time.day
-                - if task.task_day - day >= 0
-                  = t 'task.finish_left', :day=>"#{task.task_day - day}"
-                - else
-                  = t 'task.overdue', :day=>"#{day - task.task_day}"
+                /
+                  - if Time.now.month - task.transport_time.month != 0
+                    - day = Time.now.day + task.transport_time.end_of_month.day - task.transport_time.day
+                  - else
+                    - day = Time.now.day - task.transport_time.day
+                  - if task.task_day - day >= 0
+                    = t 'task.finish_left', :day=>"#{task.task_day - day}"
+                  - else
+                    = t 'task.overdue', :day=>"#{day - task.task_day}"
             %td
               - if (Date.today - task.published_time.to_date).to_i > 3
                 = l task.published_time, :format => :short
@@ -283,8 +288,11 @@
                 - if task.worker_level > 0
                   =t 'task.level'
                   = task.worker_level
-                =t 'task.work_day'
-                = task.task_day
+
+                /
+                  =t 'task.work_day'
+                  = task.task_day
+
                 - if task.avoid_day > 0
                   =t 'formtastic.labels.task.avoid_day'
                   = task.avoid_day

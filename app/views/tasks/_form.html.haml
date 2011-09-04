@@ -77,24 +77,26 @@
   %span{:style=>'color:red'}= t 'task.spend', :point => 0.2
   = f.input :real_level, :as => :select, :collection => (0..Setting.first.real_level).to_a, :input_html => { :class => "validate[required]" }
 
-  %span{:style=>'color:red'}= "1天(0), 2天(0), 3天(-0.5), 4 天(-1), 5天(-1.5), 6天(-2) 按天数递增"
-  %br
-  %span{:style=>'color:red'}= t 'task.taskday_hint'
-  = f.input :task_day, :as => :select, :collection => (1..6).to_a, :input_html => { :class => "validate[required]" }
+  /
+    %span{:style=>'color:red'}= "1天(0), 2天(0), 3天(-0.5), 4 天(-1), 5天(-1.5), 6天(-2) 按天数递增"
+    %br
+    %span{:style=>'color:red'}= t 'task.taskday_hint'
+    = f.input :task_day, :as => :select, :collection => (1..6).to_a, :input_html => { :class => "validate[required]" }
 
   %span{:style=>'color:red'}= "10天(-0.1), 20天(-0.2), 30天(-0.3), 40天(-0.4), 50天(-0.5), 60天(-0.6) 依次递增"
   = f.input :avoid_day, :as => :select, :collection => [0,10,20,30,40,50,60], :input_html => { :class => "validate[required]" }
 
-  %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.custom_msg
-  = f.input :custom_msg
-  = f.input :custom_msg_content, :as => :text
+  /
+    %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.custom_msg
+    = f.input :custom_msg
+    = f.input :custom_msg_content, :as => :text
 
-  %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.all_star
-  = f.input :all_star
+    %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.all_star
+    = f.input :all_star
 
-  %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.custom_judge
-  = f.input :custom_judge
-  = f.input :custom_judge_content, :as => :text
+    %span{:style=>'color:red'}= t 'task.spend', :point => Setting.first.custom_judge
+    = f.input :custom_judge
+    = f.input :custom_judge_content, :as => :text
 
   %hr
   

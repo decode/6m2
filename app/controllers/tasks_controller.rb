@@ -68,10 +68,9 @@ class TasksController < ApplicationController
       @task.status = 'unpublished'
       #@task.price = 10
       @task.worker_level = 0
-      @task.task_day = 1
+      #@task.task_day = 1
       @task.extra_word = false
       @task.avoid_day = 0
-      #@task.task_level = 0
       @task.real_level = 0 
       @task.shop = current_user.active_shop.name if current_user.active_shop
 
