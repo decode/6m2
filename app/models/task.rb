@@ -41,25 +41,27 @@ class Task < ActiveRecord::Base
     end
   end
   def log_destroy
-    save_log(I18n.t('task.delete'), self.user, 0, 0)
+    save_log(I18n.t('task.delete'), self.user, 0.0, 0.0)
   end
 
   # 保存任务日志
-  def save_log(log_type, user, price=0, point=0, append_desc='')
+  def save_log(log_type, user, price=0.0, point=0.0, append_desc='')
     log = Tasklog.new
     log.task_id = self.id
     log.user_id = user.id if user
     log.user_name = user.username
-    if self.worker
+    if self.worker and self.user == user
       log.worker_id = self.worker.id 
       log.worker_name = self.worker.username
-      log.worker_part_id = self.worker.active_participant.id
-      log.worker_part_name = self.worker.active_participant.part_id
+      if self.running?
+        log.worker_part_id = self.worker.active_participant.id
+        log.worker_part_name = self.worker.active_participant.part_id
+      end
     end
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = log_type + " " + I18n.t('account.point') + ":" + (user.account_credit-point).round(1).to_s + " " + I18n.t('account.account_money') + ":" + (user.account_money-price).round(1).to_s + " " + append_desc
+    log.description = log_type + " " + I18n.t('account.point') + ":" + (user.account_credit-point).round(2).to_s + " " + I18n.t('account.account_money') + ":" + (user.account_money-price).round(2).to_s + " " + append_desc
     log.save!
   end
 

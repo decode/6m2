@@ -70,3 +70,19 @@ $(document).ready(function(){
   */
 });
 
+(function($){
+  $.fn.fixedMenu=function(){
+    return this.each(function(){
+      var menu= $(this);
+      menu.find('ul li > a').bind('click',function(){
+        if ($(this).parent().hasClass('gactive')){
+          $(this).parent().removeClass('gactive');
+        }
+        else{
+          $(this).parent().parent().find('.gactive').removeClass('gactive');
+          $(this).parent().addClass('gactive');
+        }
+      })
+    });
+  }
+})(jQuery);

@@ -554,11 +554,15 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 }
 
 /*Google Style Menu */
+body{
+    padding:0;
+    margin:0;
+}
 .gmenu{
-  font: 13px/27px Arial,sans-serif;
+  //font: 13px/27px Arial,sans-serif;
   margin-left: 100px;
   color:#3366CC;
-  height:30px;
+  height:25px;
   //background: url(/images/back.gif) repeat-x;
 }
 .gmenu a:hover{
@@ -603,7 +607,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   border-bottom: 0;
   box-shadow: 0 -1px 5px #CCCCCC;
   display: block;
-  height: 29px;
+  height: 24px;
   padding: 0 8px 0 8px;
   position:relative;
   z-index: 1;
@@ -622,11 +626,18 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
   width: 100%;
 }
 .garrow {
-  border-color: #3366CC transparent transparent;
-  border-style: solid dashed dashed;
-  margin-left: 5px;
-  position: relative;
-  top: 20px;
+  /*border-color: #3366CC transparent transparent;*/
+  /*border-style: solid dashed dashed;*/
+  /*margin-left: 5px;*/
+  /*position: relative;*/
+  /*top: 20px;*/
+  display:inline-block;
+  border:0 solid #fff; 
+  border-width:4px 4px 0; 
+  border-color:#3366cc #fff;
+  width:0; 
+  overflow:hidden;
+  height:0; 
 }
 
 /*Simple Navigator Menu*/

@@ -110,7 +110,7 @@ class ApplicationController < ActionController::Base
     #
     # 需要添加用户交易记录
     #
-    task.save_log('', user, 0, 0, I18n.t('account.gain_point') + ":" + real_point.to_s)
+    task.save_log('', user, 0, 0, I18n.t('account.gain_point') + ":" + real_point.round(2).to_s)
   end
 
   def penalty(issue, user, point=0, money=0)

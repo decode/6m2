@@ -27,23 +27,73 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+
+    :javascript
+      $('document').ready(function(){
+        $('.gmenu').fixedMenu();
+        });
   %body
     #wrapper
       #simple_toolbar
-        .simple_menu
+        .gmenu
           - if user_signed_in?
-            #navi
-              %ul
-                %li
-                  = link_to t('site.task'), tasks_url
-                  = link_to t('site.user_center'), current_user
-                  = link_to t('site.service_center'), '/t/service'
-                  = link_to t('site.transport_center'), transports_path
-                  = link_to t('site.rule'), articles_path
-                  - if manager? or admin?
-                    = link_to t('site.manage_center'), admin? ? users_path : ''
-                  - if superadmin?
-                    = link_to t('site.admin'), '/admin'
+            %ul
+              %li
+                = link_to t('site.task'), tasks_url
+              %li
+                = link_to t('site.user_center'), current_user
+              %li
+                = link_to t('site.transport_center'), transports_path
+              %li
+                = link_to t('site.rule'), articles_path
+              %li
+                = link_to '#' do
+                  = t('site.service_center')
+                  %span.garrow
+                %ul
+                  %li
+                    = link_to t('site.service_list'), '/t/service'
+                  %li
+                    = link_to t('site.service'), issues_path 
+              %li
+                - if admin?
+                  = link_to '#' do
+                    = t('site.manage_center')
+                    %span.garrow
+                  %ul
+                    %li
+                      = link_to t('site.manage_center'), admin? ? users_path : ''
+                    %li
+                      = link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
+                    %li
+                      = link_to t('site.big_cash'), '/t/big_cash'
+                    %li
+                      = link_to t('trade.manage_payment'), '/m/approve/charge'
+                    %li
+                      = link_to t('trade.manage_point'), '/m/approve/point'
+                    %li
+                      =# link_to t('trade.manage_recyling'), '/m/approve/recyling'
+                      = link_to t('trade.manage_score'), '/m/approve/score'
+                      %hr
+                    %li
+                      = link_to t('site.issue'), issues_path
+                    %li
+                      = link_to t('site.tasklog_center'), '/t/tasklogs'
+                    %li
+                      = link_to t('site.accountlog_center'), '/t/accountlogs'
+                    %li
+                      = link_to t('site.finance_center'), transactions_url
+                      %hr
+                    %li
+                      = link_to t('site.platform_status'), '/status/total'
+                    %li
+                      = link_to t('system.message'), '/s/message'
+                      %hr
+                    %li
+                      = link_to t('site.setting'), '/s/setting'
+              %li
+                - if superadmin?
+                  = link_to t('site.admin'), '/admin'
           #account_bar
             = link_to '/', {:title=>t('site.label')} do
               = image_tag('home.png')

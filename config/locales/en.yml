@@ -73,6 +73,7 @@ en:
     copyright: "Copyright"
     admin: "Admin"
     roles: "Roles"
+    user: "User"
     access_denied: "Access Denied"
     access_reason: "The reason may be:"
     access_guest: "> You are guest, please charge to become user"

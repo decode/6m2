@@ -75,6 +75,7 @@ zh:
     copyright: "版权所有"
     admin: "后台"
     roles: "角色"
+    user: "用户"
     access_denied: "您暂时没有权限访问该资源"
     access_reason: "不能访问的原因可能是:"
     access_guest: "> 您的权限为访客,请充值成分正式用户"
