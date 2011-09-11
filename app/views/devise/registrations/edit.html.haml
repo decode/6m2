@@ -14,10 +14,11 @@
         =# t 'site.login_name'
         %br/
         =# f.text_field :username, { :class => 'validate[required],minSize[6],maxSize[20]' }
-    %p
-      = t 'page.email'
-      %br/
-      = f.text_field :email, { :class => 'validate[required],custom[email]' }
+    /
+      %p
+        =# t 'page.email'
+        %br/
+        =# f.text_field :email, { :class => 'validate[required],custom[email]' }
     %p
       = t 'site.password'
       %i= t 'site.leave_blank'
