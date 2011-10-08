@@ -37,15 +37,21 @@ class Task < ActiveRecord::Base
 
   def log_save
     if ['published', 'running', 'end'].include?(self.status)
-      save_log('', self.user, self.price, self.point)
+      save_log(:user => self.user, :price => self.price, :point => self.point)
     end
   end
   def log_destroy
-    save_log(I18n.t('task.delete'), self.user, 0.0, 0.0)
+    save_log(:log_type=>I18n.t('task.delete'), :user => self.user)
   end
 
   # 保存任务日志
-  def save_log(log_type, user, price=0.0, point=0.0, append_desc='')
+  def save_log(opt={})
+    user = opt[:user]
+    log_type = opt[:log_type] || ''
+    point = opt[:point] || 0.0
+    price = opt[:price] || 0.0
+    append_desc = opt[:append_desc] || ''
+
     log = Tasklog.new
     log.task_id = self.id
     log.user_id = user.id if user
@@ -61,7 +67,10 @@ class Task < ActiveRecord::Base
     log.price = self.price
     log.point = self.point
     log.status = self.status
-    log.description = log_type + " " + I18n.t('account.point') + ":" + (user.account_credit-point).round(2).to_s + " " + I18n.t('account.account_money') + ":" + (user.account_money-price).round(2).to_s + " " + append_desc
+    # 当任务被接或者结束时,不记录发布方的点数情况
+    unless self.user == user and (self.status == 'end' or self.status == 'running')
+      log.description = log_type + " " + I18n.t('account.point') + ":" + (user.account_credit-point).round(2).to_s + " " + I18n.t('account.account_money') + ":" + (user.account_money-price).round(2).to_s + " " + append_desc
+    end
     log.save!
   end
 

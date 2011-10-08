@@ -11,23 +11,23 @@ class ApplicationController < ActionController::Base
   end
 
   def caculate_point(task)
-    point = 0
+    point = 0.0
     unless task.free_task?
       # 按金额计算
       #step = [40, 80, 120, 200, 500, 1000, 1500]
       step = [79, 119, 179, 259, 359, 499, 699, 999, 10000]
       if task.virtual_task?
-        p = [1, 2, 3, 4, 5, 6, 7] 
+        p = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0] 
       else
         #p = [1, 1.5, 2, 3, 4, 5, 6]
         #p = [1, 1, 1, 1, 1, 1, 1]
-        p = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 7]
+        p = [1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0]
       end
       index = step.select{ |s| s < task.price }.length
       point = p[ index==step.length ? index-1 : index ]
 
       # 按完成时间计算
-      day_point = {1=>0, 2=>0, 3=>0.5, 4=>1, 5=>1.5, 6=>2}
+      day_point = {1=>0.0, 2=>0.0, 3=>0.5, 4=>1.0, 5=>1.5, 6=>2.0}
       point = point + day_point[task.task_day]
 
       # 附加词语
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     point = task.point
     
     #logger.info("spend======================== #{point}")
-    price = task.price.nil? ? 0 : task.price
+    price = task.price.nil? ? 0.0 : task.price
     res = user.account_credit - point
     if res > 0
       user.account_credit = res.round(1)
@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
     #
     # 需要添加用户交易记录
     #
-    task.save_log('', user, 0, 0, I18n.t('account.restore_point') + ":" + point.to_s)
+    task.save_log(:user=>user, :append_desc=>I18n.t('account.restore_point') + ":" + point.to_s)
   end
 
   def gain(task)
@@ -110,7 +110,7 @@ class ApplicationController < ActionController::Base
     #
     # 需要添加用户交易记录
     #
-    task.save_log('', user, 0, 0, I18n.t('account.gain_point') + ":" + real_point.round(2).to_s)
+    task.save_log(:user=>user, :append_desc=>I18n.t('account.gain_point') + ":" + real_point.round(2).to_s)
   end
 
   def penalty(issue, user, point=0, money=0)
