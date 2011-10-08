@@ -4,12 +4,12 @@ class Accountlog < ActiveRecord::Base
     return ltype[self.log_type]
   end
 
-  def save_log(opt=>{})
-    user = opt[:user]
-    operator = opt[:operator]
-    log_type = opt[:log_type]
-    description = opt[:description]
-    point = opt[:point]
-    Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => operator.id, :operator_name => operator.username, :amount => point, :log_type => log_type, :description => description
-  end
+  #def save_log(opt=>{})
+    #user = opt[:user]
+    #operator = opt[:operator]
+    #log_type = opt[:log_type]
+    #description = opt[:description]
+    #point = opt[:point]
+    #Accountlog.create! :user_id => user.id, :user_name => user.username, :operator_id => operator.id, :operator_name => operator.username, :amount => point, :log_type => log_type, :description => description
+  #end
 end
