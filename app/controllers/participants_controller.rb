@@ -60,6 +60,10 @@ class ParticipantsController < ApplicationController
           @participant.errors.add 'url', t('participant.shop_existed')
           isPass = false
         end
+        if !current_user.can_create_shop?
+          @participant.errors.add 'role_type', t('participant.shop_over_limit')
+          isPass = false
+        end
       end
     end
     @participant.user = current_user

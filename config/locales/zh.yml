@@ -328,6 +328,7 @@ zh:
     customer: "买号"
     no_shop_url: "绑定店铺必须填写店铺地址"
     shop_existed: "该地址己被使用"
+    shop_over_limit: "发布点数量不足,不能绑定更多店铺,请参考平台规则"
     in_use: "使用中"
     active: "正常"
     danger: "不安全"

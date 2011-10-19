@@ -318,6 +318,7 @@ en:
     customer: "Customer"
     no_shop_url: "Shop Address Not Existed"
     shop_existed: "Shop Address Has Been Used"
+    shop_over_limit: "Credit is not enough to add more shops"
     in_use: "Used"
     active: "Active"
     danger: "Danger"

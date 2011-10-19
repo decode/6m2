@@ -97,6 +97,22 @@ class User < ActiveRecord::Base
     return self.participants.where("role_type = 'shop' and active = ?", true).first
   end
 
+  def shops
+    return self.participants.where("role_type = 'shop'")
+  end
+
+  def shop_limit
+    limit = [1,2,3,4,5,6]
+    step = [500, 1000, 2000, 5000, 10000]
+    index = step.select{ |s| s < self.account_credit }.length
+    number = limit[index]
+    return number
+  end
+
+  def can_create_shop?
+    return self.shops.length < self.shop_limit
+  end
+
   def own_transactions
     Transaction.where(:account_name => self.username)
   end
