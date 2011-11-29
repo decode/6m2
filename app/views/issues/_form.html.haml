@@ -7,7 +7,8 @@
     = @task.user.username
     |
     = label_tag t('task.worker')
-    = @task.worker.username
+    =# @task.worker.username
+    = @task.worker_part_name
     |
     = label_tag t('global.price')
     = @task.price
