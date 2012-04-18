@@ -133,6 +133,7 @@ DEPENDENCIES
   rails (= 3.0.9)
   rails3-jquery-autocomplete
   rails_admin!
+  rake (= 0.9.2)
   rmagick
   simple_form
   sqlite3-ruby
