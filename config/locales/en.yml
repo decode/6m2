@@ -7,6 +7,11 @@ activemodel:
       login: "Username or email"
 
 en:
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
+
   hello: "Hello world"
   errors:
     save_error: "Save date error"

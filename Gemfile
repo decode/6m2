@@ -1,7 +1,7 @@
 source :rubygems
 
 #gem 'rails', '3.0.9'
-gem 'rails'
+gem 'rails', '3.1.2'
 #gem 'rake', '0.9.2'
 
 # Bundle edge Rails instead:
@@ -12,8 +12,6 @@ gem 'rails'
 gem 'haml'
 
 gem 'mysql2'#, '< 0.3'
-
-#gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
 #gem "jquery-rails"
 
@@ -30,7 +28,7 @@ gem 'state_machine'
 
 gem 'validation_reflection'
 
-gem "will_paginate"#, "~> 3.0.pre2"
+gem "will_paginate"
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "compass", ">= 0.10.6"

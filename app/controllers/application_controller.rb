@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   #before_filter :authenticate_user!
   before_filter :set_locale
  
+  require 'will_paginate/array'
+
   def set_locale
     I18n.locale = :zh || I18n.default_locale
   end

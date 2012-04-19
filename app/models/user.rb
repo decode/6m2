@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   attr_accessible :im, :im_q, :bank_name, :bank_account, :mobile, :person_id, :shop_taobao, :shop_taobao_url, :shop_paipai, :shop_paipai_url, :shop_youa, :shop_youa_url
 
   # Acl9 configuration
-  acts_as_authorization_subject :association_name => :roles
+  acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_users
   
   validates_uniqueness_of :username
   validates_length_of :username, :within => 6..20
