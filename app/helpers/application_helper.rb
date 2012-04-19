@@ -1,7 +1,8 @@
 # coding: utf-8
 module ApplicationHelper
-  include Acl9Helpers
 
+  # acl9 configuration
+  include Acl9Helpers
   access_control :superadmin? do
     allow :superadmin
   end
