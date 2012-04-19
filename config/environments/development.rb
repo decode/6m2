@@ -36,7 +36,7 @@ Temp::Application.configure do
   config.assets.debug = true
 
   # Add old action mailer config
-  config.action_mailer.default_url_options = { :host => 'boat166.net' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.action_mailer.delivery_method = :sendmail
   # Defaults to:

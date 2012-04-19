@@ -169,6 +169,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.6)
     state_machine (1.1.2)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
@@ -198,6 +199,7 @@ DEPENDENCIES
   rails_admin!
   rmagick
   simple_form
+  sqlite3
   state_machine
   twitter-bootstrap-rails!
   validation_reflection
