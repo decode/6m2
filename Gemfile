@@ -1,13 +1,13 @@
-source 'http://rubygems.org'
+source :rubygems
 
 #gem 'rails', '3.0.9'
-gem 'rails', '> 3.1.0'
+gem 'rails'
 #gem 'rake', '0.9.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'haml'
 
@@ -15,12 +15,15 @@ gem 'mysql2'#, '< 0.3'
 
 #gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
-gem "jquery-rails"
+#gem "jquery-rails"
 
-gem 'devise' # Devise must be required before RailsAdmin
+gem "acl9"#, :git => 'git://github.com/be9/acl9.git'
+
+#gem 'devise' # Devise must be required before RailsAdmin
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
-gem 'formtastic'
+#gem 'formtastic'
 gem "simple_form"
 
 gem 'state_machine'
@@ -31,7 +34,7 @@ gem "will_paginate"#, "~> 3.0.pre2"
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "compass", ">= 0.10.6"
-gem "fancy-buttons"
+#gem "fancy-buttons"
 
 gem 'rails3-jquery-autocomplete'
 
