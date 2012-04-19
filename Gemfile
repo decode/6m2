@@ -2,19 +2,16 @@ source :rubygems
 
 #gem 'rails', '3.0.9'
 gem 'rails', '3.1.2'
-#gem 'rake', '0.9.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'sqlite3'
+gem "jquery-rails"
 
 gem 'haml'
 
-gem 'mysql2'#, '< 0.3'
-
-#gem "jquery-rails"
+gem 'mysql2'
 
 gem "acl9"#, :git => 'git://github.com/be9/acl9.git'
 

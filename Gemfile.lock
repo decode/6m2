@@ -193,6 +193,7 @@ DEPENDENCIES
   devise!
   exception_notification
   haml
+  jquery-rails
   mysql2
   rails (= 3.1.2)
   rails3-jquery-autocomplete
