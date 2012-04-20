@@ -1,39 +1,40 @@
-#wide
-  %br
-  #content
-    #content-inner
-      %ul{:id=>'slides1'}
-        %li
-          = image_tag('p1.png', :title=>t('home.content1'))
-          .content
-            %h3=t('home.title1')
-            %p=t('home.content1')
-          .clear
-        %li
-          = image_tag('p2.png', :title=>t('home.content2'))
-          .content
-            %h3=t('home.title2')
-            %p=t('home.content2')
-          .clear
-        %li
-          = image_tag('p3.png', :title=>t('home.content3'))
-          .content
-            %h3=t('home.title3')
-            %p=t('home.content3')
-          .clear
-        %li
-          = image_tag('p4.png', :title=>t('home.content4'))
-          .content
-            %h3=t('home.title4')
-            %p=t('home.content4')
-          .clear
+#frontslide
+  .carousel
+    .carousel-inner
+      .item.active
+        = image_tag('p1.png', :title=>t('home.content1'))
+        .carousel-caption
+          %h3=t('home.title1')
+          %p=t('home.content1')
+      .item
+        = image_tag('p2.png', :title=>t('home.content2'))
+        .carousel-caption
+          %h3=t('home.title2')
+          %p=t('home.content2')
+      .item
+        = image_tag('p3.png', :title=>t('home.content3'))
+        .carousel-caption
+          %h3=t('home.title3')
+          %p=t('home.content3')
+      .item
+        = image_tag('p4.png', :title=>t('home.content4'))
+        .carousel-caption
+          %h3=t('home.title4')
+          %p=t('home.content4')
+    %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
+    %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
 
-#mainframe
+.row
   - if user_signed_in?
     = render 'site/news'
+  .span4
+  = render 'site/cs'
+
+.row
   = render 'site/wiki'
-#right
-  .bordershape
+
+.row
+  .span6
     = image_tag("task.png")
     = t 'site.running_task'
     = @running_count
@@ -41,6 +42,6 @@
     = image_tag("user16.png")
     = t 'site.user_number'
     = @user_count
-  = render 'site/users'
+  .span6
+    = render 'site/users'
 
-  = render 'site/cs'

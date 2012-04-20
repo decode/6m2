@@ -28,8 +28,11 @@ gem 'validation_reflection'
 
 gem "will_paginate"
 
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem "compass", ">= 0.10.6"
+gem 'sass-rails'
+gem 'bootstrap-sass'
+
+#gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+#gem "compass", ">= 0.10.6"
 #gem "fancy-buttons"
 
 gem 'rails3-jquery-autocomplete'
