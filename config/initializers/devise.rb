@@ -27,6 +27,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
+   config.authentication_keys = [ :login ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -56,6 +57,7 @@ Devise.setup do |config|
   # given strategies, for example, `config.http_authenticatable = [:token]` will
   # enable it only for token authentication.
   # config.http_authenticatable = false
+  #config.http_authenticatable = [:token]
 
   # If http headers should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -73,7 +75,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing :skip => :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+  #config.skip_session_storage = [:http_auth]
 
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
@@ -86,6 +88,7 @@ Devise.setup do |config|
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "919f99fa991f3efde2368b268a94873081fd16b4cbf388eb750da15bde12027e8effeb96d349b26143c102ee952c26b039be53b3a5d7ca1a07b1e37ee98e2dd2"
+  config.pepper = "a4f81bb1c09e1738a4d68d7343af323555a88bf61598dee7eb7cd20b8db44e73df8428fa0af85f328d94c3b81f272bfce7d821237bdc62f962ffb8d2c107db02"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -103,6 +106,7 @@ Devise.setup do |config|
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
+  config.confirmation_keys = [ :login ]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
