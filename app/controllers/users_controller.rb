@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  layout 'simple'
 
   access_control do
     allow :admin, :manager

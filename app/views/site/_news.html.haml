@@ -1,12 +1,11 @@
-#notice_list
-  #notice_head
-    %h1
-      = image_tag 'warning.png'
-      = t 'site.notice'
+.hero-unit
+  %h3
+    =# image_tag 'warning.png'
+    = t 'site.notice'
   - for n in @notices
-    #notice_body
-      #notice_title= link_to n.title, n
-      #notice_content
-        = n.content.length > 50 ? n.content[0,50] + ' ...' : n.content
-      #notice_date= l n.created_at, :format => :long
-
+    %p
+      #notice_body
+        #notice_title= link_to n.title, n
+        #notice_content
+          = n.content.length > 50 ? n.content[0,50] + ' ...' : n.content
+        #notice_date= l n.created_at, :format => :long

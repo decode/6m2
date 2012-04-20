@@ -25,16 +25,16 @@
     %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
 
 .row
-  - if user_signed_in?
-    = render 'site/news'
+  .span12
+    - if user_signed_in?
+      = render 'site/news'
+
+.row
+  .span8
+    = render 'site/wiki'
   .span4
-  = render 'site/cs'
+    = render 'site/cs'
 
-.row
-  = render 'site/wiki'
-
-.row
-  .span6
     = image_tag("task.png")
     = t 'site.running_task'
     = @running_count
@@ -42,6 +42,8 @@
     = image_tag("user16.png")
     = t 'site.user_number'
     = @user_count
-  .span6
+
     = render 'site/users'
+
+.row
 

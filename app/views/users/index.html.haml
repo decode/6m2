@@ -54,7 +54,8 @@
         = user.id # check_box_tag "users[]", user
       %td= user.username
       %td
-        = user.role_objects.collect{|r| r.name[0..3]}.join(' ')
+        =# user.role_objects.collect{|r| r.name[0..3]}.join(' ')
+        = user.roles.collect{|r| r.name[0..3]}.join(' ')
         = "(#{t('account.not_approved')})" if user.has_role? 'guest'
       %td= user.account_money
       %td= user.account_credit
