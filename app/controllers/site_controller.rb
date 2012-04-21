@@ -1,14 +1,14 @@
 class SiteController < ApplicationController
   def index
-    @notices = Notice.order("created_at Desc").limit(5)
+    @notice = Notice.last #order("created_at Desc").limit(5)
     @setting = Setting.first
     @running_count = @setting.running_task + Task.all.length
     @user_count = @setting.total_user + User.all.length
     @user = current_user
 
-    role = Role.where(:name => 'admin').first
-    ids = role.user_ids.drop(1)
-    @customers = User.where(:id => ids).where('im_q is not null').order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
+    #role = Role.where(:name => 'admin').first
+    #ids = role.user_ids.drop(1)
+    #@customers = User.where(:id => ids).where('im_q is not null').order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)
     #role = Role.where(:name => 'admin').first
     #ids = role.user_ids.drop(1)
     #@admins = User.where(:id => ids).order("created_at DESC")#.paginate(:page => params[:page], :per_page => 20)

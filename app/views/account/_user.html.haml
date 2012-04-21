@@ -1,72 +1,83 @@
-#nav
-  = link_to t('account.info_basic'), '#', {:title=>'info_basic'}
-  = link_to t('account.info_account'), '#', {:title=>'info_account'}
-  = link_to t('account.info_task'), '#', {:title=>'info_task'}
-  .clear
+%ul.nav.nav-tabs
+  %li.active
+    %a(href='#basic' data-toggle='tab')
+      = t('account.info_basic')
+  %li
+    %a(href='#account' data-toggle='tab')
+      = t('account.info_account')
+  %li
+    %a(href='#task' data-toggle='tab')
+      = t('account.info_task')
+    =# link_to t('account.info_task'), '#', {:title=>'info_task'}
 
-#info_basic.hiddencontent
-  %p
-    %b= t 'site.login_name'
-    = @user.username
-  %p
-    %b= t 'page.email'
-    = @user.email
-  %p
-    %b= t 'account.role'
-    =# @user.role_objects.map { |role| role.name }.join('/')
-    = @user.roles.map { |role| role.name }.join('/')
-  %p
-    %b= t 'account.level'
-    = image_tag "icon_vip#{(@user.level)}.gif"
-  %p
-    %b= t 'account.registered_time'
-    = l @user.created_at, :format => :long
-  %p
-    %b= t 'formtastic.labels.user.current_sign_in_at'
-    = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
-
-#info_account.hiddencontent
-  %p
-    = t 'account.charge_amount'
-    = @user.account_money
-  %p
-    = t 'account.point'
-    = @user.account_credit
-  /
-    %li
-      = t 'trade.payment_amount'
-      = @user.payment_money
-  %p
-    = t 'account.score'
-    = @user.score
-  - if admin?
+.tab-content
+  #basic.tab-pane.active
     %p
-      = t 'task.total_finish_todo_payment'
-      = @user.status_todos('finished').sum('price')
+      %b= t 'site.login_name'
+      = @user.username
     %p
-      = t 'task.total_finish_todo_point'
-      = @user.status_todos('finished').sum('point')
+      %b= t 'page.email'
+      = @user.email
+    %p
+      %b= t 'account.role'
+      =# @user.role_objects.map { |role| role.name }.join('/')
+      = @user.roles.map { |role| role.name }.join('/')
+    %p
+      %b= t 'account.level'
+      = image_tag "icon_vip#{(@user.level)}.gif"
+    %p
+      %b= t 'account.registered_time'
+      = l @user.created_at, :format => :long
+    %p
+      %b= t 'formtastic.labels.user.current_sign_in_at'
+      = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
 
-#info_task.hiddencontent
-  %p
-    = t 'task.total_todo_payment'
-    = @user.status_todos('running').sum('price')
-  %p
-    = t 'task.total_task'
-    = @user.tasks.count
-  %p
-    = t 'task.total_todo'
-    = @user.todos.count
-  %p
-    = t 'task.published'
-    = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
-  %p
-    = t 'task.running'
-    = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
-  %p
-    = t 'task.finished'
-    = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
-  %p
-    = t 'task.problem'
-    = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
+  #account.tab-pane
+    %p
+      = t 'account.charge_amount'
+      = @user.account_money
+    %p
+      = t 'account.point'
+      = @user.account_credit
+    /
+      %li
+        = t 'trade.payment_amount'
+        = @user.payment_money
+    %p
+      = t 'account.score'
+      = @user.score
+    - if admin?
+      %p
+        = t 'task.total_finish_todo_payment'
+        = @user.status_todos('finished').sum('price')
+      %p
+        = t 'task.total_finish_todo_point'
+        = @user.status_todos('finished').sum('point')
 
+  #task.tab-pane
+    %p
+      = t 'task.total_todo_payment'
+      = @user.status_todos('running').sum('price')
+    %p
+      = t 'task.total_task'
+      = @user.tasks.count
+    %p
+      = t 'task.total_todo'
+      = @user.todos.count
+    %p
+      = t 'task.published'
+      = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
+    %p
+      = t 'task.running'
+      = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
+    %p
+      = t 'task.finished'
+      = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
+    %p
+      = t 'task.problem'
+      = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
+
+:javascript
+  $(function () {
+    $('.tabs a:last').tab('show')
+  })

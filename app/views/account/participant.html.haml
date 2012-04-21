@@ -1,7 +1,9 @@
-= render 'users/head'
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'users/head'
 
-#wide
-  .solidshape
-    = render 'user'
-
-  = render 'participants/parts'
+    .span10
+      = render 'user'
+      %hr
+      = render 'participants/parts'

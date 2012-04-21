@@ -1,5 +1,4 @@
 class BoardController < ApplicationController
-  layout 'simple'
 
   access_control do
     allow :superadmin

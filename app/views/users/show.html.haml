@@ -1,58 +1,62 @@
-= render 'users/head'
+.container-fluid
+  .row-fluid
+    .span2
+      = render 'users/head'
 
-#wide
-  .solidshape
-    = render 'account/user'
+    .span10
+      = render 'account/user'
 
-#equal-left
-  .bordershape
-    = t('site.w_task_sum') + @week_tasks_sum.to_s
-  #chartdiv_week{:style => 'height:300px;width:90%;'}
-  :javascript
-    $.jqplot('chartdiv_week',  [#{@week}],
-      { 
-      title:"#{t('site.week_title_task')}",
-      axes:{yaxis:{min:0}, xaxis:{min:1, max:7}},
-      series:[{color:'#5FAB78'}],
-      grid:{background:'#eaf4f5'}
-      }
-    );
-#equal-right
-  .bordershape
-    = t('site.m_task_sum') + @month_tasks_sum.to_s
-  #chartdiv_month{:style => 'height:300px;width:90%;'}
-  :javascript
-    $.jqplot('chartdiv_month',  [#{@month}],
-      { 
-      title:"#{t('site.month_title_task')}",
-      axes:{yaxis:{min:0}, xaxis:{min:1, max:31}},
-      series:[{color:'#5FAB78'}],
-      grid:{background:'#eaf4f5'}
-      }
-    );
-#equal-left
-  .bordershape
-    = t('site.w_trade_sum') + @week_trades_sum.to_s
-  #week_trade{:style => 'height:300px;width:90%;'}
-  :javascript
-    $.jqplot('week_trade',  [#{@week_t}],
-      { 
-      title:"#{t('site.week_title_trade')}",
-      axes:{yaxis:{min:0}, xaxis:{min:1, max:7}},
-      series:[{color:'#5FAB78'}],
-      grid:{background:'#eaf4f5'}
-      }
-    );
-#equal-right
-  .bordershape
-    = t('site.m_trade_sum') + @month_trades_sum.to_s
-  #month_trade{:style => 'height:300px;width:90%;'}
-  :javascript
-    $.jqplot('month_trade',  [#{@month_t}],
-      { 
-      title:"#{t('site.month_title_trade')}",
-      axes:{yaxis:{min:0}, xaxis:{min:1, max:31}},
-      series:[{color:'#5FAB78'}],
-      grid:{background:'#eaf4f5'}
-      }
-    );
+      %hr
+
+      #equal-left
+        .bordershape
+          = t('site.w_task_sum') + @week_tasks_sum.to_s
+        #chartdiv_week{:style => 'height:300px;width:90%;'}
+        :javascript
+          $.jqplot('chartdiv_week',  [#{@week}],
+            { 
+            title:"#{t('site.week_title_task')}",
+            axes:{yaxis:{min:0}, xaxis:{min:1, max:7}},
+            series:[{color:'#5FAB78'}],
+            grid:{background:'#eaf4f5'}
+            }
+          );
+      #equal-right
+        .bordershape
+          = t('site.m_task_sum') + @month_tasks_sum.to_s
+        #chartdiv_month{:style => 'height:300px;width:90%;'}
+        :javascript
+          $.jqplot('chartdiv_month',  [#{@month}],
+            { 
+            title:"#{t('site.month_title_task')}",
+            axes:{yaxis:{min:0}, xaxis:{min:1, max:31}},
+            series:[{color:'#5FAB78'}],
+            grid:{background:'#eaf4f5'}
+            }
+          );
+      #equal-left
+        .bordershape
+          = t('site.w_trade_sum') + @week_trades_sum.to_s
+        #week_trade{:style => 'height:300px;width:90%;'}
+        :javascript
+          $.jqplot('week_trade',  [#{@week_t}],
+            { 
+            title:"#{t('site.week_title_trade')}",
+            axes:{yaxis:{min:0}, xaxis:{min:1, max:7}},
+            series:[{color:'#5FAB78'}],
+            grid:{background:'#eaf4f5'}
+            }
+          );
+      #equal-right
+        .bordershape
+          = t('site.m_trade_sum') + @month_trades_sum.to_s
+        #month_trade{:style => 'height:300px;width:90%;'}
+        :javascript
+          $.jqplot('month_trade',  [#{@month_t}],
+            { 
+            title:"#{t('site.month_title_trade')}",
+            axes:{yaxis:{min:0}, xaxis:{min:1, max:31}},
+            series:[{color:'#5FAB78'}],
+            grid:{background:'#eaf4f5'}
+            }
+          );

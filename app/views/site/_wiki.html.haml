@@ -1,8 +1,7 @@
 %h3
   = image_tag('help.png')
   = t 'site.wiki'
-%p
-  - @articles.each do |c|
+- @articles.each do |c|
+  %p
     = link_to c do
       = c.title
-      =# image_tag("http://wpa.qq.com/pa?p=1:#{c.im_q}:4", :alt=>'点击这里给我发消息')

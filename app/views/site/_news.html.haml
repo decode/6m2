@@ -1,11 +1,12 @@
 .hero-unit
-  %h3
-    =# image_tag 'warning.png'
+  %h2
+    = image_tag 'warning.png'
     = t 'site.notice'
-  - for n in @notices
-    %p
-      #notice_body
-        #notice_title= link_to n.title, n
-        #notice_content
-          = n.content.length > 50 ? n.content[0,50] + ' ...' : n.content
-        #notice_date= l n.created_at, :format => :long
+  %p
+    - n = @notice
+    #notice_body
+      #notice_title= link_to n.title, n
+      #notice_content
+        = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
+      #notice_date= l n.created_at, :format => :long
+  = link_to t('global.show'), n, :class=> 'btn btn-primary btn-small'

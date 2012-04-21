@@ -1,10 +1,6 @@
-.fullshape
+%h3
   = t 'site.new_user'
-#tickerContainer
-  %dl#ticker
-    - @users.each do |u|
-      %dt.heading
-        = image_tag('user.png')
-        = u.username
-      %dd.text
-        = l u.created_at, :format => :short
+- @users.each do |u|
+  %p
+    = image_tag('user.png')
+    = u.username

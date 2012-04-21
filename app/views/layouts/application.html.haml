@@ -12,9 +12,6 @@
 
   %body
     .navbar.navbar-fixed-top
-      #wide
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "#{name}"
       .navbar-inner
         .container
           .brand
@@ -44,7 +41,7 @@
                   = image_tag('user_info.png')
                   = t('site.profile')
               %li
-                = link_to destroy_user_session_path do
+                = link_to destroy_user_session_path, :method => :delete do
                   = image_tag('logout.png')
                   = t('site.logout')
             - else
@@ -56,13 +53,30 @@
                 = link_to new_user_registration_path do
                   = image_tag('sign_up.png')
                   = t('site.register')
+            %li.dropdown
+              %a.dropdown-toggle(data-toggle="dropdown" href="#") 
+                = t('site.service_list')
+                %b.caret
+              %ul.dropdown-menu
+                - role = Role.where(:name => 'admin').first
+                - ids = role.user_ids.drop(1)
+                - @customers = User.where(:id => ids).where('im_q is not null').order("created_at DESC")
+                - @customers.each do |u|
+                  %li
+                    = link_to "tencent://message/?uin=#{u.im_q}&Site=&Menu=yes", :target=>'_black' do
+                      = image_tag("http://wpa.qq.com/pa?p=1:#{u.im_q}:4", :alt=>'点击这里给我发消息')
+                      = u.username
           %br
           /[if IE]
             %p
               %br
               = t 'site.ie'
 
-    .container
+    - flash.each do |name, msg|
+      %div(class="alert alert-#{name == :notice ? 'success' : 'error'}")
+        %a.close(data-dismiss="alert") ×
+        = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+    - if user_signed_in?
       .subnav.subnav-fixed
         %ul.nav.nav-pills
           - if user_signed_in?
@@ -200,8 +214,9 @@
                 %li
                   = link_to t('site.roles'), '/t/roles'
 
-      = yield
+    = yield
 
+    .container
       %hr
       #footer.footer
         %p

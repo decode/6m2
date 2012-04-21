@@ -1,5 +1,4 @@
 class AccountController < ApplicationController
-  layout 'simple'
 
   access_control do
     allow :admin, :manager, :except => [:charge, :process_charge]
