@@ -1,5 +1,4 @@
-%table
-  %caption
+%table.table.table-striped
   %thead
     %tr
       - if session[:view_log] == 'admin'
@@ -12,19 +11,17 @@
       %th= t 'global.description'
       %th
 
-  - @trades.each do |t|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      - if session[:view_log] == 'admin'
-        %td= t.user_id
-        %td= t.user_name
-      %td= t.trade_id
-      %td= t.operator_name
-      %td= t.amount
-      %td= t.local_type
-      %td= t.description
-      %td= l t.created_at, :format => :long
-  %tfoot
-    %tr
-      %th{:colspan=>6}
-        = will_paginate @trades
+  %tbody
+    - @trades.each do |t|
+      %tr
+        - if session[:view_log] == 'admin'
+          %td= t.user_id
+          %td= t.user_name
+        %td= t.trade_id
+        %td= t.operator_name
+        %td= t.amount
+        %td= t.local_type
+        %td= t.description
+        %td= l t.created_at, :format => :long
+
+  = will_paginate @trades

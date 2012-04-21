@@ -1,12 +1,10 @@
-.bordershape
-  = image_tag('charge.png')
-  = '-' + t('trade.charge')
-  \|
-  = image_tag('recyling.png')
-  = '-' + t('trade.recyling_point')
+= image_tag('charge.png')
+= '-' + t('trade.charge')
+\|
+= image_tag('recyling.png')
+= '-' + t('trade.recyling_point')
 
-%table
-  %caption=# t 'account.charge'
+%table.table.table-striped
   %thead
     %tr
       %th= '#'
@@ -20,25 +18,25 @@
       %th=t 'global.status'
       %th
 
-  - @trades.each do |t|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      %td= t.id
-      %td= t.user.username
-      %td= t.price
-      %td= trade_type_image(t.trade_type)
-      %td= t.transaction_id
-      %td= t.name
-      %td= t.local_pay_type
-      %td= l t.created_at, :format => :long
-      %td= t.local_status
-      %td
-        - if t.request?
-          - if admin?# or manager?)
-            - if t.trade_type != 'charge'
-              = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_pass', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'), :class=>'operate'}
-            - else
-              = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'),:class=>'operate'}
-            = link_to image_tag('no.png', :alt=>t('trade.reject')), {:controller=>'account', :action=>'approve_reject', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.reject'),:class=>'operate'}
-          = link_to image_tag('delete.png', :alt=>t('global.delete')), {:controller => 'account', :action => 'delete_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete'), :class=>'operate'}
+  %tbody
+    - @trades.each do |t|
+      %tr
+        %td= t.id
+        %td= t.user.username
+        %td= t.price
+        %td= trade_type_image(t.trade_type)
+        %td= t.transaction_id
+        %td= t.name
+        %td= t.local_pay_type
+        %td= l t.created_at, :format => :long
+        %td= t.local_status
+        %td
+          - if t.request?
+            - if admin?# or manager?)
+              - if t.trade_type != 'charge'
+                = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_pass', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'), :class=>'operate'}
+              - else
+                = link_to image_tag('ok.png', :alt=>t('trade.approve')), {:controller=>'account', :action=>'approve_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.approve'),:class=>'operate'}
+              = link_to image_tag('no.png', :alt=>t('trade.reject')), {:controller=>'account', :action=>'approve_reject', :id=>t}, {:confirm => t('site.are_you_sure'), :title=>t('trade.reject'),:class=>'operate'}
+            = link_to image_tag('delete.png', :alt=>t('global.delete')), {:controller => 'account', :action => 'delete_charge', :id=>t}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete'), :class=>'operate'}
 = will_paginate @trades

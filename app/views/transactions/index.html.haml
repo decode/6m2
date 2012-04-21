@@ -1,8 +1,7 @@
-#roundshape
-  = link_to t('global.create'), new_transaction_path
-#wide
-  .solidshape
-    %table
+.container
+  = link_to t('global.create'), new_transaction_path, :class=>'btn btn-primary'
+  %table.table.table-striped
+    %thead
       %tr
         %th 
           = t 'transaction.business'
@@ -12,6 +11,7 @@
           = t 'transaction.month_amount'
         %th
           = t 'account.point'
+    %tbody
       %tr
         %td= t 'account.charge'
         %td= @charges_num
@@ -30,7 +30,7 @@
         %td
           = @current_amount
         %td
-#wide
+  %hr
   - if admin?
     :javascript
       $(function() {
@@ -50,12 +50,13 @@
           }
         });
       });
-    .solidshape
-      - form_tag :controller => 'board', :action => 'range_transaction' do
-        = t 'global.from'
-        = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
-        = t 'global.to'
-        = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
-        = submit_tag t('global.show')
-  = render 'transactions/trans'
+
+    = form_tag({:controller => 'board', :action => 'range_transaction'}, {:class=>'well form-inline'}) do
+      = t 'global.from'
+      = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
+      = t 'global.to'
+      = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
+      = submit_tag t('global.show')
+
+    = render 'transactions/trans'
 

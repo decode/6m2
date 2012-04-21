@@ -1,83 +1,82 @@
-.bordershape
-  = image_tag('list.png')
-  = '-' + t('account.transaction_log')
-  \|
-  = image_tag('point.png')
-  = '-' + t('account.point')
-  \|
-  = image_tag('password.png')
-  = '-' + t('site.password')
-  \|
-  = image_tag('role.png')
-  = '-' + t('account.role')
-  \|
-  = image_tag('score.png')
-  = '-' + t('account.score')
-  \|
-  = image_tag('lock.png')
-  = '-' + t('formtastic.labels.user.operate_password')
-  \|
-  = image_tag('activate.png')
-  = '-' + t('account.confirm')
-  \|
-  = image_tag('view.png')
-  = '-' + t('global.show')
-  \|
-  = image_tag('edit.png')
-  = '-' + t('global.edit')
-  \|
-  = image_tag('delete.png')
-  = '-' + t('global.delete')
-%table{:id=>'data_table', :class=>'tablesorter'}
-  %caption
-    /= t('site.user_manage')
-    - form_tag :controller => 'board', :action => 'search_user' do
-      = label_tag t 'site.login_name'
-      = search_field_tag 'username', session[:search_username]
-      = submit_tag t('global.show')
-  %thead
-    %tr
-      %th
-      %th= t 'site.login_name'
-      %th= t 'account.role'
-      %th= t 'account.charge_amount' 
-      %th= t 'account.point'
-      %th= t 'account.score'
-      %th= 'IP' #t 'global.status' 
-      %th= t 'account.account_manage'
-      %th{:colspan=>3}= t 'global.operation'
+.container
+  = form_tag({:controller => 'board', :action => 'search_user'}, {:class=>'well form-inline'}) do
+    = label_tag t 'site.login_name'
+    = search_field_tag 'username', session[:search_username]
+    = submit_tag t('global.show')
+  
+  #tips
+    = image_tag('list.png')
+    = '-' + t('account.transaction_log')
+    \|
+    = image_tag('point.png')
+    = '-' + t('account.point')
+    \|
+    = image_tag('password.png')
+    = '-' + t('site.password')
+    \|
+    = image_tag('role.png')
+    = '-' + t('account.role')
+    \|
+    = image_tag('score.png')
+    = '-' + t('account.score')
+    \|
+    = image_tag('lock.png')
+    = '-' + t('formtastic.labels.user.operate_password')
+    \|
+    = image_tag('activate.png')
+    = '-' + t('account.confirm')
+    \|
+    = image_tag('view.png')
+    = '-' + t('global.show')
+    \|
+    = image_tag('edit.png')
+    = '-' + t('global.edit')
+    \|
+    = image_tag('delete.png')
+    = '-' + t('global.delete')
 
-  - @users.each do |user|
-    - c = cycle("even", "odd")
-    %tr{:class=>c}
-      %td
-        = user.id # check_box_tag "users[]", user
-      %td= user.username
-      %td
-        =# user.role_objects.collect{|r| r.name[0..3]}.join(' ')
-        = user.roles.collect{|r| r.name[0..3]}.join(' ')
-        = "(#{t('account.not_approved')})" if user.has_role? 'guest'
-      %td= user.account_money
-      %td= user.account_credit
-      %td= user.score
-      %td= user.last_sign_in_ip
-      %td
-        - if admin? or manager? or superadmin?
-          - if superadmin?
-            = link_to image_tag('state.png', :alt=>t('global.status')), {:controller => 'account', :action => 'user_state', :id => user}, {:class=>'operate'}
-          = link_to image_tag('list.png', :alt=>t('account.transaction_log')), {:controller => 'board', :action => 'trans_list', :id => user}, {:class=>'operate'}
-          = link_to image_tag('point.png', :alt=>t('account.point')), {:controller => 'account', :action => 'point', :id => user}, {:class=>'operate'}
-          = link_to image_tag('password.png', :alt=>t('site.password')), {:controller => 'account', :action => 'password', :id => user}, {:class=>'operate'}
-          = link_to image_tag('role.png', :alt=>t('account.role')), {:controller => 'account', :action => 'role', :id => user}, {:class=>'operate'}
-          = link_to image_tag('score.png', :alt=>t('account.score')), {:controller => 'account', :action => 'score', :id => user}, {:class=>'operate'}
-          = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), {:controller => 'account', :action => 'operate_password', :id => user}, {:class=>'operate'}
-          = link_to image_tag('activate.png', :alt=>t('account.confirm')), {:controller => 'account', :action => 'confirm', :id => user}, {:class=>'operate'} unless user.confirmed?
-      %td
-        = link_to image_tag('view.png', :alt=>t('global.show')), user
-        - if superadmin?
-          = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
-          = link_to image_tag('delete.png', :alt=>t('global.delete')), user, :confirm => t('site.are_you_sure'), :method => :delete
-  %tfoot
-    %tr
-      %th{:colspan=>7}
-        = will_paginate @users
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th= t 'site.login_name'
+        %th= t 'account.role'
+        %th= t 'account.charge_amount' 
+        %th= t 'account.point'
+        %th= t 'account.score'
+        %th= 'IP' #t 'global.status' 
+        %th= t 'account.account_manage'
+        %th{:colspan=>3}= t 'global.operation'
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td
+            = user.id # check_box_tag "users[]", user
+          %td= user.username
+          %td
+            =# user.role_objects.collect{|r| r.name[0..3]}.join(' ')
+            = user.roles.collect{|r| r.name[0..3]}.join(' ')
+            = "(#{t('account.not_approved')})" if user.has_role? 'guest'
+          %td= user.account_money
+          %td= user.account_credit
+          %td= user.score
+          %td= user.last_sign_in_ip
+          %td
+            - if admin? or manager? or superadmin?
+              - if superadmin?
+                = link_to image_tag('state.png', :alt=>t('global.status')), {:controller => 'account', :action => 'user_state', :id => user}, {:class=>'operate'}
+              = link_to image_tag('list.png', :alt=>t('account.transaction_log')), {:controller => 'board', :action => 'trans_list', :id => user}, {:class=>'operate'}
+              = link_to image_tag('point.png', :alt=>t('account.point')), {:controller => 'account', :action => 'point', :id => user}, {:class=>'operate'}
+              = link_to image_tag('password.png', :alt=>t('site.password')), {:controller => 'account', :action => 'password', :id => user}, {:class=>'operate'}
+              = link_to image_tag('role.png', :alt=>t('account.role')), {:controller => 'account', :action => 'role', :id => user}, {:class=>'operate'}
+              = link_to image_tag('score.png', :alt=>t('account.score')), {:controller => 'account', :action => 'score', :id => user}, {:class=>'operate'}
+              = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), {:controller => 'account', :action => 'operate_password', :id => user}, {:class=>'operate'}
+              = link_to image_tag('activate.png', :alt=>t('account.confirm')), {:controller => 'account', :action => 'confirm', :id => user}, {:class=>'operate'} unless user.confirmed?
+          %td
+            = link_to image_tag('view.png', :alt=>t('global.show')), user
+            - if superadmin?
+              = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_user_path(user)
+              = link_to image_tag('delete.png', :alt=>t('global.delete')), user, :confirm => t('site.are_you_sure'), :method => :delete
+
+  = will_paginate @users

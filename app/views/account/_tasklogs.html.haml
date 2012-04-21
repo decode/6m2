@@ -1,5 +1,4 @@
-%table
-  %caption
+%table.table.table-striped
   %thead
     %tr
       %th ID
@@ -19,8 +18,7 @@
 
   %tbody
     - @tasks.each do |t|
-      - c = cycle("even", "odd")
-      %tr{:class=>'double'}
+      %tr
         - task = Task.where('id = ?', t.task_id).first
         - unless task.nil?
           %td= task.id
@@ -44,7 +42,4 @@
           #task_detail
             = t.description
 
-  %tfoot
-    %tr
-      %th{:colspan=>9}
-        = will_paginate @tasks
+= will_paginate @tasks

@@ -1,5 +1,4 @@
-%table
-  %caption
+%table.table.table-striped
   %thead
     %tr
       %th= t 'formtastic.labels.transaction.tid' 
@@ -13,10 +12,10 @@
         %th= t 'formtastic.labels.transaction.account_name'
         %th= t 'formtastic.labels.transaction.point'
       %th
-        = link_to image_tag('save_01.png')+t('global.export'), '/t/export_transaction'
+        = link_to image_tag('save_01.png')+t('global.export'), '/t/export_transaction', :class=>'btn btn-info'
   %tbody
     - @transactions.each do |transaction|
-      %tr{:class=>'double'}
+      %tr
         %td= transaction.tid
         %td= transaction.amount
         %td= transaction.name
@@ -46,7 +45,4 @@
             = l transaction.trade_time, :format => :short
             = transaction.description
 
-    %tfoot
-      %tr
-        %th{:colspan=>9}
-          = will_paginate @transactions
+  = will_paginate @transactions

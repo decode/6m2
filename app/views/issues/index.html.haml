@@ -1,7 +1,6 @@
-- if guest? or user?
-  #roundshape
-    = link_to t('issue.request'), new_issue_url
-    \|
-    = link_to t('global.back'), :back
-= render 'issues'
+.container
+  - if guest? or user?
+    = link_to t('issue.request'), new_issue_url, :class=>'btn btn-primary'
+    = link_to t('global.back'), :back, :class=>'btn btn-primary'
+  = render 'issues'
 
