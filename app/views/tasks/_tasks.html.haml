@@ -18,17 +18,12 @@
       });
     });
 
-  - form_tag :controller => 'board', :action => 'range_task' do
+  = form_tag({:controller => 'board', :action => 'range_task'},{:class=>'well form-inline'}) do
     = t 'global.from'
     = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
     = t 'global.to'
     = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
     = submit_tag t('global.show')
-/
-  :javascript
-    $(function() {
-      $('#tip').tipsy({gravity: 's'});
-    });
 
 :javascript
   $(function() {

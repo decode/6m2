@@ -1,7 +1,11 @@
-= render 'users/head'
+.container-fluid
+  .row-fluid
+    .span3
+      = render 'users/head'
 
-#wide
-  .solidshape
-    = render 'account/user'
+    .span9
+      = render 'account/user'
 
-  = render 'account/trades'
+      %hr
+
+      = render 'account/trades'

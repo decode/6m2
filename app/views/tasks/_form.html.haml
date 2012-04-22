@@ -44,7 +44,7 @@
       }
      });
    });
-- simple_form_for @task do |f| 
+= simple_form_for(@task, :html => {:class => 'form-horizontal'}) do |f| 
   -# f.inputs do
   = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
 

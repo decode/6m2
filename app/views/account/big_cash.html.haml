@@ -1,8 +1,12 @@
-= render 'users/head'
+.container-fluid
+  .row-fluid
+    .span3
+      = render 'users/head'
 
-#wide
-  .bordershape
-    = render 'user'
+    .span9
+      = render 'account/user'
 
-= render 'issues/issues'
+      %hr
+
+      = render 'issues/issues'
 

@@ -1,8 +1,12 @@
-= render 'users/head'
+.container-fluid
+  .row-fluid
+    .span3
+      = render 'users/head'
 
-#wide
-  .solidshape
-    = render 'user'
+    .span9
+      = render 'account/user'
 
-= render 'tasks/tasks'
+      %hr
+
+      = render 'tasks/tasks'
 

@@ -1,8 +1,8 @@
-.container
-  %ul
-    = form_tag :action => 'update_setting' do
-      = hidden_field_tag 'id', @setting.id
-      .bordershape
+= form_tag :action => 'update_setting' do
+  = hidden_field_tag 'id', @setting.id
+  .row-fluid
+    .span4
+      %ul
         %li
           = label_tag t('setting.point_ratio')
           = number_field_tag 'setting[point_ratio]', @setting.point_ratio
@@ -36,9 +36,8 @@
         %li
           = label_tag t('setting.report_punish')
           = number_field_tag 'setting[report_punish]', @setting.report_punish
-
-    #equal-right
-      .bordershape
+    .span4
+      %ul
         %li
           = label_tag t('setting.custom_judge')
           = number_field_tag 'setting[custom_judge]', @setting.custom_judge
@@ -52,7 +51,7 @@
           = label_tag t('setting.real_level')
           = number_field_tag 'setting[real_level]', @setting.real_level
 
-      .bordershape
+        %hr
         %li
           = label_tag t('setting.init_required_point')
           = number_field_tag 'setting[init_required_point]', @setting.init_required_point
@@ -68,8 +67,8 @@
         %li
           = label_tag t('setting.total_user')
           = number_field_tag 'setting[total_user]', @setting.total_user
-
-      .bordershape
+    .span4
+      %ul
         %li
           = label_tag t('setting.transport_price')
           = number_field_tag 'setting[transport_price]', @setting.transport_price
@@ -77,7 +76,7 @@
           = label_tag t('setting.times_limit')
           = number_field_tag 'setting[times_limit]', @setting.times_limit
 
-      .bordershape
+        %hr
         %li
           = label_tag t('setting.recyling_point')
           = number_field_tag 'setting[recyling_point]', @setting.recyling_point
@@ -90,4 +89,4 @@
         %li
           = label_tag t('setting.score_point')
           = number_field_tag 'setting[score_point]', @setting.score_point
-    = submit_tag t('site.update')
+      = submit_tag t('site.update'), :class=>'btn btn-primary'
