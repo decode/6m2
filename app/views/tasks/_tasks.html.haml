@@ -72,7 +72,7 @@
       \|
       = image_tag('quest.png')
       = '-' + t('task.send_problem')
-.content
+.alert.alert-info
   %p{:title => t('task.demo'), :class=>'blue'}
     = image_tag('do.png')
     = '1.' + t('task.worker') + t('task.do')
@@ -100,7 +100,6 @@
     %br
     %br
     = t 'task.p6'
-%hr
 .content
   - if user_signed_in?
     = t('site.todo_num') 
@@ -133,7 +132,7 @@
         = current_user.status_tasks('finished').length.to_s 
 
 - if admin? or manager? or session[:view_task] == 'manage'
-  %table.table.table-striped
+  %table.table.table-striped.table-condensed
     %thead
       %tr
         %th
@@ -220,7 +219,7 @@
   = will_paginate @tasks
 
 - else 
-  %table.table.table-striped
+  %table.table.table-striped.table-condensed
     %thead
       %tr
         %th=t 'global.title'

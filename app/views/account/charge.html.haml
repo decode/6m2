@@ -1,9 +1,11 @@
-.solidshape
-  = render 'account/user'
-
-#wide
-  .bordershape
-    - form_tag( {:action=>'process_charge'}, :id=>'charge') do
+.row-fluid
+  .span4
+    %br
+  .span4
+    .alert.alert-info
+      %p= t 'trade.must_input'
+      %p= t 'trade.bad_deal'
+    = form_tag( {:action=>'process_charge'}, :id=>'charge', :class=>'well form-horizontal') do
       %table
         %tr
           %td
@@ -33,11 +35,6 @@
             = number_field_tag 'amount', 100, :class=>"validate[required],custom[number],min[100],max[2000]"
         %tr
           %td
-            = submit_tag t('account.charge')
+            = submit_tag t('account.charge'), :class=>'btn btn-success'
           %td
-/
-  #right
-    #roundshape
-      %p= t 'trade.must_input'
-      %hr
-      %p= t 'trade.bad_deal'
+  .span4

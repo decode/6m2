@@ -1,37 +1,37 @@
-#roundshape
-  = link_to t('global.edit'), edit_transaction_path(@transaction)
-  |
-  \#{link_to t('global.back'), transactions_path}
-%p
-  %b= t 'formtastic.labels.transaction.tid' 
-  = @transaction.tid
-%p
-  %b= t 'formtastic.labels.transaction.amount' 
-  = @transaction.amount
-%p
-  %b= t 'formtastic.labels.transaction.name'
-  = @transaction.name
-%p
-  %b= t 'formtastic.labels.transaction.bank'
-  = @transaction.bank
-%p
-  %b= t 'formtastic.labels.transaction.pay_type'
-  = @transaction.local_pay_type
-%p
-  %b= t 'formtastic.labels.transaction.account_name'
-  = @transaction.account_name
-%p
-  %b= t 'formtastic.labels.transaction.point'
-  = @transaction.point
-%p
-  %b= t 'transaction.owner'
-  = @transaction.user.username if @transaction.user
-%p
-  %b= t 'transaction.sales'
-  = @transaction.sales.username if @transaction.sales
-%p
-  %b= t 'formtastic.labels.transaction.trade_time'
-  = @transaction.trade_time
-%p
-  %b= t 'formtastic.labels.transaction.description'
-  = @transaction.description
+.well
+  %p
+    %b= t 'formtastic.labels.transaction.tid' 
+    = @transaction.tid
+  %p
+    %b= t 'formtastic.labels.transaction.amount' 
+    = @transaction.amount
+  %p
+    %b= t 'formtastic.labels.transaction.name'
+    = @transaction.name
+  %p
+    %b= t 'formtastic.labels.transaction.bank'
+    = @transaction.bank
+  %p
+    %b= t 'formtastic.labels.transaction.pay_type'
+    = @transaction.local_pay_type
+  %p
+    %b= t 'formtastic.labels.transaction.account_name'
+    = @transaction.account_name
+  %p
+    %b= t 'formtastic.labels.transaction.point'
+    = @transaction.point
+  %p
+    %b= t 'transaction.owner'
+    = @transaction.user.username if @transaction.user
+  %p
+    %b= t 'transaction.sales'
+    = @transaction.sales.username if @transaction.sales
+  %p
+    %b= t 'formtastic.labels.transaction.trade_time'
+    = @transaction.trade_time
+  %p
+    %b= t 'formtastic.labels.transaction.description'
+    = @transaction.description
+
+  = link_to t('global.edit'), edit_transaction_path(@transaction), :class=>'btn btn-primary'
+  = link_to t('global.back'), transactions_path, :class=>'btn btn-primary'

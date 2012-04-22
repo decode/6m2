@@ -7,6 +7,11 @@ class Participant < ActiveRecord::Base
   validates_length_of :part_id, :within => 3..40
   #validates_format_of :url, :with => /^[A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_%&\?\/\.=]+$/, :message => 'http://... or https://...'
 
+  # If not set, create new participant will failed
+  # It need to test in further rails edition
+  # 2012.4.22
+  attr_accessible :part_id, :part_type, :role_type
+
   def make_active
     other = self.user.participants.where(:role_type => self.role_type, :active => true).first
     if other

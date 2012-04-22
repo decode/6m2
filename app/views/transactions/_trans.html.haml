@@ -1,18 +1,19 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= t 'formtastic.labels.transaction.tid' 
-      %th= t 'formtastic.labels.transaction.amount' 
-      %th= t 'formtastic.labels.transaction.name' 
-      %th= t 'formtastic.labels.transaction.bank' 
-      %th= t 'formtastic.labels.transaction.pay_type' 
+      %th= t 'simple_form.labels.transaction.tid' 
+      %th= t 'simple_form.labels.transaction.amount' 
+      %th= t 'simple_form.labels.transaction.name' 
+      %th= t 'simple_form.labels.transaction.bank' 
+      %th= t 'simple_form.labels.transaction.pay_type' 
       - if session[:transaction_mode] != 'sales'
         %th= t 'transaction.owner'
         %th= t 'transaction.sales'
-        %th= t 'formtastic.labels.transaction.account_name'
-        %th= t 'formtastic.labels.transaction.point'
+        %th= t 'simple_form.labels.transaction.account_name'
+        %th= t 'simple_form.labels.transaction.point'
       %th
         = link_to image_tag('save_01.png')+t('global.export'), '/t/export_transaction', :class=>'btn btn-info'
+        = link_to t('global.create'), new_transaction_path, :class=>'btn btn-primary'
   %tbody
     - @transactions.each do |transaction|
       %tr
@@ -39,9 +40,9 @@
             = link_to image_tag('edit.png', :alt=>t('global.edit')), edit_transaction_path(transaction)
             = link_to image_tag('delete.png', :alt=>t('global.delete')), transaction, :confirm => t('site.are_you_sure'), :method => :delete
       %tr
-        %td{:colspan=>9}
+        %td{:colspan=>10}
           #task_detail
-            = t 'formtastic.labels.transaction.trade_time' 
+            = t 'simple_form.labels.transaction.trade_time' 
             = l transaction.trade_time, :format => :short
             = transaction.description
 

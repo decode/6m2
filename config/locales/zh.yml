@@ -617,7 +617,7 @@ zh:
     failure:
       already_authenticated: "用户己登录"
 
-  formtastic:
+  simple_form:
     titles:
       task_details: "任务详情"
     labels:
@@ -747,6 +747,11 @@ zh:
       create: "创建"
       update: "保存"
       dummie: "运行!"
+
+  helpers:
+    submit:
+      create: "创建"
+      update: "保存"
 
 
 
@@ -878,3 +883,4 @@ zh:
         less_than_or_equal_to: "必须小于或等于 %{count}"
         odd: "必须为单数"
         even: "必须为双数"
+        record_invalid: "记录无效"

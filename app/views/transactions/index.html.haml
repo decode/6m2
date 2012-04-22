@@ -1,6 +1,5 @@
 .container
-  = link_to t('global.create'), new_transaction_path, :class=>'btn btn-primary'
-  %table.table.table-striped
+  %table.table.table-bordered
     %thead
       %tr
         %th 
@@ -56,7 +55,7 @@
       = text_field_tag 'from', '', {:size=>10, :class => 'validate[required]'}
       = t 'global.to'
       = text_field_tag 'to', '', {:size=>10, :class => 'validate[required]'}
-      = submit_tag t('global.show')
+      = submit_tag t('global.show'), :class=>'btn'
 
     = render 'transactions/trans'
 

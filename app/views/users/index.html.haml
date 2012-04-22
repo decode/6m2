@@ -21,7 +21,7 @@
     = '-' + t('account.score')
     \|
     = image_tag('lock.png')
-    = '-' + t('formtastic.labels.user.operate_password')
+    = '-' + t('simple_form.labels.user.operate_password')
     \|
     = image_tag('activate.png')
     = '-' + t('account.confirm')
@@ -35,7 +35,7 @@
     = image_tag('delete.png')
     = '-' + t('global.delete')
 
-  %table.table.table-striped
+  %table.table.table-condensed
     %thead
       %tr
         %th
@@ -71,7 +71,7 @@
               = link_to image_tag('password.png', :alt=>t('site.password')), {:controller => 'account', :action => 'password', :id => user}, {:class=>'operate'}
               = link_to image_tag('role.png', :alt=>t('account.role')), {:controller => 'account', :action => 'role', :id => user}, {:class=>'operate'}
               = link_to image_tag('score.png', :alt=>t('account.score')), {:controller => 'account', :action => 'score', :id => user}, {:class=>'operate'}
-              = link_to image_tag('lock.png', :alt=>t('formtastic.labels.user.operate_password')), {:controller => 'account', :action => 'operate_password', :id => user}, {:class=>'operate'}
+              = link_to image_tag('lock.png', :alt=>t('simple_form.labels.user.operate_password')), {:controller => 'account', :action => 'operate_password', :id => user}, {:class=>'operate'}
               = link_to image_tag('activate.png', :alt=>t('account.confirm')), {:controller => 'account', :action => 'confirm', :id => user}, {:class=>'operate'} unless user.confirmed?
           %td
             = link_to image_tag('view.png', :alt=>t('global.show')), user

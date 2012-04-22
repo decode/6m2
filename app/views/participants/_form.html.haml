@@ -3,33 +3,33 @@
     $("#participant_role_type").val('');
     $("#participant_role_type").change(function() {
       if(this.value=='customer') {
-        $("#participant_url_input").hide('fast');
+        $("#participant_url").parent().hide('fast');
       }
       else {
-        $("#participant_url_input").show('fast');
+        $("#participant_url").parent().show('fast');
       }
     });
   });
-- semantic_form_for @participant do |f| 
-  - f.inputs do
-    - if session[:operate_mode] != 'edit'
-      = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
-      = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
-      = f.input :part_id, :input_html => { :class => "validate[required],custom[normalName],minSize[3]" }
-      = f.input :url, :input_html => { :size=>60, :class => "validate[custom[url]]" }
-    - else
-      %li
-        = label_tag t('formtastic.labels.participant.role_type')
-        = @participant.role_type
-      %li
-        = label_tag t('formtastic.labels.participant.part_type')
-        = @participant.part_type
-      %li
-        = label_tag t('formtastic.labels.participant.part_id')
-        = @participant.part_id
-      %li
-        = label_tag t('formtastic.labels.participant.url')
-        = @participant.url
-    = f.input :description
-    = f.input :active, :as => :boolean
-    = f.commit_button
+
+.row-fluid
+  .span2
+    %br
+  .span8
+    = simple_form_for(@participant, :html=>{:class=>'well form-horizontal'}) do |f| 
+      - if session[:operate_mode] != 'edit'
+        = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :input_html => { :class => "validate[required]" }
+        = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :input_html => { :class => "validate[required]" }
+        = f.input :part_id, :input_html => { :class => "validate[required,custom[normalName],minSize[3]]" }
+        = f.input :url, :as=>:url, :input_html => { :size=>60, :class => "validate[custom[url]]" }
+      - else
+        = f.input :role_type, :collection => { t('participant.shop') => 'shop', t('participant.customer') => 'customer' }, :disabled => true
+        = f.input :part_type, :collection => { t('participant.taobao') => 'taobao', t('participant.paipai') => 'paipai', t('participant.youa') => 'youa'}, :disabled => true
+        = f.input :part_id, :disabled => true
+        = f.input :url, :as=>:url, :disabled=>true
+
+      = f.input :description
+      = f.input :active, :as => :boolean
+      = f.button :submit, :class=>'btn btn-success'
+      = link_to t('global.back'), participants_path, :class=>'btn'
+  .span2
+    %br

@@ -1,12 +1,8 @@
-.solidshape
-  = render 'account/user'
+= render 'account/user'
 
-.bordershape
-  - form_tag( {:action=>'process_charge'}, :id=>'charge') do
-    = label_tag t('trade.point_amount')
-    = number_field_tag 'amount', 10, :step => 10, :in => 10...5000, :class=>"validate[require],custom[number],min[10],max[5000]"
-    %br
-    = submit_tag t('account.change')
-    
+%hr
 
-
+= form_tag( {:action=>'process_charge'}, :id=>'charge', :class=>'well form-horizontal') do
+  = label_tag t('trade.point_amount')
+  = number_field_tag 'amount', 10, :step => 10, :in => 10...5000, :class=>"validate[require],custom[number],min[10],max[5000]"
+  = submit_tag t('account.change'), :class=>'btn btn-success'

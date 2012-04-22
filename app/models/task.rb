@@ -17,6 +17,11 @@ class Task < ActiveRecord::Base
   #validates_length_of :description, :within => 0..120
 
   #validate :low_point_cannot_make_task
+  
+  # Add after upgrade to rails 3.1
+  # 2012.4.22
+  attr_accessible :title, :task_type, :link, :price, :tran_type, :tran_id, :worker_level, :real_level, :avoid_day
+
   def low_point_cannot_make_task
     app = ApplicationController.new
     point = app.caculate_point(self)

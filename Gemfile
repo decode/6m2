@@ -41,6 +41,9 @@ gem 'rails3-jquery-autocomplete'
 gem 'exception_notification'
 
 gem 'rmagick', :require=>false
+
+gem 'therubyracer'
+
 #gem "meta_where"
 #gem "meta_search"
 
