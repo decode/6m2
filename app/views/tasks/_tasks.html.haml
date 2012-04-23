@@ -130,6 +130,10 @@
     = link_to :controller=>'board', :action=>'status_task', :task_status=>'finished' do
       %span.badge.badge-info
         = current_user.status_tasks('finished').length.to_s 
+    %i.icon-arrow-left
+    %span.label
+      = t 'task.click_icon'
+
 
 - if admin? or manager? or session[:view_task] == 'manage'
   %table.table.table-striped.table-condensed

@@ -1,5 +1,5 @@
 %h3
-  = image_tag 'warning.png'
+  =# image_tag 'warning.png'
   = t 'site.notice'
 %p
   - n = @notice
@@ -8,4 +8,4 @@
     #notice_content
       = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
     #notice_date= l n.created_at, :format => :long
-= link_to t('global.show'), n, :class=> 'btn btn-primary btn-small'
+= link_to t('global.show'), n, :class=> 'btn btn-small'

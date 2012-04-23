@@ -398,6 +398,7 @@ en:
     p5: ""
     p6: ""
     taskday_hint: "You'd better choose more than one days"
+    click_icon: "<< Click the number to the tasks"
 
   transport:
     unused: "Unused"
