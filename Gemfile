@@ -6,6 +6,13 @@ gem 'rails', '3.1.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :assets do
+  gem 'therubyracer'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
 gem 'sqlite3'
 gem "jquery-rails"
 
@@ -28,7 +35,6 @@ gem 'validation_reflection'
 
 gem "will_paginate"
 
-gem 'sass-rails'
 gem 'bootstrap-sass'
 
 #gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
@@ -41,8 +47,6 @@ gem 'rails3-jquery-autocomplete'
 gem 'exception_notification'
 
 gem 'rmagick', :require=>false
-
-gem 'therubyracer'
 
 #gem "meta_where"
 #gem "meta_search"
