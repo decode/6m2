@@ -1,5 +1,4 @@
-- semantic_form_for @notice do |f| 
-  - f.inputs do
-    = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
-    = f.input :content, :as => :text, :input_html => { :class => "validate[required],minSize[5]" }
-    = f.commit_button
+= simple_form_for(@notice, :html=>{:class=>'well form-inline'}) do |f| 
+  = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
+  = f.input :content, :as => :text, :input_html => { :class => "validate[required],minSize[5]" }
+  = f.button :submit, :class=>'btn'

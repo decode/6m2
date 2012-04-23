@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   include TinymceFilemanager
-  layout 'article'
+  #layout 'article'
   access_control do
     allow :admin, :manager, :user
     allow :user, :except => [:new, :edit, :create, :update, :destroy]

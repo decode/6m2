@@ -1,21 +1,23 @@
-= render :partial => "devise/shared/links"
-/%h2= t 'site.register' 
-#wide
-  .solidshape
-    = t('site.sign_tip')
+.row-fluid
+  .span3
     %br
-    = t('site.sign_rule1')
-    %br
-    = t('site.sign_rule2')
-    %br
-    = t('site.sign_rule3')
-    %br
-    = t('site.sign_rule4')
-    %br
-    = t('site.sign_rule5')
+  .span6
+    %p
+      = render :partial => "devise/shared/links"
+    .alert.alert-info
+      = t('site.sign_tip')
+      %br
+      = t('site.sign_rule1')
+      %br
+      = t('site.sign_rule2')
+      %br
+      = t('site.sign_rule3')
+      %br
+      = t('site.sign_rule4')
+      %br
+      = t('site.sign_rule5')
 
-  #fieldset.formContainer
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:class=>'well form-horizontal'}) do |f|
       = devise_error_messages!
       .rowContainer
         = label_tag t('site.login_name')
@@ -30,4 +32,7 @@
         = label_tag t('site.password_confirmation')
         = f.password_field :password_confirmation, { :class => 'validate[required,equals[user_password]],minSize[6],maxSize[20]' }
       %br
-      = f.submit t('site.register_agree')
+      = f.submit t('site.register_agree'), :class=>'btn btn-primary'
+
+  .span3
+    %br

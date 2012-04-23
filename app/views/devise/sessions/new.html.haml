@@ -1,30 +1,32 @@
-#wide
-  = render :partial => "devise/shared/links"
-#sl
-  %br
-#sm
-  .solidshape
-    = t 'site.login_tip'
+.row-fluid
+  .span3
     %br
-    = t 'site.login_tip1'
-    %br
-    = t 'site.login_tip2'
-    %br
-    = t 'site.login_tip3'
-  .bordershape
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .span6
+    %p
+      = render :partial => "devise/shared/links"
+    .alert.alert-info
+      = t 'site.login_tip'
+      %br
+      = t 'site.login_tip1'
+      %br
+      = t 'site.login_tip2'
+      %br
+      = t 'site.login_tip3'
+
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=>{:class=>'well form-horizontal'}) do |f|
       %p
         = t 'site.login_name'
         %br/
-        = f.text_field :login
+        = f.text_field :login, :class => "validate[required, minSize[3]]"
       %p
         = t 'site.password'
         %br/
-        = f.password_field :password
+        = f.password_field :password, :class => "validate[required, minSize[6]]"
       - if devise_mapping.rememberable?
         %p
           = f.check_box :remember_me
           = t 'site.remember_me'
-      %p= f.submit t('site.login')
-#sr
-  %br
+      %p= f.submit t('site.login'), :class=>'btn btn-primary'
+
+  .span3
+    %br

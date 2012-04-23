@@ -1,29 +1,29 @@
-
 - if admin?
-  #roundshape
-    = link_to t('global.create'), new_article_path
-  %table
-    %tr
-      %th= t 'formtastic.labels.article.title'
-      %th= t 'formtastic.labels.article.content'
-      %th= t 'formtastic.labels.article.article_type'
-      %th
-      %th
-      %th
-      %th
-    - @articles.each do |article|
+  %p
+    = link_to t('global.create'), new_article_path, :class=>'btn btn-primary'
+  %table.table
+    %thead
       %tr
-        %td= article.title.length > 20 ? article.title[0, 20]+'...' : article.title
-        %td= (article.content.length > 40) ? article.content[0..40] + "..." : article.content
-        %td= article.article_type
-        %td= article.user.username if article.user
-        %td= link_to image_tag('view.png', :alt=>t('global.show')), article
-        %td= link_to image_tag('edit.png', :alt=>t('global.edit')), edit_article_path(article)
-        %td= link_to image_tag('delete.png', :alt=>t('global.delete')), article, :confirm => t('site.are_you_sure'), :method => :delete
-  %br/
+        %th= t 'simple_form.labels.article.title'
+        %th= t 'simple_form.labels.article.content'
+        %th= t 'simple_form.labels.article.article_type'
+        %th
+        %th
+        %th
+        %th
+    %tbody
+      - @articles.each do |article|
+        %tr
+          %td= article.title.length > 20 ? article.title[0, 20]+'...' : article.title
+          %td= (article.content.length > 40) ? article.content[0..40] + "..." : article.content
+          %td= article.article_type
+          %td= article.user.username if article.user
+          %td= link_to image_tag('view.png', :alt=>t('global.show')), article
+          %td= link_to image_tag('edit.png', :alt=>t('global.edit')), edit_article_path(article)
+          %td= link_to image_tag('delete.png', :alt=>t('global.delete')), article, :confirm => t('site.are_you_sure'), :method => :delete
 
 - else
-  %table
+  %table.table.table-condensed
     - @articles.each do |article|
       %tr
         %td= l article.created_at, :format => :short

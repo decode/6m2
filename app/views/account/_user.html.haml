@@ -29,52 +29,52 @@
       %b= t 'account.registered_time'
       = l @user.created_at, :format => :long
     %p
-      %b= t 'formtastic.labels.user.current_sign_in_at'
+      %b= t 'simple_form.labels.user.current_sign_in_at'
       = l @user.current_sign_in_at, :format => :long if @user.current_sign_in_at
 
   #account.tab-pane
     %p
-      = t 'account.charge_amount'
+      %b= t 'account.charge_amount'
       = @user.account_money
     %p
-      = t 'account.point'
+      %b= t 'account.point'
       = @user.account_credit
     /
       %li
         = t 'trade.payment_amount'
         = @user.payment_money
     %p
-      = t 'account.score'
+      %b= t 'account.score'
       = @user.score
     - if admin?
       %p
-        = t 'task.total_finish_todo_payment'
+        %b= t 'task.total_finish_todo_payment'
         = @user.status_todos('finished').sum('price')
       %p
-        = t 'task.total_finish_todo_point'
+        %b= t 'task.total_finish_todo_point'
         = @user.status_todos('finished').sum('point')
 
   #task.tab-pane
     %p
-      = t 'task.total_todo_payment'
+      %b= t 'task.total_todo_payment'
       = @user.status_todos('running').sum('price')
     %p
-      = t 'task.total_task'
+      %b= t 'task.total_task'
       = @user.tasks.count
     %p
-      = t 'task.total_todo'
+      %b= t 'task.total_todo'
       = @user.todos.count
     %p
-      = t 'task.published'
+      %b= t 'task.published'
       = link_to @user.status_tasks('published').count, :controller=>'board', :action=>'status_task', :task_status=>'published'
     %p
-      = t 'task.running'
+      %b= t 'task.running'
       = link_to @user.status_tasks('running').count, :controller=>'board', :action=>'status_task', :task_status=>'running'
     %p
-      = t 'task.finished'
+      %b= t 'task.finished'
       = link_to @user.status_tasks('finished').count, :controller=>'board', :action=>'status_task', :task_status=>'finished'
     %p
-      = t 'task.problem'
+      %b= t 'task.problem'
       = link_to @user.status_tasks('problem').count, :controller=>'board', :action=>'status_task', :task_status=>'problem'
 
 :javascript

@@ -1,10 +1,10 @@
-#roundshape
-  = link_to t('global.read_all'), :controller => 'board', :action => 'mb_read_all'
-  \|
-  = link_to t('global.delete_all'), {:controller => 'board', :action => 'mb_delete_all'}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
-  \|
-  = link_to t('global.back'), :back
-%table
+= link_to t('global.read_all'), :controller => 'board', :action => 'mb_read_all'
+\|
+= link_to t('global.delete_all'), {:controller => 'board', :action => 'mb_delete_all'}, {:confirm => t('site.are_you_sure'), :method => :delete, :title => t('global.delete')}
+\|
+= link_to t('global.back'), :back
+
+%table.table.table-condensed
   %caption
   %thead
     %tr
@@ -14,20 +14,19 @@
       %th= t 'formtastic.labels.message.status'
       %th= t 'manage.send_time'
       %th
-  - @messageboxes.each do |m|
-    - message = m.message
-    - if message
-      %tr
-        %td= message.title
-        %td= message.msg_type
-        %td= message.priority
-        %td= m.local_status
-        %td= l message.created_at, :format => :short
-        %td
-          = link_to t('message.make_read'), :controller => 'board', :action => 'mb_read', :id => m if m.unread?
-          = link_to t('global.show'), :controller => 'board', :action => 'view_message', :id => m.message
-          = link_to t('global.delete'), :controller => 'board', :action => 'make_delete', :id => m
-  %tfoot
-    %tr
-      %th
-        = will_paginate @messageboxes
+  %tbody
+    - @messageboxes.each do |m|
+      - message = m.message
+      - if message
+        %tr
+          %td= message.title
+          %td= message.msg_type
+          %td= message.priority
+          %td= m.local_status
+          %td= l message.created_at, :format => :short
+          %td
+            = link_to t('message.make_read'), :controller => 'board', :action => 'mb_read', :id => m if m.unread?
+            = link_to t('global.show'), :controller => 'board', :action => 'view_message', :id => m.message
+            = link_to t('global.delete'), :controller => 'board', :action => 'make_delete', :id => m
+
+= will_paginate @messageboxes

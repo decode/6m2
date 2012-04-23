@@ -1,6 +1,6 @@
 .container
   - if guest? or user?
     = link_to t('issue.request'), new_issue_url, :class=>'btn btn-primary'
-    = link_to t('global.back'), :back, :class=>'btn btn-primary'
+    = link_to t('global.back'), :back, :class=>'btn'
   = render 'issues'
 

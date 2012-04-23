@@ -1,15 +1,19 @@
-= render :partial => "devise/shared/links"
-%h2= t 'site.change_password'
-.bordershape
-  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-    = devise_error_messages!
-    = f.hidden_field :reset_password_token
+.row-fluid
+  .span3
+    %br
+  .span6
     %p
-      = t 'site.password'
-      %br/
-      = f.password_field :password, { :class => 'validate[required],minSize[6],maxSize[20]' }
-    %p
-      = t 'site.password_confirmation'
-      %br/
-      = f.password_field :password_confirmation, { :class => 'validate[required],minSize[6],maxSize[20]' }
-    %p= f.submit t('page.submit')
+      = render :partial => "devise/shared/links"
+    %h2= t 'site.change_password'
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class=>'well form-horizontal'}) do |f|
+      = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      %p
+        = t 'site.password'
+        %br/
+        = f.password_field :password, { :class => 'validate[required],minSize[6],maxSize[20]' }
+      %p
+        = t 'site.password_confirmation'
+        %br/
+        = f.password_field :password_confirmation, { :class => 'validate[required],minSize[6],maxSize[20]' }
+      %p= f.submit t('page.submit'), :class=>'btn btn-primary'

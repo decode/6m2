@@ -22,7 +22,9 @@
           %ul.nav.pull-right
             - if user_signed_in?
               %li
-                = link_to t('site.welcome', :name => current_user.username), "#"
+                = link_to "#" do
+                  %span.label.label-info
+                    = t('site.welcome', :name => current_user.username)
             %li
               = link_to '/', {:title=>t('site.label')} do
                 = image_tag('home.png')
@@ -82,72 +84,91 @@
     - if user_signed_in?
       .subnav.subnav-fixed
         %ul.nav.nav-pills
-          - if user_signed_in?
-            - if guest? or user?
+          - if guest? or user?
+            %li
+              = link_to new_task_url do
+                = image_tag('add.png')
+                = t('site.new_task') 
+            %li
+              = link_to '/m/charge' do
+                = image_tag('add.png')
+                = t('trade.charge_payment') 
+          %li.dropdown
+            %a.dropdown-toggle(data-toggle="dropdown" href="#") 
+              = t('site.task')
+              %b.caret
+            %ul.dropdown-menu
               %li
-                = link_to new_task_url do
-                  = image_tag('add.png')
-                  = t('site.new_task') 
-              %li
-                = link_to '/m/charge' do
-                  = image_tag('add.png')
-                  = t('trade.charge_payment') 
-            %li.dropdown
-              %a.dropdown-toggle(data-toggle="dropdown" href="#") 
-                = t('site.task')
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  = link_to t('site.task'), tasks_url
-                - if user?
-                  %li
-                    = link_to t('site.new_task'), new_task_url
+                = link_to t('site.task'), tasks_url
+              %hr
+              /
                 %li
                   = link_to t('site.task_type',:task_type=>'taobao'), :controller=>'board', :action=>'task_list', :task_type => 'taobao'
                 %li
                   = link_to t('site.task_type',:task_type=>'paipai'), :controller=>'board', :action=>'task_list', :task_type => 'paipai'
                 %li
                   = link_to t('site.task_type',:task_type=>'youa'), :controller=>'board', :action=>'task_list', :task_type => 'youa'
-                - if guest? or user? or manager?
-                  %li
-                    = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
-                  %li
-                    = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
-                  %li
-                    = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
-                - if admin?
-                  %li
-                    = link_to t('site.payment_task'), :controller=>'board', :action=> 'task_list', :task_type => 'payment'
+              %li
+                = link_to t('site.task_diamond'), tasks_url
+              %li
+                = link_to t('site.task_favourite'), tasks_url
+              %li
+                = link_to t('site.task_flow'), tasks_url
+              %hr
+              - if guest? or user? or manager?
+                %li
+                  = link_to t('site.my_task'), :controller=>'board', :action=>'task_show', :task_type => 'task'
+                %li
+                  = link_to t('site.my_todo'), :controller=>'board', :action=> 'task_show', :task_type => 'todo'
+                %li
+                  = link_to t('site.my_cash'), :controller=>'board', :action=> 'task_show', :task_type => 'cash'
+              - if admin?
+                %li
+                  = link_to t('site.payment_task'), :controller=>'board', :action=> 'task_list', :task_type => 'payment'
 
-          - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle(data-toggle="dropdown")
+              = t('site.user_center')
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                = link_to t('site.my_account'), current_user
+              - if guest? or user?
+                %li
+                  = link_to t('site.my_participants'), user_participants_url(current_user)
+                %li
+                  = link_to t('site.operate_password'), "/m/operate_password"
+                %hr
+                %li
+                  = link_to t('site.my_messages'), '/m/message'
+                %li
+                  = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
+              - if salesman?
+                %li
+                  = link_to t('site.sales_business'), transactions_url
+
+          - if user? or guest?
             %li.dropdown
               %a.dropdown-toggle(data-toggle="dropdown")
-                = t('site.user_center')
+                = t('site.service_center')
                 %b.caret
               %ul.dropdown-menu
                 %li
-                  = link_to t('site.user_center'), current_user
-                - if guest? or user?
-                  %li
-                    = link_to t('site.my_account'), '/m/index'
-                  %li
-                    = link_to t('trade.charge_payment'), '/m/charge'
-                  %li
-                    = link_to t('trade.charge_point'), '/m/payment'
-                  %li
-                    = link_to t('trade.score_point'), '/m/score_point'
-                  %li
-                    = link_to t('site.my_transport'), "/m/transport_list/#{current_user.id}"
-                  %li
-                    = link_to t('site.my_participants'), user_participants_url(current_user)
-                  %li
-                    = link_to t('site.operate_password'), "/m/operate_password"
-                  %li
-                    = link_to t('site.my_messages'), '/m/message'
-                - if salesman?
-                  %li
-                    = link_to t('site.sales_business'), transactions_url
+                  = link_to t('trade.charge_payment'), '/m/charge'
+                %li
+                  = link_to t('trade.charge_point'), '/m/payment'
+                %li
+                  = link_to t('trade.score_point'), '/m/score_point'
+                %hr
+                %li
+                  = link_to t('site.service_list'), '/t/service'
+                %li
+                  = link_to t('site.service'), issues_path 
 
+          %li
+            = link_to t('site.transport_center'), transports_path
+          %li
+            = link_to t('site.rule'), articles_path
 
           - if manager? or admin?
             %li.dropdown
@@ -156,8 +177,19 @@
                 %b.caret
               %ul.dropdown-menu
                 %li
-                  = link_to t('site.manage_center'), admin? ? users_path : ''
+                  %span.label.label-warning manager
+                  %span.label.label-important admin
+                %li
+                  = link_to t('site.issue'), issues_path
+                %li
+                  = link_to t('site.tasklog_center'), '/t/tasklogs'
+                %li
+                  = link_to t('site.accountlog_center'), '/t/accountlogs'
                 - if admin?
+                  %li
+                    %span.label.label-important admin
+                  %li
+                    = link_to t('site.user_manage'), admin? ? users_path : ''
                   %li
                     = link_to t('site.cash_task'), :controller=>'board', :action=>'task_list', :task_type => 'cash'
                   %li
@@ -168,14 +200,8 @@
                     = link_to t('trade.manage_point'), '/m/approve/point'
                   %li
                     = link_to t('trade.manage_score'), '/m/approve/score'
-                %li
-                  = link_to t('site.issue'), issues_path
-                %li
-                  = link_to t('site.tasklog_center'), '/t/tasklogs'
-                %li
-                  = link_to t('site.accountlog_center'), '/t/accountlogs'
-                %hr
-                - if admin?
+                  %li
+                    %span.label.label-important admin
                   %li
                     = link_to t('site.finance_center'), transactions_url
                   %li
@@ -184,38 +210,14 @@
                     = link_to t('system.message'), '/s/message'
                   %li
                     = link_to t('site.setting'), '/s/setting'
+                - if superadmin?
+                  %li
+                    %span.label.label-inverse su 
+                  %li
+                    = link_to t('site.admin'), '/admin'
+                  %li
+                    = link_to t('site.roles'), '/t/roles'
 
-          - if user? or guest?
-            %li.dropdown
-              %a.dropdown-toggle(data-toggle="dropdown")
-                = t('site.service_center')
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  = link_to t('site.service_center'), '/t/service'
-                %li
-                  = link_to t('site.service_list'), '/t/service'
-                %li
-                  = link_to t('site.service'), issues_path 
-
-          - if user_signed_in?
-            %li
-              = link_to t('site.transport_center'), transports_path
-            %li
-              = link_to t('site.rule'), articles_path
-
-          - if superadmin?
-            %li.dropdown
-              %a.dropdown-toggle(data-toggle="dropdown")
-                = t('site.admin')
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  = link_to t('site.admin'), '/admin'
-                %li
-                  = link_to t('site.admin'), '/admin'
-                %li
-                  = link_to t('site.roles'), '/t/roles'
 
     .container-fluid
       = yield

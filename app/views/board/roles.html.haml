@@ -1,7 +1,6 @@
-#roundshape
-  = link_to t('global.create'), :controller => 'board', :action => 'new_role'
-%table
-  %caption
+%p
+  = link_to t('global.create'), {:controller => 'board', :action => 'new_role'}, :class=>'btn btn-primary'
+%table.table.table-condensed
   %thead
     %tr
       %th Name

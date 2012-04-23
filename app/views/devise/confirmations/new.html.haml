@@ -1,10 +1,14 @@
-= render :partial => "devise/shared/links"
-%h2= t 'devise.resend_confirm'
-.bordershape
-  = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
-    = devise_error_messages!
+.row-fluid
+  .span3
+    %br
+  .span6
     %p
-      = t 'page.email'
-      %br/
-      = f.text_field :email, { :class => 'validate[required],custom[email]' }
-    %p= f.submit t('devise.resend')
+      = render :partial => "devise/shared/links"
+    %h2= t 'devise.resend_confirm'
+    = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => 'well form-horizontal'}) do |f|
+      = devise_error_messages!
+      %p
+        = t 'page.email'
+        %br/
+        = f.text_field :email, { :class => 'validate[required],custom[email]' }
+      %p= f.submit t('devise.resend'), :class=>'btn btn-primary'

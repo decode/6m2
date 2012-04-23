@@ -1,5 +1,5 @@
 - if @task
-  #tearshape
+  .alert.alert-info
     = label_tag t('site.task')
     = @task.title
     |
@@ -16,9 +16,9 @@
     = label_tag t('task.point')
     = @task.point
 
-= semantic_form_for @issue do |f| 
-  = f.inputs do
-    = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
-    = f.input :content, :as => :text, :input_html => { :class => "validate[required],minSize[5]" }
-    = f.input :itype, :as => :select, :collection => {'任务' => 'Task', '大额提现' => 'cash', '一般问题' => 'normal'}, :input_html => { :class => "validate[required]" } if session[:issue_type].nil?
-    = f.submit t('issue.send')
+= simple_form_for(@issue, :html=>{:class=>'well form-horizontal'}) do |f| 
+  = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
+  = f.input :content, :as => :text, :input_html => { :class => "validate[required],minSize[5]" }
+  = f.input :itype, :as => :select, :collection => {'任务' => 'Task', '大额提现' => 'cash', '一般问题' => 'normal'}, :input_html => { :class => "validate[required]" } if session[:issue_type].nil?
+  = f.submit t('issue.send'), :class=>'btn btn-success'
+  = link_to t('global.back'), :back, :class=>'btn'

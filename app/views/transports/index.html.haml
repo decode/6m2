@@ -1,5 +1,5 @@
 - if manager? or admin?
-  #roundshape
-    = link_to t('global.create'), new_transport_path
+  %p
+    = link_to t('global.create'), new_transport_path, :class=>'btn btn-primary'
   
 = render 'transports'

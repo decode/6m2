@@ -129,7 +129,7 @@ zh:
     task_type: "%{task_type}任务"
     new_task: "发布任务"
     user_center: "用户中心"
-    rule: "平台规则"
+    rule: "平台教学"
     wiki: "平台百科"
     my_task: "我发布的任务"
     my_todo: "我接手的任务"
@@ -177,6 +177,9 @@ zh:
     w_task_sum: "本周任务金额"
     m_trade_sum: "本月交易金额"
     w_trade_sum: "本周交易金额"
+    task_diamond: "钻石区"
+    task_favourite: "收藏区"
+    task_flow: "流量区"
 
   manage:
     message_box: "收件箱"

@@ -1,38 +1,37 @@
-.container
-  #frontslide
-    .carousel
-      .carousel-inner
-        .item.active
-          = image_tag('p1.png', :title=>t('home.content1'))
-          .carousel-caption
-            %h3=t('home.title1')
-            %p=t('home.content1')
-        .item
-          = image_tag('p2.png', :title=>t('home.content2'))
-          .carousel-caption
-            %h3=t('home.title2')
-            %p=t('home.content2')
-        .item
-          = image_tag('p3.png', :title=>t('home.content3'))
-          .carousel-caption
-            %h3=t('home.title3')
-            %p=t('home.content3')
-        .item
-          = image_tag('p4.png', :title=>t('home.content4'))
-          .carousel-caption
-            %h3=t('home.title4')
-            %p=t('home.content4')
-      %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
-      %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
+.row-fluid
+  .span12
+    #frontslide
+      .carousel
+        .carousel-inner
+          .item.active
+            = image_tag('slide11.jpg', :title=>t('home.content1'))
+            .carousel-caption
+              %h3=t('home.title1')
+              %p=t('home.content1')
+          .item
+            = image_tag('slide22.jpg', :title=>t('home.content2'))
+            .carousel-caption
+              %h3=t('home.title2')
+              %p=t('home.content2')
+          .item
+            = image_tag('slide33.jpg', :title=>t('home.content3'))
+            .carousel-caption
+              %h3=t('home.title3')
+              %p=t('home.content3')
+          .item
+            = image_tag('slide44.jpg', :title=>t('home.content4'))
+            .carousel-caption
+              %h3=t('home.title4')
+              %p=t('home.content4')
+        %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
+        %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
 
-  .row
-    .span12
-      - if user_signed_in?
-        = render 'site/news'
-
-  .row
-    .span8
-      = render 'site/wiki'
-    .span4
-      = render 'site/users'
+.row-fluid
+  .span4
+    - if user_signed_in?
+      = render 'site/news'
+  .span4
+    = render 'site/wiki'
+  .span4
+    = render 'site/users'
 

@@ -1,10 +1,14 @@
-= render :partial => "devise/shared/links"
-%h2= t 'site.forgot_password'
-.bordershape
-  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-    = devise_error_messages!
+.row-fluid
+  .span3
+    %br
+  .span6
     %p
-      = t 'page.email'
-      %br/
-      = f.text_field :email, { :class => 'validate[required],custom[email]' }
-    %p= f.submit t('site.send_password_reset')
+      = render :partial => "devise/shared/links"
+    %h2= t 'site.forgot_password'
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method=>:post, :class=>'well form-horizontal' }) do |f|
+      = devise_error_messages!
+      %p
+        = t 'page.email'
+        %br/
+        = f.text_field :email, { :class => 'validate[required],custom[email]' }
+      %p= f.submit t('site.send_password_reset'), :class=>'btn btn-primary'
