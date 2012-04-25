@@ -10,6 +10,22 @@
 *
 *= require_self
 */
+
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+@import "bootstrap";
+body { padding-top: 80px; }
+@import "bootstrap-responsive";
+
+/*
+.carousel {
+  width: 940px;
+}
+*/
+.carousel-inner { text-align: center; }
+.carousel .item > img { display: inline-block; }
+.carousel { background-color: black; }
 .content {
   background-color: #eee;
   padding: 20px;
