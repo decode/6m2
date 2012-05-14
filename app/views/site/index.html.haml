@@ -74,8 +74,12 @@
                   = t 'account.last_login_at'
                   = l current_user.last_sign_in_at, :format=>:short
 
-  .row
-    .span12
-      = render 'site/wiki'
-
-
+  - if user_signed_in?
+    .row
+      .span8
+        = render 'site/wiki'
+      .span4
+        - if user_signed_in?
+          = render 'site/news'
+        - else
+          = render 'site/advantage'

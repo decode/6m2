@@ -1,18 +1,10 @@
 %h3
   = t 'site.wiki'
-- i = -1
 - @articles.each do |c|
-  - i=i+1
-  - if i%3 == 0
-    .row-fluid
-      .span4
-        %p
-          = c.title
-          = link_to c do
-            = ">>"
-    - else
-      .span4
-        %p
-          = c.title
-          = link_to c do
-            = ">>"
+  %hr
+  %p
+    = c.title
+  %p
+    = c.content
+    = link_to c do
+      = ">>"
