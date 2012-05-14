@@ -7,6 +7,10 @@ class Issue < ActiveRecord::Base
   validates_length_of :content, :within => 0..160
   validates_presence_of :title, :content, :itype
 
+  # Add after upgrade to rails 3.1
+  # 2012.5.3
+  attr_accessible :title, :content, :itype
+
   state_machine :status, :initial => :open do
     event :fix do
       transition :open => :done

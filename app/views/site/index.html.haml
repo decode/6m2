@@ -1,37 +1,81 @@
-.row-fluid
-  .span12
-    #frontslide
-      .carousel
-        .carousel-inner
-          .item.active
-            = image_tag('slide11.jpg', :title=>t('home.content1'))
-            .carousel-caption
-              %h3=t('home.title1')
-              %p=t('home.content1')
-          .item
-            = image_tag('slide22.jpg', :title=>t('home.content2'))
-            .carousel-caption
-              %h3=t('home.title2')
-              %p=t('home.content2')
-          .item
-            = image_tag('slide33.jpg', :title=>t('home.content3'))
-            .carousel-caption
-              %h3=t('home.title3')
-              %p=t('home.content3')
-          .item
-            = image_tag('slide44.jpg', :title=>t('home.content4'))
-            .carousel-caption
-              %h3=t('home.title4')
-              %p=t('home.content4')
-        %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
-        %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
+.container
+  - unless user_signed_in?
+    .row
+      .span8
+        #frontslide
+          .carousel
+            .carousel-inner
+              .item.active
+                = image_tag('slide11.jpg', :title=>t('home.content1'))
+                .carousel-caption
+                  %h3=t('home.title1')
+                  %p=t('home.content1')
+              .item
+                = image_tag('slide22.jpg', :title=>t('home.content2'))
+                .carousel-caption
+                  %h3=t('home.title2')
+                  %p=t('home.content2')
+              .item
+                = image_tag('slide33.jpg', :title=>t('home.content3'))
+                .carousel-caption
+                  %h3=t('home.title3')
+                  %p=t('home.content3')
+              .item
+                = image_tag('slide44.jpg', :title=>t('home.content4'))
+                .carousel-caption
+                  %h3=t('home.title4')
+                  %p=t('home.content4')
+            %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
+            %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
+      .span4
+        - if user_signed_in?
+          = render 'site/news'
+        - else
+          = render 'site/advantage'
+  .row
+    .span12
+      .well
+        .row-fluid
+          .span8
+            %h3=t 'site.intro_title'
+            %p
+              = t 'site.intro'
+            %p
+              = t 'site.intro2'
+            %p
+            - unless user_signed_in?
+              = link_to t("site.join_us"), new_registration_path(resource_name), :class=>'btn btn-success'
 
-.row-fluid
-  .span4
-    - if user_signed_in?
-      = render 'site/news'
-  .span4
-    = render 'site/wiki'
-  .span4
-    = render 'site/users'
+          .span4
+            - unless user_signed_in?
+              = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=>{:class=>'form-horizontal'}) do |f|
+                %p
+                  = t 'site.login_name'
+                  %br/
+                  = f.text_field :login, :class => "validate[required, minSize[3]]"
+                %p
+                  = t 'site.password'
+                  %br/
+                  = f.password_field :password, :class => "validate[required, minSize[6]]"
+                %p
+                  = f.submit t('site.login'), :class=>'btn btn-success'
+                  - if devise_mapping.rememberable?
+                    = f.check_box :remember_me
+                    = t 'site.remember_me'
+            - else
+              .alert.alert-info
+                %h4
+                  %p
+                    = current_user.username
+                %p
+                  = t 'account.last_login_ip'
+                  = current_user.last_sign_in_ip
+                %p
+                  = t 'account.last_login_at'
+                  = l current_user.last_sign_in_at, :format=>:short
+
+  .row
+    .span12
+      = render 'site/wiki'
+
 

@@ -1,7 +1,18 @@
 %h3
-  =# image_tag('help.png')
   = t 'site.wiki'
+- i = -1
 - @articles.each do |c|
-  %p
-    = link_to c do
-      = c.title
+  - i=i+1
+  - if i%3 == 0
+    .row-fluid
+      .span4
+        %p
+          = c.title
+          = link_to c do
+            = ">>"
+    - else
+      .span4
+        %p
+          = c.title
+          = link_to c do
+            = ">>"

@@ -2,8 +2,7 @@
   .span12
     - if current_user and admin?
       = link_to t('global.create'), new_notice_path, :class=>'btn btn-primary'
-    %table.table
-      %caption
+    %table.table.table-condensed
       %thead
         %tr
           %th= t 'global.title'
