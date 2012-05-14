@@ -1,5 +1,6 @@
 = render 'user'
-.bordershape
+
+.well
   /%p#notice= notice
   %p
     %b= t 'global.title'
@@ -21,13 +22,13 @@
     = @issue.description
 
 - if @issue.penalties.length > 0
-  .bordershape
+  .alert.alert-warning
     = render 'penalties'
 
 -# if !@task.nil? and @issue.open? and (admin? or manager?)
   %hr
 %br
-#wide
+%p
   - if @issue.open? and (admin? or manager?)
     = render 'operation' 
     %hr
@@ -36,4 +37,4 @@
       |
       = link_to t('global.edit'), edit_issue_path(@issue)
       |
-  \#{link_to t('global.back'), issues_path}
+  = link_to t('global.back'), issues_path

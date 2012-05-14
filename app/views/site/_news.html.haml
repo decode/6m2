@@ -4,8 +4,11 @@
 %p
   - n = @notice
   #notice_body
-    #notice_title= link_to n.title, n
-    #notice_content
-      = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
-    #notice_date= l n.created_at, :format => :long
-= link_to t('global.show'), n, :class=> 'btn btn-small'
+    %h4
+      #notice_title= link_to n.title, n
+    %p
+      #notice_content
+        = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
+    %p
+      #notice_date= l n.created_at, :format => :long
+= link_to t('global.show'), n, :class=> 'btn btn-primary'
