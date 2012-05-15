@@ -1,10 +1,9 @@
-%h3
+%h3.title
   = t 'site.wiki'
 - @articles.each do |c|
-  %hr
-  %p
-    = c.title
-  %p
-    = c.content
-    = link_to c do
-      = ">>"
+  .border
+    %p
+      = c.title
+    %p
+      = link_to c do
+        = ">>"

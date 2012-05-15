@@ -100,3 +100,14 @@ body { padding-top: 80px; font-family: "Microsoft Yahei";}
 .subnav .nav > li:first-child > a, .subnav .nav > li:first-child > a:hover {
     border-radius: 0 0 0 0;
 }
+
+.border {
+  border-style: none none dashed;
+  border-width: 0 1px 1px;
+  border-color: #E5E5E5;
+  padding: 10px 10px 20px;
+}
+
+.title {
+  border-bottom: 1px dashed #E5E5E5;
+}
