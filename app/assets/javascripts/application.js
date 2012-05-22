@@ -16,6 +16,9 @@
 //= require bootstrap
 //= require_tree .
 //= require autocomplete-rails
+//= require jquery.validationEngine
+//= require jquery.validationEngine-zh_CN
+//= require site
 
 $('.carousel').carousel()
 
