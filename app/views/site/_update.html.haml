@@ -1,0 +1,11 @@
+%h3.title
+  = t 'site.site_update'
+
+- @updates.each do |c|
+  %p
+    = c.title
+    = link_to c do
+      = ">>"
+    %br
+    = l c.created_at, :foramt => :long
+
