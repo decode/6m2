@@ -8,9 +8,6 @@
     = stylesheet_link_tag "application"#, :media => "all"
     = javascript_include_tag "application"
 
-    = stylesheet_link_tag "validationEngine.jquery"
-    =# javascript_include_tag "site", "jquery.validationEngine", "jquery.validationEngine-zh_CN"
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -125,7 +122,7 @@
                   = link_to t('site.payment_task'), :controller=>'board', :action=> 'task_list', :task_type => 'payment'
 
           %li.dropdown
-            %a.dropdown-toggle(data-toggle="dropdown")
+            %a.dropdown-toggle(data-toggle="dropdown" href="#")
               = t('site.user_center')
               %b.caret
             %ul.dropdown-menu
@@ -147,7 +144,7 @@
 
           - if user? or guest?
             %li.dropdown
-              %a.dropdown-toggle(data-toggle="dropdown")
+              %a.dropdown-toggle(data-toggle="dropdown" href="#")
                 = t('site.service_center')
                 %b.caret
               %ul.dropdown-menu
@@ -170,7 +167,7 @@
 
           - if manager? or admin?
             %li.dropdown
-              %a.dropdown-toggle(data-toggle="dropdown")
+              %a.dropdown-toggle(data-toggle="dropdown" href="#")
                 = t('site.manage_center')
                 %b.caret
               %ul.dropdown-menu

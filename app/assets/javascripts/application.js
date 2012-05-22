@@ -20,5 +20,5 @@
 //= require jquery.validationEngine-zh_CN
 //= require site
 
+$('.dropdown-toggle').dropdown()
 $('.carousel').carousel()
-
