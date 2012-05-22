@@ -1,0 +1,9 @@
+%h3.title
+  = t 'site.rule'
+- @rules.each do |c|
+  .border
+    %p
+      = c.title
+    %p
+      = link_to c do
+        = ">>"
