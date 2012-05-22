@@ -67,11 +67,12 @@
                     = link_to "tencent://message/?uin=#{u.im_q}&Site=&Menu=yes", :target=>'_black' do
                       = image_tag("http://wpa.qq.com/pa?p=1:#{u.im_q}:4", :alt=>'点击这里给我发消息')
                       = u.username
-          %br
-          /[if IE]
-            %p
-              %br
-              = t 'site.ie'
+    /[if IE]
+      .alert.alert-error
+        = t 'site.ie'
+        = link_to t("site.firefox"), "http://firefox.com.cn/"
+        = link_to t("site.google"), "http://www.google.cn/chrome"
+        = link_to "IE8", "http://www.microsoft.com/downloads/zh-cn/details.aspx?familyid=341c2ad5-8c3d-4347-8c03-08cdecd8852b"
 
     - flash.each do |name, msg|
       %div(class="alert alert-#{name == :notice ? 'success' : 'error'}")
