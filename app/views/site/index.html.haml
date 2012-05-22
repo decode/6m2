@@ -83,5 +83,9 @@
       .span4
         - if user_signed_in?
           = render 'site/news'
+
+          %p
+
+          = render 'site/update'
         - else
           = render 'site/advantage'

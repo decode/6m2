@@ -13,6 +13,7 @@
       .navbar-inner
         .container
           .brand
+            = image_tag('logo.png')
             = t 'site.name'
           %ul.nav.pull-right
             - if user_signed_in?

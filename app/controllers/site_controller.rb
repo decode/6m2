@@ -15,8 +15,9 @@ class SiteController < ApplicationController
 
     @users = User.where("username != 'superadmin'").order("created_at Desc").limit(5)
     #offs = rand(Article.count)
-    @articles = Article.where("article_type = 'wiki'").order("created_at DESC").limit(9)#.offset(offs)
-    @rules = Article.where("article_type = 'rule'").order("created_at DESC").limit(9)#.offset(offs)
+    @articles = Article.where("article_type = 'wiki'").order("created_at DESC").limit(5)#.offset(offs)
+    @rules = Article.where("article_type = 'rule'").order("created_at DESC").limit(5)#.offset(offs)
+    @updates = Article.where("article_type = 'update'").order("created_at DESC").limit(5)#.offset(offs)
   end
 
   def setting

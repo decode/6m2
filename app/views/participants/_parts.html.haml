@@ -10,16 +10,16 @@
 
 .row-fluid
   .span6
-    %table.table.table-striped
+    %table.table.table-condensed
       %caption= t 'participant.customer'
       %thead
         %tr
-          %th= t 'formtastic.labels.participant.part_type'
-          %th= t 'formtastic.labels.participant.part_id'
-          %th= t 'formtastic.labels.participant.status'
-          %th= t 'formtastic.labels.participant.active'
+          %th= t 'simple_form.labels.participant.part_type'
+          %th= t 'simple_form.labels.participant.part_id'
+          %th= t 'simple_form.labels.participant.status'
+          %th= t 'simple_form.labels.participant.active'
           %th= t 'global.task'
-          %th= t 'formtastic.labels.participant.description'
+          %th= t 'simple_form.labels.participant.description'
           %th
       - @participants.each do |participant|
         %tr
@@ -42,16 +42,16 @@
     = will_paginate @participants
 
   .span6
-    %table.table.table-striped
+    %table.table.table-condensed
       %caption= t 'participant.shop'
       %thead
         %tr
-          %th= t 'formtastic.labels.participant.part_type'
-          %th= t 'formtastic.labels.participant.part_id'
-          %th= t 'formtastic.labels.participant.status'
-          %th= t 'formtastic.labels.participant.active'
+          %th= t 'simple_form.labels.participant.part_type'
+          %th= t 'simple_form.labels.participant.part_id'
+          %th= t 'simple_form.labels.participant.status'
+          %th= t 'simple_form.labels.participant.active'
           %th= t 'global.task'
-          %th= t 'formtastic.labels.participant.description'
+          %th= t 'simple_form.labels.participant.description'
           %th
       - @shops.each do |participant|
         %tr

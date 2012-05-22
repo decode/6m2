@@ -1,6 +1,6 @@
 = simple_form_for(@article, :html=>{:class=>'well'}) do |f| 
   = f.input :title, :input_html => { :class => "validate[required],minSize[5]" }
-  = f.input :article_type, :collection => ['wiki', 'rule'], :input_html => {:class => "validate[required]"}
+  = f.input :article_type, :collection => ['wiki', 'rule', 'update'], :input_html => {:class => "validate[required]"}
   =# f.input :content, :as => :text, :input_html => { :class => 'mceEditor' }
   =# f.tinymce_managed :content
   = f.input :content, :as=>:text, :input_html => { :class => "validate[required],minSize[5]" }

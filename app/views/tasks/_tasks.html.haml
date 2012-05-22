@@ -72,7 +72,7 @@
       \|
       = image_tag('quest.png')
       = '-' + t('task.send_problem')
-.alert.alert-info
+.content.alert.alert-info
   %p{:title => t('task.demo'), :class=>'blue'}
     = image_tag('do.png')
     = '1.' + t('task.worker') + t('task.do')
@@ -146,7 +146,7 @@
         %th=t 'task.owner'
         %th=t 'task.worker'
         %th=t 'global.status'
-        %th=t 'formtastic.labels.task.published_time'
+        %th=t 'simple_form.labels.task.published_time'
         %th=t 'global.operation'
 
     %tbody
@@ -214,12 +214,12 @@
                 = task.task_day
 
               - if task.avoid_day > 0
-                =t 'formtastic.labels.task.avoid_day'
+                =t 'simple_form.labels.task.avoid_day'
                 = task.avoid_day
               - if task.custom_judge
                 =t 'task.extra'
               - if task.custom_msg
-                =t 'formtastic.labels.task.custom_msg'
+                =t 'simple_form.labels.task.custom_msg'
   = will_paginate @tasks
 
 - else 
@@ -231,7 +231,7 @@
         %th=t 'task.point'
         %th=t 'task.owner'
         %th=t 'global.status'
-        %th=t 'formtastic.labels.task.published_time'
+        %th=t 'simple_form.labels.task.published_time'
         %th=t 'global.operation'
     %tbody
       - @tasks.each do |task|
@@ -292,12 +292,12 @@
                 = task.task_day
 
               - if task.avoid_day > 0
-                =t 'formtastic.labels.task.avoid_day'
+                =t 'simple_form.labels.task.avoid_day'
                 = task.avoid_day
               - if task.custom_judge
                 =t 'task.extra'
               - if task.custom_msg
-                =t 'formtastic.labels.task.custom_msg'
+                =t 'simple_form.labels.task.custom_msg'
   = will_paginate @tasks
 
 
