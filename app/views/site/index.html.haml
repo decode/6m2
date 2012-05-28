@@ -1,6 +1,6 @@
 .container
   - unless user_signed_in?
-    .row
+    .row.hidden-phone
       .span8
         #frontslide
           .carousel
@@ -75,17 +75,21 @@
                   = l current_user.last_sign_in_at, :format=>:short
 
   - if user_signed_in?
-    .row
+    .row-fluid
+      .span8
+        .row-fluid
+          .span6
+            = render 'site/wiki'
+          .span6
+            = render 'site/rule'
+        .row-fluid
+          .span12
+            = render 'site/tasks'
       .span4
-        = render 'site/wiki'
-      .span4
-        = render 'site/rule'
-      .span4
-        - if user_signed_in?
-          = render 'site/news'
-
-          %p
-
-          = render 'site/update'
-        - else
+        - unless user_signed_in?
           = render 'site/advantage'
+        - else
+          = render 'site/news'
+          %p
+          = render 'site/update'
+

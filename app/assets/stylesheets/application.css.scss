@@ -21,6 +21,19 @@ body { padding-top: 80px; font-family: "Microsoft Yahei";}
 
 @import "validationEngine.jquery.css";
 
+// Landscape phones and down
+//@media (max-width: 480px) { }
+
+// Landscape phone to portrait tablet
+//@media (max-width: 767px) { }
+
+// Portrait tablet to landscape and desktop
+//@media (min-width: 768px) and (max-width: 979px) { }
+
+// Large desktop
+//@media (min-width: 1200px) { }
+
+
 .content {
   background-color: #eee;
   padding: 20px;
@@ -103,5 +116,5 @@ body { padding-top: 80px; font-family: "Microsoft Yahei";}
 }
 
 .title {
-  border-bottom: 1px dashed #E5E5E5;
+  border-bottom: 3px dashed #E5E5E5;
 }

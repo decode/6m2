@@ -18,6 +18,7 @@ class SiteController < ApplicationController
     @articles = Article.where("article_type = 'wiki'").order("created_at DESC").limit(5)#.offset(offs)
     @rules = Article.where("article_type = 'rule'").order("created_at DESC").limit(5)#.offset(offs)
     @updates = Article.where("article_type = 'update'").order("created_at DESC").limit(5)#.offset(offs)
+    @tasks = Task.order("created_at DESC").limit(10)
   end
 
   def setting
