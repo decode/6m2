@@ -61,6 +61,8 @@ en:
     submit: "Submit"
     export: "Export"
     total: "Total"
+    look: "Detail"
+    enter: "Enter"
 
   system:
     password_error: "Wrong Password!"
@@ -119,6 +121,7 @@ en:
     are_you_sure: "Are you sure?"
     news: "News"
     site_update: "Site Update"
+    task_update: "Task Update"
     no_news: "No recently news"
     no_topics: "No recently topic news"
     no_articles: "No recently blog news"

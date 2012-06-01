@@ -28,11 +28,8 @@
             %a.carousel-control.left(href='#frontslide' data-slide="prev") &lsaquo;
             %a.carousel-control.right(href='#frontslide' data-slide="next") &rsaquo;
       .span4
-        - if user_signed_in?
-          = render 'site/news'
-        - else
-          = render 'site/advantage'
-  .row
+        = render 'site/advantage'
+  .row.hidden-phone
     .span12
       .well
         .row-fluid
@@ -77,7 +74,7 @@
   - if user_signed_in?
     .row-fluid
       .span8
-        .row-fluid
+        .row-fluid.hidden-phone
           .span6
             = render 'site/wiki'
           .span6
@@ -86,10 +83,7 @@
           .span12
             = render 'site/tasks'
       .span4
-        - unless user_signed_in?
-          = render 'site/advantage'
-        - else
-          = render 'site/news'
-          %p
-          = render 'site/update'
+        = render 'site/news'
+        %p
+        = render 'site/update'
 

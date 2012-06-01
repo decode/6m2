@@ -62,6 +62,8 @@ zh:
     submit: "提交"
     export: "导出"
     total: "总计"
+    look: "去看看"
+    enter: "进入"
 
   system:
     password_error: "密码错误"
@@ -123,6 +125,7 @@ zh:
     are_you_sure: "确定此操作?"
     news: "新闻"
     site_update: "网站动态"
+    task_update: "任务动态"
     no_news: "暂无公告"
     no_topics: "没有新的话题"
     no_articles: "没有新的文章"
@@ -794,8 +797,10 @@ zh:
   time:
     formats:
       default: "%Y年%b%d日 %A %H:%M:%S"
-      short: "%y-%m-%d %H:%M"
+      short: "%Y-%m-%d %H:%M"
       long: "%Y年%b%d日 %H:%M"
+      single: "%Y年%b%d日"
+      simple: "%m.%d %H:%M"
     am: "上午"
     pm: "下午"
   
