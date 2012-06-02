@@ -1,0 +1,15 @@
+%h3.title
+  = t 'site.task_update'
+
+- @tasks.each do |c|
+  .border
+    = c.user.username.sub(c.user.username[2..-3], "***")
+    = t('task.publish')
+    = c.title[0..30]
+    %br
+    .pull-right
+      = l c.created_at, :format => :simple
+      = c.local_status
+
+.pull-right
+  = link_to t('global.enter')+t('site.task'), tasks_url
