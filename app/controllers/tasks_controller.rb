@@ -15,13 +15,13 @@ class TasksController < ApplicationController
       status = %w(taobao youa paipai v_taobao v_youa v_paipai)
       if current_user.has_role? 'admin' or current_user.has_role? 'manager'
         #@tasks = Task.where("task_type in (?) and status = 'published'",['taobao', 'youa', 'paipai', 'v_taobao', 'v_youa', 'v_paipai']).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
-        tasks = Task.where("task_type in (?) and status != 'published'", status).order('created_at DESC')
-        tasks = Task.where("task_type in (?) and status = 'published'", status).order('created_at DESC') + tasks
+        tasks = Task.where("task_type in (?) and status != 'published'", status).order('created_at DESC').limit(100)
+        tasks = Task.where("task_type in (?) and status = 'published'", status).order('created_at DESC').limit(100) + tasks
         @tasks = tasks.paginate(:page => params[:page], :per_page => 15)
       else
         #@tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?",['taobao', 'youa', 'paipai', 'v_taobao', 'v_youa', 'v_paipai'], current_user.level).order('created_at DESC').paginate(:page => params[:page], :per_page => 15)
-        tasks = Task.where("task_type in (?) and status != 'published' and worker_level <= ?", status, current_user.level).order('created_at DESC')
-        tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?", status, current_user.level).order('created_at DESC') + tasks
+        tasks = Task.where("task_type in (?) and status != 'published' and worker_level <= ?", status, current_user.level).order('created_at DESC').limit(100)
+        tasks = Task.where("task_type in (?) and status = 'published' and worker_level <= ?", status, current_user.level).order('created_at DESC').limit(100) + tasks
         @tasks = tasks.paginate(:page => params[:page], :per_page => 15)
       end
     end

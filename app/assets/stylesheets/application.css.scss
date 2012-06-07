@@ -16,7 +16,7 @@
 $iconSpritePath: image-path('glyphicons-halflings.png');
 $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 @import "bootstrap";
-body { padding-top: 80px; font-family: "Microsoft Yahei";}
+body { padding-top: 80px; font-family: "Microsoft Yahei"; }
 @import "bootstrap-responsive";
 
 @import "validationEngine.jquery.css";
@@ -33,6 +33,10 @@ body { padding-top: 80px; font-family: "Microsoft Yahei";}
 // Large desktop
 //@media (min-width: 1200px) { }
 
+/*.navbar-inner*/
+/*{*/
+  /*background: #3F85CD !important;*/
+/*}*/
 
 .content {
   background-color: #eee;
