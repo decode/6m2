@@ -2,10 +2,11 @@
   = t 'site.site_update'
 
 - @updates.each do |c|
-  %p
+  .border
     = c.title
     = link_to c do
       = ">>"
     %br
-    = l c.created_at, :foramt => :long
+    .pull-right
+      = l c.created_at, :format => :single
 
