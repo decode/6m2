@@ -249,7 +249,7 @@
           %td= task.price
           %td= task.point
           %td
-            = task.user.username
+            = task.user.username.sub(task.user.username[2..-3], "***")
             = image_tag "icon_vip#{(task.user.level)}.gif"
           %td
             = task.local_status
