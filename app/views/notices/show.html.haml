@@ -1,10 +1,10 @@
 .well
   %p
     %b= t 'global.title'
-    = @notice.title
+    = @notice.title if @notice.title
   %p
     %b= t 'global.content'
-    = @notice.content
+    = @notice.content if @notice.content
 %p
   - if admin?
     = link_to t('global.edit'), edit_notice_path(@notice)
