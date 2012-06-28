@@ -3,11 +3,12 @@
 %p
   - n = @notice
   #notice_body
-    %h4
-      #notice_title= link_to n.title, n
-    %p
-      #notice_content
-        = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
-        = link_to t('global.show'), n#, :class=> 'btn btn-primary'
-    %p
-      #notice_date= l n.created_at, :format => :single
+    - if n
+      %h4
+        #notice_title= link_to n.title, n
+      %p
+        #notice_content
+          = n.content.length > 120 ? n.content[0,120] + ' ...' : n.content
+          = link_to t('global.show'), n#, :class=> 'btn btn-primary'
+      %p
+        #notice_date= l n.created_at, :format => :single

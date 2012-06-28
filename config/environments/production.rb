@@ -75,4 +75,5 @@ Temp::Application.configure do
     :arguments => '-i -t'
   }
   config.action_mailer.perform_deliveries = true
+
 end
