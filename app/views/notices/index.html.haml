@@ -11,7 +11,7 @@
           %th
       - @notices.each do |notice|
         %tr
-          %td= notice.title.length > 25 ? notice.title[0..25]+'...' : notice.title
+          %td= notice.title.length > 25 ? notice.title[0..25]+'...' : notice.title if notice.title
           %td= notice.content.length > 50 ? notice.content[0..50] + '...' : notice.content if notice.content
           %td= l notice.created_at, :format => :short
           %td
