@@ -13,6 +13,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.encryptable
 
       t.timestamps
+
+      # 升级到devise 2.0版本需要加字段
+      # t.datetime :reset_password_sent_at
+      # sql语句 alter table users add column reset_password_sent_at datetime;
     end
 
     add_index :users, :email,                :unique => true

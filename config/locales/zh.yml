@@ -639,7 +639,10 @@ zh:
     resend: "发送"
     registrations:
       user:
-        inactive_signed_up: "己成功注册,请查收帐号激活邮件,并激活您的帐号"
+        inactive_signed_up: "己成功注册,请查收账号激活邮件,并激活您的账号"
+        signed_up_but_unconfirmed: "该用户己成功注册,但未激活"
+        signed_up_but_locked: "该用户己注册,但账号被锁定"
+        signed_up_but_unconfirmed: "该用户己注册,但账号未激活"
     failure:
       already_authenticated: "用户己登录"
 
