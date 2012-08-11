@@ -66,7 +66,7 @@ Temp::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Add old action mailer config
-  config.action_mailer.default_url_options = { :host => 'boat166.net' }
+  config.action_mailer.default_url_options = { :host => '158in.com' }
 
   config.action_mailer.delivery_method = :sendmail
   # Defaults to:
