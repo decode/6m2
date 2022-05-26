@@ -116,7 +116,7 @@ GEM
     warden (1.0.4)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
-    yajl-ruby (0.8.2)
+    yajl-ruby (1.4.3)
 
 PLATFORMS
   ruby
